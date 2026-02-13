@@ -8,6 +8,7 @@ export async function GET() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICIA - Admin</title>
   <meta name="decap-cms-config-url" content="/admin/config.yml" />
+  <meta name="decap-cms-config-url" content="/config.yml" />
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
