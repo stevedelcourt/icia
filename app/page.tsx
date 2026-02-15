@@ -62,12 +62,12 @@ export default function Home() {
               <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
             </h1>
               <ScaleIn delay={0.5}>
-                <p className="text-body text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-xl md:text-2xl text-text-muted mb-12 max-w-2xl leading-relaxed">
                   Un projet francais, ancre a Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse beneficier concretement de l'intelligence artificielle.
                 </p>
               </ScaleIn>
               <FadeIn delay={0.6}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/accompagnements">
                     <Button variant="primary" size="lg">
                       Découvrir nos accompagnements
