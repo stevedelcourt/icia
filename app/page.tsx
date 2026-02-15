@@ -55,12 +55,12 @@ export default function Home() {
       <main id="main-content">
         <Section spacing="large">
           <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-h1 mb-8 leading-tight">
-                <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
-                <br />
-                <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
-              </h1>
+            <div className="max-w-4xl">
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-tight">
+              <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
+              <br />
+              <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+            </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-body text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
                   Un projet francais, ancre a Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse beneficier concretement de l'intelligence artificielle.
