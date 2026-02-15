@@ -84,17 +84,11 @@ export default function PlateformeNumeriquePage() {
     <>
       <Header />
       <main id="main-content">
-        <Section className="py-0">
-          <div className="w-full">
-            <img src="/images/plateforme.webp" alt="Plateforme ICIA" className="w-full h-auto" />
-          </div>
-        </Section>
-        
-        <Section className="pt-12 pb-12">
+        <Section className="pt-32 pb-12">
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
-                <TextReveal delay={0.1}>Plateforme numérique :</TextReveal>
+                <TextReveal delay={0.1}>Plateforme numerique :</TextReveal>
                 <br />
                 <TextReveal delay={0.2}>apprendre, se former,</TextReveal>
                 <br />
@@ -102,11 +96,18 @@ export default function PlateformeNumeriquePage() {
               </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-body text-text-muted">
-                  La plateforme ICIA est votre compagnon pour maîtriser l'intelligence artificielle. 
-                  Parcours personnalisés, certifications reconnues, ressourcesactualisées...
-                  Tout ce qu'il vous faut pour développer vos compétences.
+                  La plateforme ICIA est votre compagnon pour maitriser l'intelligence artificielle. 
+                  Tout ce qu'il vous faut pour developper vos competences.
                 </p>
               </ScaleIn>
+            </div>
+          </FadeIn>
+        </Section>
+
+        <Section className="pb-12">
+          <FadeIn>
+            <div className="w-full">
+              <img src="/images/plateforme.webp" alt="Plateforme ICIA" className="w-full h-auto md:aspect-[16/9] aspect-[1/1] object-cover rounded-xl" />
             </div>
           </FadeIn>
         </Section>
