@@ -39,7 +39,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
             display: "block"
           }
         }}
-        className="font-black text-lg md:text-xl lg:text-xl tracking-wide text-black"
+        className="font-[family-name:var(--font-lato)] font-extrabold text-lg md:text-xl lg:text-xl tracking-wide text-black"
       >
         <motion.span
           initial={{ opacity: 1 }}
@@ -107,7 +107,7 @@ export function Header() {
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div className="max-w-content mx-auto px-4 md:px-8 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
         <Logo isScrolled={isScrolled} />
 
         <nav className="hidden md:flex items-center gap-10">

@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
-import { Lato } from 'next/font/google'
+import { Lato, Open_Sans } from 'next/font/google'
 import './globals.css'
 
 const lato = Lato({
   weight: '900',
   subsets: ['latin'],
   variable: '--font-lato',
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
 })
 
 export const metadata: Metadata = {
@@ -47,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="antialiased bg-bg text-text font-[family-name:var(--font-lato)]">
+      <body className="antialiased bg-bg text-text font-[family-name:var(--font-open-sans)]">
         {children}
       </body>
     </html>
