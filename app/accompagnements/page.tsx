@@ -43,45 +43,60 @@ const publics = [
 ]
 
 function Icon({ name }: { name: string }) {
-  const style = "w-16 h-16 stroke-black"
+  const baseStyle = "w-24 h-24"
   switch (name) {
     case 'person':
       return (
-        <svg viewBox="0 0 64 64" fill="none" className={style} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="32" cy="18" r="10" />
-          <path d="M20 58c0-8 5-12 12-12s12 4 12 12" />
+        <svg viewBox="0 0 100 100" className={baseStyle}>
+          <circle cx="50" cy="30" r="20" fill="#F4A261" stroke="#264653" strokeWidth="3"/>
+          <path d="M20 90c0-20 15-30 30-30s30 10 30 30" fill="#F4A261" stroke="#264653" strokeWidth="3"/>
+          <circle cx="35" cy="25" r="4" fill="#264653"/>
+          <circle cx="65" cy="25" r="4" fill="#264653"/>
+          <path d="M40 38 Q50 45 60 38" stroke="#264653" strokeWidth="2" fill="none"/>
         </svg>
       )
     case 'building':
       return (
-        <svg viewBox="0 0 64 64" fill="none" className={style} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="10" y="16" width="44" height="40" rx="2" />
-          <path d="M10 28h44" />
-          <path d="M24 16v-6M40 16v-6" />
-          <path d="M24 40h6v6h-6zM34 40h6v6h-6z" />
+        <svg viewBox="0 0 100 100" className={baseStyle}>
+          <rect x="20" y="25" width="60" height="65" rx="3" fill="#2A9D8F" stroke="#264653" strokeWidth="3"/>
+          <rect x="25" y="35" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="42" y="35" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="59" y="35" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="25" y="55" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="42" y="55" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="59" y="55" width="15" height="12" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <path d="M15 25 L50 10 L85 25" fill="#E76F51" stroke="#264653" strokeWidth="3"/>
         </svg>
       )
     case 'school':
       return (
-        <svg viewBox="0 0 64 64" fill="none" className={style} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M32 6L6 22v24c0 6 10 12 26 12s26-6 26-12V22L32 6z" />
-          <path d="M24 38h16M20 46h24" />
+        <svg viewBox="0 0 100 100" className={baseStyle}>
+          <path d="M50 15 L15 35 L15 80 L85 80 L85 35 Z" fill="#E9C46A" stroke="#264653" strokeWidth="3"/>
+          <rect x="30" y="50" width="40" height="30" fill="#F4A261" stroke="#264653" strokeWidth="2"/>
+          <circle cx="50" cy="35" r="10" fill="#E76F51" stroke="#264653" strokeWidth="2"/>
+          <path d="M20 45 L30 35 M80 45 L70 35" stroke="#264653" strokeWidth="2"/>
         </svg>
       )
     case 'creative':
       return (
-        <svg viewBox="0 0 64 64" fill="none" className={style} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M32 8c-8 0-16 8-16 20 0 10 6 16 16 20 10-4 16-10 16-20 0-12-8-20-16-20z" />
-          <circle cx="32" cy="32" r="8" />
-          <path d="M32 24v-6M24 32l-6-2M40 32l6-2M32 40v6" />
+        <svg viewBox="0 0 100 100" className={baseStyle}>
+          <circle cx="50" cy="50" r="30" fill="#E9C46A" stroke="#264653" strokeWidth="3"/>
+          <path d="M30 50 Q50 20 70 50 Q50 80 30 50" fill="#E76F51" stroke="#264653" strokeWidth="2"/>
+          <circle cx="50" cy="50" r="8" fill="#2A9D8F" stroke="#264653" strokeWidth="2"/>
+          <circle cx="35" cy="40" r="5" fill="#F4A261"/>
+          <circle cx="65" cy="40" r="5" fill="#F4A261"/>
+          <path d="M40 60 L50 70 L60 60" stroke="#264653" strokeWidth="2" fill="none"/>
         </svg>
       )
     case 'government':
       return (
-        <svg viewBox="0 0 64 64" fill="none" className={style} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M8 20l24-12 24 12v36c0 4-8 8-24 8s-24-4-24-8V20z" />
-          <path d="M20 56h24M16 48h32" />
-          <path d="M26 36h12v12h-12z" />
+        <svg viewBox="0 0 100 100" className={baseStyle}>
+          <rect x="20" y="30" width="60" height="55" rx="2" fill="#264653" stroke="#264653" strokeWidth="3"/>
+          <path d="M20 30 L50 10 L80 30" fill="#2A9D8F" stroke="#264653" strokeWidth="3"/>
+          <rect x="35" y="45" width="30" height="20" fill="#E9C46A" stroke="#264653" strokeWidth="2"/>
+          <rect x="30" y="75" width="8" height="8" fill="#F4A261"/>
+          <rect x="46" y="75" width="8" height="8" fill="#F4A261"/>
+          <rect x="62" y="75" width="8" height="8" fill="#F4A261"/>
         </svg>
       )
     default:
