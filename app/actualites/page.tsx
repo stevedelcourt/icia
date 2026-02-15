@@ -24,6 +24,8 @@ export default async function ActualitesPage() {
   ]
 
   const displayArticles = (articles.length > 0 ? articles : fallbackArticles).filter((a: any) => a.slug)
+  const latestArticle = displayArticles[0]
+  const otherArticles = displayArticles.slice(1)
 
   return (
     <>
@@ -41,11 +43,37 @@ export default async function ActualitesPage() {
             </div>
           </FadeIn>
         </Section>
+
+        {latestArticle && (
+          <Section className="pb-12">
+            <FadeIn>
+              <Link href={`/actualites/${latestArticle.slug}`} className="block group">
+                <article className="border border-gray-200 bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
+                  {latestArticle.image && (
+                    <img src={latestArticle.image} alt="" className="w-full h-[400px] object-cover" />
+                  )}
+                  <div className="p-8">
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="text-xs text-accent font-medium">{latestArticle.category}</span>
+                      <span className="text-xs text-text-muted">{latestArticle.date}</span>
+                    </div>
+                    <h2 className="font-serif text-h1 mb-4 group-hover:text-accent transition-colors">
+                      {latestArticle.title}
+                    </h2>
+                    <p className="text-body text-text-muted max-w-2xl">
+                      {latestArticle.excerpt}
+                    </p>
+                  </div>
+                </article>
+              </Link>
+            </FadeIn>
+          </Section>
+        )}
         
         <Section className="pb-24" spacing="normal">
           <Stagger>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {displayArticles.map((article: any) => (
+              {otherArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
                     <article className="h-full border border-gray-200 bg-white rounded-xl p-6 hover:bg-[#E5E4DF] hover:shadow-sm transition-all">
