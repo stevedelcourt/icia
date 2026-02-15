@@ -72,7 +72,7 @@ export default function AccompanimentsPage() {
               {publics.map((item) => (
                 <StaggerItem key={item.title}>
                   <Link href={item.href} className="block group">
-                    <article className="h-full border border-gray-200 bg-white rounded-xl overflow-hidden hover:shadow-sm transition-all">
+                    <article className="h-full border border-gray-200 bg-white rounded-xl overflow-hidden hover:bg-[#e3dacc] hover:shadow-sm transition-all">
                       <ImagePlaceholder title={item.title} />
                       <div className="p-6">
                         <p className="text-sm text-black mb-2 font-medium">{item.subtitle}</p>

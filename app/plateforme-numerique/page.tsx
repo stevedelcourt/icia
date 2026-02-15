@@ -132,7 +132,7 @@ export default function PlateformeNumeriquePage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {pricing.map((tier) => (
                 <StaggerItem key={tier.name}>
-                  <div className={`p-6 border ${tier.popular ? 'border-accent bg-bg' : 'border-border bg-white'}`}>
+                  <div className={`p-8 border ${tier.popular ? 'border-accent bg-bg' : 'border-border bg-white'} hover:bg-[#e3dacc] transition-colors`}>
                     {tier.popular && (
                       <p className="text-xs text-accent mb-2">Le plus populaire</p>
                     )}

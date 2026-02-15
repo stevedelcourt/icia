@@ -48,7 +48,7 @@ export default async function ActualitesPage() {
               {displayArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
-                    <article className="h-full border border-gray-200 bg-white rounded-xl p-6 hover:bg-[#E5E4DF] hover:shadow-sm transition-all">
+                    <article className="h-full border border-gray-200 bg-white rounded-xl p-6 hover:bg-[#e3dacc] hover:shadow-sm transition-all">
                       {article.image && (
                         <img src={article.image} alt="" className="w-full h-48 object-cover rounded-lg mb-4" />
                       )}
