@@ -23,20 +23,15 @@ const navItems = [
 ]
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
-  const fullText = (
-    <span className="inline-flex items-center">
-      <span className="font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
-    </span>
-  )
-  const shortText = (
-    <span className="inline-flex items-center">
-      <span className="w-0 overflow-hidden font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">ICIA</span>
-    </span>
-  )
-
   return (
     <Link href="/" className="flex items-center h-full">
-      {isScrolled ? shortText : fullText}
+      <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
+        {isScrolled ? (
+          <>IC<span className="text-[#BF4D43]">IA</span></>
+        ) : (
+          <>INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span></>
+        )}
+      </span>
     </Link>
   )
 }
@@ -79,7 +74,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-end xl:justify-between">
-        <div className="hidden xl:block w-[280px] flex-shrink-0">
+        <div className="hidden xl:block w-[300px] flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
         <div className="xl:hidden">
