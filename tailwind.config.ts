@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         bg: '#faf9f6',
         'bg-card': '#ffffff',
-        text: '#141413',
+        text: '#262625',
         'text-muted': '#5c5c5c',
         border: '#e5e3da',
         accent: '#000000',
@@ -22,8 +22,8 @@ const config: Config = {
         'gray-400': '#a3a3a3',
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        serif: ['Georgia', 'Times New Roman', 'serif'],
+        sans: ['Source Sans 3', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        serif: ['Source Sans 3', 'Georgia', 'Times New Roman', 'serif'],
       },
       fontSize: {
         'h1': ['3rem', { lineHeight: '1.1' }],

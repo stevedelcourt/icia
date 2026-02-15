@@ -19,7 +19,7 @@ export default function PolitiqueConfidentialitePage() {
             <section>
               <h2 className="font-serif text-h3 mb-4">1. Introduction</h2>
               <p className="text-text-muted">
-                La présente politique de confidentialité décrit comment l'Institut Collectif de l'IA (ci-après "ICIA") 
+                La présente politique de confidentialité décrit comment Mentivis (ci-après "ICIA") 
                 collecte, utilise et protège vos données personnelles conformément au Règlement Général sur la Protection 
                 des Données (RGPD) et à la loi Informatique et Libertés.
               </p>
@@ -29,7 +29,7 @@ export default function PolitiqueConfidentialitePage() {
               <h2 className="font-serif text-h3 mb-4">2. Responsable du traitement</h2>
               <p className="text-text-muted">
                 Le responsable du traitement des données personnelles est :<br />
-                <strong>Institut Collectif de l'IA</strong><br />
+                <strong>Mentivis</strong><br />
                 Email : contact@icia.fr
               </p>
             </section>

@@ -1,20 +1,11 @@
 import { NextResponse } from 'next/server'
+import fs from 'fs'
+import path from 'path'
 
 export async function GET() {
-  const html = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ICIA - Admin</title>
-  <meta name="decap-cms-config-url" content="/admin/config.yml" />
-  <meta name="decap-cms-config-url" content="/config.yml" />
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>`
-
+  const filePath = path.join(process.cwd(), 'public/admin.html')
+  const html = fs.readFileSync(filePath, 'utf8')
+  
   return new NextResponse(html, {
     headers: {
       'Content-Type': 'text/html',

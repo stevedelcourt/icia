@@ -3,33 +3,34 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
+import { Icon } from '@/components/ui/Icon'
 
 const features = [
   {
     title: 'Parcours d\'apprentissage',
     description: 'Des formations structurées et progressives, du niveau débutant à expert.',
-    icon: '📚'
+    icon: 'book'
   },
   {
     title: 'Certifications & Badges',
     description: 'Validez vos compétences avec des certifications reconnues et des badges numériques.',
-    icon: '🏆'
+    icon: 'trophy'
   },
   {
     title: 'Bibliothèque de ressources',
     description: 'Accédez à des contenus curationnés : études de cas, templates, outils.',
-    icon: '📖'
+    icon: 'library'
   },
   {
     title: 'Communauté & Support',
     description: 'Échangez avec d\'autres apprenants, posez vos questions aux experts.',
-    icon: '👥'
+    icon: 'community'
   },
   {
     title: 'Suivi de progression',
     description: 'Dashboard personnalisé, achievements, et parcours adaptés à vos objectifs.',
-    icon: '📊'
+    icon: 'chart'
   },
 ]
 
@@ -87,13 +88,19 @@ export default function PlateformeNumeriquePage() {
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
-                Plateforme numérique : apprendre, se former, progresser
+                <TextReveal delay={0.1}>Plateforme numérique :</TextReveal>
+                <br />
+                <TextReveal delay={0.2}>apprendre, se former,</TextReveal>
+                <br />
+                <TextReveal delay={0.3}>progresser</TextReveal>
               </h1>
-              <p className="text-body text-text-muted">
-                La plateforme ICIA est votre compagnon pour maîtriser l'intelligence artificielle. 
-                Parcours personnalisés, certifications reconnues, ressourcesactualisées...
-                Tout ce qu'il vous faut pour développer vos compétences.
-              </p>
+              <ScaleIn delay={0.5}>
+                <p className="text-body text-text-muted">
+                  La plateforme ICIA est votre compagnon pour maîtriser l'intelligence artificielle. 
+                  Parcours personnalisés, certifications reconnues, ressourcesactualisées...
+                  Tout ce qu'il vous faut pour développer vos compétences.
+                </p>
+              </ScaleIn>
             </div>
           </FadeIn>
         </Section>
@@ -107,7 +114,7 @@ export default function PlateformeNumeriquePage() {
               {features.map((feature) => (
                 <StaggerItem key={feature.title}>
                   <div className="p-6 border border-border bg-white">
-                    <div className="text-3xl mb-3">{feature.icon}</div>
+                    <div className="w-10 h-10 mb-3 text-black"><Icon name={feature.icon} className="w-full h-full" /></div>
                     <h3 className="font-serif text-h3 mb-2">{feature.title}</h3>
                     <p className="text-sm text-text-muted">{feature.description}</p>
                   </div>

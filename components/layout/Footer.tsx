@@ -9,20 +9,21 @@ const footerLinks = {
     { label: 'À propos', href: '/a-propos' },
     { label: 'Actualités', href: '/actualites' },
     { label: 'Contact', href: '/contact' },
+    { label: 'Partenaires', href: '/partenaires' },
   ],
   legal: [
     { label: 'Mentions légales', href: '/mentions-legales' },
     { label: 'Politique de confidentialité', href: '/politique-confidentialite' },
     { label: 'Cookies', href: '/cookies' },
-    { label: 'Conditions d\'utilisation', href: '/conditions-utilisation' },
+    { label: "Conditions d'utilisation", href: '/conditions-utilisation' },
   ],
 }
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white py-16">
+    <footer className="bg-[#40403E] text-white py-16">
       <div className="max-w-content mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <img 
@@ -31,7 +32,7 @@ export function Footer() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="text-white font-medium text-sm mb-2">Institut Collectif de l'IA</p>
+            <p className="text-white font-medium text-sm mb-2">Mentivis</p>
             <p className="text-white/70 text-sm mb-6 max-w-sm">
               Un projet francais pour que chacun et chaque organisation puisse 
               beneficier concretement de l'intelligence artificielle.
@@ -77,36 +78,18 @@ export function Footer() {
               ))}
             </ul>
           </div>
-          
-          <div>
-            <h3 className="text-white font-medium text-base mb-4">Institut</h3>
-            <ul className="space-y-3 text-sm text-white/70">
-              <li>60 rue François 1er</li>
-              <li>75008 Paris</li>
-              <li>
-                <a href="mailto:contact@icia.fr" className="hover:text-white transition-colors">
-                  contact@icia.fr
-                </a>
-              </li>
-              <li>
-                <a href="https://icia.fr" className="hover:text-white transition-colors">
-                  www.icia.fr
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
         
         <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/70">
-            © {new Date().getFullYear()} Institut Collectif de l'IA. Tous droits réservés.
+          <p className="text-sm text-white/70 text-center md:text-left font-medium">
+            © {new Date().getFullYear()} Mentivis. Tous droits réservés.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-6">
             {footerLinks.legal.map((link) => (
               <Link 
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/70 hover:text-white transition-colors"
+                className="text-sm text-white/70 hover:text-white transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>

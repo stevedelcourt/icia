@@ -3,38 +3,39 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
+import { Icon } from '@/components/ui/Icon'
 
 const spaces = [
   {
     name: 'Zone d\'accueil',
     description: 'Un espace ouvert et chaleureux pour accueillir le public, consulter des ressources et échanger.',
     capacity: '50 personnes',
-    icon: '🏠'
+    icon: 'home'
   },
   {
     name: 'Salles de formation',
     description: 'Des espaces équipés pour les ateliers et formations, avec matériel audiovisuel.',
     capacity: '20-40 personnes',
-    icon: '🎓'
+    icon: 'graduation'
   },
   {
     name: 'Laboratoire IA',
     description: 'Un environnement sécurisé pour tester et expérimenter les outils d\'IA.',
     capacity: '15 personnes',
-    icon: '🔬'
+    icon: 'lab'
   },
   {
     name: 'Espace créatif',
     description: 'Un lieu dédié aux creators pour expérimenter avec les outils de génération.',
     capacity: '20 personnes',
-    icon: '🎨'
+    icon: 'creative'
   },
   {
     name: 'Co-working',
     description: 'Des espaces de travail partagés pour les membres et partenaires.',
     capacity: '30 personnes',
-    icon: '💼'
+    icon: 'coworking'
   },
 ]
 
@@ -77,13 +78,19 @@ export default function ReseauLieuPage() {
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
-                Réseau & Lieu : un ancrage territorial, un rayonnement national
+                <TextReveal delay={0.1}>Réseau & Lieu :</TextReveal>
+                <br />
+                <TextReveal delay={0.2}>un ancrage territorial,</TextReveal>
+                <br />
+                <TextReveal delay={0.3}>un rayonnement national</TextReveal>
               </h1>
-              <p className="text-body text-text-muted">
-                L'ICIA repose sur un modèle hybride : un lieu physique flagship à Marseille, 
-                un réseau de hubs régionaux et d'espaces satellites, complété par une plateforme 
-                numérique. Un ancrage territorial au service d'un rayonnement national.
-              </p>
+              <ScaleIn delay={0.5}>
+                <p className="text-body text-text-muted">
+                  L'ICIA repose sur un modèle hybride : un lieu physique flagship à Marseille, 
+                  un réseau de hubs régionaux et d'espaces satellites, complété par une plateforme 
+                  numérique. Un ancrage territorial au service d'un rayonnement national.
+                </p>
+              </ScaleIn>
             </div>
           </FadeIn>
         </Section>
@@ -101,7 +108,7 @@ export default function ReseauLieuPage() {
               {spaces.map((space) => (
                 <StaggerItem key={space.name}>
                   <div className="p-6 border border-border bg-white">
-                    <div className="text-3xl mb-3">{space.icon}</div>
+                    <div className="w-10 h-10 mb-3 text-black"><Icon name={space.icon} className="w-full h-full" /></div>
                     <h3 className="font-serif text-h3 mb-2">{space.name}</h3>
                     <p className="text-sm text-text-muted mb-3">{space.description}</p>
                     <p className="text-xs text-accent">Capacité: {space.capacity}</p>

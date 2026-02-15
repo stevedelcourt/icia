@@ -4,45 +4,27 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
-const articles = [
-  {
-    slug: 'lancement-icia',
-    title: 'Lancement officiel de l\'Institut Collectif de l\'IA',
-    excerpt: 'L\'ICIA ouvre ses portes à Marseille avec pour mission de démocratiser l\'accès à l\'intelligence artificielle pour tous les publics.',
-    category: 'Actualité',
-    date: '15 février 2025',
-  },
-  {
-    slug: 'partenariat-education',
-    title: 'Partenariat avec les universités de la région Sud',
-    excerpt: 'L\'ICIA signe un accord avec les universités de Marseille pour proposer des formations IA aux étudiants.',
-    category: 'Partenariats',
-    date: '10 février 2025',
-  },
-  {
-    slug: 'think-tank-premier-rapport',
-    title: 'Le Think Tank publie son premier rapport sur l\'IA et l\'emploi',
-    excerpt: 'Une analyse approfondie des impacts de l\'intelligence artificielle sur le marché du travail français.',
-    category: 'Think Tank',
-    date: '5 février 2025',
-  },
-  {
-    slug: 'atelier-citoyen',
-    title: 'Ateliers gratuits pour les citoyens : venez découvrir l\'IA',
-    excerpt: 'L\'ICIA propose des ateliers ludiques et accessibles pour comprendre l\'intelligence artificielle.',
-    category: 'Formations',
-    date: '1 février 2025',
-  },
-  {
-    slug: 'inauguration-lieu',
-    title: 'Inauguration du lieu flagship à Marseille',
-    excerpt: 'Le tout nouveau space de l\'ICIA ouvre ses portes au public marseillais.',
-    category: 'Événements',
-    date: '20 janvier 2025',
-  },
-]
+async function getArticles() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://icia.vercel.app'}/api/articles`, { 
+      cache: 'no-store' 
+    })
+    if (!res.ok) return []
+    return await res.json()
+  } catch {
+    return []
+  }
+}
 
-export default function ActualitesPage() {
+export default async function ActualitesPage() {
+  const articles = await getArticles()
+
+  const fallbackArticles = [
+    { slug: 'demo-1', title: 'Article depuis Notion', excerpt: 'Connectez votre database Notion pour voir vos articles ici.', category: 'Actualite', date: '2025-02-13', image: '' },
+  ]
+
+  const displayArticles = (articles.length > 0 ? articles : fallbackArticles).filter((a: any) => a.slug)
+
   return (
     <>
       <Header />
@@ -51,10 +33,10 @@ export default function ActualitesPage() {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="font-serif text-h1 mb-6">
-                Actualités
+                Actualites
               </h1>
               <p className="text-body text-text-muted">
-                Suivez l'actualité de l'ICIA : événements, publications, partenariats et réflexions sur l'IA.
+                Suivez l'actualite de l'ICIA : evenements, publications, partenariats et reflexions sur l'IA.
               </p>
             </div>
           </FadeIn>
@@ -63,10 +45,13 @@ export default function ActualitesPage() {
         <Section className="pb-24" spacing="normal">
           <Stagger>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
+              {displayArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
                     <article className="h-full border border-gray-200 bg-white rounded-lg p-6 hover:border-gray-400 hover:shadow-sm transition-all">
+                      {article.image && (
+                        <img src={article.image} alt="" className="w-full h-48 object-cover rounded-lg mb-4" />
+                      )}
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs text-accent font-medium">{article.category}</span>
                         <span className="text-xs text-text-muted">{article.date}</span>

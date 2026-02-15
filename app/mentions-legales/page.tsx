@@ -19,8 +19,8 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="font-serif text-h3 mb-4">1. Éditeur du site</h2>
               <p className="text-text-muted">
-                Le site ICIA (Institut Collectif de l'IA) est édité par :<br />
-                <strong>Institut Collectif de l'IA</strong><br />
+                Le site ICIA (Mentivis) est édité par :<br />
+                <strong>Mentivis</strong><br />
                 Association loi 1901<br />
                 Siège social : Marseille, France<br />
                 Email : contact@icia.fr
@@ -30,7 +30,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="font-serif text-h3 mb-4">2. Directeur de la publication</h2>
               <p className="text-text-muted">
-                Le directeur de la publication est le président de l'association Institut Collectif de l'IA.
+                Le directeur de la publication est le président de l'association Mentivis.
               </p>
             </section>
             
@@ -83,7 +83,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="font-serif text-h3 mb-4">8. Responsable des données personnelles</h2>
               <p className="text-text-muted">
-                Le responsable des données personnelles est l'Institut Collectif de l'IA.<br />
+                Le responsable des données personnelles est Mentivis.<br />
                 Email : contact@icia.fr
               </p>
             </section>

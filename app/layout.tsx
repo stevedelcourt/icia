@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: 'ICIA - Institut Collectif de l\'IA',
     template: '%s | ICIA',
   },
-  description: 'Un projet français pour que chacun·e et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
+  description: 'Un projet francais pour que chacun et chaque organisation puisse beneficier concretement de l\'intelligence artificielle.',
   keywords: ['IA', 'intelligence artificielle', 'formation IA', 'accompagnement IA', 'think tank IA', 'Marseille'],
   authors: [{ name: 'Institut Collectif de l\'IA' }],
   openGraph: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: 'https://icia.fr',
     siteName: 'ICIA',
     title: 'ICIA - Institut Collectif de l\'IA',
-    description: 'Un projet français pour que chacun·e et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
+    description: 'Un projet francais pour que chacun et chaque organisation puisse beneficier concretement de l\'intelligence artificielle.',
     images: [
       {
         url: '/og-image.jpg',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'ICIA - Institut Collectif de l\'IA',
-    description: 'Un projet français pour que chacun·e et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
+    description: 'Un projet francais pour que chacun et chaque organisation puisse beneficier concretement de l\'intelligence artificielle.',
   },
 }
 

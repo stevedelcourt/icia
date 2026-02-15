@@ -48,20 +48,40 @@ export default function ContactPage() {
     setIsSubmitting(true)
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setSubmitStatus('success')
-      setFormData({
-        firstName: '',
-        lastName: '',
-        organization: '',
-        email: '',
-        phone: '',
-        profile: '',
-        subject: '',
-        message: '',
-        newsletter: false,
-        privacyConsent: false,
+      const response = await fetch('https://formspree.io/f/xreapvbn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.organization}`,
+          email: formData.email,
+          phone: formData.phone,
+          profile: formData.profile,
+          subject: formData.subject,
+          message: formData.message,
+          newsletter: formData.newsletter
+        })
       })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({
+          firstName: '',
+          lastName: '',
+          organization: '',
+          email: '',
+          phone: '',
+          profile: '',
+          subject: '',
+          message: '',
+          newsletter: false,
+          privacyConsent: false,
+        })
+      } else {
+        setSubmitStatus('error')
+      }
     } catch {
       setSubmitStatus('error')
     } finally {

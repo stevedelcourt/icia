@@ -3,7 +3,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 
 const values = [
   { title: 'Indépendance', description: 'Une gouvernance pluraliste pour garantir notre liberté de parole et d\'action.' },
@@ -43,13 +43,15 @@ export default function AProposPage() {
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
-                À propos de l'Institut Collectif de l'IA
+                <TextReveal delay={0.1}>À propos de l'Institut Collectif de l'IA</TextReveal>
               </h1>
-              <p className="text-body text-text-muted">
-                L'Institut Collectif de l'IA (ICIA) est une organisation française à but non lucratif 
-                qui accompagne les citoyens, entreprises et institutions dans leur appropriation de 
-                l'intelligence artificielle.
-              </p>
+              <ScaleIn delay={0.3}>
+                <p className="text-body text-text-muted">
+                  L'Institut Collectif de l'IA (ICIA) est une organisation française à but non lucratif 
+                  qui accompagne les citoyens, entreprises et institutions dans leur appropriation de 
+                  l'intelligence artificielle.
+                </p>
+              </ScaleIn>
             </div>
           </FadeIn>
         </Section>
