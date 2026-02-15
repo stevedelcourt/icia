@@ -3,7 +3,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 
 const themes = [
   {
@@ -62,13 +62,17 @@ export default function ThinkTankPage() {
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
-                Think Tank IA : observer, analyser, proposer
+                <TextReveal delay={0.1}>Think Tank IA :</TextReveal>
+                <br />
+                <TextReveal delay={0.2}>observer, analyser, proposer</TextReveal>
               </h1>
-              <p className="text-body text-text-muted">
-                Le Think Tank de l'ICIA est un lieu de réflexion indépendante sur les enjeux 
-                de l'intelligence artificielle. Nous produisons des analyses rigoureuses, 
-                accompagnons les décideurs et partecipons au débat public.
-              </p>
+              <ScaleIn delay={0.4}>
+                <p className="text-body text-text-muted">
+                  Le Think Tank de l'ICIA est un lieu de réflexion indépendante sur les enjeux 
+                  de l'intelligence artificielle. Nous produisons des analyses rigoureuses, 
+                  accompagnons les décideurs et partecipons au débat public.
+                </p>
+              </ScaleIn>
             </div>
           </FadeIn>
         </Section>
@@ -81,7 +85,7 @@ export default function ThinkTankPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {themes.map((theme) => (
                 <StaggerItem key={theme.title}>
-                  <article className="p-8 border border-border bg-white hover:border-accent transition-colors">
+                  <article className="p-8 border border-border bg-white hover:bg-[#61AAF2] hover:border-[#61AAF2] transition-colors">
                     <h3 className="font-serif text-h3 mb-3">{theme.title}</h3>
                     <p className="text-text-muted mb-4">{theme.description}</p>
                     <ul className="space-y-1">
