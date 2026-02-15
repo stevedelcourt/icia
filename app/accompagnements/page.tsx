@@ -43,7 +43,7 @@ const publics = [
 ]
 
 function Icon({ name }: { name: string }) {
-  const baseStyle = "w-24 h-24"
+  const baseStyle = "w-32 h-32"
   switch (name) {
     case 'person':
       return (
