@@ -76,13 +76,24 @@ async function getArticle(slug: string) {
     const page = data.results[0]
     const props = page.properties
 
+    const getImageUrl = (prop: any) => {
+      if (!prop) return ''
+      if (prop.url) return prop.url
+      if (prop.files && prop.files.length > 0) {
+        const file = prop.files[0]
+        if (file.file) return file.file.url
+        if (file.external) return file.external.url
+      }
+      return ''
+    }
+
     return {
       slug: props.Slug?.rich_text?.[0]?.plain_text || '',
       title: props.Titre?.rich_text?.[0]?.plain_text || '',
       excerpt: props.Excerpt?.rich_text?.[0]?.plain_text || '',
       category: props.Category?.select?.name || '',
       date: props.Date?.date?.start || '',
-      image: props.Image?.url || props.Media?.url || '',
+      image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
       content: props.Article?.title?.[0]?.plain_text || ''
     }
   } catch (e) {
