@@ -79,7 +79,7 @@ export function Header() {
             <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
               <Link 
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-accent flex items-center gap-1 ${
+                className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
                   isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
                 }`}
                 onMouseEnter={() => item.hasDropdown && setIsDropdownOpen(true)}
@@ -115,7 +115,7 @@ export function Header() {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-3 text-sm text-text hover:bg-bg transition-colors first:rounded-t-lg last:rounded-b-lg"
+                          className="block px-4 py-3 text-base text-text hover:bg-bg transition-colors first:rounded-t-lg last:rounded-b-lg"
                         >
                           {subItem.label}
                         </Link>
