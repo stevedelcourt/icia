@@ -24,40 +24,13 @@ const navItems = [
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
   const fullText = "INSTITUT COLLECTIF /A"
-  const shortText = "IC/A"
+  const shortText = "ICIA"
 
   return (
-    <Link href="/" className="flex items-center">
-      <motion.div
-        initial="initial"
-        animate={isScrolled ? "scrolled" : "initial"}
-        variants={{
-          initial: {
-            display: "block"
-          },
-          scrolled: {
-            display: "block"
-          }
-        }}
-        className="font-serif font-extrabold text-lg md:text-xl tracking-wide text-black"
-      >
-        <motion.span
-          initial={{ opacity: 1 }}
-          animate={isScrolled ? { opacity: 0, display: "none" } : { opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="hidden xl:inline"
-        >
-          {fullText}
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, display: "none" }}
-          animate={isScrolled ? { opacity: 1, display: "inline" } : { opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="xl:hidden"
-        >
-          {shortText}
-        </motion.span>
-      </motion.div>
+    <Link href="/" className="flex items-center h-full">
+      <span className="font-serif font-extrabold text-lg md:text-xl tracking-wide text-black whitespace-nowrap">
+        {isScrolled ? shortText : fullText}
+      </span>
     </Link>
   )
 }
