@@ -25,12 +25,12 @@ const navItems = [
 function Logo({ isScrolled }: { isScrolled: boolean }) {
   const fullText = (
     <span className="inline-flex items-center">
-      <span className="inline-block w-[180px] md:w-[250px] lg:w-[280px] font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
+      <span className="font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
     </span>
   )
   const shortText = (
     <span className="inline-flex items-center">
-      <span className="inline-block w-[180px] md:w-[250px] lg:w-[280px] font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">IC</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
+      <span className="w-0 overflow-hidden font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">ICIA</span>
     </span>
   )
 
