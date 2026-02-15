@@ -39,13 +39,13 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
             display: "block"
           }
         }}
-        className="font-serif font-extrabold text-lg md:text-xl lg:text-xl tracking-wide text-black"
+        className="font-serif font-extrabold text-lg md:text-xl tracking-wide text-black"
       >
         <motion.span
           initial={{ opacity: 1 }}
           animate={isScrolled ? { opacity: 0, display: "none" } : { opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="hidden lg:inline"
+          className="hidden md:inline"
         >
           {fullText}
         </motion.span>
@@ -53,15 +53,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
           initial={{ opacity: 0, display: "none" }}
           animate={isScrolled ? { opacity: 1, display: "inline" } : { opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="lg:hidden"
-        >
-          {shortText}
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, display: "none" }}
-          animate={isScrolled ? { opacity: 1, display: "none" } : { opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="hidden md:inline lg:hidden"
+          className="md:hidden"
         >
           {shortText}
         </motion.span>
@@ -110,7 +102,7 @@ export function Header() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
         <Logo isScrolled={isScrolled} />
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
             <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
               <Link 
@@ -163,7 +155,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
@@ -172,7 +164,7 @@ export function Header() {
         </div>
 
         <button
-          className="md:hidden p-2"
+          className="lg:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
