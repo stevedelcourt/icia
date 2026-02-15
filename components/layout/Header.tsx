@@ -45,7 +45,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
           initial={{ opacity: 1 }}
           animate={isScrolled ? { opacity: 0, display: "none" } : { opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="hidden md:inline"
+          className="hidden xl:inline"
         >
           {fullText}
         </motion.span>
@@ -53,7 +53,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
           initial={{ opacity: 0, display: "none" }}
           animate={isScrolled ? { opacity: 1, display: "inline" } : { opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden"
+          className="xl:hidden"
         >
           {shortText}
         </motion.span>
@@ -102,7 +102,7 @@ export function Header() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
         <Logo isScrolled={isScrolled} />
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden xl:flex items-center gap-10">
           {navItems.map((item) => (
             <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
               <Link 
@@ -155,7 +155,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
@@ -164,7 +164,7 @@ export function Header() {
         </div>
 
         <button
-          className="lg:hidden p-2"
+          className="xl:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
