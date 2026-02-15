@@ -24,21 +24,19 @@ const navItems = [
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
   const fullText = (
-    <>
-      INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span>
-    </>
+    <span className="inline-flex items-center">
+      <span className="inline-block w-[180px] md:w-[250px] lg:w-[280px] font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">INSTITUT COLLECTIF DE L'</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
+    </span>
   )
   const shortText = (
-    <>
-      IC<span className="text-[#BF4D43]">IA</span>
-    </>
+    <span className="inline-flex items-center">
+      <span className="inline-block w-[180px] md:w-[250px] lg:w-[280px] font-serif font-extrabold tracking-wide text-black text-xl md:text-2xl">IC</span><span className="font-serif font-extrabold tracking-wide text-[#BF4D43] text-xl md:text-2xl">IA</span>
+    </span>
   )
 
   return (
     <Link href="/" className="flex items-center h-full">
-      <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
-        {isScrolled ? shortText : fullText}
-      </span>
+      {isScrolled ? shortText : fullText}
     </Link>
   )
 }
