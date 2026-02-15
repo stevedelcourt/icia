@@ -11,7 +11,7 @@ function HeroImage() {
     <FadeIn direction="up" duration={0.8} delay={0.2}>
       <div className="w-full aspect-square md:aspect-video lg:aspect-[16/9] bg-border overflow-hidden">
         <img 
-          src="/images/hero.webp" 
+          src="/images/happy.webp" 
           alt="Institut Collectif de l'IA" 
           className="w-full h-full object-cover"
         />
