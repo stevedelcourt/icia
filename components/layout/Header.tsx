@@ -23,12 +23,20 @@ const navItems = [
 ]
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
-  const fullText = "INSTITUT COLLECTIF /A"
-  const shortText = "ICIA"
+  const fullText = (
+    <>
+      INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span>
+    </>
+  )
+  const shortText = (
+    <>
+      IC<span className="text-[#BF4D43]">IA</span>
+    </>
+  )
 
   return (
     <Link href="/" className="flex items-center h-full">
-      <span className="font-serif font-extrabold text-lg md:text-xl tracking-wide text-black whitespace-nowrap">
+      <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
         {isScrolled ? shortText : fullText}
       </span>
     </Link>
@@ -72,8 +80,13 @@ export function Header() {
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <Logo isScrolled={isScrolled} />
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-end xl:justify-between">
+        <div className="hidden xl:block w-[280px] flex-shrink-0">
+          <Logo isScrolled={isScrolled} />
+        </div>
+        <div className="xl:hidden">
+          <Logo isScrolled={isScrolled} />
+        </div>
 
         <nav className="hidden xl:flex items-center gap-10">
           {navItems.map((item) => (
