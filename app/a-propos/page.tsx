@@ -69,7 +69,7 @@ export default function AProposPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value) => (
                 <StaggerItem key={value.title}>
-                  <div className="p-6 border border-border bg-white">
+                  <div className="p-6 border border-border bg-white rounded-xl">
                     <h3 className="font-serif text-h3 mb-2">{value.title}</h3>
                     <p className="text-sm text-text-muted">{value.description}</p>
                   </div>
@@ -87,7 +87,7 @@ export default function AProposPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {governance.map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="p-6 border border-border bg-bg">
+                  <div className="p-6 border border-border bg-bg rounded-xl">
                     <h3 className="font-serif text-h3 mb-2">{item.title}</h3>
                     <p className="text-sm text-text-muted">{item.description}</p>
                   </div>

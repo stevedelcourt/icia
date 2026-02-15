@@ -154,7 +154,7 @@ export default function OnePage() {
                   { title: 'Collectif', desc: 'Un projet porté par une communauté diverse, au-delà des intérêts particuliers.' },
                 ].map((item) => (
                   <StaggerItem key={item.title}>
-                    <div className="p-6 border border-border bg-white">
+                    <div className="p-6 border border-border bg-white rounded-xl">
                       <h3 className="font-serif text-xl mb-2">{item.title}</h3>
                       <p className="text-sm text-text-muted">{item.desc}</p>
                     </div>
@@ -177,7 +177,7 @@ export default function OnePage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {accompagnements.map((item) => (
                   <StaggerItem key={item.title}>
-                    <Link href={item.href} className="block p-8 border border-border bg-white hover:border-accent hover:shadow-md transition-all group">
+                    <Link href={item.href} className="block p-8 border border-border bg-white rounded-xl hover:shadow-md transition-all group">
                       <h3 className="font-serif text-xl mb-3 group-hover:text-accent transition-colors">{item.title}</h3>
                       <p className="text-text-muted">{item.description}</p>
                     </Link>
@@ -205,7 +205,7 @@ export default function OnePage() {
                   { title: 'IA et société', desc: 'Examiner les implications de l\'IA sur le tissu social et démocratique.' },
                 ].map((item) => (
                   <StaggerItem key={item.title}>
-                    <div className="p-6 border border-border bg-white">
+                    <div className="p-6 border border-border bg-white rounded-xl">
                       <h3 className="font-serif text-xl mb-2">{item.title}</h3>
                       <p className="text-sm text-text-muted">{item.desc}</p>
                     </div>
@@ -258,7 +258,7 @@ export default function OnePage() {
                   { title: 'Communauté', desc: 'Échangez avec d\'autres apprenants et des experts.' },
                 ].map((item) => (
                   <StaggerItem key={item.title}>
-                    <div className="p-6 border border-border bg-white">
+                    <div className="p-6 border border-border bg-white rounded-xl">
                       <h3 className="font-serif text-lg mb-2">{item.title}</h3>
                       <p className="text-sm text-text-muted">{item.desc}</p>
                     </div>

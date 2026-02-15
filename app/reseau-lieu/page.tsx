@@ -107,7 +107,7 @@ export default function ReseauLieuPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {spaces.map((space) => (
                 <StaggerItem key={space.name}>
-                  <div className="p-6 border border-border bg-white">
+                  <div className="p-6 border border-border bg-white rounded-xl">
                     <div className="w-10 h-10 mb-3 text-black"><Icon name={space.icon} className="w-full h-full" /></div>
                     <h3 className="font-serif text-h3 mb-2">{space.name}</h3>
                     <p className="text-sm text-text-muted mb-3">{space.description}</p>
@@ -127,7 +127,7 @@ export default function ReseauLieuPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {centers.map((center) => (
                 <StaggerItem key={center.name}>
-                  <div className="p-6 border border-border bg-bg">
+                  <div className="p-6 border border-border bg-bg rounded-xl">
                     <p className="text-xs text-text-muted mb-1">{center.location}</p>
                     <h3 className="font-serif text-h3 mb-2">{center.name}</h3>
                     <p className="text-sm text-text-muted mb-3">{center.description}</p>

@@ -113,7 +113,7 @@ export default function PlateformeNumeriquePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature) => (
                 <StaggerItem key={feature.title}>
-                  <div className="p-6 border border-border bg-white">
+                  <div className="p-6 border border-border bg-white rounded-xl">
                     <div className="w-10 h-10 mb-3 text-black"><Icon name={feature.icon} className="w-full h-full" /></div>
                     <h3 className="font-serif text-h3 mb-2">{feature.title}</h3>
                     <p className="text-sm text-text-muted">{feature.description}</p>

@@ -42,7 +42,7 @@ export default function EntreprisesPage() {
                   <li>• Feuille de route stratégique</li>
                 </ul>
               </div>
-              <div className="bg-white p-6 border border-border">
+              <div className="bg-white p-6 border border-border rounded-xl">
                 <p className="text-sm text-text-muted mb-2">Tarif indicatif</p>
                 <p className="text-3xl font-serif mb-2">~ 10 k€</p>
                 <p className="text-text-muted text-sm">Pack diagnostic complet</p>
@@ -68,7 +68,7 @@ export default function EntreprisesPage() {
                   <li>• Sensibilisation pour tous</li>
                 </ul>
               </div>
-              <div className="bg-bg p-6 border border-border">
+              <div className="bg-bg p-6 border border-border rounded-xl">
                 <p className="text-sm text-text-muted mb-2">Tarif indicatif</p>
                 <p className="text-3xl font-serif mb-2">5 k€</p>
                 <p className="text-text-muted text-sm">par personne (intra-entreprise)</p>

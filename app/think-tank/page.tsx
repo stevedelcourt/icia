@@ -85,7 +85,7 @@ export default function ThinkTankPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {themes.map((theme) => (
                 <StaggerItem key={theme.title}>
-                  <article className="p-8 border border-border bg-white hover:bg-[#61AAF2] hover:border-[#61AAF2] transition-colors">
+                  <article className="p-8 border border-border bg-white hover:bg-[#61AAF2] rounded-xl transition-colors">
                     <h3 className="font-serif text-h3 mb-3">{theme.title}</h3>
                     <p className="text-text-muted mb-4">{theme.description}</p>
                     <ul className="space-y-1">
@@ -111,7 +111,7 @@ export default function ThinkTankPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {outputs.map((output) => (
                 <StaggerItem key={output.title}>
-                  <div className="p-6 border border-border">
+                  <div className="p-6 border border-border rounded-xl">
                     <p className="text-xs text-accent mb-2">{output.frequency}</p>
                     <h3 className="font-serif text-h3 mb-2">{output.title}</h3>
                     <p className="text-sm text-text-muted">{output.description}</p>

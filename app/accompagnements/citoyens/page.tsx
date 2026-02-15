@@ -83,7 +83,7 @@ export default function CitoyensPage() {
                   avec des organismes partenaires, et suivi personnalisé pour les personnes 
                   souhaitant se former aux métiers de l'IA.
                 </p>
-                <div className="p-4 bg-bg border border-border">
+                <div className="p-4 bg-bg border border-border rounded-xl">
                   <p className="text-sm text-text-muted mb-2">Objectif</p>
                   <p className="text-2xl font-serif">1 500 à 2 500</p>
                   <p className="text-text-muted">personnes accompagnées par an</p>
