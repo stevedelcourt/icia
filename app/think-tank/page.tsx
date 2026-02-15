@@ -77,6 +77,14 @@ export default function ThinkTankPage() {
           </FadeIn>
         </Section>
         
+        <Section className="py-0">
+          <div className="w-full overflow-hidden">
+            <svg viewBox="0 0 800 120" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+              <text x="50%" y="80" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="80" fill="#61AAF2" letterSpacing="8">THINK!</text>
+            </svg>
+          </div>
+        </Section>
+
         <Section className="py-12 border-t border-border">
           <FadeIn>
             <h2 className="font-serif text-h2 mb-8 text-center">Nos quatre axes de recherche</h2>
