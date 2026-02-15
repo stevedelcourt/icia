@@ -79,7 +79,7 @@ export default function ThinkTankPage() {
         
         <Section className="py-0">
           <div className="w-full">
-            <img src="/images/think.webp" alt="THINK" className="w-full h-auto" />
+            <img src="/images/think.webp" alt="THINK" className="w-full h-auto md:aspect-[16/9] aspect-[1/1] object-cover" />
           </div>
         </Section>
 
