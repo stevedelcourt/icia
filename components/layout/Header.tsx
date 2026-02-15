@@ -25,13 +25,13 @@ const navItems = [
 function Logo({ isScrolled }: { isScrolled: boolean }) {
   return (
     <Link href="/" className="flex items-center h-full">
-      <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
-        {isScrolled ? (
-          <>IC<span className="text-[#BF4D43]">IA</span></>
-        ) : (
-          <>INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span></>
-        )}
-      </span>
+      {isScrolled ? (
+        <img src="/logo-black.svg" alt="ICIA" className="h-8 w-auto" />
+      ) : (
+        <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
+          INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span>
+        </span>
+      )}
     </Link>
   )
 }
