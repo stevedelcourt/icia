@@ -168,7 +168,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg border-b border-border overflow-hidden"
+            className="xl:hidden bg-bg border-b border-border overflow-hidden"
           >
             <nav className="flex flex-col p-4 gap-1">
               {accompagnements.map((item) => (
