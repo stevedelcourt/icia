@@ -23,7 +23,7 @@ const navItems = [
 ]
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
-  const fullText = "INSTITUT COLLABORATIF /A"
+  const fullText = "INSTITUT COLLECTIF /A"
   const shortText = "IC/A"
 
   return (
