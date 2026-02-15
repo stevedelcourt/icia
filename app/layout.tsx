@@ -51,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
-      <body className="antialiased bg-bg text-text font-[family-name:var(--font-open-sans)]">
+    <html lang="fr" className={`${lato.variable} ${openSans.variable}`}>
+      <body className="antialiased bg-bg text-text font-sans">
         {children}
       </body>
     </html>

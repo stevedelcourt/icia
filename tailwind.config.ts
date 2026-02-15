@@ -22,8 +22,8 @@ const config: Config = {
         'gray-400': '#a3a3a3',
       },
       fontFamily: {
-        sans: ['Source Sans 3', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        serif: ['Source Sans 3', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['var(--font-open-sans)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        serif: ['var(--font-lato)', 'Georgia', 'Times New Roman', 'serif'],
       },
       fontSize: {
         'h1': ['3rem', { lineHeight: '1.1' }],

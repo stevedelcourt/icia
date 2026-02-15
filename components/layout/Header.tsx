@@ -39,7 +39,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
             display: "block"
           }
         }}
-        className="font-[family-name:var(--font-lato)] font-extrabold text-lg md:text-xl lg:text-xl tracking-wide text-black"
+        className="font-serif font-extrabold text-lg md:text-xl lg:text-xl tracking-wide text-black"
       >
         <motion.span
           initial={{ opacity: 1 }}
