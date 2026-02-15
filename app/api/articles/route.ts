@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
         excerpt: props.Excerpt?.rich_text?.[0]?.plain_text || '',
         category: props.Category?.select?.name || '',
         date: props.Date?.date?.start || '',
-        image: props.Image?.url || '',
+        image: props.Image?.url || props.Media?.url || '',
         content: props.Article?.title?.[0]?.plain_text || ''
       }
     })
