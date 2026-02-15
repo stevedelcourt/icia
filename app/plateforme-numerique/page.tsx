@@ -84,7 +84,11 @@ export default function PlateformeNumeriquePage() {
     <>
       <Header />
       <main id="main-content">
-        <Section className="pt-32 pb-12">
+        <div className="w-full pt-24">
+          <img src="/images/plateforme.webp" alt="Plateforme ICIA" className="w-full h-auto" />
+        </div>
+        
+        <Section className="pt-12 pb-12">
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
