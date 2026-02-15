@@ -39,7 +39,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
             display: "block"
           }
         }}
-        className="font-['Lato'] text-xl md:text-2xl lg:text-2xl tracking-wide"
+        className="font-black text-lg md:text-xl lg:text-xl tracking-wide text-black"
       >
         <motion.span
           initial={{ opacity: 1 }}
@@ -110,7 +110,7 @@ export function Header() {
       <div className="max-w-content mx-auto px-4 md:px-8 flex items-center justify-between">
         <Logo isScrolled={isScrolled} />
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
             <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
               <Link 
@@ -118,7 +118,6 @@ export function Header() {
                 className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
                   isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
                 }`}
-                onMouseEnter={() => item.hasDropdown && setIsDropdownOpen(true)}
                 onClick={() => item.hasDropdown && setIsDropdownOpen(!isDropdownOpen)}
               >
                 {item.label}
