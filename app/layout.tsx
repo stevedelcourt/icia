@@ -1,5 +1,12 @@
 import type { Metadata } from 'next'
+import { Lato } from 'next/font/google'
 import './globals.css'
+
+const lato = Lato({
+  weight: '900',
+  subsets: ['latin'],
+  variable: '--font-lato',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://icia.fr'),
@@ -40,7 +47,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="antialiased bg-bg text-text">
+      <body className="antialiased bg-bg text-text font-[family-name:var(--font-lato)]">
         {children}
       </body>
     </html>

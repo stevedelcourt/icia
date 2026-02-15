@@ -22,14 +22,50 @@ const navItems = [
   { label: 'Actualites', href: '/actualites' },
 ]
 
-function Logo() {
+function Logo({ isScrolled }: { isScrolled: boolean }) {
+  const fullText = "INSTITUT COLLABORATIF /A"
+  const shortText = "IC/A"
+
   return (
     <Link href="/" className="flex items-center">
-      <img 
-        src="/logo.svg" 
-        alt="ICIA" 
-        className="h-6 w-auto"
-      />
+      <motion.div
+        initial="initial"
+        animate={isScrolled ? "scrolled" : "initial"}
+        variants={{
+          initial: {
+            display: "block"
+          },
+          scrolled: {
+            display: "block"
+          }
+        }}
+        className="font-['Lato'] text-xl md:text-2xl lg:text-2xl tracking-wide"
+      >
+        <motion.span
+          initial={{ opacity: 1 }}
+          animate={isScrolled ? { opacity: 0, display: "none" } : { opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="hidden lg:inline"
+        >
+          {fullText}
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, display: "none" }}
+          animate={isScrolled ? { opacity: 1, display: "inline" } : { opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="lg:hidden"
+        >
+          {shortText}
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, display: "none" }}
+          animate={isScrolled ? { opacity: 1, display: "none" } : { opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="hidden md:inline lg:hidden"
+        >
+          {shortText}
+        </motion.span>
+      </motion.div>
     </Link>
   )
 }
@@ -72,9 +108,9 @@ export function Header() {
       }`}
     >
       <div className="max-w-content mx-auto px-4 md:px-8 flex items-center justify-between">
-        <Logo />
+        <Logo isScrolled={isScrolled} />
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
               <Link 
@@ -128,7 +164,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
@@ -137,7 +173,7 @@ export function Header() {
         </div>
 
         <button
-          className="lg:hidden p-2"
+          className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
@@ -162,7 +198,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-bg border-b border-border overflow-hidden"
+            className="md:hidden bg-bg border-b border-border overflow-hidden"
           >
             <nav className="flex flex-col p-4 gap-1">
               {accompagnements.map((item) => (
