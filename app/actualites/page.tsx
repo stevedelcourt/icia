@@ -50,7 +50,7 @@ export default async function ActualitesPage() {
               <Link href={`/actualites/${latestArticle.slug}`} className="block group">
                 <article className="border border-gray-200 bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
                   {latestArticle.image && (
-                    <img src={latestArticle.image} alt="" className="w-full h-[400px] object-cover" />
+                    <img src={latestArticle.image} alt="" className="w-full aspect-[16/9] object-cover" />
                   )}
                   <div className="p-8">
                     <div className="flex items-center gap-4 mb-4">
