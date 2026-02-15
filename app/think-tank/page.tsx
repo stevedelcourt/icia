@@ -78,10 +78,8 @@ export default function ThinkTankPage() {
         </Section>
         
         <Section className="py-0">
-          <div className="w-full overflow-hidden">
-            <svg viewBox="0 0 800 120" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-              <text x="50%" y="80" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="80" fill="#61AAF2" letterSpacing="8">THINK!</text>
-            </svg>
+          <div className="w-full">
+            <img src="/images/think.webp" alt="THINK" className="w-full h-auto" />
           </div>
         </Section>
 
