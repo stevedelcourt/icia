@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/Button'
 import { Section } from '@/components/ui/Section'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
+import { PartnerLogos } from '@/components/ui/PartnerLogos'
 
 function HeroImage() {
   return (
     <FadeIn direction="up" duration={0.8} delay={0.2}>
-      <div className="w-full aspect-[16/9] bg-border overflow-hidden">
+      <div className="w-full aspect-square md:aspect-video lg:aspect-[16/9] bg-border overflow-hidden">
         <img 
           src="/images/hero.webp" 
           alt="Institut Collectif de l'IA" 
@@ -23,22 +24,22 @@ export default function Home() {
   const cards = [
     { 
       title: 'Citoyens', 
-      description: 'Comprendre l\'IA, rester en securite, se former et evoluer professionnellement.',
+      description: 'Comprendre l\'IA, rester en sécurité, se former et évoluer professionnellement.',
       href: '/accompagnements/citoyens'
     },
     { 
       title: 'Entreprises', 
-      description: 'Diagnostics partages, formations ciblees, prototypes et accompagnement au deploiement.',
+      description: 'Diagnostics partagés, formations ciblées, prototypes et accompagnement au déploiement.',
       href: '/accompagnements/entreprises'
     },
     { 
-      title: 'Ecoles et Universites', 
-      description: 'Ressources pedagogiques, formation des formateurs, certifications et badges.',
+      title: 'Écoles et Universités', 
+      description: 'Ressources pédagogiques, formation des formateurs, certifications et badges.',
       href: '/accompagnements/education'
     },
     { 
-      title: 'Createurs et creatrices', 
-      description: 'Ateliers, innovation, cadre juridique et laboratoire securise pour les secteurs creatifs.',
+      title: 'Createurs', 
+      description: 'Ateliers, innovation, cadre juridique et laboratoire sécurisé pour les secteurs créatifs.',
       href: '/accompagnements/secteurs-creatifs'
     },
     { 
@@ -56,23 +57,29 @@ export default function Home() {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-h1 mb-8 leading-tight">
-                L'Institut Collectif de l'IA : une IA comprise, maitrisee et partagee
+                <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
+                <br />
+                <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
               </h1>
-              <p className="text-body text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
-                Un projet francais, ancre a Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse beneficier concretement de l'intelligence artificielle.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/accompagnements">
-                  <Button variant="primary" size="lg">
-                    Decouvrir nos accompagnements
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button variant="ghost" size="lg">
-                    Nous contacter
-                  </Button>
-                </Link>
-              </div>
+              <ScaleIn delay={0.5}>
+                <p className="text-body text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
+                  Un projet francais, ancre a Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse beneficier concretement de l'intelligence artificielle.
+                </p>
+              </ScaleIn>
+              <FadeIn delay={0.6}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/accompagnements">
+                    <Button variant="primary" size="lg">
+                      Découvrir nos accompagnements
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button variant="ghost" size="lg">
+                      Nous contacter
+                    </Button>
+                  </Link>
+                </div>
+              </FadeIn>
             </div>
           </FadeIn>
         </Section>
@@ -83,17 +90,23 @@ export default function Home() {
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">
               <h2 className="font-serif text-h2 mb-8">
-                Pourquoi l'Institut Collectif de l'IA ?
+                <TextReveal>Pourquoi l'Institut Collectif de l'IA ?</TextReveal>
               </h2>
-              <p className="text-body text-text-muted mb-6 leading-relaxed">
-                L'intelligence artificielle progresse tres vite, mais son appropriation reste inegale. Une grande partie de la population, des PME, des createurs et creatrices, et des institutions n'a ni le temps, ni les reperes, ni les ressources pour l'utiliser de maniere eclairee et securisee.
-              </p>
-              <p className="text-body text-text-muted mb-8 leading-relaxed">
-                L'Institut Collectif de l'IA agit comme un tiers de confiance : il explique, outille et securise les usages de l'IA pour toutes et tous. Notre mission est de rendre l'IA accessible, comprehensible et maitrisable, dans une demarche collective et ouverte.
-              </p>
-              <Link href="/a-propos" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                En savoir plus sur notre vision
-              </Link>
+              <ScaleIn delay={0.2}>
+                <p className="text-body text-text-muted mb-6 leading-relaxed">
+                  L'intelligence artificielle progresse tres vite, mais son appropriation reste inegale. Une grande partie de la population, des PME, des createurs, et des institutions n'a ni le temps, ni les reperes, ni les ressources pour l'utiliser de maniere eclairee et securisee.
+                </p>
+              </ScaleIn>
+              <ScaleIn delay={0.3}>
+                <p className="text-body text-text-muted mb-8 leading-relaxed">
+                  L'Institut Collectif de l'IA agit comme un tiers de confiance : il explique, outille et sécurise les usages de l'IA pour toutes et tous. Notre mission est de rendre l'IA accessible, compréhensible et maîtrisable, dans une démarche collective et ouverte.
+                </p>
+              </ScaleIn>
+              <FadeIn delay={0.4}>
+                <Link href="/a-propos" className="text-accent hover:text-accent-hover underline underline-offset-4">
+                  En savoir plus sur notre vision
+                </Link>
+              </FadeIn>
             </div>
           </FadeIn>
         </Section>
@@ -108,7 +121,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {cards.map((item) => (
                 <StaggerItem key={item.title}>
-                  <Link href={item.href} className="block bg-white border border-gray-200 rounded-lg p-8 hover:border-gray-400 hover:shadow-sm transition-all h-full">
+                  <Link href={item.href} className="block bg-[#EBDBBC] border border-gray-200 rounded-lg p-8 hover:border-gray-400 hover:bg-[#D4A27F] hover:shadow-sm transition-all h-full">
                     <h3 className="font-serif text-h3 mb-4">{item.title}</h3>
                     <p className="text-text-muted mb-4">{item.description}</p>
                     <span className="text-accent text-sm">Voir l'accompagnement →</span>
@@ -122,26 +135,26 @@ export default function Home() {
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <h2 className="font-serif text-h2 mb-8 text-center">
-              Un modele unique : lieu + plateforme + reseau
+              Un modèle unique : lieu + plateforme + réseau
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="max-w-2xl mx-auto mb-12">
               <p className="text-body text-text-muted leading-relaxed mb-8">
-                L'Institut Collectif de l'IA repose sur trois piliers complementaires :
+                L'Institut Collectif de l'IA repose sur trois piliers complémentaires :
               </p>
               <ul className="space-y-6 text-body">
                 <li className="pl-6 border-l-2 border-accent">
                   <strong className="font-medium">Un lieu physique accessible</strong>
-                  <span className="text-text-muted"> — avec espaces d'accueil, salles de formation, laboratoire IA et espace creatif.</span>
+                  <span className="text-text-muted"> — avec espaces d'accueil, salles de formation, laboratoire IA et espace créatif.</span>
                 </li>
                 <li className="pl-6 border-l-2 border-accent">
-                  <strong className="font-medium">Une plateforme numerique</strong>
+                  <strong className="font-medium">Une plateforme numérique</strong>
                   <span className="text-text-muted"> — pour apprendre, se former, suivre des parcours et obtenir des badges.</span>
                 </li>
                 <li className="pl-6 border-l-2 border-accent">
-                  <strong className="font-medium">Un reseau d'acteurs</strong>
-                  <span className="text-text-muted"> — entreprises, ecoles, experts, pouvoirs publics qui partagent leurs ressources.</span>
+                  <strong className="font-medium">Un réseau d'acteurs</strong>
+                  <span className="text-text-muted"> — entreprises, écoles, experts, pouvoirs publics qui partagent leurs ressources.</span>
                 </li>
               </ul>
             </div>
@@ -149,11 +162,11 @@ export default function Home() {
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/reseau-lieu" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                Decouvrir le lieu et le reseau →
+                 Découvrir le lieu et le réseau →
               </Link>
               <span className="text-text-muted hidden sm:inline">·</span>
               <Link href="/plateforme-numerique" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                Acceder a la plateforme →
+                 Accéder à la plateforme →
               </Link>
             </div>
           </FadeIn>
@@ -166,7 +179,7 @@ export default function Home() {
                 Vous avez un projet, une question ?
               </h2>
               <p className="text-text-muted mb-8">
-                L'equipe de l'Institut Collectif de l'IA est a votre ecoute.
+                L'équipe de l'Institut Collectif de l'IA est à votre écoute.
               </p>
               <Link href="/contact">
                 <Button variant="primary" size="lg">
@@ -177,6 +190,7 @@ export default function Home() {
           </FadeIn>
         </Section>
       </main>
+      <PartnerLogos />
       <Footer />
     </>
   )
