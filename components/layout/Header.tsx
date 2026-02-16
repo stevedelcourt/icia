@@ -87,17 +87,17 @@ export function Header() {
 
         <nav className="hidden xl:flex items-center gap-10">
           {navItems.map((item) => (
-            <div key={item.href} className="relative" ref={item.hasDropdown ? dropdownRef : undefined}>
+            <div 
+              key={item.href} 
+              className="relative"
+              onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.href)}
+              onMouseLeave={() => item.hasDropdown && setOpenDropdown(null)}
+            >
               <Link 
                 href={item.href}
                 className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
                   isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
                 }`}
-                onClick={() => {
-                  if (item.hasDropdown) {
-                    setOpenDropdown(openDropdown === item.href ? null : item.href)
-                  }
-                }}
               >
                 {item.label}
                 {item.hasDropdown && (
@@ -123,7 +123,6 @@ export function Header() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.15 }}
                       className="absolute top-full left-0 mt-2 w-56 bg-white border border-border shadow-lg"
-                      onMouseLeave={() => setOpenDropdown(null)}
                     >
                       {item.href === '/a-propos' ? aProposItems.map((subItem) => (
                         <Link
