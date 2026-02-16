@@ -124,7 +124,7 @@ export default function Home() {
                   <Link href={item.href} className="block bg-[#e3dacc] border border-gray-200 rounded-xl p-8 hover:bg-[#e3dacc] hover:shadow-sm transition-all h-full">
                     <h3 className="font-serif text-h3 mb-4">{item.title}</h3>
                     <p className="text-text-muted mb-4">{item.description}</p>
-                    <span className="text-accent text-sm">Voir l'accompagnement →</span>
+                    <span className="text-accent text-sm">Voir l'accompagnement ➔</span>
                   </Link>
                 </StaggerItem>
               ))}
@@ -162,11 +162,11 @@ export default function Home() {
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/reseau-lieu" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                 Découvrir le lieu et le réseau →
+                 Découvrir le lieu et le réseau ➔
               </Link>
               <span className="text-text-muted hidden sm:inline">·</span>
               <Link href="/plateforme-numerique" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                 Accéder à la plateforme →
+                 Accéder à la plateforme ➔
               </Link>
             </div>
           </FadeIn>

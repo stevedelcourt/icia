@@ -118,7 +118,7 @@ export default function ContactPage() {
                 A tres bientot.
               </p>
               <Link href="/" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                Retour a l'accueil →
+                Retour a l'accueil ➔
               </Link>
             </div>
           ) : (
