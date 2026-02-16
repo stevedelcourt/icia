@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 
-const NOTION_KEY = process.env.NOTION_KEY || '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'
+const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
 
 async function getArticles() {

@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 
-const NOTION_KEY = process.env.NOTION_KEY || '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'
+const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB
 
 async function getPartners() {

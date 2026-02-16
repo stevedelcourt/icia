@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const NOTION_KEY = process.env.NOTION_KEY || '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'
+const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB || '307d314b3ef0803aabeac0c66c1275fd'
 
 export async function GET() {
