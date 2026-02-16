@@ -20,8 +20,16 @@ export function PartnerLogos() {
     const fetchPartners = async () => {
       try {
         const res = await fetch('/api/partners')
-        const data = await res.json()
-        setPartners(data)
+        if (res.ok) {
+          const data = await res.json()
+          if (data.length > 0) {
+            setPartners(data)
+            return
+          }
+        }
+        const fallbackRes = await fetch('/partners.json')
+        const fallbackData = await fallbackRes.json()
+        setPartners(fallbackData)
       } catch (e) {
         console.error('Error fetching partners:', e)
       }

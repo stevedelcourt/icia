@@ -56,10 +56,11 @@ export default function Home() {
         <Section spacing="large">
           <FadeIn>
             <div className="max-w-4xl">
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-tight">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
               <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
-              <br />
-              <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+              <span className="block">
+                <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+              </span>
             </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-xl md:text-2xl text-text-muted mb-12 max-w-2xl leading-relaxed">
@@ -103,8 +104,9 @@ export default function Home() {
                 </p>
               </ScaleIn>
               <FadeIn delay={0.4}>
-                <Link href="/a-propos" className="text-accent hover:text-accent-hover underline underline-offset-4">
+                <Link href="/a-propos" className="text-accent hover:text-accent-hover inline-flex items-center group">
                   En savoir plus sur notre vision
+                  <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
                 </Link>
               </FadeIn>
             </div>
@@ -124,7 +126,10 @@ export default function Home() {
                   <Link href={item.href} className="block bg-[#e3dacc] border border-gray-200 rounded-xl p-8 hover:bg-[#e3dacc] hover:shadow-sm transition-all h-full">
                     <h3 className="font-serif text-h3 mb-4">{item.title}</h3>
                     <p className="text-text-muted mb-4">{item.description}</p>
-                    <span className="text-accent text-sm">Voir l'accompagnement ➔</span>
+                    <span className="text-accent text-sm inline-flex items-center group">
+                      Voir l'accompagnement
+                      <span className="ml-1 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
+                    </span>
                   </Link>
                 </StaggerItem>
               ))}
@@ -161,12 +166,14 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/reseau-lieu" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                 Découvrir le lieu et le réseau ➔
+              <Link href="/reseau-lieu" className="text-accent hover:text-accent-hover inline-flex items-center group">
+                Découvrir le lieu et le réseau
+                <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
               </Link>
               <span className="text-text-muted hidden sm:inline">·</span>
-              <Link href="/plateforme-numerique" className="text-accent hover:text-accent-hover underline underline-offset-4">
-                 Accéder à la plateforme ➔
+              <Link href="/plateforme-numerique" className="text-accent hover:text-accent-hover inline-flex items-center group">
+                Accéder à la plateforme
+                <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
               </Link>
             </div>
           </FadeIn>

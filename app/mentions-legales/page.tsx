@@ -38,9 +38,8 @@ export default function MentionsLegalesPage() {
               <h2 className="font-serif text-h3 mb-4">3. Hébergement</h2>
               <p className="text-text-muted">
                 Le site est hébergé par :<br />
-                <strong>Vercel Inc.</strong><br />
-                440 N Barranca Ave #4133<br />
-                Covina, CA 91723, États-Unis
+                <strong>oSwitch</strong><br />
+                France
               </p>
             </section>
             

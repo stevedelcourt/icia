@@ -110,10 +110,11 @@ export default function OnePage() {
         <section id="hero" className="min-h-screen flex items-center justify-center pt-32 pb-16 px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-[48px] md:text-[72px] leading-tight mb-8">
+              <h1 className="font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-tight mb-8">
                 <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
-                <br />
-                <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+                <span className="block">
+                  <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+                </span>
               </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-xl text-text-muted mb-12 max-w-2xl mx-auto">

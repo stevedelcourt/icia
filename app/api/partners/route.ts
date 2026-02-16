@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
 
+export const dynamic = 'force-static'
+export const revalidate = 60
+
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB || '307d314b3ef0803aabeac0c66c1275fd'
 
@@ -22,7 +25,7 @@ export async function GET() {
       method: 'POST',
       headers: notion.headers,
       body: JSON.stringify({ page_size: 100 }),
-      cache: 'no-store'
+      next: { revalidate: 60 }
     })
 
     const data = await response.json()

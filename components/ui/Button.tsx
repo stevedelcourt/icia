@@ -22,21 +22,60 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost: 'text-black hover:bg-black/10 rounded-md',
 }
 
+function SlideArrow() {
+  return (
+    <span className="inline-flex items-center overflow-hidden ml-2">
+      <span className="transform transition-transform duration-300 group-hover:translate-x-2">➔</span>
+    </span>
+  )
+}
+
+function processChildren(children: React.ReactNode): React.ReactNode {
+  if (typeof children === 'string') {
+    return (
+      <span className="group">
+        {children}
+        <SlideArrow />
+      </span>
+    )
+  }
+  if (Array.isArray(children)) {
+    return children.map((child, i) => processChildren(child))
+  }
+  if (typeof children === 'object' && children !== null) {
+    return children
+  }
+  return children
+}
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-medium transition-colors ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-medium transition-all duration-300 group ${sizeClasses[size]} ${variantClasses[variant]}`
+    
+    const content = (
+      <span className="flex items-center">
+        {typeof children === 'string' ? (
+          <>
+            <span className="group-hover:mr-2 transition-all duration-300">{children}</span>
+            <span className="transform translate-x-[-20px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
+          </>
+        ) : (
+          children
+        )}
+      </span>
+    )
     
     if (href) {
       return (
         <Link href={href} className={`${baseClasses} ${className}`}>
-          {children}
+          {content}
         </Link>
       )
     }
     
     return (
       <button ref={ref} className={`${baseClasses} ${className}`} {...props}>
-        {children}
+        {content}
       </button>
     )
   }

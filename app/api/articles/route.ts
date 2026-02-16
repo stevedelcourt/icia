@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const dynamic = 'force-static'
+export const revalidate = 60
 
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
@@ -34,7 +35,7 @@ export async function GET(request: NextRequest) {
       method: 'POST',
       headers: notion.headers,
       body: JSON.stringify(query),
-      cache: 'force-cache'
+      next: { revalidate: 60 }
     })
 
     console.log('Status:', response.status)

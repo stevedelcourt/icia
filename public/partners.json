@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Airwell",
+    "logo": "/images/partners/02_logo_airwell.svg",
+    "website": "https://www.airwell.com/"
+  },
+  {
+    "name": "MK2+",
+    "logo": "/images/partners/01_logo_mk2.svg",
+    "website": "https://mk2plus.com/"
+  },
+  {
+    "name": "IONIS Education Group",
+    "logo": "/images/partners/03_logo_ionis.svg",
+    "website": "https://www.ionis-group.com/"
+  },
+  {
+    "name": "Tertium Invest",
+    "logo": "/images/partners/logo-tertium.svg",
+    "website": "https://tertium-invest.com/"
+  },
+  {
+    "name": "Clarins",
+    "logo": "/images/partners/clarins.svg",
+    "website": "https://www.clarins.fr/"
+  },
+  {
+    "name": "Air France",
+    "logo": "/images/partners/Air_France.svg",
+    "website": "https://www.airfrance.fr/"
+  }
+]
