@@ -64,7 +64,7 @@ export default function Home() {
             </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-xl md:text-2xl text-text-muted mb-12 max-w-2xl leading-relaxed">
-                  Un projet francais, ancre a Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse beneficier concretement de l'intelligence artificielle.
+                  Un projet français, ancré à Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse bénéficier concrètement de l'intelligence artificielle.
                 </p>
               </ScaleIn>
               <FadeIn delay={0.6}>

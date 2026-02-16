@@ -34,8 +34,8 @@ export function Footer() {
             </Link>
             <p className="text-white font-medium text-sm mb-2">Mentivis</p>
             <p className="text-white/70 text-sm mb-6 max-w-sm">
-              Un projet francais pour que chacun et chaque organisation puisse 
-              beneficier concretement de l'intelligence artificielle.
+              Un projet français pour que chacun et chaque organisation puisse 
+              bénéficier concrètement de l'intelligence artificielle.
             </p>
             <div className="flex gap-4">
               <a 

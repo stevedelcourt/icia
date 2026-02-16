@@ -9,13 +9,13 @@ import { Button } from '@/components/ui/Button'
 const accompagnements = [
   { label: 'Citoyens', href: '/accompagnements/citoyens' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
-  { label: 'Ecoles et Universites', href: '/accompagnements/education' },
-  { label: 'Secteurs creatifs', href: '/accompagnements/secteurs-creatifs' },
+  { label: 'Écoles et Universités', href: '/accompagnements/education' },
+  { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics' },
 ]
 
 const aProposItems = [
-  { label: 'Reseau et Lieu', href: '/reseau-lieu' },
+  { label: 'Réseau et Lieu', href: '/reseau-lieu' },
   { label: 'Plateforme', href: '/plateforme-numerique' },
   { label: 'Think Tank IA', href: '/think-tank' },
 ]
@@ -62,7 +62,7 @@ export function Header() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false)
+        setOpenDropdown(null)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -203,7 +203,7 @@ export function Header() {
                   <Link 
                     key={item.href} 
                     href={item.href}
-                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                    className="block py-4 text-3xl font-bold text-text border-b border-border"
                   >
                     {item.label}
                   </Link>
@@ -215,7 +215,7 @@ export function Header() {
                   <Link 
                     key={item.href} 
                     href={item.href}
-                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                    className="block py-4 text-3xl font-bold text-text border-b border-border"
                   >
                     {item.label}
                   </Link>
@@ -227,7 +227,7 @@ export function Header() {
                   <Link 
                     key={item.href} 
                     href={item.href}
-                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                    className="block py-4 text-3xl font-bold text-text border-b border-border"
                   >
                     {item.label}
                   </Link>
