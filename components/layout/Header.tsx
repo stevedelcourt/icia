@@ -198,64 +198,47 @@ export function Header() {
                 </svg>
               </button>
 
-              {navItems.map((item) => (
-                <div key={item.href} className="mb-6">
-                  {item.hasDropdown ? (
-                    <>
-                      <button 
-                        onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === item.href ? '' : item.href)}
-                        className="flex items-center justify-between w-full py-3 text-3xl font-bold text-text border-b border-border"
-                      >
-                        {item.label}
-                        <motion.svg 
-                          className="w-6 h-6" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                          animate={{ rotate: mobileOpenSubmenu === item.href ? 180 : 0 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </motion.svg>
-                      </button>
-                      <AnimatePresence>
-                        {mobileOpenSubmenu === item.href && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="py-2 pl-4">
-                              {(item.href === '/a-propos' ? aProposItems : accompagnements).map((subItem) => (
-                                <Link 
-                                  key={subItem.href} 
-                                  href={subItem.href}
-                                  className="block py-3 text-xl font-medium text-text-muted border-b border-border/50"
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                  {subItem.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </>
-                  ) : (
-                    <Link 
-                      href={item.href}
-                      className="block py-3 text-3xl font-bold text-text border-b border-border"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+              <div className="space-y-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</p>
+                
+                <Link href="/a-propos" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                  À propos de l'institut IA
+                </Link>
+                <Link href="/reseau-lieu" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Réseau et Lieu
+                </Link>
+                <Link href="/plateforme-numerique" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Plateforme
+                </Link>
+                <Link href="/think-tank" className="block py-2 pl-4 text-lg text-text-muted mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Think Tank IA
+                </Link>
 
-              <Link href="/contact" className="mt-4 block">
+                <Link href="/accompagnements" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                  Accompagnements
+                </Link>
+                <Link href="/accompagnements/citoyens" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Citoyens
+                </Link>
+                <Link href="/accompagnements/entreprises" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Entreprises
+                </Link>
+                <Link href="/accompagnements/education" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Écoles et Universités
+                </Link>
+                <Link href="/accompagnements/secteurs-creatifs" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Secteurs créatifs
+                </Link>
+                <Link href="/accompagnements/pouvoirs-publics" className="block py-2 pl-4 text-lg text-text-muted mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  → Pouvoirs publics
+                </Link>
+
+                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                  Actualités
+                </Link>
+              </div>
+
+              <Link href="/contact" className="mt-8 block">
                 <button 
                   className="w-full py-4 text-xl font-bold text-white rounded-lg"
                   style={{ backgroundColor: '#CC785C' }}
