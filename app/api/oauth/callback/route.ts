@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const clientId = process.env.OAUTH_GITHUB_CLIENT_ID || 'Ov23liK4C9e883PqAjXi'
-const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET || '91585d9c3a54842c543855ee4aa657b0494736cb'
+const clientId = process.env.OAUTH_GITHUB_CLIENT_ID
+const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET
 
 export async function GET(request: NextRequest) {
+  if (!clientId || !clientSecret) {
+    return NextResponse.json({ error: 'OAuth not configured' }, { status: 500 })
+  }
+  
   const { searchParams } = new URL(request.url)
   const code = searchParams.get('code')
 

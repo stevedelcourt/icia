@@ -4,10 +4,13 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
+export const dynamic = 'force-static'
+
 async function getArticles() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://icia.vercel.app'}/api/articles`, { 
-      cache: 'no-store' 
+      cache: 'force-cache',
+      next: { revalidate: 3600 }
     })
     if (!res.ok) return []
     return await res.json()

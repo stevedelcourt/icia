@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-static'
+
 const NOTION_KEY = process.env.NOTION_KEY || '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'
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
 
@@ -31,7 +33,8 @@ export async function GET(request: NextRequest) {
     const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
       method: 'POST',
       headers: notion.headers,
-      body: JSON.stringify(query)
+      body: JSON.stringify(query),
+      cache: 'force-cache'
     })
 
     console.log('Status:', response.status)

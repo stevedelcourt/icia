@@ -22,7 +22,7 @@ async function getArticles() {
       method: 'POST',
       headers: notion.headers,
       body: JSON.stringify({ page_size: 100 }),
-      cache: 'no-store'
+      cache: 'force-cache'
     })
 
     const data = await response.json()
