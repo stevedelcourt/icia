@@ -44,7 +44,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null)
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('/a-propos')
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 

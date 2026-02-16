@@ -96,7 +96,7 @@ function Icon({ name }: { name: string }) {
 function ImagePlaceholder({ icon }: { icon: string }) {
   return (
     <div 
-      className="w-full aspect-[1/1] flex items-center justify-center bg-[#4A4A4A]"
+      className="w-full aspect-square md:aspect-[4/3] lg:aspect-square flex items-center justify-center bg-[#4A4A4A]"
     >
       <Icon name={icon} />
     </div>
