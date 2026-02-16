@@ -165,41 +165,55 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-bg border-b border-border overflow-hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'tween', duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-bg xl:hidden overflow-y-auto"
           >
-            <nav className="flex flex-col p-4 gap-1">
-              {accompagnements.map((item) => (
-                <Link 
-                  key={item.href} 
-                  href={item.href}
-                  className={`py-3 px-4 text-base font-medium transition-colors hover:bg-accent/5 ${
-                    isActive(item.href) ? 'text-accent bg-accent/5' : 'text-text'
-                  }`}
+            <div className="p-6 pt-24">
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="absolute top-6 right-6 p-2"
+                aria-label="Fermer le menu"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="mb-8">
+                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Accompagnements</p>
+                {accompagnements.map((item) => (
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="mb-8">
+                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Navigation</p>
+                {navItems.filter(item => !item.hasDropdown).map((item) => (
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <Link href="/contact" className="mt-4 block">
+                <button 
+                  className="w-full py-4 text-xl font-bold text-white rounded-lg"
+                  style={{ backgroundColor: '#CC785C' }}
                 >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="border-t border-border my-2" />
-              {navItems.filter(item => !item.hasDropdown).map((item) => (
-                <Link 
-                  key={item.href} 
-                  href={item.href}
-                  className={`py-3 px-4 text-base font-medium transition-colors hover:bg-accent/5 ${
-                    isActive(item.href) ? 'text-accent bg-accent/5' : 'text-text'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link href="/contact" className="mt-2">
-                <Button variant="primary" className="w-full">
                   Nous contacter
-                </Button>
+                </button>
               </Link>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
