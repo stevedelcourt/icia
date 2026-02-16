@@ -44,6 +44,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
@@ -196,42 +197,64 @@ export function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <div className="mb-8">
-                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">A propos</p>
-                {aProposItems.map((item) => (
-                  <Link 
-                    key={item.href} 
-                    href={item.href}
-                    className="block py-4 text-3xl font-bold text-text border-b border-border"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="mb-8">
-                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Accompagnements</p>
-                {accompagnements.map((item) => (
-                  <Link 
-                    key={item.href} 
-                    href={item.href}
-                    className="block py-4 text-3xl font-bold text-text border-b border-border"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="mb-8">
-                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Navigation</p>
-                {navItems.filter(item => !item.hasDropdown).map((item) => (
-                  <Link 
-                    key={item.href} 
-                    href={item.href}
-                    className="block py-4 text-3xl font-bold text-text border-b border-border"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+
+              {navItems.map((item) => (
+                <div key={item.href} className="mb-6">
+                  {item.hasDropdown ? (
+                    <>
+                      <button 
+                        onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === item.href ? null : item.href)}
+                        className="flex items-center justify-between w-full py-3 text-3xl font-bold text-text border-b border-border"
+                      >
+                        {item.label}
+                        <motion.svg 
+                          className="w-6 h-6" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                          animate={{ rotate: mobileOpenSubmenu === item.href ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </motion.svg>
+                      </button>
+                      <AnimatePresence>
+                        {mobileOpenSubmenu === item.href && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="py-2 pl-4">
+                              {(item.href === '/a-propos' ? aProposItems : accompagnements).map((subItem) => (
+                                <Link 
+                                  key={subItem.href} 
+                                  href={subItem.href}
+                                  className="block py-3 text-xl font-medium text-text-muted border-b border-border/50"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {subItem.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <Link 
+                      href={item.href}
+                      className="block py-3 text-3xl font-bold text-text border-b border-border"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+
               <Link href="/contact" className="mt-4 block">
                 <button 
                   className="w-full py-4 text-xl font-bold text-white rounded-lg"
