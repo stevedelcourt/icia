@@ -32,7 +32,7 @@ export function Footer() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="text-white font-medium text-sm mb-2">Mentivis</p>
+            <p className="text-white font-medium text-sm mb-2">Institut Collectif de l'IA</p>
             <p className="text-white/70 text-sm mb-6 max-w-sm">
               Un projet français pour que chacun et chaque organisation puisse 
               bénéficier concrètement de l'intelligence artificielle.
@@ -82,7 +82,7 @@ export function Footer() {
         
         <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-white/70 text-center md:text-left font-medium">
-            © {new Date().getFullYear()} Mentivis. Tous droits réservés.
+            © {new Date().getFullYear()} Institut Collectif de l'IA. Tous droits réservés.
           </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-6">
             {footerLinks.legal.map((link) => (
