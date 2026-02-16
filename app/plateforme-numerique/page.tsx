@@ -120,10 +120,10 @@ export default function PlateformeNumeriquePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature) => (
                 <StaggerItem key={feature.title}>
-                  <div className="p-6 border border-border bg-white rounded-xl">
+                  <div className="h-full p-6 border border-border bg-white rounded-xl flex flex-col">
                     <div className="w-10 h-10 mb-3 text-black"><Icon name={feature.icon} className="w-full h-full" /></div>
                     <h3 className="font-serif text-h3 mb-2">{feature.title}</h3>
-                    <p className="text-sm text-text-muted">{feature.description}</p>
+                    <p className="text-sm text-text-muted flex-grow">{feature.description}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -139,14 +139,14 @@ export default function PlateformeNumeriquePage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {pricing.map((tier) => (
                 <StaggerItem key={tier.name}>
-                  <div className={`p-8 border ${tier.popular ? 'border-accent bg-bg' : 'border-border bg-white'} hover:bg-[#e3dacc] transition-colors`}>
+                  <div className={`h-full p-8 border ${tier.popular ? 'border-accent bg-bg' : 'border-border bg-white'} hover:shadow-lg transition-shadow flex flex-col`}>
                     {tier.popular && (
                       <p className="text-xs text-accent mb-2">Le plus populaire</p>
                     )}
                     <h3 className="font-serif text-h3 mb-1">{tier.name}</h3>
                     <p className="text-2xl font-serif mb-1">{tier.price}<span className="text-sm text-text-muted">{tier.period}</span></p>
                     <p className="text-sm text-text-muted mb-4">{tier.description}</p>
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-2 mb-6 flex-grow">
                       {tier.features.map((feature) => (
                         <li key={feature} className="text-sm text-text-muted flex items-center gap-2">
                           <span className="text-accent">✓</span>
