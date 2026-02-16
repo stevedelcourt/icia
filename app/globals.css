@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: #faf9f6;
+  --bg: #F0EEE6;
   --bg-card: #ffffff;
   --text: #141413;
   --text-muted: #5c5c5c;
