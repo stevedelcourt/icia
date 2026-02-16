@@ -201,39 +201,39 @@ export function Header() {
               <div className="space-y-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</p>
                 
-                <Link href="/a-propos" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/a-propos" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
                   À propos de l'institut IA
                 </Link>
-                <Link href="/reseau-lieu" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Réseau et Lieu
+                <Link href="/reseau-lieu" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Réseau et Lieu
                 </Link>
-                <Link href="/plateforme-numerique" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Plateforme
+                <Link href="/plateforme-numerique" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Plateforme
                 </Link>
-                <Link href="/think-tank" className="block py-2 pl-4 text-lg text-text-muted mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Think Tank IA
+                <Link href="/think-tank" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Think Tank IA
                 </Link>
 
-                <Link href="/accompagnements" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/accompagnements" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Accompagnements
                 </Link>
-                <Link href="/accompagnements/citoyens" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Citoyens
+                <Link href="/accompagnements/citoyens" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Citoyens
                 </Link>
-                <Link href="/accompagnements/entreprises" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Entreprises
+                <Link href="/accompagnements/entreprises" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Entreprises
                 </Link>
-                <Link href="/accompagnements/education" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Écoles et Universités
+                <Link href="/accompagnements/education" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Écoles et Universités
                 </Link>
-                <Link href="/accompagnements/secteurs-creatifs" className="block py-2 pl-4 text-lg text-text-muted" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Secteurs créatifs
+                <Link href="/accompagnements/secteurs-creatifs" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Secteurs créatifs
                 </Link>
-                <Link href="/accompagnements/pouvoirs-publics" className="block py-2 pl-4 text-lg text-text-muted mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  → Pouvoirs publics
+                <Link href="/accompagnements/pouvoirs-publics" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  ➔ Pouvoirs publics
                 </Link>
 
-                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Actualités
                 </Link>
               </div>
