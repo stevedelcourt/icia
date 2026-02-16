@@ -43,7 +43,7 @@ async function getPartners() {
         logo: props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || '',
         website: props.Company_URL?.url || ''
       }
-    }).filter((p: any) => p.name)
+    }).filter((p: any) => p.name).sort((a: any, b: any) => a.name.localeCompare(b.name, 'fr'))
   } catch (e) {
     console.error('Error fetching partners:', e)
     return []
