@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
                 Le site ICIA (Mentivis) est édité par :<br />
                 <strong>Mentivis</strong><br />
                 Association loi 1901<br />
-                Siège social : Marseille, France<br />
+                Siège social : France<br />
                 Email : contact@icia.fr
               </p>
             </section>

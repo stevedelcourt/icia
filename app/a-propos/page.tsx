@@ -69,7 +69,7 @@ export default function AProposPage() {
                   l'intelligence artificielle comprise, accessible et utile à tous.
                 </p>
                 <p className="text-body text-text-muted mt-4">
-                  Ancré à Marseille et ouvert sur le monde, il agit pour que l'IA devienne un levier de progrès 
+                  Ancré en France et ouvert sur le monde, il agit pour que l'IA devienne un levier de progrès 
                   social, économique et culturel, au service de l'intérêt général.
                 </p>
               </ScaleIn>
@@ -135,9 +135,10 @@ export default function AProposPage() {
               />
             </div>
             <div className="text-center mt-6">
-              <Link href="/organisation" className="text-accent hover:text-accent-hover inline-flex items-center group">
-                Voir la page complète
-                <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
+              <Link href="/organisation">
+                <Button variant="secondary" size="md">
+                  Voir la page complète
+                </Button>
               </Link>
             </div>
           </FadeIn>

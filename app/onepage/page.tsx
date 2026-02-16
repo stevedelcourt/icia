@@ -118,7 +118,7 @@ export default function OnePage() {
               </h1>
               <ScaleIn delay={0.5}>
                 <p className="text-xl text-text-muted mb-12 max-w-2xl mx-auto">
-                  Un projet français, ancré à Marseille et ouvert sur le monde, pour que chacun et chaque organisation puisse bénéficier concrètement de l'intelligence artificielle.
+                  Un projet français, ancré en France et ouvert sur le monde, pour que chacun et chaque organisation puisse bénéficier concrètement de l'intelligence artificielle.
                 </p>
               </ScaleIn>
               <FadeIn delay={0.6}>

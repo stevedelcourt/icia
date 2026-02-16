@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | ICIA',
   },
   description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
-  keywords: ['IA', 'intelligence artificielle', 'formation IA', 'accompagnement IA', 'think tank IA', 'Marseille'],
+  keywords: ['IA', 'intelligence artificielle', 'formation IA', 'accompagnement IA', 'think tank IA', 'France'],
   authors: [{ name: 'Institut Collectif de l\'IA' }],
   openGraph: {
     type: 'website',
