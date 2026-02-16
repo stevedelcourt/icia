@@ -115,7 +115,7 @@ export default function AccompanimentsPage() {
           </FadeIn>
         </Section>
         
-        <Section spacing="none" className="-mt-8">
+        <Section className="-mt-8">
           <div className="grid lg:grid-cols-5 gap-6">
             <Link href={featured.href} className="block group lg:col-span-2">
               <article className="h-full bg-gradient-to-br from-[#264653] to-[#1a333d] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all group-hover:scale-[1.02]">
