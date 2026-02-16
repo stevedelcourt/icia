@@ -64,6 +64,11 @@ export function PartnerLogos() {
         .scroll-container:hover {
           animation-play-state: paused;
         }
+        @media (max-width: 768px) {
+          .scroll-container {
+            animation: scroll 15s linear infinite;
+          }
+        }
       `}</style>
       <div 
         ref={containerRef}
