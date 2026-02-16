@@ -203,7 +203,7 @@ export function Header() {
                   {item.hasDropdown ? (
                     <>
                       <button 
-                        onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === item.href ? null : item.href)}
+                        onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === item.href ? '' : item.href)}
                         className="flex items-center justify-between w-full py-3 text-3xl font-bold text-text border-b border-border"
                       >
                         {item.label}
