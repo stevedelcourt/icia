@@ -94,9 +94,6 @@ function Icon({ name, size = 'large' }: { name: string, size?: 'large' | 'small'
 }
 
 export default function AccompanimentsPage() {
-  const featured = publics[0]
-  const rest = publics.slice(1)
-
   return (
     <>
       <Header />
@@ -115,37 +112,22 @@ export default function AccompanimentsPage() {
           </FadeIn>
         </Section>
         
-        <Section className="-mt-8">
-          <div className="grid lg:grid-cols-5 gap-6">
-            <Link href={featured.href} className="block group lg:col-span-2">
-              <article className="h-full bg-gradient-to-br from-[#264653] to-[#1a333d] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all group-hover:scale-[1.02]">
-                <div className="aspect-[4/3] lg:aspect-[3/4] flex items-center justify-center">
-                  <Icon name={featured.icon} size="large" />
-                </div>
-                <div className="p-8 text-white">
-                  <p className="text-sm text-[#F4A261] mb-2 font-semibold uppercase tracking-wide">{featured.subtitle}</p>
-                  <h2 className="font-serif text-3xl mb-4 group-hover:text-[#F4A261] transition-colors">{featured.title}</h2>
-                  <p className="text-white/80 leading-relaxed">{featured.description}</p>
-                </div>
-              </article>
-            </Link>
-            
-            <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
-              {rest.map((item) => (
-                <Link key={item.title} href={item.href} className="block group">
-                  <article className="h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group-hover:-translate-y-1">
-                    <div className="aspect-square flex items-center justify-center bg-[#4A4A4A]">
-                      <Icon name={item.icon} size="small" />
-                    </div>
-                    <div className="p-6">
-                      <p className="text-xs text-[#BF4D43] mb-2 font-semibold uppercase tracking-wide">{item.subtitle}</p>
-                      <h3 className="font-serif text-xl mb-2 group-hover:text-[#BF4D43] transition-colors">{item.title}</h3>
-                      <p className="text-text-muted text-sm leading-relaxed">{item.description}</p>
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
+        <Section className="-mt-8 pb-24">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {publics.map((item) => (
+              <Link key={item.title} href={item.href} className="block group">
+                <article className="h-full bg-gradient-to-br from-[#264653] to-[#1a333d] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all group-hover:scale-[1.02]">
+                  <div className="aspect-square flex items-center justify-center">
+                    <Icon name={item.icon} size="large" />
+                  </div>
+                  <div className="p-6 text-white">
+                    <p className="text-sm text-[#F4A261] mb-2 font-semibold uppercase tracking-wide">{item.subtitle}</p>
+                    <h3 className="font-serif text-2xl mb-3 group-hover:text-[#F4A261] transition-colors">{item.title}</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </article>
+              </Link>
+            ))}
           </div>
         </Section>
 
