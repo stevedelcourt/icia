@@ -41,7 +41,7 @@ export async function GET() {
         logo: props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || '',
         website: props.Company_URL?.url || ''
       }
-    }).filter((p: any) => p.logo)
+    }).filter((p: any) => p.logo).sort((a: any, b: any) => a.name.localeCompare(b.name))
 
     return NextResponse.json(partners)
   } catch (e) {
