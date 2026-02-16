@@ -14,11 +14,15 @@ const accompagnements = [
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics' },
 ]
 
-const navItems = [
-  { label: 'Accompagnements', href: '/accompagnements', hasDropdown: true },
-  { label: 'Think Tank IA', href: '/think-tank' },
+const aProposItems = [
   { label: 'Reseau et Lieu', href: '/reseau-lieu' },
   { label: 'Plateforme', href: '/plateforme-numerique' },
+  { label: 'Think Tank IA', href: '/think-tank' },
+]
+
+const navItems = [
+  { label: 'A propos de l\'institut IA', href: '/a-propos', hasDropdown: true },
+  { label: 'Accompagnements', href: '/accompagnements', hasDropdown: true },
   { label: 'Actualites', href: '/actualites' },
 ]
 
@@ -39,7 +43,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
@@ -89,7 +93,11 @@ export function Header() {
                 className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
                   isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
                 }`}
-                onClick={() => item.hasDropdown && setIsDropdownOpen(!isDropdownOpen)}
+                onClick={() => {
+                  if (item.hasDropdown) {
+                    setOpenDropdown(openDropdown === item.href ? null : item.href)
+                  }
+                }}
               >
                 {item.label}
                 {item.hasDropdown && (
@@ -98,7 +106,7 @@ export function Header() {
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
-                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                    animate={{ rotate: openDropdown === item.href ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -108,16 +116,24 @@ export function Header() {
               
               {item.hasDropdown && (
                 <AnimatePresence>
-                  {isDropdownOpen && (
+                  {openDropdown === item.href && (
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.15 }}
                       className="absolute top-full left-0 mt-2 w-56 bg-white border border-border shadow-lg"
-                      onMouseLeave={() => setIsDropdownOpen(false)}
+                      onMouseLeave={() => setOpenDropdown(null)}
                     >
-                      {accompagnements.map((subItem) => (
+                      {item.href === '/a-propos' ? aProposItems.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          className="block px-4 py-3 text-base text-text hover:bg-bg transition-colors first:rounded-t-lg last:rounded-b-lg"
+                        >
+                          {subItem.label}
+                        </Link>
+                      )) : accompagnements.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
@@ -181,6 +197,18 @@ export function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
+              <div className="mb-8">
+                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">A propos</p>
+                {aProposItems.map((item) => (
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    className="block py-4 text-2xl font-bold text-text border-b border-border"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
               <div className="mb-8">
                 <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Accompagnements</p>
                 {accompagnements.map((item) => (
