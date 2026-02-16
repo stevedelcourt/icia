@@ -18,6 +18,7 @@ const aProposItems = [
   { label: 'Réseau et Lieu', href: '/reseau-lieu' },
   { label: 'Plateforme', href: '/plateforme-numerique' },
   { label: 'Think Tank IA', href: '/think-tank' },
+  { label: 'Partenaires', href: '/partenaires' },
 ]
 
 const navItems = [
@@ -212,6 +213,14 @@ export function Header() {
                 </Link>
                 <Link href="/think-tank" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors mb-4" onClick={() => setIsMobileMenuOpen(false)}>
                   ➔ Think Tank IA
+                </Link>
+
+                <Link href="/partenaires" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  Partenaires
+                </Link>
+
+                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  Actualités
                 </Link>
 
                 <Link href="/accompagnements" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
