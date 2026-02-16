@@ -27,6 +27,7 @@ export default async function ActualitesPage() {
   ]
 
   const displayArticles = (articles.length > 0 ? articles : fallbackArticles).filter((a: any) => a.slug)
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const latestArticle = displayArticles[0]
   const otherArticles = displayArticles.slice(1)
 

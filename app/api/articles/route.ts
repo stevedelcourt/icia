@@ -23,7 +23,10 @@ export async function GET(request: NextRequest) {
   console.log('DB:', NOTION_DB)
 
   try {
-    const query: any = { page_size: 100 }
+    const query: any = { 
+      page_size: 100,
+      sorts: [{ property: 'Date', direction: 'descending' }]
+    }
     if (slug && slug !== 'create') {
       query.filter = {
         property: 'Slug',
