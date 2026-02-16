@@ -74,7 +74,7 @@ export default async function PartenairesPage() {
           </FadeIn>
         </Section>
         
-        <Section className="pb-24 bg-gray-100" spacing="normal">
+        <Section className="pb-24 bg-[#40403E]" spacing="normal">
           {partners.length > 0 ? (
             <Stagger>
               <div className="flex flex-col gap-6">

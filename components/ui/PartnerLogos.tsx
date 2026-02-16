@@ -52,7 +52,7 @@ export function PartnerLogos() {
   const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section className="bg-[#646464] border-t border-border overflow-hidden py-8">
+    <section className="bg-[#40403E] border-t border-border overflow-hidden py-8">
       <style jsx>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
