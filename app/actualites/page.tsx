@@ -4,17 +4,24 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
-const validArticles = [
-  { slug: 'lancement-icia', title: 'Lancement officiel de l\'Institut Collectif de l\'IA', excerpt: 'L\'ICIA ouvre ses portes à Marseille avec pour mission de rendre l\'IA accessible à tous.', category: 'Actualite', date: '2025-01-15', image: '' },
-  { slug: 'partenariat-universites', title: 'Partenariat avec les universités de la région', excerpt: 'Signature d\'accords avec les universités Aix-Marseille pour des programmes de formation.', category: 'Partenariat', date: '2025-01-20', image: '' },
-  { slug: 'ecosysteme-marseille', title: 'L\'écosystème IA de Marseille se structure', excerpt: 'Retour sur les initiatives qui font de Marseille un hub de l\'intelligence artificielle.', category: 'Analyse', date: '2025-02-01', image: '' },
-  { slug: 'think-tank-rapport', title: 'Publication du premier rapport du Think Tank', excerpt: 'Le groupe de réflexion de l\'ICIA publie ses recommandations pour une IA éthique.', category: 'Publication', date: '2025-02-10', image: '' },
-]
+async function getArticles() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/articles`, {
+      next: { revalidate: 60 }
+    })
+    if (!res.ok) return []
+    const articles = await res.json()
+    return articles.filter((a: any) => a.slug)
+  } catch {
+    return []
+  }
+}
 
 export default async function ActualitesPage() {
+  const validArticles = await getArticles()
+  
   const displayArticles = validArticles
-    .filter((a) => a.slug)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const latestArticle = displayArticles[0]
   const otherArticles = displayArticles.slice(1)
@@ -65,7 +72,7 @@ export default async function ActualitesPage() {
         <Section className="pb-24" spacing="normal">
           <Stagger>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherArticles.map((article) => (
+              {otherArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
                     <article className="h-full border border-gray-200 bg-white rounded-xl p-6 hover:bg-[#E5E4DF] hover:shadow-sm transition-all">

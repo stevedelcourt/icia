@@ -20,7 +20,7 @@ const modelCards = [
 ]
 
 const colorMap: Record<string, string> = {
-  'accent': '#e84b1a',
+  'accent': '#CC785C',
   'accent-blue': '#2a6fff',
   'accent-green': '#2a9e62',
   'accent-purple': '#7c4dff',

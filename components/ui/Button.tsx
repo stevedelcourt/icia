@@ -22,32 +22,6 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost: 'text-black hover:bg-black/10 rounded-md',
 }
 
-function SlideArrow() {
-  return (
-    <span className="inline-flex items-center overflow-hidden ml-2">
-      <span className="transform transition-transform duration-300 group-hover:translate-x-2">➔</span>
-    </span>
-  )
-}
-
-function processChildren(children: React.ReactNode): React.ReactNode {
-  if (typeof children === 'string') {
-    return (
-      <span className="group">
-        {children}
-        <SlideArrow />
-      </span>
-    )
-  }
-  if (Array.isArray(children)) {
-    return children.map((child, i) => processChildren(child))
-  }
-  if (typeof children === 'object' && children !== null) {
-    return children
-  }
-  return children
-}
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, className = '', children, ...props }, ref) => {
     const baseClasses = `inline-flex items-center justify-center font-medium transition-all duration-300 group ${sizeClasses[size]} ${variantClasses[variant]}`
