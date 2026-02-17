@@ -56,30 +56,16 @@ export function Header() {
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('a-propos')
   const [useMobileMenu, setUseMobileMenu] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    const checkSpacing = () => {
-      const container = containerRef.current
-      if (!container) return
-      
-      const logo = container.querySelector('[data-logo]') as HTMLElement
-      const nav = container.querySelector('[data-nav]') as HTMLElement
-      const button = container.querySelector('[data-button]') as HTMLElement
-      
-      if (logo && nav && button) {
-        const logoRect = logo.getBoundingClientRect()
-        const buttonRect = button.getBoundingClientRect()
-        const availableSpace = buttonRect.left - logoRect.right
-        const neededSpace = 500
-        setUseMobileMenu(availableSpace < neededSpace)
-      }
+    const checkWidth = () => {
+      setUseMobileMenu(window.innerWidth < 1150)
     }
     
-    checkSpacing()
-    window.addEventListener('resize', checkSpacing)
-    return () => window.removeEventListener('resize', checkSpacing)
+    checkWidth()
+    window.addEventListener('resize', checkWidth)
+    return () => window.removeEventListener('resize', checkWidth)
   }, [])
 
   useEffect(() => {
@@ -129,12 +115,12 @@ export function Header() {
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div ref={containerRef} className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <div data-logo className="flex-shrink-0">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
+        <div className="flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
 
-        <nav data-nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
+        <nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
           {navItems.map((item) => (
             <div 
               key={item.href} 
@@ -198,7 +184,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div data-button className={`${useMobileMenu ? 'hidden' : 'block'}`}>
+        <div className={`${useMobileMenu ? 'hidden' : 'block'}`}>
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
