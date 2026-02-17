@@ -72,7 +72,7 @@ export function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
-  }, [pathname])
+  }, [pathname, useMobileMenu])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -190,7 +190,7 @@ export function Header() {
       </div>
 
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMobileMenuOpen && useMobileMenu && (
           <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
