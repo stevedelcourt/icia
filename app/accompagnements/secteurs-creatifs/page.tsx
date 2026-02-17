@@ -135,9 +135,9 @@ export default function SecteursCreatifsPage() {
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <button className="px-6 py-3 border border-white/20 text-white/60 font-medium text-base hover:border-white/50 hover:text-white transition-all rounded-md">
+                      <Button variant="ghost" className="border border-white/20 text-white/60 hover:border-white/50 hover:text-white">
                         Découvrir
-                      </button>
+                      </Button>
                     </Link>
                   </div>
                 </FadeIn>

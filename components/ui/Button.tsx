@@ -1,13 +1,15 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import Link from 'next/link'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost'
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
   href?: string
+  arrow?: boolean
+  children?: ReactNode
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -17,26 +19,23 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-hover rounded-md',
-  secondary: 'border-2 border-black text-black hover:bg-black hover:text-white rounded-md',
-  ghost: 'text-black hover:bg-black/10 rounded-md',
+  primary: 'bg-accent text-white hover:bg-accent-hover rounded-lg',
+  secondary: 'bg-slate-dark text-white hover:bg-accent rounded-lg',
+  outline: 'border-2 border-slate-dark text-slate-dark hover:bg-slate-dark hover:text-white rounded-lg',
+  ghost: 'text-slate-dark hover:bg-slate-dark/10 rounded-lg',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', href, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-medium transition-all duration-300 group ${sizeClasses[size]} ${variantClasses[variant]}`
+  ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
+    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 group ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
-      <span className="flex items-center">
-        {typeof children === 'string' ? (
-          <>
-            <span className="group-hover:mr-2 transition-all duration-300">{children}</span>
-            <span className="transform translate-x-[-20px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
-          </>
-        ) : (
-          children
+      <>
+        {children}
+        {arrow && (
+          <span className="transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ml-0 group-hover:ml-2">→</span>
         )}
-      </span>
+      </>
     )
     
     if (href) {

@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 const publics = [
@@ -183,11 +184,9 @@ export default function AccompanimentsPage() {
               <p className="text-text-muted mb-8 max-w-xl mx-auto">
                 L'ICIA vous guide vers la solution la plus adaptee a vos besoins. Notre equipe est disponible pour vous accompagner.
               </p>
-              <Link href="/contact">
-                <button className="px-8 py-4 bg-slate-dark text-white font-semibold rounded-lg hover:bg-accent transition-colors">
-                  Nous contacter ➔
-                </button>
-              </Link>
+              <Button href="/contact" variant="secondary" size="lg" arrow={false}>
+                  Nous contacter →
+                </Button>
             </div>
           </FadeIn>
         </Section>

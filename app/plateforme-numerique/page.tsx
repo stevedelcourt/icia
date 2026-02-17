@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 const features = [
@@ -168,11 +169,9 @@ export default function PlateformeNumeriquePage() {
                           <span className="text-accent">✓</span> Newsletter
                         </li>
                       </ul>
-                      <Link href="/contact?subject=platform">
-                        <button className="w-full px-4 py-2 border border-slate-dark text-slate-dark font-medium rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
+                      <Button href="/contact?subject=platform" variant="outline" size="sm" className="w-full">
                           Commencer
-                        </button>
-                      </Link>
+                        </Button>
                     </div>
                     
                     <div className="p-6 bg-white border-2 border-accent relative">
@@ -193,11 +192,9 @@ export default function PlateformeNumeriquePage() {
                           <span className="text-accent">✓</span> Evenements exclusifs
                         </li>
                       </ul>
-                      <Link href="/contact?subject=platform">
-                        <button className="w-full px-4 py-2 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors">
+                      <Button href="/contact?subject=platform" size="sm" className="w-full">
                           Commencer
-                        </button>
-                      </Link>
+                        </Button>
                     </div>
                     
                     <div className="p-6 bg-white border border-border">
@@ -218,11 +215,9 @@ export default function PlateformeNumeriquePage() {
                           <span className="text-accent">✓</span> Support dedie
                         </li>
                       </ul>
-                      <Link href="/contact?subject=platform">
-                        <button className="w-full px-4 py-2 border border-slate-dark text-slate-dark font-medium rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
+                      <Button href="/contact?subject=platform" variant="outline" size="sm" className="w-full">
                           Contact
-                        </button>
-                      </Link>
+                        </Button>
                     </div>
                   </div>
                 </div>
@@ -265,16 +260,12 @@ export default function PlateformeNumeriquePage() {
                 Rejoignez la bêta et accédez des maintenant aux ressources de l'ICIA. Sans engagement, sans carte bancaire.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact?subject=platform">
-                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
-                    Demander l'acces beta
-                  </button>
-                </Link>
-                <Link href="/a-propos">
-                  <button className="px-8 py-4 border-2 border-slate-dark text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
-                    En savoir plus
-                  </button>
-                </Link>
+                <Button href="/contact?subject=platform" size="lg">
+                  Demander l'accès bêta
+                </Button>
+                <Button href="/a-propos" variant="outline" size="lg" arrow={false}>
+                  En savoir plus
+                </Button>
               </div>
             </div>
           </FadeIn>

@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 const axes = [
@@ -177,16 +178,12 @@ export default function ThinkTankPage() {
                 Rejoignez nos groupes de travail, participez a nos evenements ou soumettez vos propositions de recherche. Le Think Tank ICIA est ouvert aux contributions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact?subject=partnership">
-                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
-                    Rejoindre le Think Tank ➔
-                  </button>
-                </Link>
-                <Link href="#newsletter">
-                  <button className="px-8 py-4 border-2 border-slate-dark text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
-                    S'inscrire a la newsletter
-                  </button>
-                </Link>
+                <Button href="/contact?subject=partnership" size="lg" arrow={false}>
+                  Rejoindre le Think Tank →
+                </Button>
+                <Button href="#newsletter" variant="outline" size="lg" arrow={false}>
+                  S'inscrire à la newsletter
+                </Button>
               </div>
             </div>
           </FadeIn>

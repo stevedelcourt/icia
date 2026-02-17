@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 const troisDimensions = [
@@ -213,11 +214,9 @@ export default function ReseauLieuPage() {
               <p className="text-text-muted mb-8 max-w-xl mx-auto">
                 Vous souhaitez ouvrir un hub, accueillir un espace satellite ou devenir partenaire ? Notre équipe est disponible pour en discuter.
               </p>
-              <Link href="/contact?subject=partnership">
-                <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
-                  Nous contacter <span className="ml-2">➔</span>
-                </button>
-              </Link>
+              <Button href="/contact?subject=partnership" size="lg" arrow={false}>
+                  Nous contacter →
+                </Button>
             </div>
           </FadeIn>
         </Section>

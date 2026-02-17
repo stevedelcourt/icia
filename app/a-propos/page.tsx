@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 const examples = [
@@ -215,16 +216,12 @@ export default function AProposPage() {
                 Rejoignez l'aventure.
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact?subject=partnership">
-                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
-                    Devenir partenaire ➔
-                  </button>
-                </Link>
-                <Link href="/contact">
-                  <button className="px-8 py-4 border-2 border-[#264653] text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
-                    Nous contacter
-                  </button>
-                </Link>
+                <Button href="/contact?subject=partnership" size="lg" arrow={false}>
+                  Devenir partenaire →
+                </Button>
+                <Button href="/contact" variant="outline" size="lg">
+                  Nous contacter
+                </Button>
               </div>
             </div>
           </FadeIn>
