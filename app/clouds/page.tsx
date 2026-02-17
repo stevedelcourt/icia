@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, Detailed, OrbitControls, ContactShadows } from '@react-three/drei'
 
-const COUNT = 100
+const COUNT = 150
 const positions = [...Array(COUNT)].map(() => ({
   position: [20 - Math.random() * 40, 20 - Math.random() * 40, 20 - Math.random() * 40] as [number, number, number],
   rotation: [Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2] as [number, number, number],
@@ -49,7 +49,7 @@ function Scene() {
 
 export default function CloudsPage() {
   return (
-    <div style={{ width: '100vw', height: '100vh', background: 'linear-gradient(to bottom, #1a1a2e, #16213e)' }}>
+    <div style={{ width: '100vw', height: '100vh', background: '#ffffff' }}>
       <Suspense fallback={
         <div style={{
           position: 'absolute',
@@ -57,7 +57,7 @@ export default function CloudsPage() {
           left: '50%',
           transform: 'translate3d(-50%, -50%, 0)',
           fontFamily: 'system-ui, sans-serif',
-          color: '#fff'
+          color: '#333'
         }}>
           loading...
         </div>
