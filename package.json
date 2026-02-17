@@ -10,18 +10,19 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.9.0",
-    "@react-three/drei": "^9.17.3",
-    "@react-three/fiber": "^8.2.2",
+    "@react-three/drei": "^9.86.1",
+    "@react-three/fiber": "^8.14.3",
     "babel-plugin-glsl": "^1.0.0",
     "babel-plugin-macros": "^3.1.0",
     "decap-cms-app": "^3.10.0",
     "framer-motion": "^12.34.0",
     "glsl-curl-noise2": "^0.0.4",
     "glsl-noise": "^0.0.0",
+    "leva": "^0.10.1",
     "next": "^14.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.142.0"
+    "three": "^0.157.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
