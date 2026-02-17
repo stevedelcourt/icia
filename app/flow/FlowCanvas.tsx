@@ -10,8 +10,6 @@ const VERTEX_SHADER = `
 uniform float uTime;
 uniform float uSize;
 uniform float uFocus;
-uniform float uFov;
-uniform float uBlur;
 uniform float uStrength;
 uniform float uFrequency;
 
@@ -88,8 +86,8 @@ void main(){
   
   vDistance = abs(uFocus - -mvPosition.z);
   
-  gl_PointSize = uSize * (300.0 / -mvPosition.z);
-  gl_PointSize *= (1.0 - vDistance * 0.15);
+  gl_PointSize = uSize * (200.0 / -mvPosition.z);
+  gl_PointSize *= (1.0 - vDistance * 0.1);
   
   gl_Position = projectionMatrix * mvPosition;
 }
@@ -100,8 +98,9 @@ varying float vDistance;
 
 void main(){
   float d = length(gl_PointCoord - vec2(0.5));
-  float alpha = smoothstep(0.5, 0.0, d);
-  alpha *= (1.04 - clamp(vDistance * 1.5, 0.0, 1.0));
+  float alpha = smoothstep(0.5, 0.1, d);
+  alpha *= 0.6;
+  alpha *= (1.04 - clamp(vDistance * 1.2, 0.0, 1.0));
   gl_FragColor = vec4(vec3(1.0), alpha);
 }
 `
@@ -163,11 +162,9 @@ export default function FlowCanvas() {
   const [settings, setSettings] = useState({
     focus: 5.16,
     speed: 8.1,
-    size: 2.5,
+    size: 0.25,
     strength: 0.19,
-    frequency: 1.2,
-    aperture: 3.1,
-    fov: 20
+    frequency: 1.2
   })
   
   useEffect(() => {
@@ -203,8 +200,6 @@ export default function FlowCanvas() {
         uTime: { value: 0 },
         uSize: { value: settings.size },
         uFocus: { value: settings.focus },
-        uFov: { value: settings.fov },
-        uBlur: { value: (5.6 - settings.aperture) * 9 },
         uStrength: { value: settings.strength },
         uFrequency: { value: settings.frequency }
       },
@@ -256,8 +251,6 @@ export default function FlowCanvas() {
       const u = materialRef.current.uniforms
       u.uFocus.value = settings.focus
       u.uSize.value = settings.size
-      u.uFov.value = settings.fov
-      u.uBlur.value = (5.6 - settings.aperture) * 9
       u.uStrength.value = settings.strength
       u.uFrequency.value = settings.frequency
     }
@@ -301,19 +294,11 @@ export default function FlowCanvas() {
         />
         
         <Slider
-          label="Aperture"
-          value={settings.aperture}
-          onChange={(v) => setSettings(s => ({ ...s, aperture: v }))}
-          min={1}
-          max={5.6}
-        />
-        
-        <Slider
-          label="FOV"
-          value={settings.fov}
-          onChange={(v) => setSettings(s => ({ ...s, fov: v }))}
-          min={5}
-          max={100}
+          label="Size"
+          value={settings.size}
+          onChange={(v) => setSettings(s => ({ ...s, size: v }))}
+          min={0.1}
+          max={1}
         />
         
         <Slider
@@ -322,6 +307,14 @@ export default function FlowCanvas() {
           onChange={(v) => setSettings(s => ({ ...s, strength: v }))}
           min={0.01}
           max={0.5}
+        />
+        
+        <Slider
+          label="Frequency"
+          value={settings.frequency}
+          onChange={(v) => setSettings(s => ({ ...s, frequency: v }))}
+          min={0.5}
+          max={3}
         />
       </div>
     </div>
