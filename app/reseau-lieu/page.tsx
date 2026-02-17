@@ -215,7 +215,7 @@ export default function ReseauLieuPage() {
                 Vous souhaitez ouvrir un hub, accueillir un espace satellite ou devenir partenaire ? Notre équipe est disponible pour en discuter.
               </p>
               <Button href="/contact?subject=partnership" size="lg" arrow={false}>
-                  Nous contacter →
+                  Nous contacter ➔
                 </Button>
             </div>
           </FadeIn>

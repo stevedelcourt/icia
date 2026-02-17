@@ -217,7 +217,7 @@ export default function AProposPage() {
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact?subject=partnership" size="lg" arrow={false}>
-                  Devenir partenaire →
+                  Devenir partenaire ➔
                 </Button>
                 <Button href="/contact" variant="outline" size="lg">
                   Nous contacter

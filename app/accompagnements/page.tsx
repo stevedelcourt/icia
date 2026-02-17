@@ -185,7 +185,7 @@ export default function AccompanimentsPage() {
                 L'ICIA vous guide vers la solution la plus adaptee a vos besoins. Notre equipe est disponible pour vous accompagner.
               </p>
               <Button href="/contact" variant="secondary" size="lg" arrow={false}>
-                  Nous contacter →
+                  Nous contacter ➔
                 </Button>
             </div>
           </FadeIn>

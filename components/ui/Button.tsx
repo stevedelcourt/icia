@@ -33,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <>
         {children}
         {arrow && (
-          <span className="transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ml-0 group-hover:ml-2">→</span>
+          <span className="transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ml-0 group-hover:ml-2">➔</span>
         )}
       </>
     )

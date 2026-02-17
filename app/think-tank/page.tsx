@@ -179,7 +179,7 @@ export default function ThinkTankPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact?subject=partnership" size="lg" arrow={false}>
-                  Rejoindre le Think Tank →
+                  Rejoindre le Think Tank ➔
                 </Button>
                 <Button href="#newsletter" variant="outline" size="lg" arrow={false}>
                   S'inscrire à la newsletter
