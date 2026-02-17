@@ -102,7 +102,9 @@ vec3 curl(vec3 p) {
   float n4 = snoise(p + vec3(0.0, 0.0, e)) - snoise(p + vec3(0.0, 0.0, -e));
   float n5 = snoise(p + vec3(e, 0.0, 0.0)) - snoise(p + vec3(-e, 0.0, 0.0));
   float n6 = snoise(p + vec3(0.0, e, 0.0)) - snoise(p + vec3(0.0, -e, 0.0));
-  return normalize(vec3(n1 - n2, n3 - n4, n5 - n6));
+  vec3 c = vec3(n1 - n2, n3 - n4, n5 - n6);
+  float len = length(c);
+  return len > 0.0 ? c / len : vec3(0.0);
 }
 
 void main() {
@@ -154,7 +156,7 @@ export default function FlowCanvas() {
       curl: 0.36
     }
     
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    const renderer = new THREE.WebGL1Renderer({ antialias: true, alpha: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setSize(window.innerWidth, window.innerHeight)
     containerRef.current.appendChild(renderer.domElement)
