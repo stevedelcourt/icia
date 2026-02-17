@@ -10,8 +10,11 @@ const VERTEX_SHADER = `
 uniform float uTime;
 uniform float uSize;
 uniform float uFocus;
+uniform float uBlur;
 uniform float uStrength;
 uniform float uFrequency;
+
+attribute float aSize;
 
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}
 
@@ -73,6 +76,7 @@ vec3 curlNoise(vec3 p){
 }
 
 varying float vDistance;
+varying float vBlur;
 
 void main(){
   vec3 p = position;
@@ -85,9 +89,10 @@ void main(){
   vec4 mvPosition = modelViewMatrix * vec4(p, 1.);
   
   vDistance = abs(uFocus - -mvPosition.z);
+  vBlur = vDistance * uBlur;
   
-  gl_PointSize = uSize * (200.0 / -mvPosition.z);
-  gl_PointSize *= (1.0 - vDistance * 0.1);
+  gl_PointSize = uSize * aSize * (200.0 / -mvPosition.z);
+  gl_PointSize += vBlur * 2.0;
   
   gl_Position = projectionMatrix * mvPosition;
 }
@@ -95,18 +100,24 @@ void main(){
 
 const FRAGMENT_SHADER = `
 varying float vDistance;
+varying float vBlur;
 
 void main(){
   float d = length(gl_PointCoord - vec2(0.5));
-  float alpha = smoothstep(0.5, 0.1, d);
-  alpha *= 0.6;
-  alpha *= (1.04 - clamp(vDistance * 1.2, 0.0, 1.0));
+  
+  float blur = smoothstep(0.5, 0.0, d);
+  blur = mix(blur, smoothstep(0.7, 0.0, d), min(vBlur * 0.3, 1.0));
+  
+  float alpha = blur * 0.5;
+  alpha *= (1.04 - clamp(vDistance * 0.8, 0.0, 1.0));
+  
   gl_FragColor = vec4(vec3(1.0), alpha);
 }
 `
 
-function getSpherePositions(count: number, radius: number): Float32Array {
+function getSpherePositions(count: number, radius: number): { positions: Float32Array, sizes: Float32Array } {
   const positions = new Float32Array(count * 3)
+  const sizes = new Float32Array(count)
   for (let i = 0; i < count; i++) {
     const r = Math.cbrt(Math.random()) * radius
     const theta = Math.random() * Math.PI * 2
@@ -114,8 +125,9 @@ function getSpherePositions(count: number, radius: number): Float32Array {
     positions[i * 3] = r * Math.sin(phi) * Math.cos(theta)
     positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
     positions[i * 3 + 2] = r * Math.cos(phi)
+    sizes[i] = 0.3 + Math.random() * 1.4
   }
-  return positions
+  return { positions, sizes }
 }
 
 function Slider({ label, value, onChange, min, max, step = 0.01 }: {
@@ -164,7 +176,8 @@ export default function FlowCanvas() {
     speed: 8.1,
     size: 0.25,
     strength: 0.19,
-    frequency: 1.2
+    frequency: 1.2,
+    blur: 15
   })
   
   useEffect(() => {
@@ -189,9 +202,10 @@ export default function FlowCanvas() {
     controls.enableZoom = true
     controls.zoomSpeed = 0.1
     
-    const positions = getSpherePositions(COUNT, 1.2)
+    const { positions, sizes } = getSpherePositions(COUNT, 1.2)
     const geometry = new THREE.BufferGeometry()
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1))
     
     const material = new THREE.ShaderMaterial({
       vertexShader: VERTEX_SHADER,
@@ -200,6 +214,7 @@ export default function FlowCanvas() {
         uTime: { value: 0 },
         uSize: { value: settings.size },
         uFocus: { value: settings.focus },
+        uBlur: { value: settings.blur },
         uStrength: { value: settings.strength },
         uFrequency: { value: settings.frequency }
       },
@@ -251,6 +266,7 @@ export default function FlowCanvas() {
       const u = materialRef.current.uniforms
       u.uFocus.value = settings.focus
       u.uSize.value = settings.size
+      u.uBlur.value = settings.blur
       u.uStrength.value = settings.strength
       u.uFrequency.value = settings.frequency
     }
@@ -299,6 +315,14 @@ export default function FlowCanvas() {
           onChange={(v) => setSettings(s => ({ ...s, size: v }))}
           min={0.1}
           max={1}
+        />
+        
+        <Slider
+          label="Blur"
+          value={settings.blur}
+          onChange={(v) => setSettings(s => ({ ...s, blur: v }))}
+          min={1}
+          max={40}
         />
         
         <Slider
