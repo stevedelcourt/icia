@@ -266,7 +266,7 @@ function Scene() {
   return (
     <>
       <OrbitControls makeDefault autoRotate autoRotateSpeed={0.5} zoomSpeed={0.1} />
-      <Particles speed={100} fov={20} aperture={1.8} focus={5.1} curl={0.25} />
+      <Particles speed={1.4} fov={60} aperture={3.4} focus={6.37} curl={0.36} />
     </>
   )
 }
