@@ -2,6 +2,7 @@
 
 import { useRef, useMemo, useEffect } from 'react'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 const VERTEX_SHADER = `
 uniform sampler2D positions;
@@ -162,6 +163,13 @@ export default function FlowCanvas() {
     const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 100)
     camera.position.z = 6
     
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.05
+    controls.autoRotate = true
+    controls.autoRotateSpeed = 0.5
+    controls.zoomSpeed = 0.1
+    
     const simScene = new THREE.Scene()
     const simCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1)
     
@@ -257,10 +265,7 @@ export default function FlowCanvas() {
       simMaterial.uniforms.uTime.value = time * settings.speed
       simMaterial.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simMaterial.uniforms.uCurlFreq.value, currentCurl, 0.1)
       
-      camera.position.x = Math.sin(time * 0.1) * 0.5
-      camera.position.y = Math.cos(time * 0.15) * 0.3
-      camera.lookAt(0, 0, 0)
-      
+      controls.update()
       renderer.render(scene, camera)
     }
     
@@ -269,6 +274,7 @@ export default function FlowCanvas() {
     return () => {
       cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
+      controls.dispose()
       renderer.dispose()
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement)
