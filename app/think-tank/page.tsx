@@ -53,27 +53,27 @@ export default function ThinkTankPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-12 min-h-[80vh] bg-slate-dark">
+        <Section className="pt-32 pb-12 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Think Tank IA</p>
-              <div className="grid lg:grid-cols-2 gap-12 items-end">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
+                  <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
                     Observer.<br />
                     Analyser.<br />
                     Proposer.
                   </h1>
                 </div>
-                <div className="text-white/60">
-                  <p className="text-lg mb-6 leading-relaxed">
-                    Le Think Tank de l'ICIA est un lieu de réflexion indépendante sur les enjeux de l'intelligence artificielle. Nous produisons des analyses rigoureuses, accompagnons les décideurs et participons au débat public.
+                <div>
+                  <p className="text-xl text-text-muted leading-relaxed mb-8">
+                    Le Think Tank de l'ICIA est un lieu de reflexion independante sur les enjeux de l'intelligence artificielle. Nous produisons des analyses rigoureuses, accompagnons les decideurs et participons au debat public.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Regulation</span>
-                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Impacts socio-eco</span>
-                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Usages sectoriels</span>
-                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">IA & Societe</span>
+                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Regulation</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Impacts socio-eco</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Usages sectoriels</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">IA & Societe</span>
                   </div>
                 </div>
               </div>
@@ -169,21 +169,21 @@ export default function ThinkTankPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20 bg-slate-dark">
+        <Section className="py-20 bg-ivory-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">Participez aux travaux du Think Tank</h2>
-              <p className="text-white/60 mb-8 max-w-xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Participez aux travaux du Think Tank</h2>
+              <p className="text-text-muted mb-8 max-w-xl mx-auto">
                 Rejoignez nos groupes de travail, participez a nos evenements ou soumettez vos propositions de recherche. Le Think Tank ICIA est ouvert aux contributions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact?subject=partnership">
-                  <button className="px-8 py-4 bg-ivory-medium text-slate-dark font-semibold rounded-lg hover:bg-accent hover:text-white transition-colors">
+                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
                     Rejoindre le Think Tank ➔
                   </button>
                 </Link>
                 <Link href="#newsletter">
-                  <button className="px-8 py-4 border border-white/30 text-white/60 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+                  <button className="px-8 py-4 border-2 border-slate-dark text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
                     S'inscrire a la newsletter
                   </button>
                 </Link>

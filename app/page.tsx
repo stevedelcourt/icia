@@ -123,10 +123,10 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {cards.map((item) => (
                 <StaggerItem key={item.title}>
-                  <Link href={item.href} className="block bg-[#e3dacc] border border-gray-200 rounded-xl p-8 hover:bg-[#e3dacc] hover:shadow-sm transition-all h-full">
+                  <Link href={item.href} className="block bg-ivory-dark border border-border rounded-xl p-8 hover:bg-ivory-dark hover:shadow-sm transition-all h-full flex flex-col">
                     <h3 className="font-serif text-h3 mb-4">{item.title}</h3>
-                    <p className="text-text-muted mb-4">{item.description}</p>
-                    <span className="text-accent text-sm inline-flex items-center group">
+                    <p className="text-text-muted mb-4 flex-grow">{item.description}</p>
+                    <span className="text-accent text-sm inline-flex items-center group mt-auto">
                       Voir l'accompagnement
                       <span className="ml-1 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
                     </span>
