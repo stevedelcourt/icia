@@ -75,11 +75,8 @@ export function Header() {
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <div className="hidden xl:block flex-shrink-0">
-          <Logo isScrolled={isScrolled} />
-        </div>
-        <div className="xl:hidden flex items-center">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
+        <div className="flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
 
