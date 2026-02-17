@@ -21,7 +21,7 @@ const modelCards = [
 
 const colorMap: Record<string, string> = {
   'accent': '#CC785C',
-  'accent-blue': '#2a6fff',
+  'accent-blue': '#61AAF2',
   'accent-green': '#2a9e62',
   'accent-purple': '#7c4dff',
   'accent-teal': '#008b8b',
@@ -50,7 +50,7 @@ export default function AProposPage() {
         <Section className="pt-32 pb-12 bg-gradient-to-b from-[#E5E4DF] to-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">À propos de l'Institut</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">À propos de l'Institut</p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
                 L'IA ne doit pas être<br />
                 <em className="not-italic font-light">confisquée</em> par quelques-uns.
@@ -69,13 +69,13 @@ export default function AProposPage() {
         <Section className="py-20">
           <FadeIn>
             <div className="max-w-3xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Notre conviction fondatrice</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre conviction fondatrice</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">L'IA comme bien commun</h2>
               <div className="space-y-4 text-text-muted leading-relaxed">
                 <p>L'intelligence artificielle n'est pas seulement une rupture technologique. Elle constitue une <strong>transformation profonde de nos sociétés</strong> : elle redessine le travail, l'accès au savoir, la création, les rapports économiques, les équilibres démocratiques et, plus largement, notre manière de vivre ensemble.</p>
                 <p>Face à cette mutation, l'Institut défend une conviction forte : l'IA doit devenir un <strong>bien commun</strong>, compréhensible et maîtrisable, permettant à chacun de grandir, de progresser et de tirer parti de cette révolution — au service de l'intérêt général et de l'émancipation individuelle.</p>
               </div>
-              <blockquote className="mt-8 p-6 bg-[#264653] text-white rounded-xl italic">
+              <blockquote className="mt-8 p-6 bg-slate-dark text-white rounded-xl italic">
                 « L'intelligence artificielle doit être pensée, partagée et transmise collectivement. »
               </blockquote>
             </div>
@@ -86,7 +86,7 @@ export default function AProposPage() {
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Le constat</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Le constat</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Une fracture qui s'installe</h2>
               <div className="space-y-4 text-text-muted leading-relaxed mb-12">
                 <p>L'IA progresse à une vitesse inédite, mais son appropriation reste <strong>profondément inégale</strong>. Une majorité de la population ne dispose ni des compétences, ni des repères, ni des outils pour comprendre et utiliser l'IA de manière éclairée. Les PME peinent à en tirer parti. Les acteurs culturels sont exposés sans cadre juridique. Les écoles manquent de ressources.</p>
@@ -114,7 +114,7 @@ export default function AProposPage() {
         <Section className="py-20">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Le modèle</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Le modèle</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Lieu · Plateforme · Réseau</h2>
               <p className="text-text-muted mb-12">L'Institut est conçu comme une <strong>infrastructure collective</strong> articulée autour de trois dimensions complémentaires. Ensemble, elles forment un tiers de confiance accessible à tous.</p>
             </div>
@@ -125,7 +125,7 @@ export default function AProposPage() {
                 {modelCards.map((item) => (
                   <StaggerItem key={item.num}>
                     <div className="p-8 border border-border bg-white rounded-xl h-full">
-                      <p className="text-4xl font-light text-[#264653] mb-4">{item.num}</p>
+                      <p className="text-4xl font-light text-slate-dark mb-4">{item.num}</p>
                       <h3 className="font-serif text-xl font-bold mb-3">{item.title}</h3>
                       <p className="text-sm text-text-muted leading-relaxed">{item.description}</p>
                     </div>
@@ -140,7 +140,7 @@ export default function AProposPage() {
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Pour qui</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Pour qui</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Cinq publics, des réponses adaptées</h2>
               <p className="text-text-muted mb-12">L'Institut n'est pas un service généraliste. Chaque public dispose de parcours, d'outils et d'experts pensés pour ses besoins spécifiques.</p>
             </div>
@@ -185,7 +185,7 @@ export default function AProposPage() {
         </Section>
 
         {/* Ambition */}
-        <Section className="py-20 bg-[#264653]">
+        <Section className="py-20 bg-slate-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
               <p className="text-sm font-medium text-[#F4A261] uppercase tracking-widest mb-4">Notre ambition</p>
@@ -216,12 +216,12 @@ export default function AProposPage() {
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact?subject=partnership">
-                  <button className="px-8 py-4 bg-[#BF4D43] text-white font-semibold rounded-lg hover:bg-[#a33d32] transition-colors">
+                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
                     Devenir partenaire ➔
                   </button>
                 </Link>
                 <Link href="/contact">
-                  <button className="px-8 py-4 border-2 border-[#264653] text-[#264653] font-semibold rounded-lg hover:bg-[#264653] hover:text-white transition-colors">
+                  <button className="px-8 py-4 border-2 border-[#264653] text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
                     Nous contacter
                   </button>
                 </Link>

@@ -52,19 +52,19 @@ const processSteps = [
 ]
 
 const colorMap: Record<string, string> = {
-  orange: '#264653',
-  blue: '#264653',
-  green: '#264653',
-  purple: '#264653',
-  teal: '#264653',
+  orange: '#191919',
+  blue: '#191919',
+  green: '#191919',
+  purple: '#191919',
+  teal: '#191919',
 }
 
 const bgColorMap: Record<string, string> = {
-  orange: '#f8f6f2',
-  blue: '#f4f6f7',
-  green: '#f6f8f4',
-  purple: '#f8f6f9',
-  teal: '#f5f8f8',
+  orange: '#F0F0EB',
+  blue: '#E5E4DF',
+  green: '#E5E4DF',
+  purple: '#E5E4DF',
+  teal: '#E5E4DF',
 }
 
 export default function AccompanimentsPage() {
@@ -73,10 +73,10 @@ export default function AccompanimentsPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-0 bg-gradient-to-b from-[#E5E4DF] to-white">
+        <Section className="pt-32 pb-0 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Accompanissements</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Accompagnements</p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-0">
                 L'IA pour<br />chacun.
               </h1>
@@ -114,7 +114,7 @@ export default function AccompanimentsPage() {
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Nos programmes</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Nos programmes</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-4">Cinq programmes,<br />autant de publics</h2>
               <p className="text-text-muted leading-relaxed">
                 Chaque accompagnement est conçu en profondeur pour repondre aux enjeux specifiques d'un public — de l'acculturation citoyenne a la transformation organisationnelle.
@@ -129,15 +129,15 @@ export default function AccompanimentsPage() {
                   <StaggerItem key={item.title}>
                     <Link href={item.href} className="block group h-full">
                       <div 
-                        className="p-6 bg-white border border-border hover:border-[#264653] hover:shadow-lg transition-all h-full flex flex-col"
+                        className="p-6 bg-white border border-border hover:border-slate-dark hover:shadow-lg transition-all h-full flex flex-col"
                         style={{ backgroundColor: bgColorMap[item.color] }}
                       >
-                        <span className="text-xs font-bold uppercase tracking-widest mb-3 text-[#BF4D43]">
+                        <span className="text-xs font-bold uppercase tracking-widest mb-3 text-accent">
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-lg font-bold mb-3 text-[#264653]">{item.title}</h3>
+                        <h3 className="font-serif text-lg font-bold mb-3 text-slate-dark">{item.title}</h3>
                         <p className="text-sm text-text-muted flex-grow">{item.description}</p>
-                        <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity text-[#264653]">
+                        <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity text-slate-dark">
                           ➔
                         </div>
                       </div>
@@ -150,12 +150,12 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* Processus */}
-        <Section className="py-20 bg-[#f4f1eb]">
+        <Section className="py-20 bg-ivory-medium">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-5 gap-12">
                 <div className="lg:col-span-2">
-                  <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Notre processus</p>
+                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre processus</p>
                   <h2 className="font-serif text-3xl md:text-4xl mb-4">Un accompagnement structure en 4 temps</h2>
                   <p className="text-text-muted leading-relaxed">
                     Chaque programme demarre par une phase de diagnostic pour calibrer l'accompagnement au plus pres de vos besoins reels.
@@ -164,7 +164,7 @@ export default function AccompanimentsPage() {
                 <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
                   {processSteps.map((step) => (
                     <div key={step.num} className="p-6 bg-white border border-border">
-                      <span className="text-xs font-bold text-[#BF4D43] mb-2 block">{step.num}</span>
+                      <span className="text-xs font-bold text-accent mb-2 block">{step.num}</span>
                       <h4 className="font-bold mb-2">{step.title}</h4>
                       <p className="text-sm text-text-muted">{step.description}</p>
                     </div>
@@ -176,7 +176,7 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20 bg-[#e8e3d9]">
+        <Section className="py-20 bg-ivory-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Vous ne savez pas quel accompagnement vous correspond ?</h2>
@@ -184,7 +184,7 @@ export default function AccompanimentsPage() {
                 L'ICIA vous guide vers la solution la plus adaptee a vos besoins. Notre equipe est disponible pour vous accompagner.
               </p>
               <Link href="/contact">
-                <button className="px-8 py-4 bg-[#0d0e0f] text-white font-semibold rounded-lg hover:bg-[#BF4D43] transition-colors">
+                <button className="px-8 py-4 bg-slate-dark text-white font-semibold rounded-lg hover:bg-accent transition-colors">
                   Nous contacter ➔
                 </button>
               </Link>

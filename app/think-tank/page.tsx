@@ -53,10 +53,10 @@ export default function ThinkTankPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-12 min-h-[80vh]" style={{ backgroundColor: '#0d0e0f' }}>
+        <Section className="pt-32 pb-12 min-h-[80vh] bg-slate-dark">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Think Tank IA</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Think Tank IA</p>
               <div className="grid lg:grid-cols-2 gap-12 items-end">
                 <div>
                   <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
@@ -85,7 +85,7 @@ export default function ThinkTankPage() {
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Axes de recherche</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Axes de recherche</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Quatre axes<br />de reflexion</h2>
               <p className="text-text-muted leading-relaxed">
                 Des travaux pluridisciplinaires pour comprendre, anticiper et orienter les transformations induites par l'intelligence artificielle sur le plan economique, social et democratique.
@@ -103,7 +103,7 @@ export default function ThinkTankPage() {
                       <p className="text-sm text-text-muted mb-6 flex-grow">{axe.description}</p>
                       <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
                         {axe.tags.map((tag) => (
-                          <span key={tag} className="px-2 py-1 bg-[#f4f1eb] text-xs">{tag}</span>
+                          <span key={tag} className="px-2 py-1 bg-ivory-medium text-xs">{tag}</span>
                         ))}
                       </div>
                     </div>
@@ -115,10 +115,10 @@ export default function ThinkTankPage() {
         </Section>
 
         {/* Formats de publication */}
-        <Section className="py-20 bg-[#f4f1eb]">
+        <Section className="py-20 bg-ivory-medium">
           <FadeIn>
             <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Formats de publication</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Formats de publication</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-4">De la note courte<br />au rapport de fond</h2>
             </div>
           </FadeIn>
@@ -129,7 +129,7 @@ export default function ThinkTankPage() {
                 {formats.map((format) => (
                   <StaggerItem key={format.title}>
                     <div className="p-6 bg-white border border-border hover:shadow-lg transition-shadow relative">
-                      <p className="text-xs font-bold text-[#BF4D43] uppercase tracking-widest mb-3 pb-2 border-b border-[#BF4D43]">{format.freq}</p>
+                      <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 pb-2 border-b border-accent">{format.freq}</p>
                       <h3 className="font-serif text-lg font-bold mb-2">{format.title}</h3>
                       <p className="text-sm text-text-muted">{format.description}</p>
                     </div>
@@ -141,12 +141,12 @@ export default function ThinkTankPage() {
         </Section>
 
         {/* Méthodologie */}
-        <Section className="py-20 bg-[#e8e3d9]">
+        <Section className="py-20 bg-ivory-dark">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-3 gap-12">
                 <div>
-                  <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Notre méthodologie</p>
+                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre méthodologie</p>
                   <h2 className="font-serif text-3xl md:text-4xl">Une recherche rigoureuse et independante</h2>
                   <p className="text-text-muted mt-4 leading-relaxed">
                     Le Think Tank ICIA s'appuie sur une communaute d'experts, de chercheurs et de praticiens pour produire des travaux de qualite, accessibles et actionnables.
@@ -155,7 +155,7 @@ export default function ThinkTankPage() {
                 <div className="lg:col-span-2">
                   {steps.map((step, index) => (
                     <div key={step.num} className="flex gap-6 py-5 border-b border-border/50 last:border-0">
-                      <span className="text-xs font-bold text-[#BF4D43]">{step.num}</span>
+                      <span className="text-xs font-bold text-accent">{step.num}</span>
                       <div>
                         <h4 className="font-bold mb-1">{step.title}</h4>
                         <p className="text-sm text-text-muted">{step.description}</p>
@@ -169,7 +169,7 @@ export default function ThinkTankPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20" style={{ backgroundColor: '#0d0e0f' }}>
+        <Section className="py-20 bg-slate-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">Participez aux travaux du Think Tank</h2>
@@ -178,7 +178,7 @@ export default function ThinkTankPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact?subject=partnership">
-                  <button className="px-8 py-4 bg-[#f4f1eb] text-[#0d0e0f] font-semibold rounded-lg hover:bg-[#BF4D43] hover:text-white transition-colors">
+                  <button className="px-8 py-4 bg-ivory-medium text-slate-dark font-semibold rounded-lg hover:bg-accent hover:text-white transition-colors">
                     Rejoindre le Think Tank ➔
                   </button>
                 </Link>

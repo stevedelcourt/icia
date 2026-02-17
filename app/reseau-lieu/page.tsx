@@ -99,12 +99,12 @@ export default function ReseauLieuPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-12 bg-gradient-to-b from-[#E5E4DF] to-white">
+        <Section className="pt-32 pb-12 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Réseau & Lieu</p>
+                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Réseau & Lieu</p>
                   <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
                     Un ancrage<br />
                     territorial,<br />
@@ -115,18 +115,18 @@ export default function ReseauLieuPage() {
                     L'ICIA repose sur un modèle hybride : un lieu physique flagship à Marseille, un réseau de hubs régionaux et d'espaces satellites, complété par une plateforme numérique.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-[#264653] text-white text-sm font-medium rounded-full">Marseille</span>
-                    <span className="px-4 py-2 border border-[#264653] text-[#264653] text-sm font-medium rounded-full">Hubs régionaux</span>
-                    <span className="px-4 py-2 border border-[#264653] text-[#264653] text-sm font-medium rounded-full">Espaces satellites</span>
-                    <span className="px-4 py-2 border border-[#264653] text-[#264653] text-sm font-medium rounded-full">Plateforme numérique</span>
+                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Marseille</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Hubs régionaux</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Espaces satellites</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Plateforme numérique</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="p-6 bg-[#264653] text-white rounded-xl">
+                  <div className="p-6 bg-slate-dark text-white rounded-xl">
                     <p className="text-4xl font-light mb-2">400m²</p>
                     <p className="text-sm text-white/80">Flagship Marseille</p>
                   </div>
-                  <div className="p-6 bg-[#264653] text-white rounded-xl">
+                  <div className="p-6 bg-slate-dark text-white rounded-xl">
                     <p className="text-4xl font-light mb-2">3–5 ans</p>
                     <p className="text-sm text-white/80">Déploiement national</p>
                   </div>
@@ -140,7 +140,7 @@ export default function ReseauLieuPage() {
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">L'Institut</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">L'Institut</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">L'Institut est conçu comme<br />une infrastructure collective</h2>
               <p className="text-text-muted max-w-2xl mx-auto">
                 Trois dimensions complémentaires. Ensemble, elles forment un tiers de confiance accessible à tous.
@@ -153,11 +153,11 @@ export default function ReseauLieuPage() {
               <div className="grid md:grid-cols-3 gap-8">
                 {troisDimensions.map((dim) => (
                   <StaggerItem key={dim.num}>
-                    <div className="p-8 border border-border bg-[#E5E4DF] rounded-xl h-full flex flex-col">
-                      <p className="text-4xl font-light text-[#264653] mb-4">{dim.num}</p>
+                    <div className="p-8 border border-border bg-ivory-dark rounded-xl h-full flex flex-col">
+                      <p className="text-4xl font-light text-slate-dark mb-4">{dim.num}</p>
                       <h3 className="font-serif text-xl font-bold mb-4">{dim.title}</h3>
                       <p className="text-sm text-text-muted mb-6 flex-grow">{dim.description}</p>
-                      <Link href={dim.link} className="inline-flex items-center text-[#BF4D43] font-medium hover:underline">
+                      <Link href={dim.link} className="inline-flex items-center text-accent font-medium hover:underline">
                         {dim.linkText} <span className="ml-1">➔</span>
                       </Link>
                     </div>
@@ -172,7 +172,7 @@ export default function ReseauLieuPage() {
         <Section className="py-20">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Accompagnements</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Accompagnements</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Cinq publics,<br />des réponses adaptées</h2>
               <p className="text-text-muted max-w-2xl mx-auto">
                 L'Institut n'est pas un service généraliste. Chaque public dispose de parcours, d'outils et d'experts pensés pour ses besoins spécifiques.
@@ -186,15 +186,15 @@ export default function ReseauLieuPage() {
                 {cinqPublics.map((publicData) => (
                   <StaggerItem key={publicData.num}>
                     <div className="p-6 border border-border bg-white rounded-xl h-full flex flex-col">
-                      <p className="text-3xl font-light text-[#264653] mb-2">{publicData.num}</p>
-                      <span className="inline-block px-3 py-1 bg-[#264653] text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
-                      <p className="text-sm text-[#BF4D43] font-medium mb-4">{publicData.subtitle}</p>
+                      <p className="text-3xl font-light text-slate-dark mb-2">{publicData.num}</p>
+                      <span className="inline-block px-3 py-1 bg-slate-dark text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
+                      <p className="text-sm text-accent font-medium mb-4">{publicData.subtitle}</p>
                       <ul className="space-y-2 mb-4 flex-grow">
                         {publicData.items.map((item, idx) => (
                           <li key={idx} className="text-xs text-text-muted">{item}</li>
                         ))}
                       </ul>
-                      <Link href={publicData.link} className="inline-flex items-center text-sm text-[#BF4D43] font-medium hover:underline">
+                      <Link href={publicData.link} className="inline-flex items-center text-sm text-accent font-medium hover:underline">
                         En savoir plus <span className="ml-1">➔</span>
                       </Link>
                     </div>
@@ -206,7 +206,7 @@ export default function ReseauLieuPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20 bg-gradient-to-b from-[#E5E4DF] to-white">
+        <Section className="py-20 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-3xl md:text-4xl mb-6">Rejoignez le réseau ICIA</h2>
@@ -214,7 +214,7 @@ export default function ReseauLieuPage() {
                 Vous souhaitez ouvrir un hub, accueillir un espace satellite ou devenir partenaire ? Notre équipe est disponible pour en discuter.
               </p>
               <Link href="/contact?subject=partnership">
-                <button className="px-8 py-4 bg-[#BF4D43] text-white font-semibold rounded-lg hover:bg-[#a33d32] transition-colors">
+                <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
                   Nous contacter <span className="ml-2">➔</span>
                 </button>
               </Link>

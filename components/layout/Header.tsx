@@ -34,7 +34,7 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
         <img src="/logo-black.svg" alt="ICIA" className="h-8 w-auto" />
       ) : (
         <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
-          INSTITUT COLLECTIF DE L'<span className="text-[#BF4D43]">IA</span>
+          INSTITUT COLLECTIF DE L'<span className="text-accent">IA</span>
         </span>
       )}
     </Link>
