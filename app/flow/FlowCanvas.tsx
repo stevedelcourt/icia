@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -119,21 +119,59 @@ function getSpherePositions(count: number, radius: number): Float32Array {
   return positions
 }
 
+function Slider({ label, value, onChange, min, max, step = 0.01 }: {
+  label: string
+  value: number
+  onChange: (v: number) => void
+  min: number
+  max: number
+  step?: number
+}) {
+  return (
+    <div style={{ marginBottom: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', fontSize: '11px' }}>
+        <span style={{ color: '#888' }}>{label}</span>
+        <span style={{ color: '#fff', fontFamily: 'monospace', background: '#333', padding: '1px 6px', borderRadius: '3px' }}>{value.toFixed(2)}</span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        style={{
+          width: '100%',
+          height: '6px',
+          appearance: 'none',
+          WebkitAppearance: 'none',
+          background: '#444',
+          borderRadius: '3px',
+          cursor: 'pointer',
+          outline: 'none'
+        }}
+      />
+    </div>
+  )
+}
+
 export default function FlowCanvas() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const materialRef = useRef<THREE.ShaderMaterial | null>(null)
+  const speedRef = useRef(8.1)
+  
+  const [settings, setSettings] = useState({
+    focus: 5.16,
+    speed: 8.1,
+    size: 2.5,
+    strength: 0.19,
+    frequency: 1.2,
+    aperture: 3.1,
+    fov: 20
+  })
   
   useEffect(() => {
     if (!containerRef.current) return
-    
-    const settings = {
-      focus: 5.16,
-      speed: 8.1,
-      size: 2.5,
-      strength: 0.19,
-      frequency: 1.2,
-      aperture: 3.1,
-      fov: 20
-    }
     
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -175,6 +213,8 @@ export default function FlowCanvas() {
       blending: THREE.AdditiveBlending
     })
     
+    materialRef.current = material
+    
     const points = new THREE.Points(geometry, material)
     scene.add(points)
     
@@ -189,7 +229,7 @@ export default function FlowCanvas() {
     
     const animate = () => {
       animationId = requestAnimationFrame(animate)
-      material.uniforms.uTime.value += 0.016 * settings.speed
+      material.uniforms.uTime.value += 0.016 * speedRef.current
       controls.update()
       renderer.render(scene, camera)
     }
@@ -206,13 +246,84 @@ export default function FlowCanvas() {
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement)
       }
+      materialRef.current = null
     }
   }, [])
   
+  useEffect(() => {
+    speedRef.current = settings.speed
+    if (materialRef.current) {
+      const u = materialRef.current.uniforms
+      u.uFocus.value = settings.focus
+      u.uSize.value = settings.size
+      u.uFov.value = settings.fov
+      u.uBlur.value = (5.6 - settings.aperture) * 9
+      u.uStrength.value = settings.strength
+      u.uFrequency.value = settings.frequency
+    }
+  }, [settings])
+  
   return (
-    <div 
-      ref={containerRef} 
-      style={{ width: '100vw', height: '100vh', background: '#000000', overflow: 'hidden' }}
-    />
+    <div style={{ width: '100vw', height: '100vh', background: '#000000', overflow: 'hidden' }}>
+      <div 
+        ref={containerRef} 
+        style={{ width: '100%', height: '100%' }}
+      />
+      
+      <div style={{
+        position: 'fixed',
+        top: '20px',
+        left: '20px',
+        background: 'rgba(0,0,0,0.8)',
+        padding: '16px',
+        borderRadius: '8px',
+        width: '200px',
+        fontFamily: 'system-ui, sans-serif',
+        fontSize: '12px',
+        zIndex: 1000
+      }}>
+        <div style={{ color: '#fff', fontWeight: 'bold', marginBottom: '12px', fontSize: '14px' }}>Controls</div>
+        
+        <Slider
+          label="Focus"
+          value={settings.focus}
+          onChange={(v) => setSettings(s => ({ ...s, focus: v }))}
+          min={3}
+          max={7}
+        />
+        
+        <Slider
+          label="Speed"
+          value={settings.speed}
+          onChange={(v) => setSettings(s => ({ ...s, speed: v }))}
+          min={0.1}
+          max={20}
+        />
+        
+        <Slider
+          label="Aperture"
+          value={settings.aperture}
+          onChange={(v) => setSettings(s => ({ ...s, aperture: v }))}
+          min={1}
+          max={5.6}
+        />
+        
+        <Slider
+          label="FOV"
+          value={settings.fov}
+          onChange={(v) => setSettings(s => ({ ...s, fov: v }))}
+          min={5}
+          max={100}
+        />
+        
+        <Slider
+          label="Curl"
+          value={settings.strength}
+          onChange={(v) => setSettings(s => ({ ...s, strength: v }))}
+          min={0.01}
+          max={0.5}
+        />
+      </div>
+    </div>
   )
 }
