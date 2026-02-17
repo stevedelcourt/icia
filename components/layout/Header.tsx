@@ -63,6 +63,12 @@ export function Header() {
   }, [])
 
   useEffect(() => {
+    if (!useMobileMenu) {
+      setIsMobileMenuOpen(false)
+    }
+  }, [useMobileMenu])
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100)
     }
@@ -72,7 +78,7 @@ export function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
-  }, [pathname, useMobileMenu])
+  }, [pathname])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
