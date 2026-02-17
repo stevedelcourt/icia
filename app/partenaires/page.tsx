@@ -45,7 +45,6 @@ async function getPartners() {
       }
     }).filter((p: any) => p.name).sort((a: any, b: any) => a.name.localeCompare(b.name, 'fr'))
   } catch (e) {
-    console.error('Error fetching partners:', e)
     return []
   }
 }

@@ -61,17 +61,10 @@ export async function POST(request: NextRequest) {
           }
         })
       })
-      
-      console.log('Created article:', article.title, 'status:', res.status)
-      if (!res.ok) {
-        const error = await res.json()
-        console.log('Error:', error)
-      }
     }
 
     return NextResponse.json({ success: true, message: '3 articles created' })
   } catch (error: any) {
-    console.error('Error:', error.message)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

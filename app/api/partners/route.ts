@@ -45,7 +45,6 @@ export async function GET() {
 
     return NextResponse.json(partners)
   } catch (e) {
-    console.error('Error fetching partners:', e)
     return NextResponse.json([])
   }
 }

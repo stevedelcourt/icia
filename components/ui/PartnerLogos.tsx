@@ -31,7 +31,9 @@ export function PartnerLogos() {
         const fallbackData = await fallbackRes.json()
         setPartners(fallbackData)
       } catch (e) {
-        console.error('Error fetching partners:', e)
+      const fallbackRes = await fetch('/partners.json')
+        const fallbackData = await fallbackRes.json()
+        setPartners(fallbackData)
       }
     }
     fetchPartners()

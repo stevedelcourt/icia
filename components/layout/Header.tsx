@@ -24,9 +24,9 @@ const aProposItems = [
 ]
 
 const navItems = [
-  { label: 'A propos de l\'institut IA', href: '/a-propos', hasDropdown: true },
+  { label: 'À propos de l\'institut IA', href: '/a-propos', hasDropdown: true },
   { label: 'Accompagnements', href: '/accompagnements', hasDropdown: true },
-  { label: 'Actualites', href: '/actualites' },
+  { label: 'Actualités', href: '/actualites' },
 ]
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {

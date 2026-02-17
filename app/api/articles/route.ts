@@ -19,9 +19,6 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const slug = searchParams.get('slug')
 
-  console.log('=== NOTION DEBUG ===')
-  console.log('DB:', NOTION_DB)
-
   try {
     const query: any = { 
       page_size: 100,
@@ -41,9 +38,7 @@ export async function GET(request: NextRequest) {
       next: { revalidate: 60 }
     })
 
-    console.log('Status:', response.status)
     const data = await response.json()
-    console.log('Results:', data.results?.length || 0, 'error:', data.message)
 
     if (!data.results || data.results.length === 0) {
       return NextResponse.json({ error: 'No articles found' }, { status: 404 })
@@ -76,7 +71,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(slug ? articles[0] : articles)
   } catch (error: any) {
-    console.error('Error:', error.message || error)
     return NextResponse.json({ error: error.message || 'Failed' }, { status: 500 })
   }
 }
