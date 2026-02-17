@@ -6,24 +6,91 @@ import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import Link from 'next/link'
 
-const espaces = [
-  { num: '01', title: 'Zone d\'accueil', description: 'Un espace ouvert et chaleureux pour accueillir le public, consulter des ressources et échanger.', capacity: '50 personnes' },
-  { num: '02', title: 'Salles de formation', description: 'Des espaces équipés pour les ateliers et formations, avec matériel audiovisuel complet.', capacity: '20–40 personnes' },
-  { num: '03', title: 'Laboratoire IA', description: 'Un environnement sécurisé pour tester et expérimenter les outils d\'intelligence artificielle.', capacity: '15 personnes' },
-  { num: '04', title: 'Espace créatif', description: 'Un lieu dédié aux creators pour expérimenter avec les outils de génération créative.', capacity: '20 personnes' },
-  { num: '05', title: 'Co-working', description: 'Des espaces de travail partagés pour les membres et partenaires du réseau ICIA.', capacity: '30 personnes' },
+const troisDimensions = [
+  {
+    num: '01',
+    title: 'Un lieu physique',
+    description: 'Un espace identifié de 600 à 1 200 m² avec salle d\'accueil, salles de formation (20-30 personnes), laboratoire IA (GPU, serveurs), espace dédié aux industries créatives et zone de rencontres. Un repère concret dans le territoire.',
+    link: '/reseau-lieu',
+    linkText: 'Découvrir le lieu',
+  },
+  {
+    num: '02',
+    title: 'Une plateforme numérique',
+    description: 'Un environnement en ligne ouvert proposant inscription et orientation, parcours de formation, bibliothèque de ressources, badges et micro-certifications. Accessible à tout moment, identique sur tous les sites du réseau.',
+    link: '/plateforme-numerique',
+    linkText: 'Découvrir la plateforme',
+  },
+  {
+    num: '03',
+    title: 'Un réseau humain',
+    description: 'Une communauté structurée d\'entreprises membres, d\'écoles partenaires et d\'experts référencés. Les ressources et compétences sont partagées entre tous les sites, dans un esprit open source et de mutualisation.',
+    link: '/reseau-lieu',
+    linkText: 'Rejoindre le réseau',
+  },
 ]
 
-const archCards = [
-  { num: '01', tag: 'Marseille', title: 'Centre Flagship', subtitle: 'Services complets', surface: '300–500 m²', pills: ['Formation', 'Coworking', 'Événements', 'R&D'] },
-  { num: '02', tag: 'France', title: 'Hubs Régionaux', subtitle: 'Formation et sensibilisation', surface: '150–200 m²', pills: ['Formation', 'Sensibilisation', 'Orientation'] },
-  { num: '03', tag: 'Territoires', title: 'Espaces Satellites', subtitle: 'Sensibilisation et orientation', surface: '50–100 m²', pills: ['Information', 'Orientation', 'Ateliers'] },
-]
-
-const timelineItems = [
-  { phase: 'Phase 1 · Année 1', title: 'Lancement flagship Marseille', description: 'Ouverture du centre principal avec l\'ensemble des cinq zones d\'activité.' },
-  { phase: 'Phase 2 · Années 2–3', title: '3–4 hubs régionaux', description: 'Déploiement des premiers hubs dans les métropoles françaises prioritaires.' },
-  { phase: 'Phase 3 · Années 3–5', title: 'Déploiement national', description: 'Couverture nationale avec les espaces satellites et la plateforme numérique.' },
+const cinqPublics = [
+  {
+    num: '01',
+    tag: 'Grand public',
+    subtitle: 'Citoyens et actifs',
+    items: [
+      'Ateliers d\'acculturation (2h à ½ journée)',
+      'Parcours emploi et reconversion',
+      'Micro-certifications et badges métiers',
+      'Passerelles vers la formation qualifiante',
+    ],
+    link: '/accompagnements',
+  },
+  {
+    num: '02',
+    tag: 'Entreprises',
+    subtitle: 'PME, TPE et grandes organisations',
+    items: [
+      'Diagnostic de maturité IA (10 k€)',
+      'Audit RGPD, PI, sécurité',
+      'Formations ciblées par métier (5 k€/pers.)',
+      'Prototypes et POC en 4-6 semaines',
+    ],
+    link: '/accompagnements',
+  },
+  {
+    num: '03',
+    tag: 'Éducation',
+    subtitle: 'Écoles et universités',
+    items: [
+      'Bibliothèque de contenus pédagogiques',
+      'Experts intervenants pour les cursus',
+      'Certifications RNCP et micro-certifications',
+      'Travaux pratiques en laboratoire',
+    ],
+    link: '/accompagnements',
+  },
+  {
+    num: '04',
+    tag: 'Industries créatives',
+    subtitle: 'Créateurs et acteurs culturels',
+    items: [
+      'Ateliers IA appliquée (écriture, image, son)',
+      'Sécurisation juridique (droits d\'auteur, PI)',
+      'Laboratoire créatif d\'expérimentation',
+      'Écosystème créateurs / studios / droit',
+    ],
+    link: '/accompagnements',
+  },
+  {
+    num: '05',
+    tag: 'Pouvoirs publics',
+    subtitle: 'Institutions et territoires',
+    items: [
+      'Programmes d\'IA inclusive et d\'insertion',
+      'Accompagnement transformation des services',
+      'Observatoire territorial de l\'IA',
+      'Renforcement de l\'attractivité du territoire',
+    ],
+    link: '/accompagnements',
+  },
 ]
 
 export default function ReseauLieuPage() {
@@ -69,67 +136,14 @@ export default function ReseauLieuPage() {
           </FadeIn>
         </Section>
 
-        {/* Lieu physique */}
-        <Section className="py-20">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Le lieu physique</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-6">Le flagship<br />ICIA Marseille</h2>
-              <p className="text-text-muted mb-8">Un espace de 400 m² conçu pour l'apprentissage, l'expérimentation et les rencontres. Cinq zones distinctes pour répondre à tous les usages liés à l'intelligence artificielle.</p>
-            </div>
-          </FadeIn>
-          
-          <div className="max-w-5xl mx-auto mb-12">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-              <div className="text-center p-4 bg-[#E5E4DF] rounded-lg">
-                <p className="font-bold text-[#264653]">Ville</p>
-                <p className="text-sm text-text-muted">Marseille</p>
-              </div>
-              <div className="text-center p-4 bg-[#E5E4DF] rounded-lg">
-                <p className="font-bold text-[#264653]">Surface totale</p>
-                <p className="text-sm text-text-muted">400 m²</p>
-              </div>
-              <div className="text-center p-4 bg-[#E5E4DF] rounded-lg">
-                <p className="font-bold text-[#264653]">Capacité totale</p>
-                <p className="text-sm text-text-muted">135 personnes</p>
-              </div>
-              <div className="text-center p-4 bg-[#E5E4DF] rounded-lg">
-                <p className="font-bold text-[#264653]">Espaces</p>
-                <p className="text-sm text-text-muted">5 zones</p>
-              </div>
-              <div className="text-center p-4 bg-[#E5E4DF] rounded-lg">
-                <p className="font-bold text-[#264653]">Phase</p>
-                <p className="text-sm text-text-muted">Année 1</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <Stagger>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                {espaces.map((espace) => (
-                  <StaggerItem key={espace.num}>
-                    <div className="p-6 border border-border bg-white rounded-xl h-full flex flex-col">
-                      <p className="text-3xl font-light text-[#264653] mb-4">{espace.num}</p>
-                      <h3 className="font-serif text-lg font-bold mb-3">{espace.title}</h3>
-                      <p className="text-sm text-text-muted flex-grow mb-4">{espace.description}</p>
-                      <p className="text-xs font-medium text-[#BF4D43]">{espace.capacity}</p>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </div>
-            </Stagger>
-          </div>
-        </Section>
-
-        {/* Architecture du réseau */}
+        {/* Trois dimensions complémentaires */}
         <Section className="py-20 bg-white">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Architecture du réseau</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-6">Trois niveaux,<br />un seul réseau</h2>
+              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">L'Institut</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">L'Institut est conçu comme<br />une infrastructure collective</h2>
               <p className="text-text-muted max-w-2xl mx-auto">
-                Du flagship marseillais aux espaces satellites en région, le réseau ICIA déploie une présence progressive et cohérente sur l'ensemble du territoire français.
+                Trois dimensions complémentaires. Ensemble, elles forment un tiers de confiance accessible à tous.
               </p>
             </div>
           </FadeIn>
@@ -137,19 +151,15 @@ export default function ReseauLieuPage() {
           <div className="max-w-5xl mx-auto">
             <Stagger>
               <div className="grid md:grid-cols-3 gap-8">
-                {archCards.map((card) => (
-                  <StaggerItem key={card.num}>
-                    <div className="p-8 border border-border bg-[#E5E4DF] rounded-xl h-full">
-                      <p className="text-4xl font-light text-[#264653] mb-4">{card.num}</p>
-                      <span className="inline-block px-3 py-1 bg-[#264653] text-white text-xs font-bold rounded-full mb-3">{card.tag}</span>
-                      <h3 className="font-serif text-xl font-bold mb-1">{card.title}</h3>
-                      <p className="text-sm text-text-muted mb-4">{card.subtitle}</p>
-                      <p className="text-lg font-medium text-[#BF4D43] mb-4">{card.surface}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {card.pills.map((pill) => (
-                          <span key={pill} className="px-3 py-1 bg-white text-xs border border-border">{pill}</span>
-                        ))}
-                      </div>
+                {troisDimensions.map((dim) => (
+                  <StaggerItem key={dim.num}>
+                    <div className="p-8 border border-border bg-[#E5E4DF] rounded-xl h-full flex flex-col">
+                      <p className="text-4xl font-light text-[#264653] mb-4">{dim.num}</p>
+                      <h3 className="font-serif text-xl font-bold mb-4">{dim.title}</h3>
+                      <p className="text-sm text-text-muted mb-6 flex-grow">{dim.description}</p>
+                      <Link href={dim.link} className="inline-flex items-center text-[#BF4D43] font-medium hover:underline">
+                        {dim.linkText} <span className="ml-1">➔</span>
+                      </Link>
                     </div>
                   </StaggerItem>
                 ))}
@@ -158,29 +168,40 @@ export default function ReseauLieuPage() {
           </div>
         </Section>
 
-        {/* Calendrier */}
+        {/* Cinq publics */}
         <Section className="py-20">
           <FadeIn>
-            <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Calendrier de déploiement</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-6">Une expansion<br />progressive</h2>
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Accompagnements</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Cinq publics,<br />des réponses adaptées</h2>
+              <p className="text-text-muted max-w-2xl mx-auto">
+                L'Institut n'est pas un service généraliste. Chaque public dispose de parcours, d'outils et d'experts pensés pour ses besoins spécifiques.
+              </p>
             </div>
           </FadeIn>
           
-          <div className="max-w-3xl mx-auto">
-            {timelineItems.map((item, index) => (
-              <div key={item.phase} className="flex gap-6 pb-8 last:pb-0">
-                <div className="flex flex-col items-center">
-                  <div className="w-4 h-4 bg-[#BF4D43] rounded-full"></div>
-                  {index < timelineItems.length - 1 && <div className="w-0.5 h-full bg-border mt-2"></div>}
-                </div>
-                <div className="pb-8 last:pb-0">
-                  <p className="text-sm font-medium text-[#BF4D43] mb-1">{item.phase}</p>
-                  <h3 className="font-serif text-lg font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-text-muted">{item.description}</p>
-                </div>
+          <div className="max-w-5xl mx-auto">
+            <Stagger>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                {cinqPublics.map((publicData) => (
+                  <StaggerItem key={publicData.num}>
+                    <div className="p-6 border border-border bg-white rounded-xl h-full flex flex-col">
+                      <p className="text-3xl font-light text-[#264653] mb-2">{publicData.num}</p>
+                      <span className="inline-block px-3 py-1 bg-[#264653] text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
+                      <p className="text-sm text-[#BF4D43] font-medium mb-4">{publicData.subtitle}</p>
+                      <ul className="space-y-2 mb-4 flex-grow">
+                        {publicData.items.map((item, idx) => (
+                          <li key={idx} className="text-xs text-text-muted">{item}</li>
+                        ))}
+                      </ul>
+                      <Link href={publicData.link} className="inline-flex items-center text-sm text-[#BF4D43] font-medium hover:underline">
+                        En savoir plus <span className="ml-1">➔</span>
+                      </Link>
+                    </div>
+                  </StaggerItem>
+                ))}
               </div>
-            ))}
+            </Stagger>
           </div>
         </Section>
 
@@ -194,7 +215,7 @@ export default function ReseauLieuPage() {
               </p>
               <Link href="/contact?subject=partnership">
                 <button className="px-8 py-4 bg-[#BF4D43] text-white font-semibold rounded-lg hover:bg-[#a33d32] transition-colors">
-                  Nous contacter <span className="ml-2">→</span>
+                  Nous contacter <span className="ml-2">➔</span>
                 </button>
               </Link>
             </div>

@@ -17,7 +17,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-black text-white hover:bg-gray-800 rounded-md',
+  primary: 'bg-accent text-white hover:bg-accent-hover rounded-md',
   secondary: 'border-2 border-black text-black hover:bg-black hover:text-white rounded-md',
   ghost: 'text-black hover:bg-black/10 rounded-md',
 }

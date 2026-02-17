@@ -67,11 +67,13 @@ export function Stagger({
 export function StaggerItem({ 
   children, 
   direction = 'up',
-  duration = 0.5 
+  duration = 0.5,
+  className = ''
 }: { 
   children: ReactNode
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   duration?: number
+  className?: string
 }) {
   const directions = {
     up: { y: 20, x: 0 },
@@ -88,6 +90,7 @@ export function StaggerItem({
         hidden: { opacity: 0, ...directions[direction] },
       }}
       transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
     >
       {children}
     </motion.div>

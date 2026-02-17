@@ -7,10 +7,10 @@ import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import Link from 'next/link'
 
 const examples = [
-  { persona: 'Citoyen', description: 'Un demandeur d\'emploi ne sait pas comment tirer profit de l\'IA pour renforcer sa désirabilité sur le marché du travail.' },
-  { persona: 'PME / TPE', description: 'Une petite entreprise n\'ose pas adopter l\'IA par peur des enjeux RGPD ou de ne pas voir le retour sur investissement.' },
-  { persona: 'Industrie créative', description: 'Un producteur de cinéma subit l\'IA sans cadre juridique ni espace pour expérimenter et sécuriser ses pratiques.' },
-  { persona: 'Éducation', description: 'Une école veut intégrer l\'IA dans ses programmes mais manque d\'experts, de contenus à jour et d\'infrastructure.' },
+  { persona: 'Citoyen', description: 'Un demandeur d\'emploi ne sait pas comment tirer profit de l\'IA pour renforcer sa désirabilité sur le marché du travail.', href: '/accompagnements/citoyens' },
+  { persona: 'PME / TPE', description: 'Une petite entreprise n\'ose pas adopter l\'IA par peur des enjeux RGPD ou de ne pas voir le retour sur investissement.', href: '/accompagnements/entreprises' },
+  { persona: 'Industrie créative', description: 'Un producteur de cinéma subit l\'IA sans cadre juridique ni espace pour expérimenter et sécuriser ses pratiques.', href: '/accompagnements/secteurs-creatifs' },
+  { persona: 'Éducation', description: 'Une école veut intégrer l\'IA dans ses programmes mais manque d\'experts, de contenus à jour et d\'infrastructure.', href: '/accompagnements/education' },
 ]
 
 const modelCards = [
@@ -19,12 +19,20 @@ const modelCards = [
   { num: '03', title: 'Un réseau humain', description: 'Une communauté structurée d\'entreprises membres, d\'écoles partenaires et d\'experts référencés. Les ressources et compétences sont partagées entre tous les sites, dans un esprit open source et de mutualisation.' },
 ]
 
+const colorMap: Record<string, string> = {
+  'accent': '#e84b1a',
+  'accent-blue': '#2a6fff',
+  'accent-green': '#2a9e62',
+  'accent-purple': '#7c4dff',
+  'accent-teal': '#008b8b',
+}
+
 const publicsCards = [
-  { num: '01', subtitle: 'Grand public', title: 'Citoyens et actifs', items: ['Ateliers d\'acculturation (2h à ½ journée)', 'Parcours emploi et reconversion', 'Micro-certifications et badges métiers', 'Passerelles vers la formation qualifiante'] },
-  { num: '02', subtitle: 'Entreprises', title: 'PME, TPE et grandes organisations', items: ['Diagnostic de maturité IA (10 k€)', 'Audit RGPD, PI, sécurité', 'Formations ciblées par métier (5 k€/pers.)', 'Prototypes et POC en 4-6 semaines'] },
-  { num: '03', subtitle: 'Éducation', title: 'Écoles et universités', items: ['Bibliothèque de contenus pédagogiques', 'Experts intervenants pour les cursus', 'Certifications RNCP et micro-certifications', 'Travaux pratiques en laboratoire'] },
-  { num: '04', subtitle: 'Industries créatives', title: 'Créateurs et acteurs culturels', items: ['Ateliers IA appliquée (écriture, image, son)', 'Sécurisation juridique (droits d\'auteur, PI)', 'Laboratoire créatif d\'expérimentation', 'Écosystème créateurs / studios / droit'] },
-  { num: '05', subtitle: 'Pouvoirs publics', title: 'Institutions et territoires', items: ['Programmes d\'IA inclusive et d\'insertion', 'Accompagnement transformation des services', 'Observatoire territorial de l\'IA', 'Renforcement de l\'attractivité du territoire'] },
+  { num: '01', subtitle: 'Grand public', title: 'Citoyens et actifs', items: ['Ateliers d\'acculturation (2h à ½ journée)', 'Parcours emploi et reconversion', 'Micro-certifications et badges métiers', 'Passerelles vers la formation qualifiante'], href: '/accompagnements/citoyen', color: 'accent' },
+  { num: '02', subtitle: 'Entreprises', title: 'PME, TPE et grandes organisations', items: ['Diagnostic de maturité IA (10 k€)', 'Audit RGPD, PI, sécurité', 'Formations ciblées par métier (5 k€/pers.)', 'Prototypes et POC en 4-6 semaines'], href: '/accompagnements/entreprises', color: 'accent-blue' },
+  { num: '03', subtitle: 'Éducation', title: 'Écoles et universités', items: ['Bibliothèque de contenus pédagogiques', 'Experts intervenants pour les cursus', 'Certifications RNCP et micro-certifications', 'Travaux pratiques en laboratoire'], href: '/accompagnements/education', color: 'accent-green' },
+  { num: '04', subtitle: 'Industries créatives', title: 'Créateurs et acteurs culturels', items: ['Ateliers IA appliquée (écriture, image, son)', 'Sécurisation juridique (droits d\'auteur, PI)', 'Laboratoire créatif d\'expérimentation', 'Écosystème créateurs / studios / droit'], href: '/accompagnements/secteurs-creatifs', color: 'accent-purple' },
+  { num: '05', subtitle: 'Pouvoirs publics', title: 'Institutions et territoires', items: ['Programmes d\'IA inclusive et d\'insertion', 'Accompagnement transformation des services', 'Observatoire territorial de l\'IA', 'Renforcement de l\'attractivité du territoire'], href: '/accompagnements/pouvoirs-publics', color: 'accent-teal' },
 ]
 
 const ambitionItems = [
@@ -91,10 +99,10 @@ export default function AProposPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {examples.map((item) => (
                   <StaggerItem key={item.persona}>
-                    <div className="p-6 bg-[#E5E4DF] rounded-xl h-full">
-                      <p className="font-bold text-[#BF4D43] mb-3">{item.persona}</p>
+                    <Link href={item.href} className="block p-6 bg-[#E5E4DF] rounded-xl h-full hover:bg-[#ddd9d0] transition-colors">
+                      <p className="font-bold text-accent mb-3">{item.persona}</p>
                       <p className="text-sm text-text-muted">{item.description}</p>
-                    </div>
+                    </Link>
                   </StaggerItem>
                 ))}
               </div>
@@ -140,22 +148,37 @@ export default function AProposPage() {
           <div className="max-w-6xl mx-auto">
             <Stagger>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {publicsCards.map((item) => (
+                {publicsCards.map((item) => {
+                  const accentColor = colorMap[item.color] || colorMap['accent']
+                  return (
                   <StaggerItem key={item.num}>
-                    <div className="p-6 border border-border bg-white rounded-xl h-full">
-                      <p className="text-xs text-[#BF4D43] font-medium mb-2">{item.num} / {item.subtitle}</p>
-                      <h3 className="font-serif text-lg font-bold mb-4">{item.title}</h3>
-                      <ul className="space-y-2">
-                        {item.items.map((i) => (
-                          <li key={i} className="text-sm text-text-muted flex items-start gap-2">
-                            <span className="text-[#264653]">•</span>
-                            {i}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <Link href={item.href} className="group block p-6 border border-border bg-white rounded-xl h-full hover:shadow-lg transition-all" style={{ borderColor: 'transparent' }}>
+                      <div 
+                        className="p-6 rounded-xl h-full transition-all duration-300 group-hover:shadow-lg"
+                        style={{ 
+                          borderLeft: `4px solid ${accentColor}`,
+                          background: 'white'
+                        }}
+                      >
+                        <p className="text-xs font-medium mb-2" style={{ color: accentColor }}>{item.num} / {item.subtitle}</p>
+                        <h3 className="font-serif text-lg font-bold mb-4">{item.title}</h3>
+                        <ul className="space-y-2">
+                          {item.items.map((i) => (
+                            <li key={i} className="text-sm text-text-muted flex items-start gap-2">
+                              <span style={{ color: accentColor }}>•</span>
+                              {i}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-4 pt-4 border-t border-border flex items-center gap-2 text-sm font-semibold" style={{ color: accentColor }}>
+                          <span className="group-hover:mr-2 transition-all duration-300">Découvrir</span>
+                          <span className="transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
+                        </div>
+                      </div>
+                    </Link>
                   </StaggerItem>
-                ))}
+                  )
+                })}
               </div>
             </Stagger>
           </div>

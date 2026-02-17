@@ -4,118 +4,25 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 
-const NOTION_KEY = process.env.NOTION_KEY
-const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
-
-async function getArticles() {
-  const notion = {
-    baseUrl: 'https://api.notion.com/v1',
-    headers: {
-      'Authorization': `Bearer ${NOTION_KEY}`,
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
-    }
-  }
-
-  try {
-    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
-      method: 'POST',
-      headers: notion.headers,
-      body: JSON.stringify({ page_size: 100 }),
-      cache: 'force-cache'
-    })
-
-    const data = await response.json()
-    
-    if (!data.results || data.results.length === 0) {
-      return []
-    }
-
-    return data.results.map((page: any) => {
-      const props = page.properties
-      return {
-        slug: props.Slug?.rich_text?.[0]?.plain_text || '',
-        title: props.Titre?.rich_text?.[0]?.plain_text || '',
-        date: props.Date?.date?.start || ''
-      }
-    }).filter((a: any) => a.slug)
-  } catch (e) {
-    return []
-  }
-}
-
-async function getArticle(slug: string) {
-  const notion = {
-    baseUrl: 'https://api.notion.com/v1',
-    headers: {
-      'Authorization': `Bearer ${NOTION_KEY}`,
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
-    }
-  }
-
-  try {
-    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
-      method: 'POST',
-      headers: notion.headers,
-      body: JSON.stringify({
-        filter: {
-          property: 'Slug',
-          rich_text: { equals: slug }
-        }
-      }),
-      cache: 'no-store'
-    })
-
-    const data = await response.json()
-    
-    if (!data.results || data.results.length === 0) {
-      return null
-    }
-
-    const page = data.results[0]
-    const props = page.properties
-
-    const getImageUrl = (prop: any) => {
-      if (!prop) return ''
-      if (prop.url) return prop.url
-      if (prop.files && prop.files.length > 0) {
-        const file = prop.files[0]
-        if (file.file) return file.file.url
-        if (file.external) return file.external.url
-      }
-      return ''
-    }
-
-    return {
-      slug: props.Slug?.rich_text?.[0]?.plain_text || '',
-      title: props.Titre?.rich_text?.[0]?.plain_text || '',
-      excerpt: props.Excerpt?.rich_text?.[0]?.plain_text || '',
-      category: props.Category?.select?.name || '',
-      date: props.Date?.date?.start || '',
-      image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
-      content: props.Article?.title?.[0]?.plain_text || ''
-    }
-  } catch (e) {
-    console.error('Error:', e)
-    return null
-  }
-}
+const validArticles = [
+  { slug: 'lancement-icia', title: 'Lancement officiel de l\'Institut Collectif de l\'IA', excerpt: 'L\'ICIA ouvre ses portes à Marseille avec pour mission de rendre l\'IA accessible à tous.', category: 'Actualite', date: '2025-01-15', image: '', content: 'Lancement de l\'Institut Collectif de l\'IA à Marseille.\n\nL\'ICIA a officiellement ouvert ses portes ce janvier 2025. Cette initiative unique en France vise à rendre l\'intelligence artificielle accessible à tous les citoyens, entreprises et institutions.\n\n\"L\'IA ne doit pas être confisquée par quelques-uns\" est le mantra de l\'Institut qui propose des parcours adaptés à chaque public.' },
+  { slug: 'partenariat-universites', title: 'Partenariat avec les universités de la région', excerpt: 'Signature d\'accords avec les universités Aix-Marseille pour des programmes de formation.', category: 'Partenariat', date: '2025-01-20', image: '', content: 'L\'ICIA signe un partenariat stratégique avec les universités de la région Aix-Marseille.\n\nCe partenariat permettra aux étudiants de bénéficier de formations certifiantes en IA, d\'accès au laboratoire et aux ressources pédagogiques de l\'Institut.\n\nLes premiers cursus seront lancés dès la rentrée 2025.' },
+  { slug: 'ecosysteme-marseille', title: 'L\'écosystème IA de Marseille se structure', excerpt: 'Retour sur les initiatives qui font de Marseille un hub de l\'intelligence artificielle.', category: 'Analyse', date: '2025-02-01', image: '', content: 'Marseille devient un pôle majeur de l\'intelligence artificielle en France.\n\nAvec l\'arrivée de l\'ICIA et le soutien de la Région, la ville phocéenne attire startups, chercheurs et investisseurs du secteur.\n\nCe développement s\'inscrit dans une stratégie régionale ambitieuse de transformation numérique.' },
+  { slug: 'think-tank-rapport', title: 'Publication du premier rapport du Think Tank', excerpt: 'Le groupe de réflexion de l\'ICIA publie ses recommandations pour une IA éthique.', category: 'Publication', date: '2025-02-10', image: '', content: 'Le Think Tank de l\'ICIA publie son rapport inaugural sur l\'IA responsable.\n\nCe document de 120 pages présente les recommandations du groupe d\'experts pour une intelligence artificielle éthique, souveraine et au service du bien commun.\n\nLes principales pistes : gouvernance multipartite, transparence des algorithmes, formation massive aux compétences IA.' },
+]
 
 export async function generateStaticParams() {
-  const articles = await getArticles()
-  return articles.map((article: any) => ({
+  return validArticles.map((article) => ({
     slug: article.slug,
   }))
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const article = await getArticle(slug)
-  const allArticles = await getArticles()
+  const article = validArticles.find((a) => a.slug === slug)
   
-  const sortedArticles = allArticles.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const currentIndex = sortedArticles.findIndex((a: any) => a.slug === slug)
+  const sortedArticles = validArticles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const currentIndex = sortedArticles.findIndex((a) => a.slug === slug)
   
   const prevArticle = currentIndex < sortedArticles.length - 1 ? sortedArticles[currentIndex + 1] : null
   const nextArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null
@@ -163,8 +70,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <h1 className="font-serif text-h1 mb-6">{article.title}</h1>
               
               <div className="prose max-w-none mb-12">
-                <h2 className="text-xl font-serif mb-4">Article</h2>
-                <div className="whitespace-pre-wrap">{article.content}</div>
+                <p className="text-text-muted text-lg leading-relaxed mb-6">{article.excerpt}</p>
+                <div className="whitespace-pre-wrap text-text-muted">{article.content}</div>
               </div>
 
               <div className="flex justify-between border-t border-border pt-8">

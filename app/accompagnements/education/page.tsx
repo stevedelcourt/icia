@@ -5,107 +5,265 @@ import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
+const programmes = [
+  {
+    num: '01',
+    title: 'Bibliothèque pédagogique',
+    description: 'Une ressource complète et libre d\'accès pour intégrer l\'histoire de l\'IA dans tous les niveaux — du primaire à l\'université. Séquences pédagogiques prêtes à l\'emploi.',
+    items: ['Séquences pédagogiques clé en main', 'Exercices et mises en situation', 'Ressources différenciées par niveau', 'Mises à jour régulières'],
+    cta: 'Accéder à la bibliothèque',
+    subject: 'education',
+  },
+  {
+    num: '02',
+    title: 'Formation des formateurs',
+    description: 'Accompagnement dédié aux enseignants et formateurs pour maîtriser les concepts de l\'IA et les intégrer dans leurs pratiques pédagogiques, quel que soit le niveau scolaire.',
+    items: ['Ateliers d\'initiation à l\'IA (2 jours)', 'Formation à l\'usage pédagogique des outils IA', 'Communauté d\'enseignants', 'Ressources exclusives formateurs'],
+    cta: 'Former vos équipes',
+    subject: 'formation-formateurs',
+  },
+  {
+    num: '03',
+    title: 'Certifications',
+    description: 'Des certifications officielles pour les élèves et étudiants, reconnaissables par les employeurs. Un standard commun pour valider les compétences en IA dans le parcours éducatif.',
+    items: ['Certification socle IA (lycée)', 'Certification avancée (supérieur)', 'Badges numériques partageables', 'Reconnaissance employeurs partenaires'],
+  },
+  {
+    num: '04',
+    title: 'Accréditation institutionnelle',
+    description: 'Accompagnement des établissements pour obtenir une accréditation ICIA, gage de qualité dans l\'histoire de l\'IA. Un label reconnu au niveau national.',
+    items: ['Audit du programme existant', 'Feuille de route pédagogique', 'Label ICIA Éducation', 'Mise en réseau avec d\'autres établissements'],
+    cta: 'Demander une accréditation',
+    subject: 'accreditation',
+  },
+]
+
+const ressources = [
+  { label: 'Guide', title: 'Guide pédagogique IA', description: '160 pages pour comprendre comment intégrer l\'IA dans vos programmes, avec des exemples concrets par matière.' },
+  { label: 'Outil', title: 'Fiches activités prêtes', description: '50+ fiches d\'activities pédagogiques adaptées du primaire au supérieur, utilisables immédiatement.' },
+  { label: 'Formation', title: 'Module formateurs (2j)', description: 'Programme intensif de 2 jours pour former vos enseignants à l\'IA — théorie, pratique et pédagogie.' },
+]
+
+const processSteps = [
+  { num: '01', title: 'Audit pédagogique', description: 'Évaluation des programmes, des ressources existantes et des besoins de votre établissement.' },
+  { num: '02', title: 'Plan d\'intégration', description: 'Co-construction d\'une feuille de route adaptée à votre calendrier académique.' },
+  { num: '03', title: 'Déploiement', description: 'Formation des formateurs, mise à disposition des ressources et accompagnement terrain.' },
+  { num: '04', title: 'Accréditation', description: 'Évaluation finale et remise du label ICIA Éducation si les critères sont atteints.' },
+]
+
+const otherPublics = [
+  { label: 'Citoyens', href: '/accompagnements/citoyens', active: false },
+  { label: 'Entreprises', href: '/accompagnements/entreprises', active: false },
+  { label: 'Écoles & Universités', href: '/accompagnements/education', active: true },
+  { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs', active: false },
+  { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics', active: false },
+]
+
 export default function EducationPage() {
   return (
     <>
       <Header />
       <main id="main-content">
-        <Section className="pt-32 pb-12">
-          <FadeIn>
-            <div className="max-w-3xl">
-              <p className="text-sm text-accent mb-4">Accompagnements</p>
-              <h1 className="font-serif text-h1 mb-6">
-                Éducation : intégrer l'IA dans vos cursus
-              </h1>
-              <p className="text-body text-text-muted">
-                L'ICIA accompagne les établissements d'enseignement dans l'intégration de l'IA 
-                dans leurs programmes, de la maternelle à l'université.
-              </p>
-            </div>
-          </FadeIn>
-        </Section>
-        
-        <Section className="py-12 border-t border-border">
-          <FadeIn>
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h2 className="font-serif text-h2 mb-4">Bibliothèque de contenus pédagogiques</h2>
-                <p className="text-text-muted mb-6">
-                  Accédez à une bibliothèque complète de ressources pédagogiques pour enseigner 
-                  l'IA. Cours, exercices, projets, évaluations... Tout ce dont vous avez besoin 
-                  pour vos enseignements.
-                </p>
-                <ul className="space-y-2 text-text-muted mb-6">
-                  <li>• Contenus pour tous les niveaux</li>
-                  <li>• Mise à jour régulière</li>
-                  <li>• Adaptés aux programmes officiels</li>
-                  <li>• Format multidisciplinaire</li>
-                </ul>
+        {/* Breadcrumb */}
+        <div className="pt-20 bg-bg border-b border-border">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-muted">
+            <Link href="/" className="hover:text-text transition-colors">Accueil</Link>
+            <span>/</span>
+            <Link href="/accompagnements" className="hover:text-text transition-colors">Accompagnements</Link>
+            <span>/</span>
+            <span className="text-text font-medium">Écoles & Universités</span>
+          </div>
+        </div>
+
+        {/* Hero */}
+        <section className="bg-ink text-off-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-8">
+            <div className="grid md:grid-cols-2 gap-0">
+              <div className="py-16 md:py-24 pr-8">
+                <FadeIn>
+                  <div className="inline-flex items-center gap-3 text-accent-green text-xs font-semibold tracking-widest uppercase mb-6">
+                    <span className="w-8 h-px bg-accent-green"></span>
+                    Éducation
+                  </div>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Former<br />
+                    les formateurs<br />
+                    de <span className="text-accent-green">demain</span>
+                  </h1>
+                  <p className="text-lg text-white/55 max-w-xl mb-8 leading-relaxed">
+                    L'ICIA accompagne les établissements d'enseignement dans l'intégration de l'IA : bibliothèque pédagogique, formation des enseignants, certifications et parcours accrédités.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/contact?subject=education">
+                      <Button variant="primary" size="lg" className="bg-accent-green hover:bg-green-700">
+                        Nous contacter ➔
+                      </Button>
+                    </Link>
+                    <Link href="#programmes">
+                      <button className="px-6 py-3 border border-white/20 text-white/60 font-medium text-base hover:border-white/50 hover:text-white transition-all rounded-md">
+                        Découvrir ➔
+                      </button>
+                    </Link>
+                  </div>
+                </FadeIn>
               </div>
-              <div>
-                <h2 className="font-serif text-h2 mb-4">Formation des formateurs</h2>
-                <p className="text-text-muted mb-6">
-                  Formez vos enseignants à l'intelligence artificielle pour qu'ils puedan 
-                  transmettre ces connaissances à leurs élèves. Des formations certifiantes 
-                  adaptées aux enseignants de toutes disciplines.
-                </p>
-                <ul className="space-y-2 text-text-muted mb-6">
-                  <li>• Sessions présentielles et en ligne</li>
-                  <li>• Certification ICIA</li>
-                  <li>• Accompagnement pédagogique</li>
-                  <li>• Communauté de pratiques</li>
-                </ul>
-              </div>
-            </div>
-          </FadeIn>
-        </Section>
-        
-        <Section className="py-12 bg-white border-y border-border">
-          <FadeIn>
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h2 className="font-serif text-h2 mb-4">Experts et intervenants</h2>
-                <p className="text-text-muted mb-6">
-                  Accédez à un réseau d'experts et de professionnels de l'IA pour intervenir 
-                  dans vos établissements. Conferences, ateliers, projets tutorés...
-                </p>
-                <ul className="space-y-2 text-text-muted mb-6">
-                  <li>• Base de 50+ experts</li>
-                  <li>• Intervention en classe</li>
-                  <li>• Projets collaboratifs</li>
-                  <li>• Visites de laboratoires</li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="font-serif text-h2 mb-4">Certifications et badges</h2>
-                <p className="text-text-muted mb-6">
-                  Proposez à vos élèves et étudiants des certifications reconnues pour 
-                  valider leurs compétences en IA. Des badges numériques vérifiables pour 
-                  booster leur employabilité.
-                </p>
-                <ul className="space-y-2 text-text-muted mb-6">
-                  <li>• Certifications ICIA</li>
-                  <li>• Badges Open Badges</li>
-                  <li>• Reconnaissance internationale</li>
-                  <li>• Intégration CV</li>
-                </ul>
+              <div className="border-l border-white/10 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, rgba(42,158,98,0.18) 0%, transparent 65%)' }}></div>
+                <FadeIn delay={0.1}>
+                  <div className="text-5xl md:text-7xl font-bold mb-2 text-off-white">
+                    <span className="text-accent-green">3</span> niveaux
+                  </div>
+                  <p className="text-white/45 mb-8 max-w-xs">primaire, secondaire et enseignement supérieur</p>
+                  <div className="h-px bg-white/10 mb-8"></div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Bibliothèque pédagogique', 'Formation formateurs', 'Certifications', 'Accréditations', 'Ressources ouvertes'].map((tag) => (
+                      <span key={tag} className="px-3 py-1 border border-white/12 text-white/40 text-xs hover:border-accent-green hover:text-accent-green transition-colors cursor-default">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </FadeIn>
               </div>
             </div>
-          </FadeIn>
-        </Section>
-        
-        <Section className="py-12 text-center">
+          </div>
+        </section>
+
+        {/* Programmes */}
+        <Section id="programmes" className="bg-white border-t border-border">
           <FadeIn>
-            <h2 className="font-serif text-h2 mb-6">Construisons un partenariat</h2>
-            <p className="text-text-muted mb-8 max-w-xl mx-auto">
-              Vous êtes établissement scolaire, université ou formation ? 
-              Parlons de votre projet d'intégration de l'IA.
-            </p>
-            <Link href="/contact?subject=partnership&target=education">
-              <Button variant="primary" size="lg">
-                Échanger sur un partenariat
-              </Button>
+            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
+              <span className="w-6 h-px bg-muted"></span>
+              Nos programmes
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12">Quatre axes pour<br />l'éducation</h2>
+          </FadeIn>
+          <Stagger>
+            <div className="grid md:grid-cols-2 border border-border">
+              {programmes.map((prog) => (
+                <StaggerItem key={prog.num} className="p-8 border-r border-b border-border hover:bg-off-white transition-colors relative">
+                  <span className="absolute top-6 right-8 text-5xl font-bold text-black/03 pointer-events-none">{prog.num}</span>
+                  <h3 className="text-xl font-bold mb-3">{prog.title}</h3>
+                  <p className="text-muted text-sm mb-4 leading-relaxed">{prog.description}</p>
+                  <ul className="space-y-1 mb-6">
+                    {prog.items.map((item) => (
+                      <li key={item} className="text-sm flex items-start gap-2">
+                        <span className="text-accent-green font-bold">—</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {prog.cta && (
+                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-accent-green text-xs font-bold tracking-widest uppercase border-b border-accent-green/30 pb-0.5 hover:border-accent-green transition-colors">
+                      {prog.cta} ➔
+                    </Link>
+                  )}
+                </StaggerItem>
+              ))}
+            </div>
+          </Stagger>
+        </Section>
+
+        {/* Ressources */}
+        <Section className="bg-warm-mid border-t border-border">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
+              <span className="w-6 h-px bg-muted"></span>
+              Ressources clés
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12">Ce que vous recevez<br />dès le premier contact</h2>
+          </FadeIn>
+          <Stagger>
+            <div className="grid md:grid-cols-3 gap-6">
+              {ressources.map((res) => (
+                <StaggerItem key={res.title} className="p-6 bg-white border border-border hover:shadow-lg hover:-translate-y-0.5 transition-all relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-accent-green"></div>
+                  <div className="text-xs font-bold tracking-widest uppercase text-accent-green mb-3">{res.label}</div>
+                  <h3 className="font-bold mb-2">{res.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{res.description}</p>
+                </StaggerItem>
+              ))}
+            </div>
+          </Stagger>
+        </Section>
+
+        {/* Stats */}
+        <div className="grid md:grid-cols-3 border-b border-white/10">
+          <div className="p-8 border-r border-white/10 bg-ink">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
+              <span className="text-accent-green">3</span>
+            </div>
+            <p className="text-white/45 text-sm">niveaux couverts : primaire, secondaire, supérieur</p>
+          </div>
+          <div className="p-8 border-r border-white/10 bg-ink">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
+              <span className="text-accent-green">50+</span>
+            </div>
+            <p className="text-white/45 text-sm">fiches activités dans la bibliothèque</p>
+          </div>
+          <div className="p-8 bg-ink">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
+              <span className="text-accent-green">2</span> certifs
+            </div>
+            <p className="text-white/45 text-sm">reconnues par les employeurs partenaires</p>
+          </div>
+        </div>
+
+        {/* Process */}
+        <Section className="bg-warm-mid">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
+              <span className="w-6 h-px bg-muted"></span>
+              Mise en œuvre
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12">Un accompagnement<br />sur mesure pour votre établissement</h2>
+          </FadeIn>
+          <Stagger>
+            <div className="grid md:grid-cols-4 border border-border">
+              {processSteps.map((step) => (
+                <StaggerItem key={step.num} className="p-6 border-r border-b border-border hover:bg-white/50 transition-colors">
+                  <span className="text-accent-green text-xs font-bold tracking-widest uppercase block mb-3">{step.num}</span>
+                  <h4 className="font-bold mb-2">{step.title}</h4>
+                  <p className="text-muted text-sm leading-relaxed">{step.description}</p>
+                </StaggerItem>
+              ))}
+            </div>
+          </Stagger>
+        </Section>
+
+        {/* Pages Nav */}
+        <div className="bg-bg border-y border-border py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mr-2">Autres publics</span>
+          {otherPublics.map((pub) => (
+            <Link
+              key={pub.href}
+              href={pub.href}
+              className={`px-3 py-1 text-sm font-medium border transition-colors ${
+                pub.active
+                  ? 'bg-ink text-off-white border-ink'
+                  : 'border-border text-text hover:bg-ink hover:text-off-white hover:border-ink'
+              }`}
+            >
+              {pub.label}
             </Link>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <Section className="bg-bg">
+          <FadeIn>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-3">Votre établissement prend le virage IA ?</h2>
+                <p className="text-muted max-w-xl">
+                  Discutons de vos besoins pédagogiques et construisons ensemble un programme adapté à vos élèves et enseignants.
+                </p>
+              </div>
+              <Link href="/contact?subject=education">
+                <Button variant="primary" size="lg" className="bg-ink hover:bg-accent-green">
+                  Nous contacter ➔
+                </Button>
+              </Link>
+            </div>
           </FadeIn>
         </Section>
       </main>

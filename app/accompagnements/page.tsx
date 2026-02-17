@@ -138,7 +138,7 @@ export default function AccompanimentsPage() {
                         <h3 className="font-serif text-lg font-bold mb-3 text-[#264653]">{item.title}</h3>
                         <p className="text-sm text-text-muted flex-grow">{item.description}</p>
                         <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity text-[#264653]">
-                          →
+                          ➔
                         </div>
                       </div>
                     </Link>
@@ -185,7 +185,7 @@ export default function AccompanimentsPage() {
               </p>
               <Link href="/contact">
                 <button className="px-8 py-4 bg-[#0d0e0f] text-white font-semibold rounded-lg hover:bg-[#BF4D43] transition-colors">
-                  Nous contacter →
+                  Nous contacter ➔
                 </button>
               </Link>
             </div>
