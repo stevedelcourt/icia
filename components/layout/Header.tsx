@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button'
 
 const accompagnements = [
   { label: 'Les programmes', href: '/accompagnements' },
-  { label: 'Citoyens', href: '/accompagnements/citoyen' },
+  { label: 'Citoyens', href: '/accompagnements/citoyens' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
   { label: 'Écoles et Universités', href: '/accompagnements/education' },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
@@ -37,6 +37,23 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
   )
 }
 
+const menuVariants = {
+  closed: {},
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.1 }
+  }
+}
+
+const itemVariants = {
+  closed: { opacity: 0, x: 20 },
+  open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeOut' } }
+}
+
+const subItemVariants = {
+  closed: { opacity: 0, x: 20 },
+  open: { opacity: 1, x: 0, transition: { duration: 0.2, ease: 'easeOut' } }
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -44,29 +61,39 @@ export function Header() {
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('a-propos')
   const [useMobileMenu, setUseMobileMenu] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const logoRef = useRef<HTMLDivElement>(null)
-  const navRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     const checkSpacing = () => {
-      if (logoRef.current && navRef.current) {
-        const logoRect = logoRef.current.getBoundingClientRect()
-        const navRect = navRef.current.getBoundingClientRect()
+      const header = headerRef.current
+      if (!header) return
+      
+      const logo = header.querySelector('[data-logo]') as HTMLElement
+      const firstNavItem = header.querySelector('[data-nav-first]') as HTMLElement
+      
+      if (logo && firstNavItem) {
+        const logoRect = logo.getBoundingClientRect()
+        const navRect = firstNavItem.getBoundingClientRect()
         const distance = navRect.left - logoRect.right
         setUseMobileMenu(distance < 100)
       }
     }
+    
     checkSpacing()
+    const timeoutId = setTimeout(checkSpacing, 100)
     window.addEventListener('resize', checkSpacing)
-    return () => window.removeEventListener('resize', checkSpacing)
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener('resize', checkSpacing)
+    }
   }, [])
 
   useEffect(() => {
-    if (!useMobileMenu) {
+    if (!useMobileMenu && isMobileMenuOpen) {
       setIsMobileMenuOpen(false)
     }
-  }, [useMobileMenu])
+  }, [useMobileMenu, isMobileMenuOpen])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,23 +117,36 @@ export function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
+
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
 
   return (
     <header 
+      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 bg-bg border-b border-border transition-all duration-300 ${
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
       <div className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <div ref={logoRef} className="flex-shrink-0">
+        <div data-logo className="flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
 
-        <nav ref={navRef} className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
-          {navItems.map((item) => (
+        <nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
+          {navItems.map((item, index) => (
             <div 
               key={item.href} 
+              data-nav-first={index === 0 ? 'true' : undefined}
               className="relative"
               onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.href)}
               onMouseLeave={() => item.hasDropdown && setOpenDropdown(null)}
@@ -176,7 +216,7 @@ export function Header() {
         </div>
 
         <button
-          className={`${useMobileMenu ? 'block' : 'hidden'} p-2`}
+          className={`${useMobileMenu ? 'block' : 'hidden'} p-2 relative z-[110]`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
@@ -215,72 +255,125 @@ export function Header() {
                 </svg>
               </button>
 
-              <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</p>
+              <motion.div 
+                className="space-y-1"
+                variants={menuVariants}
+                initial="closed"
+                animate="open"
+              >
+                <motion.p variants={itemVariants} className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</motion.p>
                 
-                {/* À propos submenu */}
-                <button 
-                  onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'a-propos' ? '' : 'a-propos')}
-                  className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
-                >
-                  À propos de l'institut IA
-                  <svg className={`w-6 h-6 transform transition-transform ${mobileOpenSubmenu === 'a-propos' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {mobileOpenSubmenu === 'a-propos' && (
-                  <div className="pl-4 space-y-2">
-                    {aProposItems.map((item) => (
-                      <Link 
-                        key={item.href} 
-                        href={item.href} 
-                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                <motion.div variants={itemVariants}>
+                  <button 
+                    onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'a-propos' ? '' : 'a-propos')}
+                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                  >
+                    À propos de l'institut IA
+                    <motion.svg 
+                      className="w-6 h-6" 
+                      animate={{ rotate: mobileOpenSubmenu === 'a-propos' ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </button>
+                  <AnimatePresence>
+                    {mobileOpenSubmenu === 'a-propos' && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="pl-4 space-y-2 overflow-hidden"
                       >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                  )}
+                        {aProposItems.map((item, i) => (
+                          <motion.div
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.05 }}
+                          >
+                            <Link 
+                              href={item.href} 
+                              className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {item.label}
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-                {/* Accompagnements submenu */}
-                <button 
-                  onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'accompagnements' ? '' : 'accompagnements')}
-                  className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
-                >
-                  Accompagnements
-                  <svg className={`w-6 h-6 transform transition-transform ${mobileOpenSubmenu === 'accompagnements' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {mobileOpenSubmenu === 'accompagnements' && (
-                  <div className="pl-4 space-y-2">
-                    {accompagnements.map((item) => (
-                      <Link 
-                        key={item.href} 
-                        href={item.href} 
-                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                <motion.div variants={itemVariants}>
+                  <button 
+                    onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'accompagnements' ? '' : 'accompagnements')}
+                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                  >
+                    Accompagnements
+                    <motion.svg 
+                      className="w-6 h-6" 
+                      animate={{ rotate: mobileOpenSubmenu === 'accompagnements' ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </button>
+                  <AnimatePresence>
+                    {mobileOpenSubmenu === 'accompagnements' && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="pl-4 space-y-2 overflow-hidden"
                       >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                        {accompagnements.map((item, i) => (
+                          <motion.div
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.05 }}
+                          >
+                            <Link 
+                              href={item.href} 
+                              className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {item.label}
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  Actualités
-                </Link>
-              </div>
+                <motion.div variants={itemVariants}>
+                  <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
+                    Actualités
+                  </Link>
+                </motion.div>
 
-              <Link href="/contact" className="mt-8 block">
-                <button 
-                  className="w-full py-4 text-xl font-bold text-white rounded-lg"
-                  style={{ backgroundColor: '#BF4D43' }}
-                >
-                  Nous contacter
-                </button>
-              </Link>
+                <motion.div variants={itemVariants} className="pt-8">
+                  <Link href="/contact" className="block">
+                    <button 
+                      className="w-full py-4 text-xl font-bold text-white rounded-lg"
+                      style={{ backgroundColor: '#BF4D43' }}
+                    >
+                      Nous contacter
+                    </button>
+                  </Link>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
         )}
