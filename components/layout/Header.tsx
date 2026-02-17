@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 
 const accompagnements = [
@@ -37,21 +37,21 @@ function Logo({ isScrolled }: { isScrolled: boolean }) {
   )
 }
 
-const menuVariants = {
+const menuVariants: Variants = {
   closed: {},
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.1 }
   }
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   closed: { opacity: 0, x: 20 },
-  open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeOut' } }
+  open: { opacity: 1, x: 0, transition: { duration: 0.3 } }
 }
 
-const subItemVariants = {
+const subItemVariants: Variants = {
   closed: { opacity: 0, x: 20 },
-  open: { opacity: 1, x: 0, transition: { duration: 0.2, ease: 'easeOut' } }
+  open: { opacity: 1, x: 0, transition: { duration: 0.2 } }
 }
 
 export function Header() {
