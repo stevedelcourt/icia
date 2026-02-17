@@ -49,11 +49,6 @@ const itemVariants: Variants = {
   open: { opacity: 1, x: 0, transition: { duration: 0.3 } }
 }
 
-const subItemVariants: Variants = {
-  closed: { opacity: 0, x: 20 },
-  open: { opacity: 1, x: 0, transition: { duration: 0.2 } }
-}
-
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -61,39 +56,37 @@ export function Header() {
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('a-propos')
   const [useMobileMenu, setUseMobileMenu] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const headerRef = useRef<HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     const checkSpacing = () => {
-      const header = headerRef.current
-      if (!header) return
+      const container = containerRef.current
+      if (!container) return
       
-      const logo = header.querySelector('[data-logo]') as HTMLElement
-      const firstNavItem = header.querySelector('[data-nav-first]') as HTMLElement
+      const logo = container.querySelector('[data-logo]') as HTMLElement
+      const nav = container.querySelector('[data-nav]') as HTMLElement
+      const button = container.querySelector('[data-button]') as HTMLElement
       
-      if (logo && firstNavItem) {
+      if (logo && nav && button) {
         const logoRect = logo.getBoundingClientRect()
-        const navRect = firstNavItem.getBoundingClientRect()
-        const distance = navRect.left - logoRect.right
-        setUseMobileMenu(distance < 100)
+        const buttonRect = button.getBoundingClientRect()
+        const availableSpace = buttonRect.left - logoRect.right
+        const neededSpace = 500
+        setUseMobileMenu(availableSpace < neededSpace)
       }
     }
     
     checkSpacing()
-    const timeoutId = setTimeout(checkSpacing, 100)
     window.addEventListener('resize', checkSpacing)
-    return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener('resize', checkSpacing)
-    }
+    return () => window.removeEventListener('resize', checkSpacing)
   }, [])
 
   useEffect(() => {
-    if (!useMobileMenu && isMobileMenuOpen) {
+    if (!useMobileMenu) {
       setIsMobileMenuOpen(false)
     }
-  }, [useMobileMenu, isMobileMenuOpen])
+  }, [useMobileMenu])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,21 +125,19 @@ export function Header() {
 
   return (
     <header 
-      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 bg-bg border-b border-border transition-all duration-300 ${
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
+      <div ref={containerRef} className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
         <div data-logo className="flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
 
-        <nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
-          {navItems.map((item, index) => (
+        <nav data-nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
+          {navItems.map((item) => (
             <div 
               key={item.href} 
-              data-nav-first={index === 0 ? 'true' : undefined}
               className="relative"
               onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.href)}
               onMouseLeave={() => item.hasDropdown && setOpenDropdown(null)}
@@ -207,7 +198,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className={`${useMobileMenu ? 'hidden' : 'block'}`}>
+        <div data-button className={`${useMobileMenu ? 'hidden' : 'block'}`}>
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
