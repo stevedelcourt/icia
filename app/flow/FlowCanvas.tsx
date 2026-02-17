@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -70,8 +70,8 @@ float snoise(vec3 v) {
   vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
   vec4 x_ = floor(j * ns.z);
   vec4 y_ = floor(j - 7.0 * x_);
-  vec4 x = x_ *ns.x + ns.yyyy;
-  vec4 y = y_ *ns.x + ns.yyyy;
+  vec4 x = x_ * ns.x + ns.yyyy;
+  vec4 y = y_ * ns.x + ns.yyyy;
   vec4 h = 1.0 - abs(x) - abs(y);
   vec4 b0 = vec4(x.xy, y.xy);
   vec4 b1 = vec4(x.zw, y.zw);
@@ -102,9 +102,7 @@ vec3 curl(vec3 p) {
   float n4 = snoise(p + vec3(0.0, 0.0, e)) - snoise(p + vec3(0.0, 0.0, -e));
   float n5 = snoise(p + vec3(e, 0.0, 0.0)) - snoise(p + vec3(-e, 0.0, 0.0));
   float n6 = snoise(p + vec3(0.0, e, 0.0)) - snoise(p + vec3(0.0, -e, 0.0));
-  vec3 c = vec3(n1 - n2, n3 - n4, n5 - n6);
-  float len = length(c);
-  return len > 0.0 ? c / len : vec3(0.0);
+  return vec3(n1 - n2, n3 - n4, n5 - n6) / (2.0 * e);
 }
 
 void main() {
@@ -162,6 +160,8 @@ export default function FlowCanvas() {
     containerRef.current.appendChild(renderer.domElement)
     
     const scene = new THREE.Scene()
+    scene.background = new THREE.Color('#181820')
+    
     const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 100)
     camera.position.z = 6
     
@@ -229,7 +229,6 @@ export default function FlowCanvas() {
     const points = new THREE.Points(particlesGeometry, renderMaterial)
     scene.add(points)
     
-    let time = 0
     let currentFocus = settings.focus
     let currentFov = settings.fov
     let currentBlur = (5.6 - settings.aperture) * 9
@@ -251,7 +250,9 @@ export default function FlowCanvas() {
       const now = performance.now()
       const delta = (now - lastTime) / 1000
       lastTime = now
-      time += delta
+      
+      const time = simMaterial.uniforms.uTime.value + delta * settings.speed
+      simMaterial.uniforms.uTime.value = time
       
       renderer.setRenderTarget(target)
       renderer.clear()
@@ -263,8 +264,6 @@ export default function FlowCanvas() {
       renderMaterial.uniforms.uFocus.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFocus.value, currentFocus, 0.1)
       renderMaterial.uniforms.uFov.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFov.value, currentFov, 0.1)
       renderMaterial.uniforms.uBlur.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uBlur.value, currentBlur, 0.1)
-      
-      simMaterial.uniforms.uTime.value = time * settings.speed
       simMaterial.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simMaterial.uniforms.uCurlFreq.value, currentCurl, 0.1)
       
       controls.update()
