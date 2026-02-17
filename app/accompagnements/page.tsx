@@ -52,11 +52,19 @@ const processSteps = [
 ]
 
 const colorMap: Record<string, string> = {
-  orange: '#e84b1a',
-  blue: '#2a6fff',
-  green: '#2a9e62',
-  purple: '#7c4dff',
-  teal: '#008b8b',
+  orange: '#264653',
+  blue: '#264653',
+  green: '#264653',
+  purple: '#264653',
+  teal: '#264653',
+}
+
+const bgColorMap: Record<string, string> = {
+  orange: '#f8f6f2',
+  blue: '#f4f6f7',
+  green: '#f6f8f4',
+  purple: '#f8f6f9',
+  teal: '#f5f8f8',
 }
 
 export default function AccompanimentsPage() {
@@ -116,24 +124,20 @@ export default function AccompanimentsPage() {
           
           <div className="max-w-6xl mx-auto">
             <Stagger>
-              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-border">
+              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {publics.map((item) => (
                   <StaggerItem key={item.title}>
                     <Link href={item.href} className="block group h-full">
-                      <div className="p-6 bg-white hover:bg-[#f4f1eb] transition-colors h-full flex flex-col relative overflow-hidden">
-                        <div 
-                          className="absolute top-0 left-0 right-0 h-1" 
-                          style={{ backgroundColor: colorMap[item.color] }}
-                        />
-                        <span 
-                          className="text-xs font-bold uppercase tracking-widest mb-3"
-                          style={{ color: colorMap[item.color] }}
-                        >
+                      <div 
+                        className="p-6 bg-white border border-border hover:border-[#264653] hover:shadow-lg transition-all h-full flex flex-col"
+                        style={{ backgroundColor: bgColorMap[item.color] }}
+                      >
+                        <span className="text-xs font-bold uppercase tracking-widest mb-3 text-[#BF4D43]">
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-lg font-bold mb-3">{item.title}</h3>
+                        <h3 className="font-serif text-lg font-bold mb-3 text-[#264653]">{item.title}</h3>
                         <p className="text-sm text-text-muted flex-grow">{item.description}</p>
-                        <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: colorMap[item.color] }}>
+                        <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity text-[#264653]">
                           →
                         </div>
                       </div>
@@ -149,17 +153,17 @@ export default function AccompanimentsPage() {
         <Section className="py-20 bg-[#f4f1eb]">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-4 gap-12">
-                <div>
+              <div className="grid lg:grid-cols-5 gap-12">
+                <div className="lg:col-span-2">
                   <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Notre processus</p>
-                  <h2 className="font-serif text-3xl md:text-4xl">Un accompagnement structure en 4 temps</h2>
-                  <p className="text-text-muted mt-4 leading-relaxed">
+                  <h2 className="font-serif text-3xl md:text-4xl mb-4">Un accompagnement structure en 4 temps</h2>
+                  <p className="text-text-muted leading-relaxed">
                     Chaque programme demarre par une phase de diagnostic pour calibrer l'accompagnement au plus pres de vos besoins reels.
                   </p>
                 </div>
-                <div className="lg:col-span-3 grid sm:grid-cols-2 gap-px bg-border">
+                <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
                   {processSteps.map((step) => (
-                    <div key={step.num} className="p-6 bg-white">
+                    <div key={step.num} className="p-6 bg-white border border-border">
                       <span className="text-xs font-bold text-[#BF4D43] mb-2 block">{step.num}</span>
                       <h4 className="font-bold mb-2">{step.title}</h4>
                       <p className="text-sm text-text-muted">{step.description}</p>
