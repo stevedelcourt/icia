@@ -126,12 +126,12 @@ export default function FlowCanvas() {
     if (!containerRef.current) return
     
     const settings = {
-      focus: 6.26,
-      speed: 18.2,
+      focus: 5.16,
+      speed: 8.1,
       size: 2.5,
-      strength: 0.35,
+      strength: 0.19,
       frequency: 1.2,
-      aperture: 1.8,
+      aperture: 3.1,
       fov: 20
     }
     
