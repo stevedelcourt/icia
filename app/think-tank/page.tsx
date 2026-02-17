@@ -1,56 +1,50 @@
-import Link from 'next/link'
+'use client'
+
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
+import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import Link from 'next/link'
 
-const themes = [
-  {
-    title: 'Régulation et gouvernance',
-    description: 'Analyser les cadres réglementaires, proposer une gouvernance éthique et démocrat',
-    items: [
-      'Éthique et régulation de l\'IA',
-      'Méthodologie d\'étude d\'impact',
-      'Gouvernance des systèmes IA',
-    ]
+const axes = [
+  { 
+    num: '01', 
+    title: 'Régulation et gouvernance', 
+    description: 'Analyser les cadres réglementaires, proposer une gouvernance éthique et démocratique de l\'IA en France et en Europe.',
+    tags: ['Éthique et régulation', 'Étude d\'impact', 'Gouvernance des systèmes IA']
   },
-  {
-    title: 'Impacts socio-économiques',
-    description: 'Comprendre les transformations du marché du travail et les enjeux économiques',
-    items: [
-      'Emploi et transformation des compétences',
-      'Métiers proofs à l\'IA',
-      'Redistribution de la valeur économique',
-    ]
+  { 
+    num: '02', 
+    title: 'Impacts socio-économiques', 
+    description: 'Comprendre les transformations du marché du travail et les enjeux économiques liés à la généralisation de l\'IA.',
+    tags: ['Emploi et compétences', 'Métiers proofs à l\'IA', 'Redistribution de la valeur']
   },
-  {
-    title: 'Usages sectoriels',
-    description: 'Analyser les applications de l\'IA dans chaque secteur d\'activité',
-    items: [
-      'Industries créatives',
-      'Services publics',
-      'Éducation et formation',
-      'Santé',
-    ]
+  { 
+    num: '03', 
+    title: 'Usages sectoriels', 
+    description: 'Analyser les applications concrètes de l\'IA dans chaque secteur d\'activité et leurs implications spécifiques.',
+    tags: ['Industries créatives', 'Services publics', 'Éducation', 'Santé']
   },
-  {
-    title: 'IA et société',
-    description: 'Examiner les implications de l\'IA sur le tissu social et démocratique',
-    items: [
-      'Débat public et participation',
-      'Désinformation et fake news',
-      'Implications démocratiques',
-      'Évolution culturelle',
-    ]
+  { 
+    num: '04', 
+    title: 'IA et société', 
+    description: 'Examiner les implications de l\'IA sur le tissu social, la démocratie et la culture à l\'ère de l\'information automatisée.',
+    tags: ['Débat public', 'Désinformation', 'Implications démocratiques', 'Évolution culturelle']
   },
 ]
 
-const outputs = [
-  { title: 'Notes de recherche', frequency: 'Bimestriel', description: 'Analyses courtes sur l\'actualit\u00e9 de l\'IA' },
-  { title: 'Livres blancs', frequency: 'Trimestriel', description: 'Études approfondies sur des thématiques clés' },
-  { title: 'Rapports', frequency: 'Semestriel', description: 'Bilans et recommandations pour les décideurs' },
-  { title: 'Conférences publiques', frequency: 'Régulier', description: 'Événements de diffusion vers le grand public' },
+const formats = [
+  { freq: 'Bimestriel', title: 'Notes de recherche', description: 'Analyses courtes et réactives sur l\'actualite de l\'IA pour nourir le debat en temps reel.' },
+  { freq: 'Trimestriel', title: 'Livres blancs', description: 'Etudes approfondies sur des thématiques cles, avec recommandations a destination des decideurs.' },
+  { freq: 'Semestriel', title: 'Rapports', description: 'Bilans complets et recommandations strategiques pour les pouvoirs publics et les organisations.' },
+  { freq: 'Regulier', title: 'Conferences publiques', description: 'Evenements de diffusion et de debat vers le grand public, les entreprises et les institutions.' },
+]
+
+const steps = [
+  { num: '01', title: 'Observation et veille', description: 'Suivi continu des evolutions technologiques, réglementaires et sociales liees a l\'IA en France, en Europe et dans le monde.' },
+  { num: '02', title: 'Analyse pluridisciplinaire', description: 'Mobilisation d\'experts issus de l\'economie, du droit, des sciences sociales et de la technique pour croiser les regards.' },
+  { num: '03', title: 'Consultation des parties prenantes', description: 'Dialogue avec les acteurs concernes : entreprises, associations, collectivites, citoyens, pour ancrer les analyses dans la realite.' },
+  { num: '04', title: 'Diffusion et impact', description: 'Publication des travaux en acces ouvert et organisation d\'evenements pour maximiser l\'impact des recommandations.' },
 ]
 
 export default function ThinkTankPage() {
@@ -58,93 +52,142 @@ export default function ThinkTankPage() {
     <>
       <Header />
       <main id="main-content">
-        <Section className="pt-32 pb-12">
+        {/* Hero */}
+        <Section className="pt-32 pb-12 min-h-[80vh]" style={{ backgroundColor: '#0d0e0f' }}>
           <FadeIn>
-            <div className="max-w-3xl">
-              <h1 className="font-serif text-h1 mb-6">
-                <TextReveal delay={0.1}>Think Tank IA :</TextReveal>
-                <br />
-                <TextReveal delay={0.2}>observer, analyser, proposer</TextReveal>
-              </h1>
-              <ScaleIn delay={0.4}>
-                <p className="text-body text-text-muted">
-                  Le Think Tank de l'ICIA est un lieu de réflexion indépendante sur les enjeux 
-                  de l'intelligence artificielle. Nous produisons des analyses rigoureuses, 
-                  accompagnons les décideurs et partecipons au débat public.
-                </p>
-              </ScaleIn>
+            <div className="max-w-6xl mx-auto">
+              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Think Tank IA</p>
+              <div className="grid lg:grid-cols-2 gap-12 items-end">
+                <div>
+                  <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
+                    Observer.<br />
+                    Analyser.<br />
+                    Proposer.
+                  </h1>
+                </div>
+                <div className="text-white/60">
+                  <p className="text-lg mb-6 leading-relaxed">
+                    Le Think Tank de l'ICIA est un lieu de réflexion indépendante sur les enjeux de l'intelligence artificielle. Nous produisons des analyses rigoureuses, accompagnons les décideurs et participons au débat public.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Regulation</span>
+                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Impacts socio-eco</span>
+                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">Usages sectoriels</span>
+                    <span className="px-3 py-1 border border-white/20 text-white/60 text-sm">IA & Societe</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </Section>
-        
-        <Section className="py-0">
-          <div className="w-full">
-            <img src="/images/think.webp" alt="THINK" className="w-full h-auto md:aspect-[16/9] aspect-[1/1] object-cover" />
+
+        {/* Axes de recherche */}
+        <Section className="py-20 bg-white">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Axes de recherche</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Quatre axes<br />de reflexion</h2>
+              <p className="text-text-muted leading-relaxed">
+                Des travaux pluridisciplinaires pour comprendre, anticiper et orienter les transformations induites par l'intelligence artificielle sur le plan economique, social et democratique.
+              </p>
+            </div>
+          </FadeIn>
+          
+          <div className="max-w-5xl mx-auto">
+            <Stagger>
+              <div className="grid md:grid-cols-2 gap-px bg-border">
+                {axes.map((axe) => (
+                  <StaggerItem key={axe.num}>
+                    <div className="p-8 bg-white hover:bg-[#f4f1eb] transition-colors relative">
+                      <p className="absolute top-8 right-8 text-6xl font-bold text-[#0d0e0f]/5">{axe.num}</p>
+                      <h3 className="font-serif text-xl font-bold mb-3">{axe.title}</h3>
+                      <p className="text-sm text-text-muted mb-4">{axe.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {axe.tags.map((tag) => (
+                          <span key={tag} className="px-2 py-1 bg-[#f4f1eb] text-xs">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </Stagger>
           </div>
         </Section>
 
-        <Section className="py-12 border-t border-border">
+        {/* Formats de publication */}
+        <Section className="py-20 bg-[#f4f1eb]">
           <FadeIn>
-            <h2 className="font-serif text-h2 mb-8 text-center">Nos quatre axes de recherche</h2>
-          </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-2 gap-6">
-              {themes.map((theme) => (
-                <StaggerItem key={theme.title}>
-                  <article className="p-8 border border-border bg-white hover:bg-[#e3dacc] rounded-xl transition-colors">
-                    <h3 className="font-serif text-h3 mb-3">{theme.title}</h3>
-                    <p className="text-text-muted mb-4">{theme.description}</p>
-                    <ul className="space-y-1">
-                      {theme.items.map((item) => (
-                        <li key={item} className="text-sm text-text-muted flex items-center gap-2">
-                          <span className="w-1 h-1 bg-accent rounded-full"></span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                </StaggerItem>
-              ))}
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Formats de publication</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-4">De la note courte<br />au rapport de fond</h2>
             </div>
-          </Stagger>
-        </Section>
-        
-        <Section className="py-12 bg-white border-y border-border">
-          <FadeIn>
-            <h2 className="font-serif text-h2 mb-8 text-center">Nos formats de publication</h2>
           </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {outputs.map((output) => (
-                <StaggerItem key={output.title}>
-                  <div className="p-6 border border-border rounded-xl">
-                    <p className="text-xs text-accent mb-2">{output.frequency}</p>
-                    <h3 className="font-serif text-h3 mb-2">{output.title}</h3>
-                    <p className="text-sm text-text-muted">{output.description}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </div>
-          </Stagger>
+          
+          <div className="max-w-5xl mx-auto">
+            <Stagger>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {formats.map((format) => (
+                  <StaggerItem key={format.title}>
+                    <div className="p-6 bg-white border border-border hover:shadow-lg transition-shadow relative">
+                      <p className="text-xs font-bold text-[#BF4D43] uppercase tracking-widest mb-3 pb-2 border-b border-[#BF4D43]">{format.freq}</p>
+                      <h3 className="font-serif text-lg font-bold mb-2">{format.title}</h3>
+                      <p className="text-sm text-text-muted">{format.description}</p>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </Stagger>
+          </div>
         </Section>
-        
-        <Section className="py-12">
+
+        {/* Méthodologie */}
+        <Section className="py-20 bg-[#e8e3d9]">
           <FadeIn>
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-h2 mb-4">Participez aux travaux</h2>
-              <p className="text-text-muted mb-8">
-                Le Think Tank ICIA est ouvert aux contributions. Rejoignez nos groupes de travail, 
-                participez à nos événements ou soumettez vos propositions de recherche.
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-12">
+                <div>
+                  <p className="text-sm font-medium text-[#BF4D43] uppercase tracking-widest mb-4">Notre méthodologie</p>
+                  <h2 className="font-serif text-3xl md:text-4xl">Une recherche rigoureuse et independante</h2>
+                  <p className="text-text-muted mt-4 leading-relaxed">
+                    Le Think Tank ICIA s'appuie sur une communaute d'experts, de chercheurs et de praticiens pour produire des travaux de qualite, accessibles et actionnables.
+                  </p>
+                </div>
+                <div className="lg:col-span-2">
+                  {steps.map((step, index) => (
+                    <div key={step.num} className="flex gap-6 py-5 border-b border-border/50 last:border-0">
+                      <span className="text-xs font-bold text-[#BF4D43]">{step.num}</span>
+                      <div>
+                        <h4 className="font-bold mb-1">{step.title}</h4>
+                        <p className="text-sm text-text-muted">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </Section>
+
+        {/* CTA */}
+        <Section className="py-20" style={{ backgroundColor: '#0d0e0f' }}>
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">Participez aux travaux du Think Tank</h2>
+              <p className="text-white/60 mb-8 max-w-xl mx-auto">
+                Rejoignez nos groupes de travail, participez a nos evenements ou soumettez vos propositions de recherche. Le Think Tank ICIA est ouvert aux contributions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact?subject=partnership">
-                  <Button variant="primary">
-                    Participer aux travaux
-                  </Button>
+                  <button className="px-8 py-4 bg-[#f4f1eb] text-[#0d0e0f] font-semibold rounded-lg hover:bg-[#BF4D43] hover:text-white transition-colors">
+                    Rejoindre le Think Tank ➔
+                  </button>
                 </Link>
-                <Button variant="secondary">
-                  S'inscrire à la newsletter
-                </Button>
+                <Link href="#newsletter">
+                  <button className="px-8 py-4 border border-white/30 text-white/60 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+                    S'inscrire a la newsletter
+                  </button>
+                </Link>
               </div>
             </div>
           </FadeIn>
