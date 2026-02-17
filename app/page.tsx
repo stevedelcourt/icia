@@ -71,7 +71,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/accompagnements">
                     <Button variant="primary" size="lg">
-                      Découvrir nos accompagnements
+                      Nos programmes
                     </Button>
                   </Link>
                   <Link href="/contact">

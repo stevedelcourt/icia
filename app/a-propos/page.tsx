@@ -20,7 +20,7 @@ const modelCards = [
 ]
 
 const colorMap: Record<string, string> = {
-  'accent': '#CC785C',
+  'accent': '#BF4D43',
   'accent-blue': '#61AAF2',
   'accent-green': '#2a9e62',
   'accent-purple': '#7c4dff',
@@ -28,7 +28,7 @@ const colorMap: Record<string, string> = {
 }
 
 const publicsCards = [
-  { num: '01', subtitle: 'Grand public', title: 'Citoyens et actifs', items: ['Ateliers d\'acculturation (2h à ½ journée)', 'Parcours emploi et reconversion', 'Micro-certifications et badges métiers', 'Passerelles vers la formation qualifiante'], href: '/accompagnements/citoyen', color: 'accent' },
+  { num: '01', subtitle: 'Grand public', title: 'Citoyens et actifs', items: ['Ateliers d\'acculturation (2h à ½ journée)', 'Parcours emploi et reconversion', 'Micro-certifications et badges métiers', 'Passerelles vers la formation qualifiante'], href: '/accompagnements/citoyens', color: 'accent' },
   { num: '02', subtitle: 'Entreprises', title: 'PME, TPE et grandes organisations', items: ['Diagnostic de maturité IA (10 k€)', 'Audit RGPD, PI, sécurité', 'Formations ciblées par métier (5 k€/pers.)', 'Prototypes et POC en 4-6 semaines'], href: '/accompagnements/entreprises', color: 'accent-blue' },
   { num: '03', subtitle: 'Éducation', title: 'Écoles et universités', items: ['Bibliothèque de contenus pédagogiques', 'Experts intervenants pour les cursus', 'Certifications RNCP et micro-certifications', 'Travaux pratiques en laboratoire'], href: '/accompagnements/education', color: 'accent-green' },
   { num: '04', subtitle: 'Industries créatives', title: 'Créateurs et acteurs culturels', items: ['Ateliers IA appliquée (écriture, image, son)', 'Sécurisation juridique (droits d\'auteur, PI)', 'Laboratoire créatif d\'expérimentation', 'Écosystème créateurs / studios / droit'], href: '/accompagnements/secteurs-creatifs', color: 'accent-purple' },
@@ -53,7 +53,7 @@ export default function AProposPage() {
               <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">À propos de l'Institut</p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
                 L'IA ne doit pas être<br />
-                <em className="not-italic font-light">confisquée</em> par quelques-uns.
+                <em className="not-italic font-light text-[#BF4D43]">confisquée</em> par quelques-uns.
               </h1>
               <p className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
                 L'Institut Collectif de l'IA est un projet français, humaniste et ouvert sur le monde. 

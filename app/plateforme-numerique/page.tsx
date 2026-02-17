@@ -1,82 +1,49 @@
-import Link from 'next/link'
+'use client'
+
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
-import { Icon } from '@/components/ui/Icon'
+import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import Link from 'next/link'
 
 const features = [
-  {
-    title: 'Parcours d\'apprentissage',
-    description: 'Des formations structurées et progressives, du niveau débutant à expert.',
-    icon: 'book'
+  { 
+    num: '01', 
+    title: 'Parcours d\'apprentissage', 
+    description: 'Des formations structurees et progressives, du niveau debutant a expert. Chaque parcours est adapte a vos objectifs et votre rythme.',
+    tags: ['Debutant', 'Intermediaire', 'Avance']
   },
-  {
-    title: 'Certifications & Badges',
-    description: 'Validez vos compétences avec des certifications reconnues et des badges numériques.',
-    icon: 'trophy'
+  { 
+    num: '02', 
+    title: 'Certifications & Badges', 
+    description: 'Validez vos competences avec des certifications reconnues et des badges numeriques que vous pouvez partager sur LinkedIn.',
+    tags: ['RNCP', 'Micro-certifications', 'Badges LinkedIn']
   },
-  {
-    title: 'Bibliothèque de ressources',
-    description: 'Accédez à des contenus curationnés : études de cas, templates, outils.',
-    icon: 'library'
+  { 
+    num: '03', 
+    title: 'Bibliotheque de ressources', 
+    description: 'Accedez a des contenus curationnes : etudes de cas, templates, outils et guides pratiques pour aller plus vite.',
+    tags: ['Etudes de cas', 'Templates', 'Outils']
   },
-  {
-    title: 'Communauté & Support',
-    description: 'Échangez avec d\'autres apprenants, posez vos questions aux experts.',
-    icon: 'community'
-  },
-  {
-    title: 'Suivi de progression',
-    description: 'Dashboard personnalisé, achievements, et parcours adaptés à vos objectifs.',
-    icon: 'chart'
+  { 
+    num: '04', 
+    title: 'Communaute & Support', 
+    description: 'Echangez avec d\'autres apprenants, posez vos questions aux experts et benefiez d\'un support personnalise.',
+    tags: ['Forum', 'Sessions live', 'Mentorat']
   },
 ]
 
-const pricing = [
-  {
-    name: 'Gratuit',
-    price: '0€',
-    period: '/an',
-    description: 'Pour découvrir l\'IA',
-    features: [
-      'Accès aux bases',
-      'Premiers modules',
-      'Newsletter',
-    ]
-  },
-  {
-    name: 'Premium',
-    price: '120€',
-    period: '/an',
-    description: 'Pour se former profondément',
-    features: [
-      'Tous les parcours',
-      'Certifications',
-      'Support prioritaire',
-      'Événements exclusifs',
-    ],
-    popular: true
-  },
-  {
-    name: 'Entreprise',
-    price: 'Sur devis',
-    period: '',
-    description: 'Pour les organisations',
-    features: [
-      'Accès illimité',
-      'Gestion des équipes',
-      'Reporting avancé',
-      'Support dédié',
-    ]
-  },
+const formats = [
+  { type: 'Formation', title: 'Cours video', description: 'Des lecons enregistrees avec des experts de l\'IA, accessibles a tout moment.' },
+  { type: 'Pratique', title: 'Ateliers', description: 'Des sessions pratiques pour mettre en application vos connaissances.' },
+  { type: 'Ressource', title: 'E-books', description: 'Des guides complets a telecharger pour approfondir vos connaissances.' },
+  { type: 'Evenement', title: 'Webinaires', description: 'Des sessions en direct avec des intervenants specialises.' },
 ]
 
 const roadmap = [
-  { phase: 'Phase 1', period: 'Q2 2025', content: 'Lancement MVP' },
-  { phase: 'Phase 2', period: 'Q4 2025', content: 'Lancement complet' },
-  { phase: 'Phase 3', period: '2026', content: 'Fonctionnalités avancées' },
+  { phase: 'Phase 1', period: 'Q2 2025', content: 'Lancement MVP - Acces beta ferme', description: 'Premiers parcours et formations de base' },
+  { phase: 'Phase 2', period: 'Q4 2025', content: 'Lancement complet', description: 'Tous les parcours, certifications et communautes' },
+  { phase: 'Phase 3', period: '2026', content: 'Fonctionnalites avancees', description: 'IA personnalisee, analytique avancee et partenariat entreprises' },
 ]
 
 export default function PlateformeNumeriquePage() {
@@ -84,119 +51,232 @@ export default function PlateformeNumeriquePage() {
     <>
       <Header />
       <main id="main-content">
-        <Section className="pt-32 pb-12">
+        {/* Hero */}
+        <Section className="pt-32 pb-12 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
-            <div className="max-w-3xl">
-              <h1 className="font-serif text-h1 mb-6">
-                <TextReveal delay={0.1}>Plateforme numerique :</TextReveal>
-                <br />
-                <TextReveal delay={0.2}>apprendre, se former,</TextReveal>
-                <br />
-                <TextReveal delay={0.3}>progresser</TextReveal>
-              </h1>
-              <ScaleIn delay={0.5}>
-                <p className="text-body text-text-muted">
-                  La plateforme ICIA est votre compagnon pour maitriser l'intelligence artificielle. 
-                  Tout ce qu'il vous faut pour developper vos competences.
-                </p>
-              </ScaleIn>
+            <div className="max-w-6xl mx-auto">
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Plateforme numerique</p>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
+                    Apprendre.<br />
+                    Certifier.<br />
+                    Progresser.
+                  </h1>
+                </div>
+                <div>
+                  <p className="text-xl text-text-muted leading-relaxed mb-8">
+                    La plateforme ICIA est votre compagnon pour maitriser l'intelligence artificielle. Tout ce qu'il vous faut pour developper vos competences, a votre rythme.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Parcours varies</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Certifications</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Communaute</span>
+                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Acces bêta</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </Section>
 
-        <Section className="pb-12">
+        {/* Fonctionnalites */}
+        <Section className="py-20 bg-white">
           <FadeIn>
-            <div className="w-full">
-              <img src="/images/plateforme.webp" alt="Plateforme ICIA" className="w-full h-auto md:aspect-[16/9] aspect-[1/1] object-cover rounded-xl" />
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Fonctionnalites</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Tout ce qu'il vous faut<br />pour progresser</h2>
+              <p className="text-text-muted leading-relaxed">
+                Une plateforme complete pour apprendre, certifier et grandir avec l'IA. Chaque fonctionnalité est penssee pour vous accompagner dans votre parcours.
+              </p>
             </div>
           </FadeIn>
+          
+          <div className="max-w-5xl mx-auto">
+            <Stagger>
+              <div className="grid md:grid-cols-2 gap-6">
+                {features.map((feature) => (
+                  <StaggerItem key={feature.num}>
+                    <div className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
+                      <h3 className="font-serif text-xl font-bold mb-3">{feature.title}</h3>
+                      <p className="text-sm text-text-muted mb-6 flex-grow">{feature.description}</p>
+                      <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
+                        {feature.tags.map((tag) => (
+                          <span key={tag} className="px-2 py-1 bg-ivory-medium text-xs">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </Stagger>
+          </div>
         </Section>
-        
-        <Section className="py-12 border-t border-border">
+
+        {/* Formats de formation */}
+        <Section className="py-20 bg-ivory-medium">
           <FadeIn>
-            <h2 className="font-serif text-h2 mb-8 text-center">Fonctionnalités clés</h2>
-          </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature) => (
-                <StaggerItem key={feature.title}>
-                  <div className="h-full p-6 border border-border bg-white rounded-xl flex flex-col">
-                    <div className="w-10 h-10 mb-3 text-black"><Icon name={feature.icon} className="w-full h-full" /></div>
-                    <h3 className="font-serif text-h3 mb-2">{feature.title}</h3>
-                    <p className="text-sm text-text-muted flex-grow">{feature.description}</p>
-                  </div>
-                </StaggerItem>
-              ))}
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Formats</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-4">Apprenez<br />comme vous voulez</h2>
             </div>
-          </Stagger>
-        </Section>
-        
-        <Section className="py-12 bg-white border-y border-border">
-          <FadeIn>
-            <h2 className="font-serif text-h2 mb-8 text-center">Offres et tarifs</h2>
           </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {pricing.map((tier) => (
-                <StaggerItem key={tier.name}>
-                  <div className={`h-full p-8 border ${tier.popular ? 'border-accent bg-bg' : 'border-border bg-white'} hover:shadow-lg transition-shadow flex flex-col`}>
-                    {tier.popular && (
-                      <p className="text-xs text-accent mb-2">Le plus populaire</p>
-                    )}
-                    <h3 className="font-serif text-h3 mb-1">{tier.name}</h3>
-                    <p className="text-2xl font-serif mb-1">{tier.price}<span className="text-sm text-text-muted">{tier.period}</span></p>
-                    <p className="text-sm text-text-muted mb-4">{tier.description}</p>
-                    <ul className="space-y-2 mb-6 flex-grow">
-                      {tier.features.map((feature) => (
-                        <li key={feature} className="text-sm text-text-muted flex items-center gap-2">
-                          <span className="text-accent">✓</span>
-                          {feature}
+          
+          <div className="max-w-5xl mx-auto">
+            <Stagger>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {formats.map((format) => (
+                  <StaggerItem key={format.title}>
+                    <div className="p-6 bg-white border border-border hover:shadow-lg transition-shadow relative">
+                      <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 pb-2 border-b border-accent">{format.type}</p>
+                      <h3 className="font-serif text-lg font-bold mb-2">{format.title}</h3>
+                      <p className="text-sm text-text-muted">{format.description}</p>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </Stagger>
+          </div>
+        </Section>
+
+        {/* Tarifs */}
+        <Section className="py-20 bg-ivory-dark">
+          <FadeIn>
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-12">
+                <div>
+                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Tarifs</p>
+                  <h2 className="font-serif text-3xl md:text-4xl">Tarifs simples<br />et transparents</h2>
+                  <p className="text-text-muted mt-4 leading-relaxed">
+                    Choisissez la formule qui correspond a vos besoins. L'acces bêta est gratuit pour tous les testeurs.
+                  </p>
+                </div>
+                <div className="lg:col-span-2">
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="p-6 bg-white border border-border">
+                      <h3 className="font-serif text-lg font-bold mb-2">Gratuit</h3>
+                      <p className="text-2xl font-bold mb-1">0€ <span className="text-sm font-normal text-text-muted">/an</span></p>
+                      <p className="text-xs text-text-muted mb-4">Pour decouvrir l'IA</p>
+                      <ul className="space-y-2 mb-6">
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Acces aux bases
                         </li>
-                      ))}
-                    </ul>
-                    <Button variant={tier.popular ? 'primary' : 'secondary'} className="w-full">
-                      {tier.name === 'Entreprise' ? 'Contactez-nous' : 'Commencer'}
-                    </Button>
-                  </div>
-                </StaggerItem>
-              ))}
-            </div>
-          </Stagger>
-        </Section>
-        
-        <Section className="py-12">
-          <FadeIn>
-            <h2 className="font-serif text-h2 mb-8 text-center">Feuille de route</h2>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <div className="max-w-2xl mx-auto">
-              {roadmap.map((item, index) => (
-                <div key={item.phase} className="flex gap-4 pb-8 last:pb-0">
-                  <div className="flex flex-col items-center">
-                    <div className="w-4 h-4 bg-accent rounded-full"></div>
-                    {index < roadmap.length - 1 && <div className="w-0.5 h-full bg-border mt-2"></div>}
-                  </div>
-                  <div>
-                    <p className="text-sm text-accent mb-1">{item.phase} • {item.period}</p>
-                    <p className="font-medium">{item.content}</p>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Premiers modules
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Newsletter
+                        </li>
+                      </ul>
+                      <Link href="/contact?subject=platform">
+                        <button className="w-full px-4 py-2 border border-slate-dark text-slate-dark font-medium rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
+                          Commencer
+                        </button>
+                      </Link>
+                    </div>
+                    
+                    <div className="p-6 bg-white border-2 border-accent relative">
+                      <h3 className="font-serif text-lg font-bold mb-2">Premium</h3>
+                      <p className="text-2xl font-bold mb-1">120€ <span className="text-sm font-normal text-text-muted">/an</span></p>
+                      <p className="text-xs text-text-muted mb-4">Pour se former profondement</p>
+                      <ul className="space-y-2 mb-6">
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Tous les parcours
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Certifications
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Support prioritaire
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Evenements exclusifs
+                        </li>
+                      </ul>
+                      <Link href="/contact?subject=platform">
+                        <button className="w-full px-4 py-2 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors">
+                          Commencer
+                        </button>
+                      </Link>
+                    </div>
+                    
+                    <div className="p-6 bg-white border border-border">
+                      <h3 className="font-serif text-lg font-bold mb-2">Entreprise</h3>
+                      <p className="text-2xl font-bold mb-1">Sur devis</p>
+                      <p className="text-xs text-text-muted mb-4">Pour les organisations</p>
+                      <ul className="space-y-2 mb-6">
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Acces illimite
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Gestion des equipes
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Reporting avance
+                        </li>
+                        <li className="text-sm flex items-start gap-2">
+                          <span className="text-accent">✓</span> Support dedie
+                        </li>
+                      </ul>
+                      <Link href="/contact?subject=platform">
+                        <button className="w-full px-4 py-2 border border-slate-dark text-slate-dark font-medium rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
+                          Contact
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </FadeIn>
         </Section>
-        
-        <Section className="py-12 bg-bg border-y border-border text-center">
+
+        {/* Roadmap */}
+        <Section className="py-20 bg-white">
           <FadeIn>
-            <h2 className="font-serif text-h2 mb-6">Essayez gratuitement</h2>
-            <p className="text-text-muted mb-8 max-w-xl mx-auto">
-              Rejoignez la bêta et accédez dès maintenant aux ressources de l'ICIA.
-            </p>
-            <Link href="/contact?subject=platform">
-              <Button variant="primary" size="lg">
-                S'inscrire à la bêta
-              </Button>
-            </Link>
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Calendrier</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Feuille de route</h2>
+              <p className="text-text-muted leading-relaxed">
+                La plateforme ICIA evolue constamment. Voici les prochaines etapes de son developpement.
+              </p>
+            </div>
+          </FadeIn>
+          
+          <div className="max-w-3xl mx-auto">
+            {roadmap.map((item, index) => (
+              <div key={item.phase} className="flex gap-6 py-5 border-b border-border/50 last:border-0">
+                <span className="text-xs font-bold text-accent">{item.phase}</span>
+                <div>
+                  <h4 className="font-bold mb-1">{item.content}</h4>
+                  <p className="text-sm text-text-muted">{item.period} — {item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* CTA */}
+        <Section className="py-20 bg-ivory-dark">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Essayez gratuitement</h2>
+              <p className="text-text-muted mb-8 max-w-xl mx-auto">
+                Rejoignez la bêta et accédez des maintenant aux ressources de l'ICIA. Sans engagement, sans carte bancaire.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact?subject=platform">
+                  <button className="px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-colors">
+                    Demander l'acces beta
+                  </button>
+                </Link>
+                <Link href="/a-propos">
+                  <button className="px-8 py-4 border-2 border-slate-dark text-slate-dark font-semibold rounded-lg hover:bg-slate-dark hover:text-white transition-colors">
+                    En savoir plus
+                  </button>
+                </Link>
+              </div>
+            </div>
           </FadeIn>
         </Section>
       </main>

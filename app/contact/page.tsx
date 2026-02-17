@@ -125,7 +125,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium mb-2">Nom et prenom *</label>
+                  <label htmlFor="firstName" className="block text-sm font-medium mb-2">Nom et prénom *</label>
                   <input 
                     type="text" 
                     id="firstName" 
@@ -146,7 +146,7 @@ export default function ContactPage() {
                     name="organization"
                     value={formData.organization}
                     onChange={handleChange}
-                    placeholder="Nom de votre entreprise, ecole, collectivite..."
+                    placeholder="Nom de votre entreprise, école, collectivité..."
                     className="w-full px-4 py-3 border border-border bg-white focus:border-accent outline-none transition-colors"
                   />
                 </div>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Telephone (facultatif)</label>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Téléphone (facultatif)</label>
                   <input 
                     type="tel" 
                     id="phone" 
@@ -181,7 +181,7 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="profile" className="block text-sm font-medium mb-2">Vous etes *</label>
+                <label htmlFor="profile" className="block text-sm font-medium mb-2">Vous êtes *</label>
                 <select 
                   id="profile" 
                   name="profile"
@@ -190,12 +190,12 @@ export default function ContactPage() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-border bg-white focus:border-accent outline-none transition-colors"
                 >
-                  <option value="">Selectionner...</option>
+                  <option value="">Sélectionner...</option>
                   <option value="citoyen">Citoyen / en recherche d'emploi</option>
                   <option value="entreprise">Entreprise</option>
-                  <option value="education">Ecole / universite / organisme de formation</option>
-                  <option value="creatif">Acteur ou actrice des secteurs creatifs</option>
-                  <option value="public">Collectivite / service public</option>
+                  <option value="education">École / université / organisme de formation</option>
+                  <option value="creatif">Acteur ou actrice des secteurs créatifs</option>
+                  <option value="public">Collectivité / service public</option>
                   <option value="autre">Autre</option>
                 </select>
               </div>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-border bg-white focus:border-accent outline-none transition-colors"
                 >
-                  <option value="">Selectionner un sujet...</option>
+                  <option value="">Sélectionner un sujet...</option>
                   <option value="info">Demande d'information</option>
                   <option value="diagnostic">Diagnostic / audit IA</option>
                   <option value="formation">Programme de formation</option>

@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 
 const accompagnements = [
-  { label: 'Citoyens', href: '/accompagnements/citoyens' },
+  { label: 'Les programmes', href: '/accompagnements' },
+  { label: 'Citoyens', href: '/accompagnements/citoyen' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
   { label: 'Écoles et Universités', href: '/accompagnements/education' },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
@@ -15,6 +16,7 @@ const accompagnements = [
 ]
 
 const aProposItems = [
+  { label: 'Notre conviction', href: '/a-propos' },
   { label: 'Réseau et Lieu', href: '/reseau-lieu' },
   { label: 'Plateforme', href: '/plateforme-numerique' },
   { label: 'Think Tank IA', href: '/think-tank' },
@@ -30,13 +32,7 @@ const navItems = [
 function Logo({ isScrolled }: { isScrolled: boolean }) {
   return (
     <Link href="/" className="flex items-center h-full">
-      {isScrolled ? (
-        <img src="/logo-black.svg" alt="ICIA" className="h-8 w-auto" />
-      ) : (
-        <span className="font-serif font-extrabold text-xl md:text-2xl tracking-wide text-black whitespace-nowrap">
-          INSTITUT COLLECTIF DE L'<span className="text-accent">IA</span>
-        </span>
-      )}
+      <img src="/logo-black.svg" alt="ICIA" className="h-8 w-auto" />
     </Link>
   )
 }
@@ -45,7 +41,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('/a-propos')
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('a-propos')
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
@@ -80,14 +76,14 @@ export function Header() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <div className="hidden xl:block w-[300px] flex-shrink-0">
+        <div className="hidden xl:block flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
         <div className="xl:hidden flex items-center">
           <Logo isScrolled={isScrolled} />
         </div>
 
-        <nav className="hidden xl:flex items-center gap-10">
+        <nav className="hidden xl:flex items-center gap-10 ml-16">
           {navItems.map((item) => (
             <div 
               key={item.href} 
@@ -202,45 +198,55 @@ export function Header() {
               <div className="space-y-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</p>
                 
-                <Link href="/a-propos" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
+                {/* À propos submenu */}
+                <button 
+                  onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'a-propos' ? '' : 'a-propos')}
+                  className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                >
                   À propos de l'institut IA
-                </Link>
-                <Link href="/reseau-lieu" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Réseau et Lieu
-                </Link>
-                <Link href="/plateforme-numerique" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Plateforme
-                </Link>
-                <Link href="/think-tank" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Think Tank IA
-                </Link>
+                  <svg className={`w-6 h-6 transform transition-transform ${mobileOpenSubmenu === 'a-propos' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileOpenSubmenu === 'a-propos' && (
+                  <div className="pl-4 space-y-2">
+                    {aProposItems.map((item) => (
+                      <Link 
+                        key={item.href} 
+                        href={item.href} 
+                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                  )}
 
-                <Link href="/partenaires" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  Partenaires
-                </Link>
-
-                <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  Actualités
-                </Link>
-
-                <Link href="/accompagnements" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
+                {/* Accompagnements submenu */}
+                <button 
+                  onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'accompagnements' ? '' : 'accompagnements')}
+                  className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                >
                   Accompagnements
-                </Link>
-                <Link href="/accompagnements/citoyens" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Citoyens
-                </Link>
-                <Link href="/accompagnements/entreprises" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Entreprises
-                </Link>
-                <Link href="/accompagnements/education" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Écoles et Universités
-                </Link>
-                <Link href="/accompagnements/secteurs-creatifs" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Secteurs créatifs
-                </Link>
-                <Link href="/accompagnements/pouvoirs-publics" className="block py-2 pl-4 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  ➔ Pouvoirs publics
-                </Link>
+                  <svg className={`w-6 h-6 transform transition-transform ${mobileOpenSubmenu === 'accompagnements' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileOpenSubmenu === 'accompagnements' && (
+                  <div className="pl-4 space-y-2">
+                    {accompagnements.map((item) => (
+                      <Link 
+                        key={item.href} 
+                        href={item.href} 
+                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
 
                 <Link href="/actualites" className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Actualités
@@ -250,7 +256,7 @@ export function Header() {
               <Link href="/contact" className="mt-8 block">
                 <button 
                   className="w-full py-4 text-xl font-bold text-white rounded-lg"
-                  style={{ backgroundColor: '#CC785C' }}
+                  style={{ backgroundColor: '#BF4D43' }}
                 >
                   Nous contacter
                 </button>

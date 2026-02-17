@@ -4,14 +4,62 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
+const NOTION_KEY = process.env.NOTION_KEY
+const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
+
 async function getArticles() {
+  if (!NOTION_KEY) return []
+  
+  const notion = {
+    baseUrl: 'https://api.notion.com/v1',
+    headers: {
+      'Authorization': `Bearer ${NOTION_KEY}`,
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28'
+    }
+  }
+
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/articles`, {
+    const query: any = { 
+      page_size: 100,
+      sorts: [{ property: 'Date', direction: 'descending' }]
+    }
+    
+    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
+      method: 'POST',
+      headers: notion.headers,
+      body: JSON.stringify(query),
       next: { revalidate: 60 }
     })
-    if (!res.ok) return []
-    const articles = await res.json()
-    return articles.filter((a: any) => a.slug)
+
+    if (!response.ok) return []
+    
+    const data = await response.json()
+    if (!data.results) return []
+
+    const getImageUrl = (prop: any) => {
+      if (!prop) return ''
+      if (prop.url) return prop.url
+      if (prop.files && prop.files.length > 0) {
+        const file = prop.files[0]
+        if (file.file) return file.file.url
+        if (file.external) return file.external.url
+      }
+      return ''
+    }
+
+    return data.results.map((page: any) => {
+      const props = page.properties
+      return {
+        slug: props.Slug?.rich_text?.[0]?.plain_text || '',
+        title: props.Titre?.rich_text?.[0]?.plain_text || '',
+        excerpt: props.Excerpt?.rich_text?.[0]?.plain_text || '',
+        category: props.Category?.select?.name || '',
+        date: props.Date?.date?.start || '',
+        image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
+        content: props.Article?.title?.[0]?.plain_text || ''
+      }
+    }).filter((a: any) => a.slug)
   } catch {
     return []
   }

@@ -4,25 +4,135 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 
-const validArticles = [
-  { slug: 'lancement-icia', title: 'Lancement officiel de l\'Institut Collectif de l\'IA', excerpt: 'L\'ICIA ouvre ses portes à Marseille avec pour mission de rendre l\'IA accessible à tous.', category: 'Actualite', date: '2025-01-15', image: '', content: 'Lancement de l\'Institut Collectif de l\'IA à Marseille.\n\nL\'ICIA a officiellement ouvert ses portes ce janvier 2025. Cette initiative unique en France vise à rendre l\'intelligence artificielle accessible à tous les citoyens, entreprises et institutions.\n\n\"L\'IA ne doit pas être confisquée par quelques-uns\" est le mantra de l\'Institut qui propose des parcours adaptés à chaque public.' },
-  { slug: 'partenariat-universites', title: 'Partenariat avec les universités de la région', excerpt: 'Signature d\'accords avec les universités Aix-Marseille pour des programmes de formation.', category: 'Partenariat', date: '2025-01-20', image: '', content: 'L\'ICIA signe un partenariat stratégique avec les universités de la région Aix-Marseille.\n\nCe partenariat permettra aux étudiants de bénéficier de formations certifiantes en IA, d\'accès au laboratoire et aux ressources pédagogiques de l\'Institut.\n\nLes premiers cursus seront lancés dès la rentrée 2025.' },
-  { slug: 'ecosysteme-marseille', title: 'L\'écosystème IA de Marseille se structure', excerpt: 'Retour sur les initiatives qui font de Marseille un hub de l\'intelligence artificielle.', category: 'Analyse', date: '2025-02-01', image: '', content: 'Marseille devient un pôle majeur de l\'intelligence artificielle en France.\n\nAvec l\'arrivée de l\'ICIA et le soutien de la Région, la ville phocéenne attire startups, chercheurs et investisseurs du secteur.\n\nCe développement s\'inscrit dans une stratégie régionale ambitieuse de transformation numérique.' },
-  { slug: 'think-tank-rapport', title: 'Publication du premier rapport du Think Tank', excerpt: 'Le groupe de réflexion de l\'ICIA publie ses recommandations pour une IA éthique.', category: 'Publication', date: '2025-02-10', image: '', content: 'Le Think Tank de l\'ICIA publie son rapport inaugural sur l\'IA responsable.\n\nCe document de 120 pages présente les recommandations du groupe d\'experts pour une intelligence artificielle éthique, souveraine et au service du bien commun.\n\nLes principales pistes : gouvernance multipartite, transparence des algorithmes, formation massive aux compétences IA.' },
-]
+const NOTION_KEY = process.env.NOTION_KEY
+const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
+
+async function getArticles() {
+  if (!NOTION_KEY) return []
+  
+  const notion = {
+    baseUrl: 'https://api.notion.com/v1',
+    headers: {
+      'Authorization': `Bearer ${NOTION_KEY}`,
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28'
+    }
+  }
+
+  try {
+    const query: any = { 
+      page_size: 100,
+      sorts: [{ property: 'Date', direction: 'descending' }]
+    }
+    
+    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
+      method: 'POST',
+      headers: notion.headers,
+      body: JSON.stringify(query),
+      next: { revalidate: 60 }
+    })
+
+    if (!response.ok) return []
+    
+    const data = await response.json()
+    if (!data.results) return []
+
+    const getImageUrl = (prop: any) => {
+      if (!prop) return ''
+      if (prop.url) return prop.url
+      if (prop.files && prop.files.length > 0) {
+        const file = prop.files[0]
+        if (file.file) return file.file.url
+        if (file.external) return file.external.url
+      }
+      return ''
+    }
+
+    const getRichText = (prop: any) => {
+      if (!prop) return ''
+      if (prop.rich_text && prop.rich_text.length > 0) {
+        return prop.rich_text.map((t: any) => t.plain_text).join('')
+      }
+      if (prop.title && prop.title.length > 0) {
+        return prop.title.map((t: any) => t.plain_text).join('')
+      }
+      return ''
+    }
+
+    const getPageContent = async (pageId: string) => {
+      try {
+        const contentRes = await fetch(`${notion.baseUrl}/blocks/${pageId}/children`, {
+          headers: notion.headers,
+          next: { revalidate: 60 }
+        })
+        if (!contentRes.ok) return ''
+        const contentData = await contentRes.json()
+        if (!contentData.results) return ''
+        
+        return contentData.results.map((block: any) => {
+          if (block.type === 'paragraph') {
+            return block.paragraph.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          if (block.type === 'heading_1') {
+            return '# ' + block.heading_1.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          if (block.type === 'heading_2') {
+            return '## ' + block.heading_2.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          if (block.type === 'heading_3') {
+            return '### ' + block.heading_3.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          if (block.type === 'bulleted_list_item') {
+            return '• ' + block.bulleted_list_item.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          if (block.type === 'numbered_list_item') {
+            return '1. ' + block.numbered_list_item.rich_text.map((t: any) => t.plain_text).join('')
+          }
+          return ''
+        }).filter(Boolean).join('\n\n')
+      } catch {
+        return ''
+      }
+    }
+
+    const articles = await Promise.all(data.results.map(async (page: any) => {
+      const props = page.properties
+      const content = await getPageContent(page.id)
+      return {
+        slug: getRichText(props.Slug),
+        title: getRichText(props.Titre),
+        excerpt: getRichText(props.Excerpt),
+        category: props.Category?.select?.name || '',
+        date: props.Date?.date?.start || '',
+        image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
+        articleField: getRichText(props.Article),
+        content: content
+      }
+    }))
+
+    return articles.filter((a: any) => a.slug)
+  } catch {
+    return []
+  }
+}
 
 export async function generateStaticParams() {
-  return validArticles.map((article) => ({
+  const articles = await getArticles()
+  return articles.map((article: any) => ({
     slug: article.slug,
   }))
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const article = validArticles.find((a) => a.slug === slug)
+  const allArticles = await getArticles()
   
-  const sortedArticles = validArticles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const currentIndex = sortedArticles.findIndex((a) => a.slug === slug)
+  const sortedArticles = allArticles
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  
+  const article = sortedArticles.find((a: any) => a.slug === slug)
+  
+  const currentIndex = sortedArticles.findIndex((a: any) => a.slug === slug)
   
   const prevArticle = currentIndex < sortedArticles.length - 1 ? sortedArticles[currentIndex + 1] : null
   const nextArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null
@@ -62,16 +172,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <img src={article.image} alt={article.title} className="w-full aspect-square md:aspect-video lg:aspect-[16/9] object-cover rounded-lg mb-8" />
               )}
               
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-sm text-accent font-medium">{article.category}</span>
-                <span className="text-sm text-text-muted">{article.date}</span>
-              </div>
-              
               <h1 className="font-serif text-h1 mb-6">{article.title}</h1>
               
               <div className="prose max-w-none mb-12">
                 <p className="text-text-muted text-lg leading-relaxed mb-6">{article.excerpt}</p>
-                <div className="whitespace-pre-wrap text-text-muted">{article.content}</div>
+                {article.articleField && (
+                  <div className="whitespace-pre-wrap text-text-muted">{article.articleField}</div>
+                )}
+                {article.content && (
+                  <div className="whitespace-pre-wrap text-text-muted mt-6">{article.content}</div>
+                )}
               </div>
 
               <div className="flex justify-between border-t border-border pt-8">

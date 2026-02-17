@@ -124,7 +124,7 @@ export default function OnePage() {
               <FadeIn delay={0.6}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button variant="primary" size="lg" onClick={() => scrollTo('accompagner')}>
-                    Découvrir nos accompagnements
+                    Nos programmes
                   </Button>
                   <Button variant="ghost" size="lg" onClick={() => scrollTo('contact')}>
                     Nous contacter

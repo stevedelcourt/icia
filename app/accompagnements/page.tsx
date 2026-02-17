@@ -78,7 +78,7 @@ export default function AccompanimentsPage() {
             <div className="max-w-6xl mx-auto">
               <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Accompagnements</p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-0">
-                L'IA pour<br />chacun.
+                L'IA, enfin<br />pour tous.
               </h1>
             </div>
           </FadeIn>
@@ -91,20 +91,20 @@ export default function AccompanimentsPage() {
                 L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
               </p>
             </div>
-            <div className="p-8 flex items-center justify-around">
-              <div className="text-center">
-                <p className="text-4xl font-bold">5</p>
-                <p className="text-xs text-text-muted">Publics accompagnes</p>
-              </div>
-              <div className="w-px h-12 bg-border"></div>
-              <div className="text-center">
-                <p className="text-4xl font-bold">100%</p>
-                <p className="text-xs text-text-muted">Sur mesure</p>
-              </div>
-              <div className="w-px h-12 bg-border"></div>
-              <div className="text-center">
-                <p className="text-4xl font-bold">Gratuit</p>
-                <p className="text-xs text-text-muted">Pour le grand public</p>
+            <div className="py-8 px-4">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">5</p>
+                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Publics</p>
+                </div>
+                <div className="text-center border-l border-r border-border">
+                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">100%</p>
+                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Sur mesure</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">Gratuit</p>
+                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Grand public</p>
+                </div>
               </div>
             </div>
           </div>

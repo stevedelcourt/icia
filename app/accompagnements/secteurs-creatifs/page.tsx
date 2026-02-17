@@ -5,6 +5,14 @@ import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
+const accompagnementNav = [
+  { label: 'Citoyens', href: '/accompagnements/citoyens' },
+  { label: 'Entreprises', href: '/accompagnements/entreprises' },
+  { label: 'Écoles & Universités', href: '/accompagnements/education' },
+  { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
+  { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics' },
+]
+
 const sectors = ['Musique & audio', 'Arts visuels & design', 'Cinéma & audiovisuel', 'Jeux vidéo', 'Édition & presse', 'Architecture & mode']
 
 const programmes = [
@@ -82,6 +90,24 @@ export default function SecteursCreatifsPage() {
             <span>/</span>
             <span className="text-text font-medium">Secteurs créatifs</span>
           </div>
+          {/* Navigation tabs */}
+          <div className="max-w-6xl mx-auto px-4 md:px-8">
+            <div className="flex gap-1 overflow-x-auto pb-0 -mb-px">
+              {accompagnementNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                    item.href === '/accompagnements/secteurs-creatifs'
+                      ? 'border-accent-purple text-accent-purple'
+                      : 'border-transparent text-muted hover:text-text hover:border-border'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Hero */}
@@ -105,12 +131,12 @@ export default function SecteursCreatifsPage() {
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact?subject=creatifs">
                       <Button variant="primary" size="lg" className="bg-accent-purple hover:bg-purple-700">
-                        Nous contacter ➔
+                        Nous contacter
                       </Button>
                     </Link>
                     <Link href="#programmes">
                       <button className="px-6 py-3 border border-white/20 text-white/60 font-medium text-base hover:border-white/50 hover:text-white transition-all rounded-md">
-                        Découvrir ➔
+                        Découvrir
                       </button>
                     </Link>
                   </div>
@@ -176,8 +202,9 @@ export default function SecteursCreatifsPage() {
                     ))}
                   </ul>
                   {prog.cta && (
-                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-accent-purple text-xs font-bold tracking-widest uppercase border-b border-accent-purple/30 pb-0.5 hover:border-accent-purple transition-colors">
-                      {prog.cta} ➔
+                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-accent-purple text-xs font-bold tracking-widest uppercase border-b border-accent-purple/30 pb-0.5 hover:border-accent-purple transition-colors group">
+                      {prog.cta}
+                      <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
                     </Link>
                   )}
                 </StaggerItem>
@@ -280,7 +307,7 @@ export default function SecteursCreatifsPage() {
               </div>
               <Link href="/contact?subject=creatifs">
                 <Button variant="primary" size="lg" className="bg-ink hover:bg-accent-purple">
-                  Nous contacter ➔
+                  Nous contacter
                 </Button>
               </Link>
             </div>
