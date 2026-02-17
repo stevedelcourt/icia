@@ -42,8 +42,25 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string>('a-propos')
+  const [useMobileMenu, setUseMobileMenu] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const checkSpacing = () => {
+      if (logoRef.current && navRef.current) {
+        const logoRect = logoRef.current.getBoundingClientRect()
+        const navRect = navRef.current.getBoundingClientRect()
+        const distance = navRect.left - logoRect.right
+        setUseMobileMenu(distance < 100)
+      }
+    }
+    checkSpacing()
+    window.addEventListener('resize', checkSpacing)
+    return () => window.removeEventListener('resize', checkSpacing)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,11 +93,11 @@ export function Header() {
       }`}
     >
       <div className="max-w-[1100px] mx-auto px-4 md:px-8 flex items-center justify-between">
-        <div className="flex-shrink-0">
+        <div ref={logoRef} className="flex-shrink-0">
           <Logo isScrolled={isScrolled} />
         </div>
 
-        <nav className="hidden xl:flex items-center gap-10 ml-16">
+        <nav ref={navRef} className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
           {navItems.map((item) => (
             <div 
               key={item.href} 
@@ -144,7 +161,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden xl:block">
+        <div className={`${useMobileMenu ? 'hidden' : 'block'}`}>
           <Link href="/contact">
             <Button variant="primary" size="sm">
               Nous contacter
@@ -153,7 +170,7 @@ export function Header() {
         </div>
 
         <button
-          className="xl:hidden p-2"
+          className={`${useMobileMenu ? 'block' : 'hidden'} p-2`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
@@ -179,7 +196,7 @@ export function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-bg xl:hidden overflow-y-auto"
+            className="fixed inset-0 z-[100] bg-bg overflow-y-auto"
           >
             <div className="p-6 pt-24">
               <button 
