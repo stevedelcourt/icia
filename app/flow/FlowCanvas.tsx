@@ -1,8 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
-import { Canvas, useFrame, useThree, extend } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { useRef, useMemo, useEffect } from 'react'
 import * as THREE from 'three'
 
 const VERTEX_SHADER = `
@@ -22,7 +20,6 @@ void main() {
 `
 
 const FRAGMENT_SHADER = `
-uniform float uOpacity;
 varying float vDistance;
 void main() {
   vec2 cxy = 2.0 * gl_PointCoord - 1.0;
@@ -98,15 +95,12 @@ float snoise(vec3 v) {
 
 vec3 curl(vec3 p) {
   const float e = 0.1;
-  vec3 dx = vec3(e, 0.0, 0.0);
-  vec3 dy = vec3(0.0, e, 0.0);
-  vec3 dz = vec3(0.0, 0.0, e);
-  float n1 = snoise(p + dy) - snoise(p - dy);
-  float n2 = snoise(p + dz) - snoise(p - dz);
-  float n3 = snoise(p + dx) - snoise(p - dx);
-  float n4 = snoise(p + dz) - snoise(p - dz);
-  float n5 = snoise(p + dx) - snoise(p - dx);
-  float n6 = snoise(p + dy) - snoise(p - dy);
+  float n1 = snoise(p + vec3(0.0, e, 0.0)) - snoise(p + vec3(0.0, -e, 0.0));
+  float n2 = snoise(p + vec3(0.0, 0.0, e)) - snoise(p + vec3(0.0, 0.0, -e));
+  float n3 = snoise(p + vec3(e, 0.0, 0.0)) - snoise(p + vec3(-e, 0.0, 0.0));
+  float n4 = snoise(p + vec3(0.0, 0.0, e)) - snoise(p + vec3(0.0, 0.0, -e));
+  float n5 = snoise(p + vec3(e, 0.0, 0.0)) - snoise(p + vec3(-e, 0.0, 0.0));
+  float n6 = snoise(p + vec3(0.0, e, 0.0)) - snoise(p + vec3(0.0, -e, 0.0));
   return normalize(vec3(n1 - n2, n3 - n4, n5 - n6));
 }
 
@@ -124,42 +118,6 @@ void main() {
   gl_FragColor = vec4(mix(pos, curlPos, noise), 1.0);
 }
 `
-
-class DofPointsMaterial extends THREE.ShaderMaterial {
-  constructor() {
-    super({
-      vertexShader: VERTEX_SHADER,
-      fragmentShader: FRAGMENT_SHADER,
-      uniforms: {
-        positions: { value: null },
-        uTime: { value: 0 },
-        uFocus: { value: 5.1 },
-        uFov: { value: 50 },
-        uBlur: { value: 30 },
-        uOpacity: { value: 1 }
-      },
-      transparent: true,
-      blending: THREE.NormalBlending,
-      depthWrite: false
-    })
-  }
-}
-
-class SimulationMaterial extends THREE.ShaderMaterial {
-  constructor(positionsTexture: THREE.DataTexture) {
-    super({
-      vertexShader: SIM_VERTEX_SHADER,
-      fragmentShader: SIM_FRAGMENT_SHADER,
-      uniforms: {
-        positions: { value: positionsTexture },
-        uTime: { value: 0 },
-        uCurlFreq: { value: 0.25 }
-      }
-    })
-  }
-}
-
-extend({ DofPointsMaterial, SimulationMaterial })
 
 function getPoint(v: THREE.Vector3, size: number, data: Float32Array, offset: number) {
   v.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
@@ -180,141 +138,148 @@ function getSphere(count: number, size: number) {
   return data
 }
 
-function Particles({ speed = 100, fov = 20, aperture = 1.8, focus = 5.1, curl = 0.25, size = 512 }: {
-  speed?: number
-  fov?: number
-  aperture?: number
-  focus?: number
-  curl?: number
-  size?: number
-}) {
-  const simRef = useRef<SimulationMaterial>(null)
-  const renderRef = useRef<DofPointsMaterial>(null)
-  const scene = useState(() => new THREE.Scene())[0]
-  const camera = useState(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1))[0]
-  
-  const positions = useMemo(() => new Float32Array([-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0]), [])
-  const uvs = useMemo(() => new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]), [])
-  
-  const target = useMemo(() => new THREE.WebGLRenderTarget(size, size, {
-    minFilter: THREE.NearestFilter,
-    magFilter: THREE.NearestFilter,
-    format: THREE.RGBAFormat,
-    type: THREE.FloatType
-  }), [size])
-  
-  const particles = useMemo(() => {
-    const length = size * size
-    const particles = new Float32Array(length * 3)
-    for (let i = 0; i < length; i++) {
-      particles[i * 3 + 0] = (i % size) / size
-      particles[i * 3 + 1] = i / size / size
-    }
-    return particles
-  }, [size])
-  
-  const simMaterial = useMemo(() => {
-    const positionsTexture = new THREE.DataTexture(getSphere(512 * 512, 128), 512, 512, THREE.RGBAFormat, THREE.FloatType)
-    positionsTexture.needsUpdate = true
-    return new SimulationMaterial(positionsTexture)
-  }, [])
-  
-  const renderMaterial = useMemo(() => new DofPointsMaterial(), [])
-  
-  const simGeometry = useMemo(() => {
-    const geo = new THREE.BufferGeometry()
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-    geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
-    return geo
-  }, [positions, uvs])
-  
-  const particlesGeometry = useMemo(() => {
-    const geo = new THREE.BufferGeometry()
-    geo.setAttribute('position', new THREE.BufferAttribute(particles, 3))
-    return geo
-  }, [particles])
-  
-  useFrame((state) => {
-    state.gl.setRenderTarget(target)
-    state.gl.clear()
-    
-    const simMesh = new THREE.Mesh(simGeometry, simMaterial)
-    scene.add(simMesh)
-    state.gl.render(scene, camera)
-    scene.remove(simMesh)
-    
-    state.gl.setRenderTarget(null)
-    
-    renderMaterial.uniforms.positions.value = target.texture
-    renderMaterial.uniforms.uTime.value = state.clock.elapsedTime
-    renderMaterial.uniforms.uFocus.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFocus.value, focus, 0.1)
-    renderMaterial.uniforms.uFov.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFov.value, fov, 0.1)
-    renderMaterial.uniforms.uBlur.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uBlur.value, (5.6 - aperture) * 9, 0.1)
-    simMaterial.uniforms.uTime.value = state.clock.elapsedTime * speed
-    simMaterial.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simMaterial.uniforms.uCurlFreq.value, curl, 0.1)
-  })
-  
-  return (
-    <points>
-      <primitive object={renderMaterial} attach="material" />
-      <primitive object={particlesGeometry} attach="geometry" />
-    </points>
-  )
-}
-
-function Scene() {
-  return (
-    <>
-      <OrbitControls makeDefault autoRotate autoRotateSpeed={0.5} zoomSpeed={0.1} />
-      <Particles speed={1.4} fov={60} aperture={3.4} focus={6.37} curl={0.36} />
-    </>
-  )
-}
-
 export default function FlowCanvas() {
-  const [gl, setGl] = useState<THREE.WebGL1Renderer | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
-    const renderer = new THREE.WebGL1Renderer({ 
-      antialias: true, 
-      alpha: true,
-      powerPreference: 'high-performance'
-    })
+    if (!containerRef.current) return
+    
+    const SIZE = 512
+    const settings = {
+      focus: 6.37,
+      speed: 1.4,
+      aperture: 3.4,
+      fov: 60,
+      curl: 0.36
+    }
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    setGl(renderer)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    containerRef.current.appendChild(renderer.domElement)
+    
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 100)
+    camera.position.z = 6
+    
+    const simScene = new THREE.Scene()
+    const simCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1)
+    
+    const positionsTexture = new THREE.DataTexture(getSphere(SIZE * SIZE, 128), SIZE, SIZE, THREE.RGBAFormat, THREE.FloatType)
+    positionsTexture.needsUpdate = true
+    
+    const simMaterial = new THREE.ShaderMaterial({
+      vertexShader: SIM_VERTEX_SHADER,
+      fragmentShader: SIM_FRAGMENT_SHADER,
+      uniforms: {
+        positions: { value: positionsTexture },
+        uTime: { value: 0 },
+        uCurlFreq: { value: settings.curl }
+      }
+    })
+    
+    const simGeometry = new THREE.BufferGeometry()
+    simGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0]), 3))
+    simGeometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]), 2))
+    
+    const simMesh = new THREE.Mesh(simGeometry, simMaterial)
+    simScene.add(simMesh)
+    
+    const target = new THREE.WebGLRenderTarget(SIZE, SIZE, {
+      minFilter: THREE.NearestFilter,
+      magFilter: THREE.NearestFilter,
+      format: THREE.RGBAFormat,
+      type: THREE.FloatType
+    })
+    
+    const renderMaterial = new THREE.ShaderMaterial({
+      vertexShader: VERTEX_SHADER,
+      fragmentShader: FRAGMENT_SHADER,
+      uniforms: {
+        positions: { value: null },
+        uTime: { value: 0 },
+        uFocus: { value: settings.focus },
+        uFov: { value: settings.fov },
+        uBlur: { value: (5.6 - settings.aperture) * 9 }
+      },
+      transparent: true,
+      depthWrite: false
+    })
+    
+    const particles = new Float32Array(SIZE * SIZE * 3)
+    for (let i = 0; i < SIZE * SIZE; i++) {
+      particles[i * 3] = (i % SIZE) / SIZE
+      particles[i * 3 + 1] = Math.floor(i / SIZE) / SIZE
+      particles[i * 3 + 2] = 0
+    }
+    
+    const particlesGeometry = new THREE.BufferGeometry()
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particles, 3))
+    
+    const points = new THREE.Points(particlesGeometry, renderMaterial)
+    scene.add(points)
+    
+    let time = 0
+    let currentFocus = settings.focus
+    let currentFov = settings.fov
+    let currentBlur = (5.6 - settings.aperture) * 9
+    let currentCurl = settings.curl
+    
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    }
+    window.addEventListener('resize', handleResize)
+    
+    let animationId: number
+    let lastTime = performance.now()
+    
+    const animate = () => {
+      animationId = requestAnimationFrame(animate)
+      
+      const now = performance.now()
+      const delta = (now - lastTime) / 1000
+      lastTime = now
+      time += delta
+      
+      renderer.setRenderTarget(target)
+      renderer.clear()
+      renderer.render(simScene, simCamera)
+      renderer.setRenderTarget(null)
+      
+      renderMaterial.uniforms.positions.value = target.texture
+      renderMaterial.uniforms.uTime.value = time
+      renderMaterial.uniforms.uFocus.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFocus.value, currentFocus, 0.1)
+      renderMaterial.uniforms.uFov.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uFov.value, currentFov, 0.1)
+      renderMaterial.uniforms.uBlur.value = THREE.MathUtils.lerp(renderMaterial.uniforms.uBlur.value, currentBlur, 0.1)
+      
+      simMaterial.uniforms.uTime.value = time * settings.speed
+      simMaterial.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simMaterial.uniforms.uCurlFreq.value, currentCurl, 0.1)
+      
+      camera.position.x = Math.sin(time * 0.1) * 0.5
+      camera.position.y = Math.cos(time * 0.15) * 0.3
+      camera.lookAt(0, 0, 0)
+      
+      renderer.render(scene, camera)
+    }
+    
+    animate()
     
     return () => {
+      cancelAnimationFrame(animationId)
+      window.removeEventListener('resize', handleResize)
       renderer.dispose()
+      if (containerRef.current?.contains(renderer.domElement)) {
+        containerRef.current.removeChild(renderer.domElement)
+      }
     }
   }, [])
   
-  if (!gl) {
-    return (
-      <div style={{ 
-        width: '100vw', 
-        height: '100vh', 
-        background: '#181820',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#666'
-      }}>
-        Loading...
-      </div>
-    )
-  }
-  
   return (
-    <div style={{ width: '100vw', height: '100vh', background: '#181820' }}>
-      <Canvas
-        gl={gl}
-        linear
-        dpr={2}
-        camera={{ fov: 25, position: [0, 0, 6] }}
-        style={{ background: '#181820' }}
-      >
-        <Scene />
-      </Canvas>
-    </div>
+    <div 
+      ref={containerRef} 
+      style={{ width: '100vw', height: '100vh', background: '#181820', overflow: 'hidden' }}
+    />
   )
 }
