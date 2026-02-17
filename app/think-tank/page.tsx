@@ -95,14 +95,13 @@ export default function ThinkTankPage() {
           
           <div className="max-w-5xl mx-auto">
             <Stagger>
-              <div className="grid md:grid-cols-2 gap-px bg-border">
+              <div className="grid md:grid-cols-2 gap-6">
                 {axes.map((axe) => (
                   <StaggerItem key={axe.num}>
-                    <div className="p-8 bg-white hover:bg-[#f4f1eb] transition-colors relative">
-                      <p className="absolute top-8 right-8 text-6xl font-bold text-[#0d0e0f]/5">{axe.num}</p>
+                    <div className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
                       <h3 className="font-serif text-xl font-bold mb-3">{axe.title}</h3>
-                      <p className="text-sm text-text-muted mb-4">{axe.description}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-sm text-text-muted mb-6 flex-grow">{axe.description}</p>
+                      <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
                         {axe.tags.map((tag) => (
                           <span key={tag} className="px-2 py-1 bg-[#f4f1eb] text-xs">{tag}</span>
                         ))}
