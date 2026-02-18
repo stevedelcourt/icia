@@ -116,24 +116,23 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         void main() {
           float t = uTime * 0.015;
           vec3 pos = texture2D(positions, vUv).rgb;
-          vec3 curlPos = texture2D(positions, vUv).rgb;
           
-          pos = curl(pos * uCurlFreq + t);
+          vec3 curlPos = pos;
           curlPos = curl(curlPos * uCurlFreq + t);
-          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.5;
-          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.25;
-          curlPos += curl(curlPos * uCurlFreq * 8.0) * 0.125;
-          curlPos += curl(pos * uCurlFreq * 16.0) * 0.0625;
+          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.4;
+          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.2;
           
-          vec3 result = mix(pos, curlPos, snoise(pos + t));
+          vec3 result = curlPos;
           
           float dist = length(result);
-          if (dist > uRadius) {
-            result = normalize(result) * uRadius * 0.95;
-          }
+          vec3 dir = normalize(result);
           
-          float wobbleNoise = snoise(result * 0.5 + t * 0.3) * uWobble;
-          result *= (1.0 + wobbleNoise * 0.1);
+          float amoebaWobble = snoise(dir * 2.0 + t * 0.5) * uWobble * 0.2;
+          float targetRadius = uRadius * (1.0 + amoebaWobble);
+          
+          if (dist > targetRadius) {
+            result = dir * targetRadius;
+          }
           
           gl_FragColor = vec4(result, 1.0);
         }
@@ -141,7 +140,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
       uniforms: {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
-        uCurlFreq: { value: 0.25 },
+        uCurlFreq: { value: 0.15 },
         uRadius: { value: 1.2 },
         uWobble: { value: 1.0 }
       }
