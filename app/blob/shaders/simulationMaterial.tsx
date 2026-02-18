@@ -62,23 +62,49 @@ vec3 curl(vec3 p) {
 }
 `
 
-function getPoint(v: THREE.Vector3, size: number, data: Float32Array, offset: number) {
-  v.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
-  if (v.length() > 1) return getPoint(v, size, data, offset)
-  return v.normalize().multiplyScalar(size).toArray(data, offset)
+function getShellPoint(
+  v: THREE.Vector3, 
+  shellIndex: number, 
+  shellCount: number,
+  shellSpread: number,
+  data: Float32Array, 
+  offset: number
+) {
+  const shellRadius = ((shellIndex + 0.5) / shellCount) * shellSpread + 20
+  const theta = Math.random() * Math.PI * 2
+  const phi = Math.acos(2 * Math.random() - 1)
+  
+  const x = shellRadius * Math.sin(phi) * Math.cos(theta)
+  const y = shellRadius * Math.sin(phi) * Math.sin(theta)
+  const z = shellRadius * Math.cos(phi)
+  
+  const jitter = shellRadius * 0.1
+  v.set(
+    x + (Math.random() - 0.5) * jitter,
+    y + (Math.random() - 0.5) * jitter,
+    z + (Math.random() - 0.5) * jitter
+  )
+  
+  v.toArray(data, offset)
+  data[offset + 3] = shellIndex / shellCount
 }
 
-function getSphere(count: number, size: number) {
+function getShells(count: number, shellCount: number, shellSpread: number) {
   const data = new Float32Array(count * 4)
   const p = new THREE.Vector3()
-  for (let i = 0; i < count * 4; i += 4) getPoint(p, size, data, i)
+  const particlesPerShell = Math.floor(count / shellCount)
+  
+  for (let i = 0; i < count; i++) {
+    const shellIndex = Math.min(Math.floor(i / particlesPerShell), shellCount - 1)
+    getShellPoint(p, shellIndex, shellCount, shellSpread, data, i * 4)
+  }
   return data
 }
 
 class SimulationMaterial extends THREE.ShaderMaterial {
-  constructor() {
+  constructor({ shellCount = 5, shellSpread = 80 }: { shellCount?: number; shellSpread?: number } = {}) {
     const positionsTexture = new THREE.DataTexture(
-      getSphere(512 * 512, 128),
+      getShells(512 * 512, shellCount, shellSpread),
       512,
       512,
       THREE.RGBAFormat,
@@ -98,27 +124,47 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         uniform sampler2D positions;
         uniform float uTime;
         uniform float uCurlFreq;
+        uniform float uPulseSpeed;
+        uniform float uPulseAmount;
+        uniform float uRotationSpeed;
         varying vec2 vUv;
         
         ${CURL_NOISE_GLSL}
         
         void main() {
+          vec4 data = texture2D(positions, vUv);
+          vec3 pos = data.rgb;
+          float shellIndex = data.a;
+          
           float t = uTime * 0.015;
-          vec3 pos = texture2D(positions, vUv).rgb;
-          vec3 curlPos = texture2D(positions, vUv).rgb;
-          pos = curl(pos * uCurlFreq + t);
-          curlPos = curl(curlPos * uCurlFreq + t);
-          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.5;
-          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.25;
-          curlPos += curl(curlPos * uCurlFreq * 8.0) * 0.125;
-          curlPos += curl(pos * uCurlFreq * 16.0) * 0.0625;
-          gl_FragColor = vec4(mix(pos, curlPos, snoise(pos + t)), 1.0);
+          
+          float dist = length(pos);
+          vec3 dir = normalize(pos);
+          
+          float pulse = sin(t * uPulseSpeed + dist * 0.05) * uPulseAmount;
+          pos += dir * pulse;
+          
+          float shellRotation = uRotationSpeed * (1.0 + shellIndex * 0.5);
+          float angle = t * shellRotation;
+          float c = cos(angle);
+          float s = sin(angle);
+          mat3 rotY = mat3(c, 0.0, s, 0.0, 1.0, 0.0, -s, 0.0, c);
+          mat3 rotX = mat3(1.0, 0.0, 0.0, 0.0, c, -s, 0.0, s, c);
+          pos = rotY * rotX * pos;
+          
+          vec3 curlOffset = curl(pos * uCurlFreq + t * 0.1) * 0.5;
+          pos += curlOffset * (1.0 - shellIndex * 0.3);
+          
+          gl_FragColor = vec4(pos, shellIndex);
         }
       `,
       uniforms: {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
-        uCurlFreq: { value: 0.25 }
+        uCurlFreq: { value: 0.08 },
+        uPulseSpeed: { value: 1.0 },
+        uPulseAmount: { value: 2.0 },
+        uRotationSpeed: { value: 0.3 }
       }
     })
   }

@@ -6,12 +6,29 @@ import { DofPointsMaterial } from './shaders/dofPointsMaterial'
 
 extend({ SimulationMaterial, DofPointsMaterial })
 
-export function Particles({ speed, fov, aperture, focus, curl, size = 512 }: {
+export function Particles({ 
+  speed, 
+  fov, 
+  aperture, 
+  focus, 
+  curl, 
+  shellCount,
+  shellSpread,
+  pulseSpeed,
+  pulseAmount,
+  rotationSpeed,
+  size = 512 
+}: {
   speed: number
   fov: number
   aperture: number
   focus: number
   curl: number
+  shellCount: number
+  shellSpread: number
+  pulseSpeed: number
+  pulseAmount: number
+  rotationSpeed: number
   size?: number
 }) {
   const simRef = useRef<any>(null)
@@ -59,6 +76,9 @@ export function Particles({ speed, fov, aperture, focus, curl, size = 512 }: {
       
       simRef.current.uniforms.uTime.value = state.clock.elapsedTime * speed
       simRef.current.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simRef.current.uniforms.uCurlFreq.value, curl, 0.1)
+      simRef.current.uniforms.uPulseSpeed.value = pulseSpeed
+      simRef.current.uniforms.uPulseAmount.value = pulseAmount
+      simRef.current.uniforms.uRotationSpeed.value = rotationSpeed
     }
   })
 
@@ -67,7 +87,7 @@ export function Particles({ speed, fov, aperture, focus, curl, size = 512 }: {
       {createPortal(
         <mesh>
           {/* @ts-ignore */}
-          <simulationMaterial ref={simRef} />
+          <simulationMaterial ref={simRef} shellCount={shellCount} shellSpread={shellSpread} />
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
             <bufferAttribute attach="attributes-uv" count={uvs.length / 2} array={uvs} itemSize={2} />

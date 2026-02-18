@@ -12,8 +12,11 @@ class DofPointsMaterial extends THREE.ShaderMaterial {
         uniform float uBlur;
         varying float vDistance;
         varying vec3 vPos;
+        varying float vShell;
         void main() {
-          vec3 pos = texture2D(positions, position.xy).xyz;
+          vec4 posData = texture2D(positions, position.xy);
+          vec3 pos = posData.rgb;
+          vShell = posData.a;
           vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
           gl_Position = projectionMatrix * mvPosition;
           vDistance = abs(uFocus - -mvPosition.z);
@@ -26,24 +29,21 @@ class DofPointsMaterial extends THREE.ShaderMaterial {
         uniform float uTime;
         varying float vDistance;
         varying vec3 vPos;
-        
-        vec3 palette(float t) {
-          vec3 a = vec3(0.5, 0.5, 0.5);
-          vec3 b = vec3(0.5, 0.5, 0.5);
-          vec3 c = vec3(1.0, 1.0, 1.0);
-          vec3 d = vec3(0.263, 0.416, 0.557);
-          return a + b * cos(6.28318 * (c * t + d));
-        }
+        varying float vShell;
         
         void main() {
           vec2 cxy = 2.0 * gl_PointCoord - 1.0;
           if (dot(cxy, cxy) > 1.0) discard;
           
-          float t = length(vPos) * 0.01 + uTime * 0.1;
-          vec3 col = palette(t);
+          float dist = length(vPos);
+          float brightness = 1.0 - (dist / 120.0) * 0.4;
+          brightness = clamp(brightness, 0.5, 1.0);
           
-          float alpha = 1.04 - clamp(vDistance * 1.5, 0.0, 1.0);
-          gl_FragColor = vec4(col, alpha);
+          float shellFade = 0.7 + vShell * 0.3;
+          
+          float alpha = (1.04 - clamp(vDistance * 1.5, 0.0, 1.0)) * brightness * shellFade;
+          
+          gl_FragColor = vec4(vec3(brightness), alpha * 0.85);
         }
       `,
       uniforms: {
