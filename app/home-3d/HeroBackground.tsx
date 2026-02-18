@@ -1,9 +1,27 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Sky as SkyImpl, Cloud, Clouds, OrbitControls } from '@react-three/drei'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Sky as SkyImpl, Cloud, Clouds } from '@react-three/drei'
 import * as THREE from 'three'
 import { useRef, useEffect, useState } from 'react'
+
+function CameraAnimation() {
+  const { camera } = useThree()
+  
+  useFrame((state) => {
+    const t = state.clock.elapsedTime * 0.15
+    const x = Math.sin(t) * 8
+    const y = -10 + Math.sin(t * 0.7) * 3
+    const z = 10 + Math.cos(t * 0.5) * 2
+    
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, x, 0.02)
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, y, 0.02)
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, z, 0.02)
+    camera.lookAt(0, 0, 0)
+  })
+  
+  return null
+}
 
 function CloudScene() {
   const ref = useRef<THREE.Group>(null)
@@ -46,7 +64,7 @@ function CloudScene() {
           />
         </Clouds>
       </group>
-      <OrbitControls autoRotate autoRotateSpeed={0.2} enableZoom={false} />
+      <CameraAnimation />
     </>
   )
 }
