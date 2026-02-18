@@ -119,20 +119,24 @@ class SimulationMaterial extends THREE.ShaderMaterial {
           
           vec3 curlPos = pos;
           curlPos = curl(curlPos * uCurlFreq + t);
-          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.4;
-          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.2;
+          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.5;
+          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.25;
           
           vec3 result = curlPos;
           
           float dist = length(result);
-          vec3 dir = normalize(result);
+          vec3 dir = normalize(result + 0.001);
           
-          float amoebaWobble = snoise(dir * 2.0 + t * 0.5) * uWobble * 0.2;
-          float targetRadius = uRadius * (1.0 + amoebaWobble);
+          float nx = snoise(vec3(dir.y * 3.0, dir.z * 3.0, t * 0.3)) * uWobble;
+          float ny = snoise(vec3(dir.x * 3.0 + 100.0, dir.z * 3.0, t * 0.3)) * uWobble;
+          float nz = snoise(vec3(dir.x * 3.0 + 200.0, dir.y * 3.0, t * 0.3)) * uWobble;
           
-          if (dist > targetRadius) {
-            result = dir * targetRadius;
-          }
+          vec3 organicDir = normalize(dir + vec3(nx, ny, nz) * 0.3);
+          
+          float radiusVar = snoise(organicDir * 2.0 + t * 0.2) * uWobble * 0.3;
+          float targetRadius = uRadius * (1.0 + radiusVar);
+          
+          result = organicDir * min(dist, targetRadius);
           
           gl_FragColor = vec4(result, 1.0);
         }
