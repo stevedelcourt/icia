@@ -62,23 +62,32 @@ vec3 curl(vec3 p) {
 }
 `
 
-function getPoint(v: THREE.Vector3, size: number, data: Float32Array, offset: number) {
-  v.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
-  if (v.length() > 1) return getPoint(v, size, data, offset)
-  return v.normalize().multiplyScalar(size).toArray(data, offset)
+function getPointInSphere(v: THREE.Vector3, radius: number, data: Float32Array, offset: number) {
+  const u = Math.random()
+  const v_rand = Math.random()
+  const theta = 2 * Math.PI * u
+  const phi = Math.acos(2 * v_rand - 1)
+  const r = radius * Math.cbrt(Math.random())
+  
+  data[offset + 0] = r * Math.sin(phi) * Math.cos(theta)
+  data[offset + 1] = r * Math.sin(phi) * Math.sin(theta)
+  data[offset + 2] = r * Math.cos(phi)
+  data[offset + 3] = 0
 }
 
-function getSphere(count: number, size: number) {
+function getFilledSphere(count: number, radius: number) {
   const data = new Float32Array(count * 4)
-  const p = new THREE.Vector3()
-  for (let i = 0; i < count * 4; i += 4) getPoint(p, size, data, i)
+  const temp = new THREE.Vector3()
+  for (let i = 0; i < count; i++) {
+    getPointInSphere(temp, radius, data, i * 4)
+  }
   return data
 }
 
 class SimulationMaterial extends THREE.ShaderMaterial {
   constructor() {
     const positionsTexture = new THREE.DataTexture(
-      getSphere(512 * 512, 50),
+      getFilledSphere(512 * 512, 1.5),
       512,
       512,
       THREE.RGBAFormat,
@@ -123,7 +132,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
             result = normalize(result) * uRadius * 0.95;
           }
           
-          float wobbleNoise = snoise(result * 0.02 + t * 0.3) * uWobble;
+          float wobbleNoise = snoise(result * 0.5 + t * 0.3) * uWobble;
           result *= (1.0 + wobbleNoise * 0.1);
           
           gl_FragColor = vec4(result, 1.0);
@@ -133,7 +142,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
         uCurlFreq: { value: 0.25 },
-        uRadius: { value: 35.0 },
+        uRadius: { value: 1.2 },
         uWobble: { value: 1.0 }
       }
     })

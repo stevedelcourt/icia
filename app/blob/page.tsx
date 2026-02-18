@@ -50,8 +50,8 @@ function Scene({ settings }: { settings: any }) {
         enablePan={false}
         enableZoom={true}
         zoomSpeed={0.5}
-        minDistance={3}
-        maxDistance={12}
+        minDistance={2}
+        maxDistance={10}
         rotateSpeed={0.5}
       />
       <CameraShake
@@ -70,12 +70,12 @@ function Scene({ settings }: { settings: any }) {
 
 export default function BlobCanvas() {
   const [settings, setSettings] = useState({
-    focus: 4.5,
+    focus: 3.5,
     speed: 8,
     aperture: 3.0,
     fov: 60,
     curl: 0.12,
-    radius: 35,
+    radius: 1.2,
     wobble: 0.8
   })
   
@@ -122,12 +122,12 @@ export default function BlobCanvas() {
         </div>
         
         <div style={{ color: '#666', fontSize: '9px', marginBottom: '6px' }}>CAMERA</div>
-        <Slider label="Focus" value={settings.focus} onChange={(v) => setSettings(s => ({ ...s, focus: v }))} min={3} max={8} step={0.05} />
+        <Slider label="Focus" value={settings.focus} onChange={(v) => setSettings(s => ({ ...s, focus: v }))} min={2} max={6} step={0.05} />
         <Slider label="Aperture" value={settings.aperture} onChange={(v) => setSettings(s => ({ ...s, aperture: v }))} min={1} max={5.6} step={0.1} />
         <Slider label="FOV" value={settings.fov} onChange={(v) => setSettings(s => ({ ...s, fov: v }))} min={20} max={150} step={1} />
         
         <div style={{ color: '#666', fontSize: '9px', marginBottom: '6px', marginTop: '10px' }}>SHAPE</div>
-        <Slider label="Radius" value={settings.radius} onChange={(v) => setSettings(s => ({ ...s, radius: v }))} min={15} max={60} step={1} />
+        <Slider label="Radius" value={settings.radius} onChange={(v) => setSettings(s => ({ ...s, radius: v }))} min={0.5} max={2.5} step={0.05} />
         <Slider label="Wobble" value={settings.wobble} onChange={(v) => setSettings(s => ({ ...s, wobble: v }))} min={0} max={2} step={0.05} />
         
         <div style={{ color: '#666', fontSize: '9px', marginBottom: '6px', marginTop: '10px' }}>ANIMATION</div>
