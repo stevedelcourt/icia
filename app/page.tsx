@@ -82,7 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      <main id="main-content" className="relative z-30 bg-[#F0EEE6]">
+      <main id="main-content" className="relative z-30 bg-gradient-to-b from-[#E5E4DF] to-white">
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">
@@ -109,7 +109,7 @@ export default function Home() {
           </FadeIn>
         </Section>
         
-        <Section className="bg-white border-y border-border" spacing="normal">
+        <Section className="bg-white/50 border-y border-border" spacing="normal">
           <FadeIn delay={0.1}>
             <h2 className="font-serif text-h2 mb-12 text-center">
               Cinq publics, des accompagnements sur mesure
@@ -175,7 +175,7 @@ export default function Home() {
           </FadeIn>
         </Section>
         
-        <Section className="bg-white border-t border-border" spacing="normal">
+        <Section className="bg-white/50 border-t border-border" spacing="normal">
           <FadeIn>
             <div className="max-w-xl mx-auto text-center">
               <h2 className="font-serif text-h2 mb-4">
