@@ -78,7 +78,7 @@ function getSphere(count: number, size: number) {
 class SimulationMaterial extends THREE.ShaderMaterial {
   constructor() {
     const positionsTexture = new THREE.DataTexture(
-      getSphere(512 * 512, 128),
+      getSphere(512 * 512, 50),
       512,
       512,
       THREE.RGBAFormat,
@@ -124,7 +124,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
           }
           
           float wobbleNoise = snoise(result * 0.02 + t * 0.3) * uWobble;
-          result *= (1.0 + wobbleNoise * 0.15);
+          result *= (1.0 + wobbleNoise * 0.1);
           
           gl_FragColor = vec4(result, 1.0);
         }
@@ -133,7 +133,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
         uCurlFreq: { value: 0.25 },
-        uRadius: { value: 50.0 },
+        uRadius: { value: 35.0 },
         uWobble: { value: 1.0 }
       }
     })
