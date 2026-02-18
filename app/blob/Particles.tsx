@@ -6,25 +6,14 @@ import { DofPointsMaterial } from './shaders/dofPointsMaterial'
 
 extend({ SimulationMaterial, DofPointsMaterial })
 
-export function Particles({ 
-  speed, 
-  fov, 
-  blur, 
-  focus,
-  wobbleSpeed,
-  wobbleAmount,
-  pulseSpeed,
-  pulseAmount,
-  size = 512 
-}: {
+export function Particles({ speed, fov, aperture, focus, curl, radius, wobble, size = 512 }: {
   speed: number
   fov: number
-  blur: number
+  aperture: number
   focus: number
-  wobbleSpeed: number
-  wobbleAmount: number
-  pulseSpeed: number
-  pulseAmount: number
+  curl: number
+  radius: number
+  wobble: number
   size?: number
 }) {
   const simRef = useRef<any>(null)
@@ -68,13 +57,12 @@ export function Particles({
       renderRef.current.uniforms.uTime.value = state.clock.elapsedTime
       renderRef.current.uniforms.uFocus.value = THREE.MathUtils.lerp(renderRef.current.uniforms.uFocus.value, focus, 0.1)
       renderRef.current.uniforms.uFov.value = THREE.MathUtils.lerp(renderRef.current.uniforms.uFov.value, fov, 0.1)
-      renderRef.current.uniforms.uBlur.value = THREE.MathUtils.lerp(renderRef.current.uniforms.uBlur.value, blur, 0.1)
+      renderRef.current.uniforms.uBlur.value = THREE.MathUtils.lerp(renderRef.current.uniforms.uBlur.value, (5.6 - aperture) * 9, 0.1)
       
       simRef.current.uniforms.uTime.value = state.clock.elapsedTime * speed
-      simRef.current.uniforms.uWobbleSpeed.value = wobbleSpeed
-      simRef.current.uniforms.uWobbleAmount.value = wobbleAmount
-      simRef.current.uniforms.uPulseSpeed.value = pulseSpeed
-      simRef.current.uniforms.uPulseAmount.value = pulseAmount
+      simRef.current.uniforms.uCurlFreq.value = THREE.MathUtils.lerp(simRef.current.uniforms.uCurlFreq.value, curl, 0.1)
+      simRef.current.uniforms.uRadius.value = radius
+      simRef.current.uniforms.uWobble.value = wobble
     }
   })
 
@@ -83,7 +71,7 @@ export function Particles({
       {createPortal(
         <mesh>
           {/* @ts-ignore */}
-          <simulationMaterial ref={simRef} cellRadius={1.5} />
+          <simulationMaterial ref={simRef} />
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
             <bufferAttribute attach="attributes-uv" count={uvs.length / 2} array={uvs} itemSize={2} />

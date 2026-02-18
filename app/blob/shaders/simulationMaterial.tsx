@@ -49,41 +49,36 @@ float snoise(vec3 v) {
   m = m * m;
   return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
 }
+
+vec3 curl(vec3 p) {
+  const float e = 0.1;
+  float n1 = snoise(vec3(p.x, p.y + e, p.z)) - snoise(vec3(p.x, p.y - e, p.z));
+  float n2 = snoise(vec3(p.x, p.y, p.z + e)) - snoise(vec3(p.x, p.y, p.z - e));
+  float n3 = snoise(vec3(p.x + e, p.y, p.z)) - snoise(vec3(p.x - e, p.y, p.z));
+  float n4 = snoise(vec3(p.x, p.y, p.z + e)) - snoise(vec3(p.x, p.y, p.z - e));
+  float n5 = snoise(vec3(p.x + e, p.y, p.z)) - snoise(vec3(p.x - e, p.y, p.z));
+  float n6 = snoise(vec3(p.x, p.y + e, p.z)) - snoise(vec3(p.x, p.y - e, p.z));
+  return vec3(n1 - n2, n3 - n4, n5 - n6) / (2.0 * e);
+}
 `
 
-function getCellParticles(count: number, cellRadius: number, membraneRatio: number = 0.2) {
+function getPoint(v: THREE.Vector3, size: number, data: Float32Array, offset: number) {
+  v.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
+  if (v.length() > 1) return getPoint(v, size, data, offset)
+  return v.normalize().multiplyScalar(size).toArray(data, offset)
+}
+
+function getSphere(count: number, size: number) {
   const data = new Float32Array(count * 4)
-  const membraneCount = Math.floor(count * membraneRatio)
-  
-  for (let i = 0; i < count; i++) {
-    const isMembrane = i < membraneCount
-    const theta = Math.random() * Math.PI * 2
-    const phi = Math.acos(2 * Math.random() - 1)
-    
-    let radius: number
-    if (isMembrane) {
-      radius = cellRadius * (0.95 + Math.random() * 0.1)
-    } else {
-      radius = cellRadius * Math.pow(Math.random(), 0.5) * 0.9
-    }
-    
-    const x = radius * Math.sin(phi) * Math.cos(theta)
-    const y = radius * Math.sin(phi) * Math.sin(theta)
-    const z = radius * Math.cos(phi)
-    
-    data[i * 4 + 0] = x
-    data[i * 4 + 1] = y
-    data[i * 4 + 2] = z
-    data[i * 4 + 3] = isMembrane ? 1.0 : 0.0
-  }
-  
+  const p = new THREE.Vector3()
+  for (let i = 0; i < count * 4; i += 4) getPoint(p, size, data, i)
   return data
 }
 
 class SimulationMaterial extends THREE.ShaderMaterial {
-  constructor({ cellRadius = 1.5 }: { cellRadius?: number } = {}) {
+  constructor() {
     const positionsTexture = new THREE.DataTexture(
-      getCellParticles(512 * 512, cellRadius, 0.25),
+      getSphere(512 * 512, 128),
       512,
       512,
       THREE.RGBAFormat,
@@ -102,49 +97,44 @@ class SimulationMaterial extends THREE.ShaderMaterial {
       fragmentShader: `
         uniform sampler2D positions;
         uniform float uTime;
-        uniform float uWobbleSpeed;
-        uniform float uWobbleAmount;
-        uniform float uPulseSpeed;
-        uniform float uPulseAmount;
+        uniform float uCurlFreq;
+        uniform float uRadius;
+        uniform float uWobble;
         varying vec2 vUv;
         
         ${CURL_NOISE_GLSL}
         
         void main() {
-          vec4 data = texture2D(positions, vUv);
-          vec3 pos = data.rgb;
-          float isMembrane = data.a;
+          float t = uTime * 0.015;
+          vec3 pos = texture2D(positions, vUv).rgb;
+          vec3 curlPos = texture2D(positions, vUv).rgb;
           
-          float t = uTime;
-          float dist = length(pos);
-          vec3 dir = normalize(pos);
+          pos = curl(pos * uCurlFreq + t);
+          curlPos = curl(curlPos * uCurlFreq + t);
+          curlPos += curl(curlPos * uCurlFreq * 2.0) * 0.5;
+          curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.25;
+          curlPos += curl(curlPos * uCurlFreq * 8.0) * 0.125;
+          curlPos += curl(pos * uCurlFreq * 16.0) * 0.0625;
           
-          float pulse = sin(t * uPulseSpeed) * uPulseAmount * 0.1;
-          float breathe = 1.0 + pulse;
+          vec3 result = mix(pos, curlPos, snoise(pos + t));
           
-          float wobblePhase = dist * 2.0 + t * uWobbleSpeed;
-          float wobbleX = snoise(vec3(wobblePhase, t * 0.3, 0.0)) * uWobbleAmount;
-          float wobbleY = snoise(vec3(0.0, wobblePhase, t * 0.3)) * uWobbleAmount;
-          float wobbleZ = snoise(vec3(t * 0.3, 0.0, wobblePhase)) * uWobbleAmount;
+          float dist = length(result);
+          if (dist > uRadius) {
+            result = normalize(result) * uRadius * 0.95;
+          }
           
-          float membraneWobble = isMembrane * 1.5;
-          vec3 wobble = vec3(wobbleX, wobbleY, wobbleZ) * membraneWobble;
+          float wobbleNoise = snoise(result * 0.02 + t * 0.3) * uWobble;
+          result *= (1.0 + wobbleNoise * 0.15);
           
-          pos = pos * breathe + wobble;
-          
-          float turbulence = snoise(pos * 0.5 + t * 0.1) * 0.02 * (1.0 - isMembrane);
-          pos += vec3(turbulence);
-          
-          gl_FragColor = vec4(pos, isMembrane);
+          gl_FragColor = vec4(result, 1.0);
         }
       `,
       uniforms: {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
-        uWobbleSpeed: { value: 1.0 },
-        uWobbleAmount: { value: 0.15 },
-        uPulseSpeed: { value: 0.5 },
-        uPulseAmount: { value: 0.3 }
+        uCurlFreq: { value: 0.25 },
+        uRadius: { value: 50.0 },
+        uWobble: { value: 1.0 }
       }
     })
   }
