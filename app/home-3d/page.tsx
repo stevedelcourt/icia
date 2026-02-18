@@ -7,20 +7,6 @@ import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/
 import { PartnerLogos } from '@/components/ui/PartnerLogos'
 import { HeroBackground } from './HeroBackground'
 
-function HeroImage() {
-  return (
-    <FadeIn direction="up" duration={0.8} delay={0.2}>
-      <div className="w-full aspect-square md:aspect-video lg:aspect-[16/9] bg-border overflow-hidden">
-        <img 
-          src="/images/happy.webp" 
-          alt="Institut Collectif de l'IA" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-    </FadeIn>
-  )
-}
-
 const cards = [
   { 
     title: 'Citoyens', 
@@ -97,8 +83,6 @@ export default function Home3D() {
       </section>
 
       <main id="main-content" className="relative z-30 bg-[#F0EEE6]">
-        <HeroImage />
-        
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">

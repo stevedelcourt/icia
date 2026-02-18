@@ -1,40 +1,17 @@
 'use client'
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Sky as SkyImpl, Cloud, Clouds } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Sky as SkyImpl, Cloud, Clouds, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import { useRef, useEffect, useState } from 'react'
 
 function CloudScene() {
   const ref = useRef<THREE.Group>(null)
   const cloud0 = useRef<THREE.Group>(null)
-  const { viewport } = useThree()
-  const mouse = useRef({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y = THREE.MathUtils.lerp(
-        ref.current.rotation.y,
-        mouse.current.x * 0.3,
-        0.02
-      )
-      ref.current.rotation.x = THREE.MathUtils.lerp(
-        ref.current.rotation.x,
-        mouse.current.y * 0.15,
-        0.02
-      )
-    }
     if (cloud0.current) {
-      cloud0.current.rotation.y -= delta * 0.1
+      cloud0.current.rotation.y -= delta
     }
   })
 
@@ -42,33 +19,35 @@ function CloudScene() {
     seed: 1,
     segments: 20,
     volume: 6,
-    opacity: 0.7,
+    opacity: 0.8,
     fade: 10,
     growth: 4,
     speed: 0.1
   }
 
-  const scale = Math.min(viewport.width / 20, viewport.height / 15)
-
   return (
-    <group ref={ref} scale={scale}>
-      <Clouds material={THREE.MeshLambertMaterial} limit={400}>
-        <Cloud ref={cloud0} {...config} bounds={[6, 1, 1]} color="white" />
-        <Cloud {...config} bounds={[6, 1, 1]} color="#eed0d0" seed={2} position={[15, 0, 0]} />
-        <Cloud {...config} bounds={[6, 1, 1]} color="#d0e0d0" seed={3} position={[-15, 0, 0]} />
-        <Cloud {...config} bounds={[6, 1, 1]} color="#a0b0d0" seed={4} position={[0, 0, -12]} />
-        <Cloud {...config} bounds={[6, 1, 1]} color="#c0c0dd" seed={5} position={[0, 0, 12]} />
-        <Cloud
-          concentrate="outside"
-          growth={100}
-          color="#ffccdd"
-          opacity={1.0}
-          seed={0.3}
-          bounds={200}
-          volume={200}
-        />
-      </Clouds>
-    </group>
+    <>
+      <SkyImpl />
+      <group ref={ref}>
+        <Clouds material={THREE.MeshLambertMaterial} limit={400}>
+          <Cloud ref={cloud0} {...config} bounds={[6, 1, 1]} color="white" />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#eed0d0" seed={2} position={[15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#d0e0d0" seed={3} position={[-15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#a0b0d0" seed={4} position={[0, 0, -12]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#c0c0dd" seed={5} position={[0, 0, 12]} />
+          <Cloud
+            concentrate="outside"
+            growth={100}
+            color="#ffccdd"
+            opacity={1.25}
+            seed={0.3}
+            bounds={200}
+            volume={200}
+          />
+        </Clouds>
+      </group>
+      <OrbitControls autoRotate autoRotateSpeed={0.2} enableZoom={false} />
+    </>
   )
 }
 
@@ -125,10 +104,10 @@ export function HeroBackground() {
       <div 
         id="hero-section"
         className="absolute inset-0 w-full h-screen overflow-hidden"
-        style={{ zIndex: 0 }}
+        style={{ zIndex: 0, background: '#87CEEB' }}
       >
         <Canvas
-          camera={{ position: [0, -10, 10], fov: isMobile ? 60 : 75 }}
+          camera={{ position: [0, -10, 10], fov: 75 }}
           dpr={isMobile ? 1 : 1.5}
           gl={{ antialias: false, alpha: true }}
         >
@@ -139,23 +118,23 @@ export function HeroBackground() {
             decay={0}
             distance={45}
             penumbra={1}
-            intensity={80}
+            intensity={100}
           />
           <spotLight
             position={[-20, 0, 10]}
-            color="#ff9999"
+            color="red"
             angle={0.15}
             decay={0}
             penumbra={-1}
-            intensity={20}
+            intensity={30}
           />
           <spotLight
             position={[20, -10, 10]}
-            color="#9999ff"
+            color="red"
             angle={0.2}
             decay={0}
             penumbra={-1}
-            intensity={15}
+            intensity={20}
           />
         </Canvas>
       </div>
