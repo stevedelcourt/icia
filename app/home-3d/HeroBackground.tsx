@@ -9,10 +9,10 @@ function CameraAnimation() {
   const { camera } = useThree()
   
   useFrame((state) => {
-    const t = state.clock.elapsedTime * 0.15
-    const x = Math.sin(t) * 8
-    const y = -10 + Math.sin(t * 0.7) * 3
-    const z = 10 + Math.cos(t * 0.5) * 2
+    const t = state.clock.elapsedTime * 0.12
+    const x = Math.sin(t) * 10
+    const y = -15 + Math.sin(t * 0.7) * 4
+    const z = 15 + Math.cos(t * 0.5) * 3
     
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, x, 0.02)
     camera.position.y = THREE.MathUtils.lerp(camera.position.y, y, 0.02)
@@ -29,7 +29,7 @@ function CloudScene() {
 
   useFrame((state, delta) => {
     if (cloud0.current) {
-      cloud0.current.rotation.y -= delta
+      cloud0.current.rotation.y -= delta * 0.3
     }
   })
 
@@ -69,44 +69,6 @@ function CloudScene() {
   )
 }
 
-function BlinkingArrow() {
-  const [visible, setVisible] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(v => !v)
-    }, 600)
-    return () => clearInterval(interval)
-  }, [])
-
-  const scrollToContent = () => {
-    const mainContent = document.getElementById('main-content')
-    if (mainContent) {
-      mainContent.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  return (
-    <button
-      onClick={scrollToContent}
-      className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-white/20 backdrop-blur-sm rounded-full p-4 transition-opacity"
-      style={{ opacity: visible ? 1 : 0.3 }}
-      aria-label="Scroll down"
-    >
-      <svg 
-        width="32" 
-        height="32" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="white" 
-        strokeWidth="2"
-      >
-        <path d="M12 5v14M5 12l7 7 7-7" />
-      </svg>
-    </button>
-  )
-}
-
 export function HeroBackground() {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -115,45 +77,42 @@ export function HeroBackground() {
   }, [])
 
   return (
-    <>
-      <div 
-        id="hero-section"
-        className="absolute inset-0 w-full h-screen overflow-hidden"
-        style={{ zIndex: 0, background: '#87CEEB' }}
+    <div 
+      id="hero-section"
+      className="absolute inset-0 w-full h-screen overflow-hidden"
+      style={{ zIndex: 0, background: '#87CEEB' }}
+    >
+      <Canvas
+        camera={{ position: [0, -15, 15], fov: 75 }}
+        dpr={isMobile ? 1 : 1.5}
+        gl={{ antialias: false, alpha: true }}
       >
-        <Canvas
-          camera={{ position: [0, -10, 10], fov: 75 }}
-          dpr={isMobile ? 1 : 1.5}
-          gl={{ antialias: false, alpha: true }}
-        >
-          <CloudScene />
-          <ambientLight intensity={Math.PI / 1.5} />
-          <spotLight
-            position={[0, 40, 0]}
-            decay={0}
-            distance={45}
-            penumbra={1}
-            intensity={100}
-          />
-          <spotLight
-            position={[-20, 0, 10]}
-            color="red"
-            angle={0.15}
-            decay={0}
-            penumbra={-1}
-            intensity={30}
-          />
-          <spotLight
-            position={[20, -10, 10]}
-            color="red"
-            angle={0.2}
-            decay={0}
-            penumbra={-1}
-            intensity={20}
-          />
-        </Canvas>
-      </div>
-      <BlinkingArrow />
-    </>
+        <CloudScene />
+        <ambientLight intensity={Math.PI / 1.5} />
+        <spotLight
+          position={[0, 40, 0]}
+          decay={0}
+          distance={45}
+          penumbra={1}
+          intensity={100}
+        />
+        <spotLight
+          position={[-20, 0, 10]}
+          color="red"
+          angle={0.15}
+          decay={0}
+          penumbra={-1}
+          intensity={30}
+        />
+        <spotLight
+          position={[20, -10, 10]}
+          color="red"
+          angle={0.2}
+          decay={0}
+          penumbra={-1}
+          intensity={20}
+        />
+      </Canvas>
+    </div>
   )
 }
