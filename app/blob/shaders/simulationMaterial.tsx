@@ -49,62 +49,41 @@ float snoise(vec3 v) {
   m = m * m;
   return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
 }
-
-vec3 curl(vec3 p) {
-  const float e = 0.1;
-  float n1 = snoise(vec3(p.x, p.y + e, p.z)) - snoise(vec3(p.x, p.y - e, p.z));
-  float n2 = snoise(vec3(p.x, p.y, p.z + e)) - snoise(vec3(p.x, p.y, p.z - e));
-  float n3 = snoise(vec3(p.x + e, p.y, p.z)) - snoise(vec3(p.x - e, p.y, p.z));
-  float n4 = snoise(vec3(p.x, p.y, p.z + e)) - snoise(vec3(p.x, p.y, p.z - e));
-  float n5 = snoise(vec3(p.x + e, p.y, p.z)) - snoise(vec3(p.x - e, p.y, p.z));
-  float n6 = snoise(vec3(p.x, p.y + e, p.z)) - snoise(vec3(p.x, p.y - e, p.z));
-  return vec3(n1 - n2, n3 - n4, n5 - n6) / (2.0 * e);
-}
 `
 
-function getShellPoint(
-  v: THREE.Vector3, 
-  shellIndex: number, 
-  shellCount: number,
-  shellSpread: number,
-  data: Float32Array, 
-  offset: number
-) {
-  const shellRadius = ((shellIndex + 0.5) / shellCount) * shellSpread + 20
-  const theta = Math.random() * Math.PI * 2
-  const phi = Math.acos(2 * Math.random() - 1)
-  
-  const x = shellRadius * Math.sin(phi) * Math.cos(theta)
-  const y = shellRadius * Math.sin(phi) * Math.sin(theta)
-  const z = shellRadius * Math.cos(phi)
-  
-  const jitter = shellRadius * 0.1
-  v.set(
-    x + (Math.random() - 0.5) * jitter,
-    y + (Math.random() - 0.5) * jitter,
-    z + (Math.random() - 0.5) * jitter
-  )
-  
-  v.toArray(data, offset)
-  data[offset + 3] = shellIndex / shellCount
-}
-
-function getShells(count: number, shellCount: number, shellSpread: number) {
+function getCellParticles(count: number, cellRadius: number, membraneRatio: number = 0.2) {
   const data = new Float32Array(count * 4)
-  const p = new THREE.Vector3()
-  const particlesPerShell = Math.floor(count / shellCount)
+  const membraneCount = Math.floor(count * membraneRatio)
   
   for (let i = 0; i < count; i++) {
-    const shellIndex = Math.min(Math.floor(i / particlesPerShell), shellCount - 1)
-    getShellPoint(p, shellIndex, shellCount, shellSpread, data, i * 4)
+    const isMembrane = i < membraneCount
+    const theta = Math.random() * Math.PI * 2
+    const phi = Math.acos(2 * Math.random() - 1)
+    
+    let radius: number
+    if (isMembrane) {
+      radius = cellRadius * (0.95 + Math.random() * 0.1)
+    } else {
+      radius = cellRadius * Math.pow(Math.random(), 0.5) * 0.9
+    }
+    
+    const x = radius * Math.sin(phi) * Math.cos(theta)
+    const y = radius * Math.sin(phi) * Math.sin(theta)
+    const z = radius * Math.cos(phi)
+    
+    data[i * 4 + 0] = x
+    data[i * 4 + 1] = y
+    data[i * 4 + 2] = z
+    data[i * 4 + 3] = isMembrane ? 1.0 : 0.0
   }
+  
   return data
 }
 
 class SimulationMaterial extends THREE.ShaderMaterial {
-  constructor({ shellCount = 5, shellSpread = 80 }: { shellCount?: number; shellSpread?: number } = {}) {
+  constructor({ cellRadius = 1.5 }: { cellRadius?: number } = {}) {
     const positionsTexture = new THREE.DataTexture(
-      getShells(512 * 512, shellCount, shellSpread),
+      getCellParticles(512 * 512, cellRadius, 0.25),
       512,
       512,
       THREE.RGBAFormat,
@@ -123,10 +102,10 @@ class SimulationMaterial extends THREE.ShaderMaterial {
       fragmentShader: `
         uniform sampler2D positions;
         uniform float uTime;
-        uniform float uCurlFreq;
+        uniform float uWobbleSpeed;
+        uniform float uWobbleAmount;
         uniform float uPulseSpeed;
         uniform float uPulseAmount;
-        uniform float uRotationSpeed;
         varying vec2 vUv;
         
         ${CURL_NOISE_GLSL}
@@ -134,37 +113,38 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         void main() {
           vec4 data = texture2D(positions, vUv);
           vec3 pos = data.rgb;
-          float shellIndex = data.a;
+          float isMembrane = data.a;
           
-          float t = uTime * 0.015;
-          
+          float t = uTime;
           float dist = length(pos);
           vec3 dir = normalize(pos);
           
-          float pulse = sin(t * uPulseSpeed + dist * 0.05) * uPulseAmount;
-          pos += dir * pulse;
+          float pulse = sin(t * uPulseSpeed) * uPulseAmount * 0.1;
+          float breathe = 1.0 + pulse;
           
-          float shellRotation = uRotationSpeed * (1.0 + shellIndex * 0.5);
-          float angle = t * shellRotation;
-          float c = cos(angle);
-          float s = sin(angle);
-          mat3 rotY = mat3(c, 0.0, s, 0.0, 1.0, 0.0, -s, 0.0, c);
-          mat3 rotX = mat3(1.0, 0.0, 0.0, 0.0, c, -s, 0.0, s, c);
-          pos = rotY * rotX * pos;
+          float wobblePhase = dist * 2.0 + t * uWobbleSpeed;
+          float wobbleX = snoise(vec3(wobblePhase, t * 0.3, 0.0)) * uWobbleAmount;
+          float wobbleY = snoise(vec3(0.0, wobblePhase, t * 0.3)) * uWobbleAmount;
+          float wobbleZ = snoise(vec3(t * 0.3, 0.0, wobblePhase)) * uWobbleAmount;
           
-          vec3 curlOffset = curl(pos * uCurlFreq + t * 0.1) * 0.5;
-          pos += curlOffset * (1.0 - shellIndex * 0.3);
+          float membraneWobble = isMembrane * 1.5;
+          vec3 wobble = vec3(wobbleX, wobbleY, wobbleZ) * membraneWobble;
           
-          gl_FragColor = vec4(pos, shellIndex);
+          pos = pos * breathe + wobble;
+          
+          float turbulence = snoise(pos * 0.5 + t * 0.1) * 0.02 * (1.0 - isMembrane);
+          pos += vec3(turbulence);
+          
+          gl_FragColor = vec4(pos, isMembrane);
         }
       `,
       uniforms: {
         positions: { value: positionsTexture },
         uTime: { value: 0 },
-        uCurlFreq: { value: 0.08 },
-        uPulseSpeed: { value: 1.0 },
-        uPulseAmount: { value: 2.0 },
-        uRotationSpeed: { value: 0.3 }
+        uWobbleSpeed: { value: 1.0 },
+        uWobbleAmount: { value: 0.15 },
+        uPulseSpeed: { value: 0.5 },
+        uPulseAmount: { value: 0.3 }
       }
     })
   }
