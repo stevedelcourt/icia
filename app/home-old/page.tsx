@@ -5,61 +5,65 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 import { PartnerLogos } from '@/components/ui/PartnerLogos'
-import { HeroBackground } from './home-3d/HeroBackground'
 
-const cards = [
-  { 
-    title: 'Citoyens', 
-    description: 'Comprendre l\'IA, rester en sécurité, se former et évoluer professionnellement.',
-    href: '/accompagnements/citoyens'
-  },
-  { 
-    title: 'Entreprises', 
-    description: 'Diagnostics partagés, formations ciblées, prototypes et accompagnement au déploiement.',
-    href: '/accompagnements/entreprises'
-  },
-  { 
-    title: 'Écoles et Universités', 
-    description: 'Ressources pédagogiques, formation des formateurs, certifications et badges.',
-    href: '/accompagnements/education'
-  },
-  { 
-    title: 'Createurs', 
-    description: 'Ateliers, innovation, cadre juridique et laboratoire sécurisé pour les secteurs créatifs.',
-    href: '/accompagnements/secteurs-creatifs'
-  },
-  { 
-    title: 'Pouvoirs publics', 
-    description: 'Programmes d\'inclusion, transformation des services et observatoire territorial.',
-    href: '/accompagnements/pouvoirs-publics'
-  },
-]
+function HeroImage() {
+  return (
+    <FadeIn direction="up" duration={0.8} delay={0.2}>
+      <div className="w-full aspect-square md:aspect-video lg:aspect-[16/9] bg-border overflow-hidden">
+        <img 
+          src="/images/happy.webp" 
+          alt="Institut Collectif de l'IA" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </FadeIn>
+  )
+}
 
-export default function Home() {
+export default function HomeOld() {
+  const cards = [
+    { 
+      title: 'Citoyens', 
+      description: 'Comprendre l\'IA, rester en sécurité, se former et évoluer professionnellement.',
+      href: '/accompagnements/citoyens'
+    },
+    { 
+      title: 'Entreprises', 
+      description: 'Diagnostics partagés, formations ciblées, prototypes et accompagnement au déploiement.',
+      href: '/accompagnements/entreprises'
+    },
+    { 
+      title: 'Écoles et Universités', 
+      description: 'Ressources pédagogiques, formation des formateurs, certifications et badges.',
+      href: '/accompagnements/education'
+    },
+    { 
+      title: 'Createurs', 
+      description: 'Ateliers, innovation, cadre juridique et laboratoire sécurisé pour les secteurs créatifs.',
+      href: '/accompagnements/secteurs-creatifs'
+    },
+    { 
+      title: 'Pouvoirs publics', 
+      description: 'Programmes d\'inclusion, transformation des services et observatoire territorial.',
+      href: '/accompagnements/pouvoirs-publics'
+    },
+  ]
+
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Header />
-      </div>
-      
-      <section className="relative h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <HeroBackground />
-        </div>
-        
-        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 z-10" />
-        
-        <div className="relative z-20 h-full flex flex-col justify-center">
-          <div className="max-w-4xl mx-auto px-4 md:px-8 pt-20">
-            <FadeIn>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight text-black drop-shadow-lg">
-                <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
-                <span className="block">
-                  <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
-                </span>
-              </h1>
+      <Header />
+      <main id="main-content">
+        <Section spacing="large">
+          <FadeIn>
+            <div className="max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
+              <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
+              <span className="block">
+                <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+              </span>
+            </h1>
               <ScaleIn delay={0.5}>
-                <p className="text-xl md:text-2xl text-black/80 mb-12 max-w-2xl leading-relaxed drop-shadow-md">
+                <p className="text-xl md:text-2xl text-text-muted mb-12 max-w-2xl leading-relaxed">
                   Un projet français, ancré en France et ouvert sur le monde, pour que chacun et chaque organisation puisse bénéficier concrètement de l'intelligence artificielle.
                 </p>
               </ScaleIn>
@@ -71,18 +75,18 @@ export default function Home() {
                     </Button>
                   </Link>
                   <Link href="/contact">
-                    <Button variant="ghost" size="lg" className="!text-black hover:!bg-black/10">
+                    <Button variant="ghost" size="lg">
                       Nous contacter
                     </Button>
                   </Link>
                 </div>
               </FadeIn>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      <main id="main-content" className="relative z-30 bg-[#F0EEE6]">
+            </div>
+          </FadeIn>
+        </Section>
+        
+        <HeroImage />
+        
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">

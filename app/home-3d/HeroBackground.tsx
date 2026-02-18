@@ -80,12 +80,9 @@ function BlinkingArrow() {
   }, [])
 
   const scrollToContent = () => {
-    const hero = document.getElementById('hero-section')
-    if (hero) {
-      const next = hero.nextElementSibling
-      if (next) {
-        next.scrollIntoView({ behavior: 'smooth' })
-      }
+    const mainContent = document.getElementById('main-content')
+    if (mainContent) {
+      mainContent.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
