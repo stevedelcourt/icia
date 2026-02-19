@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
 const accompagnementNav = [
-  { label: 'Citoyens', href: '/accompagnements/citoyens' },
+  { label: 'Citoyen', href: '/accompagnements/citoyen' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
   { label: 'Écoles & Universités', href: '/accompagnements/education' },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
@@ -15,7 +15,7 @@ const accompagnementNav = [
 
 const sectors = ['Musique & audio', 'Arts visuels & design', 'Cinéma & audiovisuel', 'Jeux vidéo', 'Édition & presse', 'Architecture & mode']
 
-const programmes = [
+const programme = [
   {
     num: '01',
     title: 'Ateliers créatifs IA',
@@ -69,7 +69,7 @@ const processSteps = [
 ]
 
 const otherPublics = [
-  { label: 'Citoyens', href: '/accompagnements/citoyens', active: false },
+  { label: 'Citoyen', href: '/accompagnements/citoyen', active: false },
   { label: 'Entreprises', href: '/accompagnements/entreprises', active: false },
   { label: 'Écoles & Universités', href: '/accompagnements/education', active: false },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs', active: true },
@@ -84,13 +84,13 @@ export default function SecteursCreatifsPage() {
       <Header />
       <main id="main-content">
         {/* Breadcrumb & Nav */}
-        <div className="pt-20 border-b border-white/5 bg-slate-dark">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-white/40">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+        <div className="pt-20 border-b border-border bg-ivory-light">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-slate-dark/50">
+            <Link href="/" className="hover:text-slate-dark transition-colors">Accueil</Link>
             <span>/</span>
-            <Link href="/accompagnements" className="hover:text-white transition-colors">Accompagnements</Link>
+            <Link href="/accompagnements" className="hover:text-slate-dark transition-colors">Accompagnements</Link>
             <span>/</span>
-            <span className="text-white/80 font-medium">Secteurs créatifs</span>
+            <span className="text-slate-dark font-medium">Secteurs créatifs</span>
           </div>
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="flex gap-1 overflow-x-auto pb-0 -mb-px">
@@ -100,8 +100,8 @@ export default function SecteursCreatifsPage() {
                   href={item.href}
                   className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     item.href === '/accompagnements/secteurs-creatifs'
-                      ? 'border-white/60 text-white'
-                      : 'border-transparent text-white/40 hover:text-white hover:border-white/20'
+                      ? 'border-slate-dark text-slate-dark'
+                      : 'border-transparent text-slate-dark/50 hover:text-slate-dark hover:border-border'
                   }`}
                 >
                   {item.label}
@@ -112,9 +112,9 @@ export default function SecteursCreatifsPage() {
         </div>
 
         {/* Hero */}
-        <section className="relative bg-slate-dark overflow-hidden">
-          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(139,122,107,0.2) 0%, transparent 50%)' }} />
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <section className="relative bg-ivory-light overflow-hidden">
+          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(139,122,107,0.15) 0%, transparent 50%)' }} />
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="py-16 md:py-24 pr-8">
@@ -123,12 +123,12 @@ export default function SecteursCreatifsPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Industries créatives
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-ivory-light">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
                     Créer avec l'IA,<br />
                     sans perdre<br />
                     son <span style={{ color: accentColor }}>identite</span>
                   </h1>
-                  <p className="text-lg text-white/50 max-w-xl mb-8 leading-relaxed">
+                  <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
                     L'ICIA accompagne les acteurs des industries créatives dans l'adoption de l'IA — ateliers pratiques, protection juridique et laboratoire d'innovation créative.
                   </p>
                   <div className="flex flex-wrap gap-3">
@@ -138,23 +138,23 @@ export default function SecteursCreatifsPage() {
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <Button variant="ghost" className="border border-white/10 text-white/60 hover:border-white/30 hover:text-white">
+                      <Button variant="ghost" className="border border-slate-dark/10 text-slate-dark/60 hover:border-slate-dark/30 hover:text-slate-dark">
                         Découvrir
                       </Button>
                     </Link>
                   </div>
                 </FadeIn>
               </div>
-              <div className="border-l border-white/5 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
+              <div className="border-l border-border py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
                 <FadeIn delay={0.1}>
-                  <div className="text-5xl md:text-7xl font-bold mb-2 text-ivory-light">
+                  <div className="text-5xl md:text-7xl font-bold mb-2 text-slate-dark">
                     <span style={{ color: accentColor }}>6</span> secteurs
                   </div>
-                  <p className="text-white/40 mb-8 max-w-xs">couverts par nos programmes dédiés aux industries créatives</p>
-                  <div className="h-px bg-white/5 mb-8"></div>
+                  <p className="text-slate-dark/40 mb-8 max-w-xs">couverts par nos programmes dédiés aux industries créatives</p>
+                  <div className="h-px bg-slate-dark/5 mb-8"></div>
                   <div className="flex flex-wrap gap-2">
                     {['Ateliers créatifs', 'Droit & IA', 'Labo innovation', 'Monétisation', 'Propriété intellectuelle'].map((tag) => (
-                      <span key={tag} className="px-3 py-1 border border-white/8 text-white/40 text-xs hover:border-white/20 hover:text-white/60 transition-colors cursor-default">
+                      <span key={tag} className="px-3 py-1 border border-slate-dark/8 text-slate-dark/40 text-xs hover:border-slate-dark/20 hover:text-slate-dark/60 transition-colors cursor-default">
                         {tag}
                       </span>
                     ))}
@@ -166,11 +166,11 @@ export default function SecteursCreatifsPage() {
         </section>
 
         {/* Sectors strip */}
-        <div className="border-b border-white/5 bg-slate-medium">
+        <div className="border-b border-border bg-ivory-medium">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="flex flex-wrap">
               {sectors.map((sector, i) => (
-                <span key={sector} className={`px-4 py-3 text-sm font-medium border-r border-b border-white/5 hover:bg-white/[0.02] hover:text-ivory-light transition-colors cursor-default ${i === sectors.length - 1 ? 'border-r-0' : ''}`}>
+                <span key={sector} className={`px-4 py-3 text-sm font-medium border-r border-b border-border hover:bg-white transition-colors cursor-default ${i === sectors.length - 1 ? 'border-r-0' : ''}`}>
                   <span className="w-2 h-2 rounded-full mr-2 inline-block" style={{ backgroundColor: accentColor }}></span>
                   {sector}
                 </span>
@@ -180,53 +180,53 @@ export default function SecteursCreatifsPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 border-b border-white/5">
-          <div className="p-8 border-r border-white/5 bg-slate-medium">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+        <div className="grid md:grid-cols-3 border-b border-border">
+          <div className="p-8 border-r border-border bg-white">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>6</span>
             </div>
-            <p className="text-white/40 text-sm">secteurs créatifs couverts</p>
+            <p className="text-slate-dark/50 text-sm">secteurs créatifs couverts</p>
           </div>
-          <div className="p-8 border-r border-white/5 bg-slate-medium">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+          <div className="p-8 border-r border-border bg-white">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>4</span>
             </div>
-            <p className="text-white/40 text-sm">types d'ateliers disponibles</p>
+            <p className="text-slate-dark/50 text-sm">types d'ateliers disponibles</p>
           </div>
-          <div className="p-8 bg-slate-medium">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+          <div className="p-8 bg-white">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>1</span> labo
             </div>
-            <p className="text-white/40 text-sm">dédié à l'innovation créative IA (flagship Marseille)</p>
+            <p className="text-slate-dark/50 text-sm">dédié à l'innovation créative IA (flagship Marseille)</p>
           </div>
         </div>
 
         {/* Programmes */}
-        <Section id="programmes" className="bg-slate-dark border-t border-white/5">
+        <Section id="programmes" className="bg-ivory-light border-t border-border">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
-              <span className="w-6 h-px bg-white/20"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-slate-dark/50">
+              <span className="w-6 h-px bg-slate-dark/20"></span>
               Secteurs couverts
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">Les industries créatives<br />face à l'IA</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Les industries créatives<br />face à l'IA</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-2 border border-white/5">
-              {programmes.map((prog) => (
-                <StaggerItem key={prog.num} className="p-8 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors relative">
-                  <span className="absolute top-6 right-8 text-5xl font-bold text-ivory-light/5 pointer-events-none">{prog.num}</span>
-                  <h3 className="text-xl font-bold mb-3 text-ivory-light">{prog.title}</h3>
-                  <p className="text-white/50 text-sm mb-4 leading-relaxed">{prog.description}</p>
+            <div className="grid md:grid-cols-2 border border-border">
+              {programme.map((prog) => (
+                <StaggerItem key={prog.num} className="p-8 border-r border-b border-border hover:bg-white transition-colors relative">
+                  <span className="absolute top-6 right-8 text-5xl font-bold text-slate-dark/5 pointer-events-none">{prog.num}</span>
+                  <h3 className="text-xl font-bold mb-3 text-slate-dark">{prog.title}</h3>
+                  <p className="text-slate-dark/60 text-sm mb-4 leading-relaxed">{prog.description}</p>
                   <ul className="space-y-1 mb-6">
                     {prog.items.map((item) => (
-                      <li key={item} className="text-sm flex items-start gap-2 text-white/40">
+                      <li key={item} className="text-sm flex items-start gap-2 text-slate-dark/60">
                         <span className="font-bold" style={{ color: accentColor }}>—</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   {prog.cta && (
-                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-white/10 pb-0.5 hover:border-white/30 transition-colors group" style={{ color: accentColor }}>
+                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-slate-dark/10 pb-0.5 hover:border-slate-dark/30 transition-colors group" style={{ color: accentColor }}>
                       {prog.cta}
                       <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                     </Link>
@@ -238,15 +238,15 @@ export default function SecteursCreatifsPage() {
         </Section>
 
         {/* Legal Panel */}
-        <div className="bg-slate-medium border-t border-white/5">
+        <div className="bg-ivory-medium border-t border-border">
           <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 grid md:grid-cols-2 gap-12">
             {legalPanel.map((panel) => (
               <div key={panel.title}>
-                <h3 className="text-xl font-bold mb-3 text-ivory-light">{panel.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed mb-4">{panel.description}</p>
+                <h3 className="text-xl font-bold mb-3 text-slate-dark">{panel.title}</h3>
+                <p className="text-slate-dark/50 text-sm leading-relaxed mb-4">{panel.description}</p>
                 <ul className="space-y-1">
                   {panel.items.map((item) => (
-                    <li key={item} className="text-white/50 text-sm flex items-start gap-2">
+                    <li key={item} className="text-slate-dark/60 text-sm flex items-start gap-2">
                       <span className="font-bold" style={{ color: accentColor }}>—</span>
                       <span>{item}</span>
                     </li>
@@ -258,21 +258,21 @@ export default function SecteursCreatifsPage() {
         </div>
 
         {/* Process */}
-        <Section className="bg-slate-medium">
+        <Section className="bg-ivory-medium">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
-              <span className="w-6 h-px bg-white/20"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-slate-dark/50">
+              <span className="w-6 h-px bg-slate-dark/20"></span>
               Comment ça marche
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">De la découverte<br />à la maîtrise créative</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">De la découverte<br />à la maîtrise créative</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-4 border border-white/5">
+            <div className="grid md:grid-cols-4 border border-border">
               {processSteps.map((step) => (
-                <StaggerItem key={step.num} className="p-6 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                <StaggerItem key={step.num} className="p-6 border-r border-b border-border hover:bg-white transition-colors">
                   <span className="text-xs font-bold tracking-widest uppercase block mb-3" style={{ color: accentColor }}>{step.num}</span>
-                  <h4 className="font-bold mb-2 text-ivory-light">{step.title}</h4>
-                  <p className="text-white/40 text-sm leading-relaxed">{step.description}</p>
+                  <h4 className="font-bold mb-2 text-slate-dark">{step.title}</h4>
+                  <p className="text-slate-dark/50 text-sm leading-relaxed">{step.description}</p>
                 </StaggerItem>
               ))}
             </div>
@@ -280,16 +280,16 @@ export default function SecteursCreatifsPage() {
         </Section>
 
         {/* Pages Nav */}
-        <div className="bg-slate-dark border-y border-white/5 py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest uppercase text-white/40 mr-2">Autres publics</span>
+        <div className="bg-ivory-light border-y border-border py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold tracking-widest uppercase text-slate-dark/50 mr-2">Autres publics</span>
           {otherPublics.map((pub) => (
             <Link
               key={pub.href}
               href={pub.href}
               className={`px-3 py-1 text-sm font-medium border transition-colors ${
                 pub.active
-                  ? 'bg-white/10 border-white/20 text-white'
-                  : 'border-white/10 text-white/60 hover:bg-white/5 hover:border-white/20 hover:text-white'
+                  ? 'bg-slate-dark text-white border-slate-dark'
+                  : 'border-border text-slate-dark hover:bg-slate-dark hover:text-white hover:border-slate-dark'
               }`}
             >
               {pub.label}
@@ -298,12 +298,12 @@ export default function SecteursCreatifsPage() {
         </div>
 
         {/* CTA */}
-        <Section className="bg-slate-dark">
+        <Section className="bg-ivory-light">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-ivory-light">Prêt à explorer l'IA créative ?</h2>
-                <p className="text-white/50 max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Prêt à explorer l'IA créative ?</h2>
+                <p className="text-slate-dark/60 max-w-xl">
                   Rejoignez nos ateliers, accédez au laboratoire ou consultez notre équipe pour un accompagnement sur mesure dans votre secteur.
                 </p>
               </div>

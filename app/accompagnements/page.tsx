@@ -71,16 +71,16 @@ export default function AccompanimentsPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <section className="relative pt-32 pb-20 bg-slate-dark overflow-hidden">
+        <section className="relative pt-32 pb-20 bg-ivory-light overflow-hidden">
           <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(ellipse at 30% 0%, rgba(191,77,67,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, rgba(107,122,139,0.1) 0%, transparent 50%)' }} />
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <FadeIn>
             <div className="max-w-6xl mx-auto px-4 md:px-8 relative">
-              <p className="text-sm font-medium text-white/40 uppercase tracking-widest mb-4">Accompagnements</p>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory-light mb-6">
+              <p className="text-sm font-medium text-slate-dark/40 uppercase tracking-widest mb-4">Accompagnements</p>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-slate-dark mb-6">
                 L'IA, enfin<br />pour tous.
               </h1>
-              <p className="text-white/50 text-lg max-w-xl leading-relaxed">
+              <p className="text-slate-dark/60 text-lg max-w-xl leading-relaxed">
                 L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
               </p>
             </div>
@@ -88,38 +88,38 @@ export default function AccompanimentsPage() {
         </section>
 
         {/* Stats */}
-        <div className="border-y border-white/5">
+        <div className="border-y border-border">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3">
-              <div className="p-8 border-r border-white/5">
-                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+              <div className="p-8 border-r border-border">
+                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
                   <span className="text-book-cloth">5</span>
                 </p>
-                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Publics</p>
+                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Publics</p>
               </div>
-              <div className="p-8 border-r border-white/5">
-                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+              <div className="p-8 border-r border-border">
+                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
                   <span className="text-kraft">100%</span>
                 </p>
-                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Sur mesure</p>
+                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Sur mesure</p>
               </div>
               <div className="p-8">
-                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
                   <span className="text-manilla">Gratuit</span>
                 </p>
-                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Grand public</p>
+                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Grand public</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Nos programmes */}
-        <Section className="py-24 bg-slate-dark">
+        <Section className="py-24 bg-ivory-light">
           <FadeIn>
             <div className="max-w-4xl mx-auto mb-16">
               <p className="text-sm font-medium text-book-cloth uppercase tracking-widest mb-4">Nos programmes</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-4">Cinq programmes,<br />autant de publics</h2>
-              <p className="text-white/50 leading-relaxed">
+              <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Cinq programmes,<br />autant de publics</h2>
+              <p className="text-slate-dark/60 leading-relaxed">
                 Chaque accompagnement est conçu en profondeur pour repondre aux enjeux specifiques d'un public — de l'acculturation citoyenne a la transformation organisationnelle.
               </p>
             </div>
@@ -135,17 +135,17 @@ export default function AccompanimentsPage() {
                         className="p-6 h-full flex flex-col relative overflow-hidden transition-all duration-500 group-hover:scale-[1.02]"
                         style={{ 
                           background: cardGradients[item.color],
-                          border: '1px solid rgba(255,255,255,0.06)'
+                          border: '1px solid rgba(0,0,0,0.06)'
                         }}
                       >
                         <div className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `radial-gradient(circle at center, ${item.accent}15 0%, transparent 70%)` }} />
-                        <div className="w-8 h-px bg-white/20 mb-4 group-hover:bg-white/40 transition-colors" style={{ backgroundColor: item.accent }} />
+                        <div className="w-8 h-px bg-slate-dark/20 mb-4 group-hover:bg-slate-dark/40 transition-colors" style={{ backgroundColor: item.accent }} />
                         <span className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: item.accent }}>
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-lg font-bold mb-3 text-ivory-light">{item.title}</h3>
-                        <p className="text-sm text-white/40 flex-grow leading-relaxed">{item.description}</p>
-                        <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
+                        <h3 className="font-serif text-lg font-bold mb-3 text-slate-dark">{item.title}</h3>
+                        <p className="text-sm text-slate-dark/60 flex-grow leading-relaxed">{item.description}</p>
+                        <div className="mt-4 gap-2 text-xs flex items-center uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
                           Découvrir
                           <span>→</span>
                         </div>
@@ -159,23 +159,23 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* Processus */}
-        <Section className="py-24 bg-slate-medium">
+        <Section className="py-24 bg-ivory-medium">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-5 gap-12">
                 <div className="lg:col-span-2">
                   <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre processus</p>
-                  <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-4">Un accompagnement structure en 4 temps</h2>
-                  <p className="text-white/50 leading-relaxed">
+                  <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Un accompagnement structure en 4 temps</h2>
+                  <p className="text-slate-dark/60 leading-relaxed">
                     Chaque programme demarre par une phase de diagnostic pour calibrer l'accompagnement au plus pres de vos besoins reels.
                   </p>
                 </div>
                 <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
                   {processSteps.map((step) => (
-                    <div key={step.num} className="p-6 bg-slate-dark/50 border border-white/5 hover:border-white/10 transition-colors">
+                    <div key={step.num} className="p-6 bg-white/50 border border-border/50 hover:border-border transition-colors">
                       <span className="text-xs font-bold mb-2 block" style={{ color: '#D4A27F' }}>{step.num}</span>
-                      <h4 className="font-bold mb-2 text-ivory-light">{step.title}</h4>
-                      <p className="text-sm text-white/40">{step.description}</p>
+                      <h4 className="font-bold mb-2 text-slate-dark">{step.title}</h4>
+                      <p className="text-sm text-slate-dark/60">{step.description}</p>
                     </div>
                   ))}
                 </div>
@@ -185,11 +185,11 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-24 bg-slate-dark">
+        <Section className="py-24 bg-ivory-light">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-6">Vous ne savez pas quel accompagnement vous correspond ?</h2>
-              <p className="text-white/50 mb-8 max-w-xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-6">Vous ne savez pas quel accompagnement vous correspond ?</h2>
+              <p className="text-slate-dark/60 mb-8 max-w-xl mx-auto">
                 L'ICIA vous guide vers la solution la plus adaptee a vos besoins. Notre equipe est disponible pour vous accompagner.
               </p>
               <Button href="/contact" variant="primary" size="lg">
