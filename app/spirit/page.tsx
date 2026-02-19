@@ -16,6 +16,7 @@ export default function SpiritPage() {
       src="/spirit/index.html" 
       className="fixed inset-0 w-full h-full border-0"
       title="The Spirit WebGL"
+      allow="autoplay; fullscreen"
     />
   )
 }
