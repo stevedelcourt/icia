@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 
 const accompagnementNav = [
-  { label: 'Citoyen', href: '/accompagnements/citoyen' },
+  { label: 'Citoyen', href: '/accompagnements/citoyens' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
   { label: 'Écoles & Universités', href: '/accompagnements/education' },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
@@ -60,7 +60,7 @@ const processSteps = [
 ]
 
 const otherPublics = [
-  { label: 'Citoyen', href: '/accompagnements/citoyen', active: false },
+  { label: 'Citoyen', href: '/accompagnements/citoyens', active: false },
   { label: 'Entreprises', href: '/accompagnements/entreprises', active: false },
   { label: 'Écoles & Universités', href: '/accompagnements/education', active: true },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs', active: false },
