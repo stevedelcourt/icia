@@ -76,8 +76,11 @@ export default function AProposPage() {
                 <p>L'intelligence artificielle n'est pas seulement une rupture technologique. Elle constitue une <strong>transformation profonde de nos sociétés</strong> : elle redessine le travail, l'accès au savoir, la création, les rapports économiques, les équilibres démocratiques et, plus largement, notre manière de vivre ensemble.</p>
                 <p>Face à cette mutation, l'Institut défend une conviction forte : l'IA doit devenir un <strong>bien commun</strong>, compréhensible et maîtrisable, permettant à chacun de grandir, de progresser et de tirer parti de cette révolution — au service de l'intérêt général et de l'émancipation individuelle.</p>
               </div>
-              <blockquote className="mt-8 p-6 bg-slate-dark text-white rounded-xl italic">
-                « L'intelligence artificielle doit être pensée, partagée et transmise collectivement. »
+              <blockquote className="mt-12 relative">
+                <span className="absolute -top-4 left-0 text-6xl text-book-cloth/30 leading-none">"</span>
+                <h2 className="font-serif text-2xl md:text-3xl italic text-slate-dark pl-8 pr-4 leading-relaxed">
+                  L'intelligence artificielle doit être pensée, partagée et transmise collectivement.
+                </h2>
               </blockquote>
             </div>
           </FadeIn>

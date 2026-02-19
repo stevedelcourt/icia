@@ -13,35 +13,40 @@ const publics = [
     subtitle: 'Grand public',
     description: 'Acculturation a l\'IA, securite numerique, parcours vers l\'emploi et la reconversion professionnelle.',
     href: '/accompagnements/citoyens',
-    color: 'orange',
+    color: 'citoyen',
+    accent: '#BF4D43',
   },
   { 
     title: 'Entreprise', 
     subtitle: 'Secteur prive',
     description: 'Diagnostics, formations et prototypes IA pour transformer votre organisation et rester competitif.',
     href: '/accompagnements/entreprises',
-    color: 'blue',
+    color: 'entreprise',
+    accent: '#D4A27F',
   },
   { 
     title: 'Ecole', 
     subtitle: 'Education',
     description: 'Bibliotheque pedagogique, formation des formateurs, certifications et parcours accredites.',
     href: '/accompagnements/education',
-    color: 'green',
+    color: 'education',
+    accent: '#7A9E7E',
   },
   { 
     title: 'Secteur creatif', 
     subtitle: 'Industries creatives',
     description: 'Ateliers creatifs, securite juridique, laboratoire d\'innovation pour les industries culturelles.',
     href: '/accompagnements/secteurs-creatifs',
-    color: 'purple',
+    color: 'creatif',
+    accent: '#8B7A6B',
   },
   { 
     title: 'Pouvoir public', 
     subtitle: 'Secteur public',
     description: 'IA inclusive, transformation des services publics et observatoire territorial de l\'impact IA.',
     href: '/accompagnements/pouvoirs-publics',
-    color: 'teal',
+    color: 'public',
+    accent: '#6B7A8B',
   },
 ]
 
@@ -52,20 +57,12 @@ const processSteps = [
   { num: '04', title: 'Evaluation & suivi', description: 'Mesure d\'impact, ajustements et ancrage durable des nouvelles pratiques.' },
 ]
 
-const colorMap: Record<string, string> = {
-  orange: '#191919',
-  blue: '#191919',
-  green: '#191919',
-  purple: '#191919',
-  teal: '#191919',
-}
-
-const bgColorMap: Record<string, string> = {
-  orange: '#F0F0EB',
-  blue: '#E5E4DF',
-  green: '#E5E4DF',
-  purple: '#E5E4DF',
-  teal: '#E5E4DF',
+const cardGradients: Record<string, string> = {
+  citoyen: 'linear-gradient(135deg, rgba(191,77,67,0.08) 0%, rgba(191,77,67,0.02) 100%)',
+  entreprise: 'linear-gradient(135deg, rgba(212,162,127,0.08) 0%, rgba(212,162,127,0.02) 100%)',
+  education: 'linear-gradient(135deg, rgba(122,158,126,0.08) 0%, rgba(122,158,126,0.02) 100%)',
+  creatif: 'linear-gradient(135deg, rgba(139,122,107,0.08) 0%, rgba(139,122,107,0.02) 100%)',
+  public: 'linear-gradient(135deg, rgba(107,122,139,0.08) 0%, rgba(107,122,139,0.02) 100%)',
 }
 
 export default function AccompanimentsPage() {
@@ -74,50 +71,55 @@ export default function AccompanimentsPage() {
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-0 bg-gradient-to-b from-ivory-dark to-white">
+        <section className="relative pt-32 pb-20 bg-slate-dark overflow-hidden">
+          <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(ellipse at 30% 0%, rgba(191,77,67,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, rgba(107,122,139,0.1) 0%, transparent 50%)' }} />
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <FadeIn>
-            <div className="max-w-6xl mx-auto">
-              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Accompagnements</p>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-0">
+            <div className="max-w-6xl mx-auto px-4 md:px-8 relative">
+              <p className="text-sm font-medium text-white/40 uppercase tracking-widest mb-4">Accompagnements</p>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory-light mb-6">
                 L'IA, enfin<br />pour tous.
               </h1>
-            </div>
-          </FadeIn>
-        </Section>
-
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 border-t border-border">
-            <div className="p-8 border-r border-border">
-              <p className="text-text-muted leading-relaxed">
+              <p className="text-white/50 text-lg max-w-xl leading-relaxed">
                 L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
               </p>
             </div>
-            <div className="py-8 px-4">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">5</p>
-                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Publics</p>
-                </div>
-                <div className="text-center border-l border-r border-border">
-                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">100%</p>
-                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Sur mesure</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl md:text-5xl font-bold text-accent mb-1">Gratuit</p>
-                  <p className="text-xs font-medium text-text-muted uppercase tracking-wide">Grand public</p>
-                </div>
+          </FadeIn>
+        </section>
+
+        {/* Stats */}
+        <div className="border-y border-white/5">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3">
+              <div className="p-8 border-r border-white/5">
+                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+                  <span className="text-book-cloth">5</span>
+                </p>
+                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Publics</p>
+              </div>
+              <div className="p-8 border-r border-white/5">
+                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+                  <span className="text-kraft">100%</span>
+                </p>
+                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Sur mesure</p>
+              </div>
+              <div className="p-8">
+                <p className="text-3xl md:text-5xl font-bold text-ivory-light mb-1">
+                  <span className="text-manilla">Gratuit</span>
+                </p>
+                <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Grand public</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Nos programmes */}
-        <Section className="py-20 bg-white">
+        <Section className="py-24 bg-slate-dark">
           <FadeIn>
-            <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Nos programmes</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-4">Cinq programmes,<br />autant de publics</h2>
-              <p className="text-text-muted leading-relaxed">
+            <div className="max-w-4xl mx-auto mb-16">
+              <p className="text-sm font-medium text-book-cloth uppercase tracking-widest mb-4">Nos programmes</p>
+              <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-4">Cinq programmes,<br />autant de publics</h2>
+              <p className="text-white/50 leading-relaxed">
                 Chaque accompagnement est conçu en profondeur pour repondre aux enjeux specifiques d'un public — de l'acculturation citoyenne a la transformation organisationnelle.
               </p>
             </div>
@@ -125,21 +127,27 @@ export default function AccompanimentsPage() {
           
           <div className="max-w-6xl mx-auto">
             <Stagger>
-              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
                 {publics.map((item) => (
                   <StaggerItem key={item.title}>
                     <Link href={item.href} className="block group h-full">
                       <div 
-                        className="p-6 bg-white border border-border hover:border-slate-dark hover:shadow-lg transition-all h-full flex flex-col"
-                        style={{ backgroundColor: bgColorMap[item.color] }}
+                        className="p-6 h-full flex flex-col relative overflow-hidden transition-all duration-500 group-hover:scale-[1.02]"
+                        style={{ 
+                          background: cardGradients[item.color],
+                          border: '1px solid rgba(255,255,255,0.06)'
+                        }}
                       >
-                        <span className="text-xs font-bold uppercase tracking-widest mb-3 text-accent">
+                        <div className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `radial-gradient(circle at center, ${item.accent}15 0%, transparent 70%)` }} />
+                        <div className="w-8 h-px bg-white/20 mb-4 group-hover:bg-white/40 transition-colors" style={{ backgroundColor: item.accent }} />
+                        <span className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: item.accent }}>
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-lg font-bold mb-3 text-slate-dark">{item.title}</h3>
-                        <p className="text-sm text-text-muted flex-grow">{item.description}</p>
-                        <div className="mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity text-slate-dark">
-                          ➔
+                        <h3 className="font-serif text-lg font-bold mb-3 text-ivory-light">{item.title}</h3>
+                        <p className="text-sm text-white/40 flex-grow leading-relaxed">{item.description}</p>
+                        <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
+                          Découvrir
+                          <span>→</span>
                         </div>
                       </div>
                     </Link>
@@ -151,23 +159,23 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* Processus */}
-        <Section className="py-20 bg-ivory-medium">
+        <Section className="py-24 bg-slate-medium">
           <FadeIn>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-5 gap-12">
                 <div className="lg:col-span-2">
-                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre processus</p>
-                  <h2 className="font-serif text-3xl md:text-4xl mb-4">Un accompagnement structure en 4 temps</h2>
-                  <p className="text-text-muted leading-relaxed">
+                  <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre processus</p>
+                  <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-4">Un accompagnement structure en 4 temps</h2>
+                  <p className="text-white/50 leading-relaxed">
                     Chaque programme demarre par une phase de diagnostic pour calibrer l'accompagnement au plus pres de vos besoins reels.
                   </p>
                 </div>
-                <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+                <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
                   {processSteps.map((step) => (
-                    <div key={step.num} className="p-6 bg-white border border-border">
-                      <span className="text-xs font-bold text-accent mb-2 block">{step.num}</span>
-                      <h4 className="font-bold mb-2">{step.title}</h4>
-                      <p className="text-sm text-text-muted">{step.description}</p>
+                    <div key={step.num} className="p-6 bg-slate-dark/50 border border-white/5 hover:border-white/10 transition-colors">
+                      <span className="text-xs font-bold mb-2 block" style={{ color: '#D4A27F' }}>{step.num}</span>
+                      <h4 className="font-bold mb-2 text-ivory-light">{step.title}</h4>
+                      <p className="text-sm text-white/40">{step.description}</p>
                     </div>
                   ))}
                 </div>
@@ -177,15 +185,16 @@ export default function AccompanimentsPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20 bg-ivory-dark">
+        <Section className="py-24 bg-slate-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-serif text-3xl md:text-4xl mb-6">Vous ne savez pas quel accompagnement vous correspond ?</h2>
-              <p className="text-text-muted mb-8 max-w-xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl text-ivory-light mb-6">Vous ne savez pas quel accompagnement vous correspond ?</h2>
+              <p className="text-white/50 mb-8 max-w-xl mx-auto">
                 L'ICIA vous guide vers la solution la plus adaptee a vos besoins. Notre equipe est disponible pour vous accompagner.
               </p>
-              <Button href="/contact" variant="secondary" size="lg" arrow={false}>
-                  Nous contacter ➔
+              <Button href="/contact" variant="primary" size="lg">
+                  Nous contacter
+                  <span className="ml-2">→</span>
                 </Button>
             </div>
           </FadeIn>

@@ -55,21 +55,22 @@ const otherPublics = [
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics', active: false },
 ]
 
+const accentColor = '#BF4D43'
+
 export default function CitoyensPage() {
   return (
     <>
       <Header />
       <main id="main-content">
-        {/* Breadcrumb */}
-        <div className="pt-20 bg-bg border-b border-border">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-muted">
-            <Link href="/" className="hover:text-text transition-colors">Accueil</Link>
+        {/* Breadcrumb & Nav */}
+        <div className="pt-20 border-b border-white/5 bg-slate-dark">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-white/40">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
             <span>/</span>
-            <Link href="/accompagnements" className="hover:text-text transition-colors">Accompagnements</Link>
+            <Link href="/accompagnements" className="hover:text-white transition-colors">Accompagnements</Link>
             <span>/</span>
-            <span className="text-text font-medium">Citoyens</span>
+            <span className="text-white/80 font-medium">Citoyens</span>
           </div>
-          {/* Navigation tabs */}
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="flex gap-1 overflow-x-auto pb-0 -mb-px">
               {accompagnementNav.map((item) => (
@@ -78,8 +79,8 @@ export default function CitoyensPage() {
                   href={item.href}
                   className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     item.href === '/accompagnements/citoyens'
-                      ? 'border-accent text-accent'
-                      : 'border-transparent text-muted hover:text-text hover:border-border'
+                      ? 'border-white/60 text-white'
+                      : 'border-transparent text-white/40 hover:text-white hover:border-white/20'
                   }`}
                 >
                   {item.label}
@@ -90,48 +91,49 @@ export default function CitoyensPage() {
         </div>
 
         {/* Hero */}
-        <section className="bg-ink text-off-white">
+        <section className="relative bg-slate-dark overflow-hidden">
+          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(191,77,67,0.2) 0%, transparent 50%)' }} />
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="py-16 md:py-24 pr-8">
                 <FadeIn>
-                  <div className="inline-flex items-center gap-3 text-accent text-xs font-semibold tracking-widest uppercase mb-6">
-                    <span className="w-8 h-px bg-accent"></span>
+                  <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
+                    <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Grand public
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-ivory-light">
                     Comprendre<br />
                     l'IA, rester<br />
-                    <span className="text-accent">en sécurité</span>
+                    <span style={{ color: accentColor }}>en sécurité</span>
                   </h1>
-                  <p className="text-lg text-white/55 max-w-xl mb-8 leading-relaxed">
+                  <p className="text-lg text-white/50 max-w-xl mb-8 leading-relaxed">
                     L'ICIA propose des parcours adaptés aux particuliers pour mieux comprendre l'intelligence artificielle, se protéger des risques et développer ses compétences vers l'emploi.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact">
-                      <Button variant="primary" size="lg">
+                      <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
                         Être accompagné
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <Button variant="ghost" className="border border-white/20 text-white/60 hover:border-white/50 hover:text-white">
+                      <Button variant="ghost" className="border border-white/10 text-white/60 hover:border-white/30 hover:text-white">
                         Découvrir
                       </Button>
                     </Link>
                   </div>
                 </FadeIn>
               </div>
-              <div className="border-l border-white/10 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-radial-gradient from-accent/20 to-transparent pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, rgba(232,75,26,0.18) 0%, transparent 65%)' }}></div>
+              <div className="border-l border-white/5 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
                 <FadeIn delay={0.1}>
-                  <div className="text-5xl md:text-7xl font-bold mb-2">
-                    <span className="text-accent">1 500</span> à 2 500
+                  <div className="text-5xl md:text-7xl font-bold mb-2 text-ivory-light">
+                    <span style={{ color: accentColor }}>1 500</span> à 2 500
                   </div>
-                  <p className="text-white/45 mb-8 max-w-xs">personnes accompagnées par an</p>
-                  <div className="h-px bg-white/10 mb-8"></div>
+                  <p className="text-white/40 mb-8 max-w-xs">personnes accompagnées par an</p>
+                  <div className="h-px bg-white/5 mb-8"></div>
                   <div className="flex flex-wrap gap-2">
                     {['Acculturation IA', 'Sécurité numérique', 'Emploi & reconversion', 'Passerelles formation', 'Sans prérequis'].map((tag) => (
-                      <span key={tag} className="px-3 py-1 border border-white/12 text-white/40 text-xs hover:border-accent hover:text-accent transition-colors cursor-default">
+                      <span key={tag} className="px-3 py-1 border border-white/8 text-white/40 text-xs hover:border-white/20 hover:text-white/60 transition-colors cursor-default">
                         {tag}
                       </span>
                     ))}
@@ -142,33 +144,53 @@ export default function CitoyensPage() {
           </div>
         </section>
 
+        {/* Stats */}
+        <div className="grid md:grid-cols-3 border-b border-white/5">
+          <div className="p-8 border-r border-white/5 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>1 500</span>–2 500
+            </div>
+            <p className="text-white/40 text-sm">personnes accompagnées par an</p>
+          </div>
+          <div className="p-8 border-r border-white/5 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">4</div>
+            <p className="text-white/40 text-sm">programmes complémentaires</p>
+          </div>
+          <div className="p-8 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>0€</span>
+            </div>
+            <p className="text-white/40 text-sm">pour tous les citoyens — accès entièrement gratuit</p>
+          </div>
+        </div>
+
         {/* Programmes */}
-        <Section id="programmes" className="bg-white border-t border-border">
+        <Section id="programmes" className="bg-slate-dark border-t border-white/5">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
-              <span className="w-6 h-px bg-muted"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
+              <span className="w-6 h-px bg-white/20"></span>
               Nos programmes
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Quatre parcours<br />pour les citoyens</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">Quatre parcours<br />pour les citoyens</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-2 border border-border">
+            <div className="grid md:grid-cols-2 border border-white/5">
               {programmes.map((prog) => (
-                <StaggerItem key={prog.num} className="p-8 border-r border-b border-border hover:bg-off-white transition-colors relative">
-                  <span className="absolute top-6 right-8 text-5xl font-bold text-black/03 pointer-events-none">{prog.num}</span>
-                  <h3 className="text-xl font-bold mb-3">{prog.title}</h3>
-                  <p className="text-muted text-sm mb-4 leading-relaxed">{prog.description}</p>
+                <StaggerItem key={prog.num} className="p-8 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors relative group">
+                  <span className="absolute top-6 right-8 text-5xl font-bold text-ivory-light/5 pointer-events-none">{prog.num}</span>
+                  <h3 className="text-xl font-bold mb-3 text-ivory-light">{prog.title}</h3>
+                  <p className="text-white/50 text-sm mb-4 leading-relaxed">{prog.description}</p>
                   <ul className="space-y-1 mb-6">
                     {prog.items.map((item) => (
-                      <li key={item} className="text-sm flex items-start gap-2">
-                        <span className="text-accent font-bold">—</span>
+                      <li key={item} className="text-sm flex items-start gap-2 text-white/40">
+                        <span className="font-bold" style={{ color: accentColor }}>—</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact" className="inline-flex items-center gap-2 text-accent text-xs font-bold tracking-widest uppercase border-b border-accent/30 pb-0.5 hover:border-accent transition-colors group">
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-white/10 pb-0.5 hover:border-white/30 transition-colors group" style={{ color: accentColor }}>
                     Découvrir
-                    <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
+                    <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                   </Link>
                 </StaggerItem>
               ))}
@@ -176,42 +198,22 @@ export default function CitoyensPage() {
           </Stagger>
         </Section>
 
-        {/* Stats */}
-        <div className="grid md:grid-cols-3 border-b border-white/10">
-          <div className="p-8 border-r border-white/10 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent">1 500</span>–2 500
-            </div>
-            <p className="text-white/45 text-sm">personnes accompagnées par an</p>
-          </div>
-          <div className="p-8 border-r border-white/10 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">4</div>
-            <p className="text-white/45 text-sm">programmes complémentaires</p>
-          </div>
-          <div className="p-8 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent">0€</span>
-            </div>
-            <p className="text-white/45 text-sm">pour tous les citoyens — accès entièrement gratuit</p>
-          </div>
-        </div>
-
         {/* Process */}
-        <Section className="bg-warm-mid">
+        <Section className="bg-slate-medium">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
-              <span className="w-6 h-px bg-muted"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
+              <span className="w-6 h-px bg-white/20"></span>
               Comment ça se passe
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Simple, rapide,<br />sans engagement</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">Simple, rapide,<br />sans engagement</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-4 border border-border">
+            <div className="grid md:grid-cols-4 border border-white/5">
               {processSteps.map((step) => (
-                <StaggerItem key={step.num} className="p-6 border-r border-b border-border hover:bg-white/50 transition-colors">
-                  <span className="text-accent text-xs font-bold tracking-widest uppercase block mb-3">{step.num}</span>
-                  <h4 className="font-bold mb-2">{step.title}</h4>
-                  <p className="text-muted text-sm leading-relaxed">{step.description}</p>
+                <StaggerItem key={step.num} className="p-6 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                  <span className="text-xs font-bold tracking-widest uppercase block mb-3" style={{ color: accentColor }}>{step.num}</span>
+                  <h4 className="font-bold mb-2 text-ivory-light">{step.title}</h4>
+                  <p className="text-white/40 text-sm leading-relaxed">{step.description}</p>
                 </StaggerItem>
               ))}
             </div>
@@ -219,16 +221,16 @@ export default function CitoyensPage() {
         </Section>
 
         {/* Pages Nav */}
-        <div className="bg-bg border-y border-border py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest uppercase text-muted mr-2">Autres publics</span>
+        <div className="bg-slate-dark border-y border-white/5 py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold tracking-widest uppercase text-white/40 mr-2">Autres publics</span>
           {otherPublics.map((pub) => (
             <Link
               key={pub.href}
               href={pub.href}
               className={`px-3 py-1 text-sm font-medium border transition-colors ${
                 pub.active
-                  ? 'bg-ink text-off-white border-ink'
-                  : 'border-border text-text hover:bg-ink hover:text-off-white hover:border-ink'
+                  ? 'bg-white/10 border-white/20 text-white'
+                  : 'border-white/10 text-white/60 hover:bg-white/5 hover:border-white/20 hover:text-white'
               }`}
             >
               {pub.label}
@@ -237,17 +239,17 @@ export default function CitoyensPage() {
         </div>
 
         {/* CTA */}
-        <Section className="bg-bg">
+        <Section className="bg-slate-dark">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3">Prêt à vous lancer ?</h2>
-                <p className="text-muted max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-ivory-light">Prêt à vous lancer ?</h2>
+                <p className="text-white/50 max-w-xl">
                   Que vous soyez curieux, en reconversion ou souhaitant mieux comprendre l'IA au quotidien, l'ICIA a un programme pour vous.
                 </p>
               </div>
               <Link href="/contact">
-                <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
                   Être accompagné
                 </Button>
               </Link>

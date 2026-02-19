@@ -61,21 +61,22 @@ const otherPublics = [
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics', active: true },
 ]
 
+const accentColor = '#6B7A8B'
+
 export default function PouvoirsPublicsPage() {
   return (
     <>
       <Header />
       <main id="main-content">
-        {/* Breadcrumb */}
-        <div className="pt-20 bg-bg border-b border-border">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-muted">
-            <Link href="/" className="hover:text-text transition-colors">Accueil</Link>
+        {/* Breadcrumb & Nav */}
+        <div className="pt-20 border-b border-white/5 bg-slate-dark">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-white/40">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
             <span>/</span>
-            <Link href="/accompagnements" className="hover:text-text transition-colors">Accompagnements</Link>
+            <Link href="/accompagnements" className="hover:text-white transition-colors">Accompagnements</Link>
             <span>/</span>
-            <span className="text-text font-medium">Pouvoirs publics</span>
+            <span className="text-white/80 font-medium">Pouvoirs publics</span>
           </div>
-          {/* Navigation tabs */}
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="flex gap-1 overflow-x-auto pb-0 -mb-px">
               {accompagnementNav.map((item) => (
@@ -84,8 +85,8 @@ export default function PouvoirsPublicsPage() {
                   href={item.href}
                   className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     item.href === '/accompagnements/pouvoirs-publics'
-                      ? 'border-accent-teal text-accent-teal'
-                      : 'border-transparent text-muted hover:text-text hover:border-border'
+                      ? 'border-white/60 text-white'
+                      : 'border-transparent text-white/40 hover:text-white hover:border-white/20'
                   }`}
                 >
                   {item.label}
@@ -96,49 +97,50 @@ export default function PouvoirsPublicsPage() {
         </div>
 
         {/* Hero */}
-        <section className="bg-ink text-off-white">
+        <section className="relative bg-slate-dark overflow-hidden">
+          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(107,122,139,0.2) 0%, transparent 50%)' }} />
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="py-16 md:py-24 pr-8">
                 <FadeIn>
-                  <div className="inline-flex items-center gap-3 text-accent-teal text-xs font-semibold tracking-widest uppercase mb-6">
-                    <span className="w-8 h-px bg-accent-teal"></span>
+                  <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
+                    <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Secteur public
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-ivory-light">
                     Inclusion,<br />
                     transformation<br />
-                    et <span className="text-accent-teal">pilotage</span><br />
+                    et <span style={{ color: accentColor }}>pilotage</span><br />
                     territorial
                   </h1>
-                  <p className="text-lg text-white/55 max-w-xl mb-8 leading-relaxed">
+                  <p className="text-lg text-white/50 max-w-xl mb-8 leading-relaxed">
                     L'ICIA accompagne les collectivités, administrations et établissements publics dans la compréhension et le déploiement de l'IA au service des citoyens et des agents.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact?subject=partnership&target=publics">
-                      <Button variant="primary" size="lg" className="bg-accent-teal hover:bg-teal-700">
+                      <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
                         Discuter de votre projet
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <Button variant="ghost" className="border border-white/20 text-white/60 hover:border-white/50 hover:text-white">
+                      <Button variant="ghost" className="border border-white/10 text-white/60 hover:border-white/30 hover:text-white">
                         Découvrir
                       </Button>
                     </Link>
                   </div>
                 </FadeIn>
               </div>
-              <div className="border-l border-white/10 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, rgba(0,139,139,0.18) 0%, transparent 65%)' }}></div>
+              <div className="border-l border-white/5 py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
                 <FadeIn delay={0.1}>
-                  <div className="text-5xl md:text-7xl font-bold mb-2 text-off-white">
-                    <span className="text-accent-teal">13</span>
+                  <div className="text-5xl md:text-7xl font-bold mb-2 text-ivory-light">
+                    <span style={{ color: accentColor }}>13</span>
                   </div>
-                  <p className="text-white/45 mb-8 max-w-xs">régions couvertes par l'observatoire territorial ICIA</p>
-                  <div className="h-px bg-white/10 mb-8"></div>
+                  <p className="text-white/40 mb-8 max-w-xs">régions couvertes par l'observatoire territorial ICIA</p>
+                  <div className="h-px bg-white/5 mb-8"></div>
                   <div className="flex flex-wrap gap-2">
                     {['IA inclusive', 'Services publics', 'Observatoire territorial', 'Formation agents', 'Collectivités'].map((tag) => (
-                      <span key={tag} className="px-3 py-1 border border-white/12 text-white/40 text-xs hover:border-accent-teal hover:text-accent-teal transition-colors cursor-default">
+                      <span key={tag} className="px-3 py-1 border border-white/8 text-white/40 text-xs hover:border-white/20 hover:text-white/60 transition-colors cursor-default">
                         {tag}
                       </span>
                     ))}
@@ -149,34 +151,62 @@ export default function PouvoirsPublicsPage() {
           </div>
         </section>
 
+        {/* Stats */}
+        <div className="grid md:grid-cols-4 border-b border-white/5">
+          <div className="p-8 border-r border-white/5 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>4</span>
+            </div>
+            <p className="text-white/40 text-sm">programmes complémentaires</p>
+          </div>
+          <div className="p-8 border-r border-white/5 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>13</span>
+            </div>
+            <p className="text-white/40 text-sm">régions dans l'observatoire</p>
+          </div>
+          <div className="p-8 border-r border-white/5 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>50+</span>
+            </div>
+            <p className="text-white/40 text-sm">indicateurs territoriaux</p>
+          </div>
+          <div className="p-8 bg-slate-medium">
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-ivory-light">
+              <span style={{ color: accentColor }}>0€</span>
+            </div>
+            <p className="text-white/40 text-sm">pour les collectivités éligibles</p>
+          </div>
+        </div>
+
         {/* Programmes */}
-        <Section id="programmes" className="bg-white border-t border-border">
+        <Section id="programmes" className="bg-slate-dark border-t border-white/5">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
-              <span className="w-6 h-px bg-muted"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
+              <span className="w-6 h-px bg-white/20"></span>
               Nos programmes
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Quatre axes pour<br />les pouvoirs publics</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">Quatre axes pour<br />les pouvoirs publics</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-2 border border-border">
+            <div className="grid md:grid-cols-2 border border-white/5">
               {programmes.map((prog) => (
-                <StaggerItem key={prog.num} className="p-8 border-r border-b border-border hover:bg-off-white transition-colors relative">
-                  <span className="absolute top-6 right-8 text-5xl font-bold text-black/03 pointer-events-none">{prog.num}</span>
-                  <h3 className="text-xl font-bold mb-3">{prog.title}</h3>
-                  <p className="text-muted text-sm mb-4 leading-relaxed">{prog.description}</p>
+                <StaggerItem key={prog.num} className="p-8 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors relative">
+                  <span className="absolute top-6 right-8 text-5xl font-bold text-ivory-light/5 pointer-events-none">{prog.num}</span>
+                  <h3 className="text-xl font-bold mb-3 text-ivory-light">{prog.title}</h3>
+                  <p className="text-white/50 text-sm mb-4 leading-relaxed">{prog.description}</p>
                   <ul className="space-y-1 mb-6">
                     {prog.items.map((item) => (
-                      <li key={item} className="text-sm flex items-start gap-2">
-                        <span className="text-accent-teal font-bold">—</span>
+                      <li key={item} className="text-sm flex items-start gap-2 text-white/40">
+                        <span className="font-bold" style={{ color: accentColor }}>—</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   {prog.cta && (
-                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-accent-teal text-xs font-bold tracking-widest uppercase border-b border-accent-teal/30 pb-0.5 hover:border-accent-teal transition-colors group">
+                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-white/10 pb-0.5 hover:border-white/30 transition-colors group" style={{ color: accentColor }}>
                       {prog.cta}
-                      <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
+                      <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                     </Link>
                   )}
                 </StaggerItem>
@@ -186,35 +216,35 @@ export default function PouvoirsPublicsPage() {
         </Section>
 
         {/* Observatoire */}
-        <div className="bg-ink border-t-4 border-accent-teal">
+        <div className="bg-slate-medium border-t-2" style={{ borderColor: accentColor }}>
           <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
-                <div className="inline-flex items-center gap-3 text-accent-teal/80 text-xs font-semibold tracking-widest uppercase mb-4">
-                  <span className="w-6 h-px bg-accent-teal/80"></span>
+                <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/50">
+                  <span className="w-6 h-px bg-white/30"></span>
                   Observatoire territorial
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-off-white">Le pouls de l'IA<br />dans les territoires</h2>
-                <p className="text-white/45 leading-relaxed max-w-md">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-ivory-light">Le pouls de l'IA<br />dans les territoires</h2>
+                <p className="text-white/40 leading-relaxed max-w-md">
                   Un outil de pilotage unique pour les décideurs publics : suivi de l'adoption de l'IA, identification des inégalités territoriales et recommandations personnalisées.
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-px bg-white/10">
-                <div className="p-6 bg-white/5 hover:bg-white/10 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-off-white">
-                    <span className="text-accent-teal">50</span>+
+              <div className="grid grid-cols-3 gap-px bg-white/5">
+                <div className="p-6 bg-slate-dark/50 hover:bg-slate-dark transition-colors">
+                  <div className="text-3xl md:text-4xl font-bold mb-1 text-ivory-light">
+                    <span style={{ color: accentColor }}>50</span>+
                   </div>
                   <p className="text-white/40 text-sm">indicateurs suivis en continu</p>
                 </div>
-                <div className="p-6 bg-white/5 hover:bg-white/10 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-off-white">
-                    <span className="text-accent-teal">13</span>
+                <div className="p-6 bg-slate-dark/50 hover:bg-slate-dark transition-colors">
+                  <div className="text-3xl md:text-4xl font-bold mb-1 text-ivory-light">
+                    <span style={{ color: accentColor }}>13</span>
                   </div>
                   <p className="text-white/40 text-sm">régions françaises couvertes</p>
                 </div>
-                <div className="p-6 bg-white/5 hover:bg-white/10 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-off-white">
-                    <span className="text-accent-teal">4</span>
+                <div className="p-6 bg-slate-dark/50 hover:bg-slate-dark transition-colors">
+                  <div className="text-3xl md:text-4xl font-bold mb-1 text-ivory-light">
+                    <span style={{ color: accentColor }}>4</span>
                   </div>
                   <p className="text-white/40 text-sm">rapports annuels publiés</p>
                 </div>
@@ -223,50 +253,22 @@ export default function PouvoirsPublicsPage() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid md:grid-cols-4 border-b border-white/10">
-          <div className="p-8 border-r border-white/10 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent-teal">4</span>
-            </div>
-            <p className="text-white/45 text-sm">programmes complémentaires</p>
-          </div>
-          <div className="p-8 border-r border-white/10 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent-teal">13</span>
-            </div>
-            <p className="text-white/45 text-sm">régions dans l'observatoire</p>
-          </div>
-          <div className="p-8 border-r border-white/10 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent-teal">50+</span>
-            </div>
-            <p className="text-white/45 text-sm">indicateurs territoriaux</p>
-          </div>
-          <div className="p-8 bg-ink">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-off-white">
-              <span className="text-accent-teal">0€</span>
-            </div>
-            <p className="text-white/45 text-sm">pour les collectivités éligibles</p>
-          </div>
-        </div>
-
         {/* Process */}
-        <Section className="bg-warm-mid">
+        <Section className="bg-slate-medium">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 text-muted text-xs font-semibold tracking-widest uppercase mb-4">
-              <span className="w-6 h-px bg-muted"></span>
+            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-white/40">
+              <span className="w-6 h-px bg-white/20"></span>
               Notre approche
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Un accompagnement<br />respectueux de vos contraintes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-ivory-light">Un accompagnement<br />respectueux de vos contraintes</h2>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-4 border border-border">
+            <div className="grid md:grid-cols-4 border border-white/5">
               {processSteps.map((step) => (
-                <StaggerItem key={step.num} className="p-6 border-r border-b border-border hover:bg-white/50 transition-colors">
-                  <span className="text-accent-teal text-xs font-bold tracking-widest uppercase block mb-3">{step.num}</span>
-                  <h4 className="font-bold mb-2">{step.title}</h4>
-                  <p className="text-muted text-sm leading-relaxed">{step.description}</p>
+                <StaggerItem key={step.num} className="p-6 border-r border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                  <span className="text-xs font-bold tracking-widest uppercase block mb-3" style={{ color: accentColor }}>{step.num}</span>
+                  <h4 className="font-bold mb-2 text-ivory-light">{step.title}</h4>
+                  <p className="text-white/40 text-sm leading-relaxed">{step.description}</p>
                 </StaggerItem>
               ))}
             </div>
@@ -274,16 +276,16 @@ export default function PouvoirsPublicsPage() {
         </Section>
 
         {/* Pages Nav */}
-        <div className="bg-bg border-y border-border py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest uppercase text-muted mr-2">Autres publics</span>
+        <div className="bg-slate-dark border-y border-white/5 py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold tracking-widest uppercase text-white/40 mr-2">Autres publics</span>
           {otherPublics.map((pub) => (
             <Link
               key={pub.href}
               href={pub.href}
               className={`px-3 py-1 text-sm font-medium border transition-colors ${
                 pub.active
-                  ? 'bg-ink text-off-white border-ink'
-                  : 'border-border text-text hover:bg-ink hover:text-off-white hover:border-ink'
+                  ? 'bg-white/10 border-white/20 text-white'
+                  : 'border-white/10 text-white/60 hover:bg-white/5 hover:border-white/20 hover:text-white'
               }`}
             >
               {pub.label}
@@ -292,17 +294,17 @@ export default function PouvoirsPublicsPage() {
         </div>
 
         {/* CTA */}
-        <Section className="bg-bg">
+        <Section className="bg-slate-dark">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3">Parlons de votre projet</h2>
-                <p className="text-muted max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-ivory-light">Parlons de votre projet</h2>
+                <p className="text-white/50 max-w-xl">
                   Vous êtes élu, directeur d'administration ou responsable de service public ? Discutons de votre projet d'IA et de la façon dont l'ICIA peut vous accompagner.
                 </p>
               </div>
               <Link href="/contact?subject=partnership&target=publics">
-                <Button variant="primary" size="lg" className="bg-ink hover:bg-accent-teal">
+                <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
                   Nous contacter
                 </Button>
               </Link>
