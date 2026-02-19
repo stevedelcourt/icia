@@ -76,7 +76,7 @@ export default function CityPage() {
 
       const segments = 2
       for (let i = 1; i < settings.buildingCount; i++) {
-        const geometry = new THREE.BoxGeometry(1, 0, 0, segments, segments, segments)
+        const geometry = new THREE.BoxGeometry(1, 1, 1, segments, segments, segments)
         const material = new THREE.MeshStandardMaterial({
           color: setTintColor(),
           wireframe: false,
