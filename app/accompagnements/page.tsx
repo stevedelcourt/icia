@@ -177,7 +177,7 @@ export default function AccompanimentsNewPage() {
               <p className="text-sm font-medium text-book-cloth uppercase tracking-widest mb-4">Nos programmes</p>
               <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Cinq programmes,<br />autant de publics</h2>
               <p className="text-slate-dark/60 leading-relaxed">
-                Chaque accompagnement est con�u en profondeur pour repondre aux enjeux specifiques d'un public � de l'acculturation citoyenne a la transformation organisationnelle.
+                Chaque accompagnement est conçu en profondeur pour répondre aux enjeux spécifiques d'un public, de l'acculturation citoyenne à la transformation organisationnelle.
               </p>
             </div>
           </FadeIn>
