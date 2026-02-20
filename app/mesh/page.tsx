@@ -158,13 +158,15 @@ class VantaNET {
     this.windowTouchWrapper = this.handleTouch.bind(this)
     this.resizeBound = this.resize.bind(this)
     this.animationLoopBound = this.loop.bind(this)
+    this.triggerMouseMove = this.triggerMouseMove.bind(this)
+    this.onMouseMove = this.onMouseMove.bind(this)
 
     this.prepareEl()
     this.initThree()
     this.setSize()
+    this.resize()
     this.init()
     this.initMouse()
-    this.resize()
     this.loop()
 
     const ad = window.addEventListener
