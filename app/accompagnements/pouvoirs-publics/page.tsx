@@ -153,25 +153,25 @@ export default function PouvoirsPublicsPage() {
 
         {/* Stats */}
         <div className="grid md:grid-cols-4 border-b border-border">
-          <div className="p-8 border-r border-border bg-white">
+          <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>4</span>
             </div>
             <p className="text-slate-dark/50 text-sm">programmes complémentaires</p>
           </div>
-          <div className="p-8 border-r border-border bg-white">
+          <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>13</span>
             </div>
             <p className="text-slate-dark/50 text-sm">régions dans l'observatoire</p>
           </div>
-          <div className="p-8 border-r border-border bg-white">
+          <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>50+</span>
             </div>
             <p className="text-slate-dark/50 text-sm">indicateurs territoriaux</p>
           </div>
-          <div className="p-8 bg-white">
+          <div className="p-8 bg-white text-center">
             <div className="text-4xl md:text-5xl font-bold mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>0€</span>
             </div>
@@ -276,21 +276,25 @@ export default function PouvoirsPublicsPage() {
         </Section>
 
         {/* Pages Nav */}
-        <div className="bg-ivory-light border-y border-border py-4 px-4 md:px-8 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest uppercase text-slate-dark/50 mr-2">Autres publics</span>
-          {otherPublics.map((pub) => (
-            <Link
-              key={pub.href}
-              href={pub.href}
-              className={`px-3 py-1 text-sm font-medium border transition-colors ${
-                pub.active
-                  ? 'bg-slate-dark text-white border-slate-dark'
-                  : 'border-border text-slate-dark hover:bg-slate-dark hover:text-white hover:border-slate-dark'
-              }`}
-            >
-              {pub.label}
-            </Link>
-          ))}
+        <div className="bg-ivory-light border-y border-border">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3">
+            <div className="flex gap-1 overflow-x-auto">
+              <span className="px-4 py-3 text-sm font-medium text-slate-dark/50 whitespace-nowrap">Autres publics</span>
+              {otherPublics.map((pub) => (
+                <Link
+                  key={pub.href}
+                  href={pub.href}
+                  className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                    pub.active
+                      ? 'border-slate-dark text-slate-dark'
+                      : 'border-transparent text-slate-dark/50 hover:text-slate-dark hover:border-border'
+                  }`}
+                >
+                  {pub.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* CTA */}
