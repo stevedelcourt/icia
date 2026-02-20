@@ -29,35 +29,25 @@ export default function ThinkPage() {
       if (!containerRef.current || !window.anime) return
 
       const container = containerRef.current
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      svg.setAttribute('viewBox', '0 0 800 150')
-      svg.setAttribute('width', '800')
-      svg.setAttribute('height', '150')
-      svg.style.display = 'block'
-      svg.style.margin = '0 auto'
-      container.appendChild(svg)
-
-      const text = "L'IA POUR TOUS !"
       
-      const fontSize = 80
-      const letterSpacing = 5
+      const text = "L'IA POUR TOUS !"
       
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')!
-      canvas.width = 800
-      canvas.height = 150
+      canvas.width = 700
+      canvas.height = 120
       
-      ctx.font = `bold ${fontSize}px Arial, sans-serif`
+      ctx.font = `bold 90px Arial, sans-serif`
       ctx.fillStyle = 'white'
       ctx.textBaseline = 'middle'
       ctx.textAlign = 'center'
-      ctx.fillText(text, 400, 75)
+      ctx.fillText(text, 350, 60)
       
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const points: { x: number; y: number }[] = []
       
-      for (let y = 0; y < canvas.height; y += 4) {
-        for (let x = 0; x < canvas.width; x += 4) {
+      for (let y = 0; y < canvas.height; y += 6) {
+        for (let x = 0; x < canvas.width; x += 6) {
           const i = (y * canvas.width + x) * 4
           if (imageData.data[i] > 128) {
             points.push({ x, y })
@@ -65,11 +55,19 @@ export default function ThinkPage() {
         }
       }
 
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      svg.setAttribute('viewBox', `0 0 ${canvas.width} ${canvas.height}`)
+      svg.setAttribute('width', '700')
+      svg.setAttribute('height', '120')
+      svg.style.display = 'block'
+      svg.style.margin = 'auto'
+      container.appendChild(svg)
+
       points.forEach((point) => {
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         circle.setAttribute('cx', point.x.toString())
         circle.setAttribute('cy', point.y.toString())
-        circle.setAttribute('r', '2')
+        circle.setAttribute('r', '4')
         circle.setAttribute('fill', '#000000')
         circle.style.opacity = '0'
         svg.appendChild(circle)
@@ -80,45 +78,46 @@ export default function ThinkPage() {
       window.anime({
         targets: dots,
         opacity: [0, 1],
-        scale: [0, 1],
-        delay: window.anime.stagger(2, { from: 'center' }),
-        duration: 500,
+        r: [0, 4],
+        delay: window.anime.stagger(3, { from: 'center' }),
+        duration: 600,
         easing: 'easeOutQuad',
         complete: () => {
           setTimeout(() => {
             window.anime({
               targets: dots,
               fill: '#dd5d20',
-              scale: [1, 1.5, 1],
-              delay: window.anime.stagger(5, { from: 'center' }),
-              duration: 800,
+              r: [4, 7, 4],
+              delay: window.anime.stagger(8, { from: 'center' }),
+              duration: 1000,
               easing: 'easeInOutQuad',
               complete: () => {
                 setTimeout(() => {
                   window.anime({
                     targets: dots,
                     fill: '#0b9444',
-                    scale: [1, 0.5, 1],
-                    delay: window.anime.stagger(3, { from: 'random' }),
-                    duration: 600,
+                    r: [4, 6, 4],
+                    delay: window.anime.stagger(5, { from: 'random' }),
+                    duration: 800,
                     easing: 'easeInOutQuad',
                     complete: () => {
                       setTimeout(() => {
                         window.anime({
                           targets: dots,
                           fill: '#1f91ac',
-                          translateY: [0, -10, 0],
-                          delay: window.anime.stagger(10, { from: 'center', direction: 'reverse' }),
-                          duration: 1000,
+                          r: [4, 5, 4],
+                          translateY: [0, -15, 0],
+                          delay: window.anime.stagger(15, { from: 'center', direction: 'reverse' }),
+                          duration: 1200,
                           easing: 'easeInOutQuad'
                         })
-                      }, 500)
+                      }, 800)
                     }
                   })
-                }, 500)
+                }, 800)
               }
             })
-          }, 1000)
+          }, 1500)
         }
       })
     }
