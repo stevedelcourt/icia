@@ -10,184 +10,165 @@ declare global {
 
 export default function OneAllPage() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [loaded, setLoaded] = useState(false)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     if (!containerRef.current) return
 
-    const loadAnime = async () => {
+    const loadAnime = () => {
       if (window.anime) {
-        setLoaded(true)
+        init()
         return
       }
 
       const script = document.createElement('script')
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js'
       script.async = true
-      script.onload = () => setLoaded(true)
+      script.onload = init
       document.body.appendChild(script)
     }
 
-    loadAnime()
-  }, [])
+    const init = () => {
+      if (!containerRef.current || !window.anime) return
 
-  useEffect(() => {
-    if (!loaded || !containerRef.current || !window.anime) return
+      const container = containerRef.current
+      const rows = 41
+      const grid: [number, number] = [rows, rows]
+      const numberOfElements = rows * rows
 
-    const container = containerRef.current
-    const rows = 25
-    const numberOfElements = rows * rows
+      container.innerHTML = ''
 
-    container.innerHTML = ''
+      const fragment = document.createDocumentFragment()
 
-    const fragment = document.createDocumentFragment()
-
-    for (let i = 0; i < numberOfElements; i++) {
-      const dotEl = document.createElement('div')
-      dotEl.classList.add('dot')
-      dotEl.style.width = '4px'
-      dotEl.style.height = '4px'
-      dotEl.style.margin = '6px'
-      dotEl.style.backgroundColor = '#c5c5c5'
-      dotEl.style.borderRadius = '50%'
-      dotEl.style.position = 'relative'
-      fragment.appendChild(dotEl)
-    }
-
-    container.appendChild(fragment)
-
-    const cursorEl = document.createElement('div')
-    cursorEl.classList.add('cursor')
-    cursorEl.style.position = 'absolute'
-    cursorEl.style.zIndex = '1'
-    cursorEl.style.top = '0'
-    cursorEl.style.left = '0'
-    cursorEl.style.width = '16px'
-    cursorEl.style.height = '16px'
-    cursorEl.style.backgroundColor = '#ff3f81'
-    cursorEl.style.borderRadius = '50%'
-    cursorEl.style.transform = 'translate(-50%, -50%)'
-    container.appendChild(cursorEl)
-
-    const getGridPosition = (index: number) => {
-      return {
-        x: (index % rows) * 16 + 8,
-        y: Math.floor(index / rows) * 16 + 8
+      for (let i = 0; i < numberOfElements; i++) {
+        const dotEl = document.createElement('div')
+        dotEl.classList.add('dot')
+        fragment.appendChild(dotEl)
       }
-    }
 
-    let currentIndex = Math.floor(Math.random() * numberOfElements)
+      container.appendChild(fragment)
 
-    const setCursorPosition = (index: number) => {
-      const pos = getGridPosition(index)
-      cursorEl.style.left = pos.x + 'px'
-      cursorEl.style.top = pos.y + 'px'
-    }
+      const cursorEl = document.createElement('div')
+      cursorEl.classList.add('cursor')
+      container.appendChild(cursorEl)
 
-    setCursorPosition(currentIndex)
+      const stagger = (value: string | number, options: any) => {
+        return window.anime.stagger(value, options)
+      }
 
-    function animate() {
-      const nextIndex = Math.floor(Math.random() * numberOfElements)
-      const dots = container.querySelectorAll('.dot')
+      let index = Math.floor(Math.random() * numberOfElements)
+      let nextIndex = 0
 
-      dots.forEach((dot, i) => {
-        const row = Math.floor(i / rows)
-        const col = i % rows
-        const curRow = Math.floor(currentIndex / rows)
-        const curCol = currentIndex % rows
-        const distFromCursor = Math.abs(col - curCol) + Math.abs(row - curRow)
-        const delay = distFromCursor * 30
+      window.anime.set(cursorEl, {
+        x: stagger('-1rem', { grid, from: index, axis: 'x' }),
+        y: stagger('-1rem', { grid, from: index, axis: 'y' })
+      })
 
-        const anim = window.anime({
-          targets: dot,
-          translateX: [-3, 2, 0],
-          translateY: [-3, 2, 0],
-          scale: [1, 2, 1],
-          duration: 1300,
-          delay: delay,
-          easing: 'easeInOutQuad',
+      function animateGrid() {
+        nextIndex = Math.floor(Math.random() * numberOfElements)
+
+        const tl = window.anime.timeline({
+          easing: 'inOutQuad'
         })
-      })
 
-      window.anime({
-        targets: cursorEl,
-        scale: [0.625, 1.125, 1],
-        duration: 600,
-        easing: 'inOutQuad'
-      })
-
-      const toPos = getGridPosition(nextIndex)
-      const duration = 800 + Math.random() * 400
-
-      setTimeout(() => {
-        window.anime({
+        tl.add({
           targets: cursorEl,
-          left: toPos.x,
-          top: toPos.y,
-          duration: duration,
+          keyframes: [
+            { scale: 0.625, duration: 200 },
+            { scale: 1.125, duration: 200 },
+            { scale: 1, duration: 200 }
+          ],
+          duration: 600
+        })
+        .add({
+          targets: '.dot',
+          keyframes: [
+            {
+              x: stagger('-3px', { grid, from: index, axis: 'x' }),
+              y: stagger('-3px', { grid, from: index, axis: 'y' }),
+              duration: 200
+            },
+            {
+              x: stagger('2px', { grid, from: index, axis: 'x' }),
+              y: stagger('2px', { grid, from: index, axis: 'y' }),
+              scale: 2,
+              duration: 500
+            },
+            {
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 600
+            }
+          ],
+          delay: stagger(50, { grid, from: index })
+        }, 0)
+        .add({
+          targets: cursorEl,
+          x: { 
+            value: stagger('-1rem', { grid, from: nextIndex, axis: 'x' }), 
+            duration: 800 + Math.random() * 400 
+          },
+          y: { 
+            value: stagger('-1rem', { grid, from: nextIndex, axis: 'y' }), 
+            duration: 800 + Math.random() * 400 
+          },
           easing: 'outCirc',
           complete: () => {
-            currentIndex = nextIndex
-            animate()
+            index = nextIndex
+            animateGrid()
           }
-        })
-      }, 600)
+        }, '-=1500')
+      }
+
+      animateGrid()
+      setReady(true)
     }
 
-    setTimeout(animate, 500)
+    loadAnime()
 
     return () => {
-      container.innerHTML = ''
+      if (containerRef.current) {
+        containerRef.current.innerHTML = ''
+      }
     }
-  }, [loaded])
+  }, [])
 
   return (
     <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[#0a0a0a]">
-      <div className="title">
-        <h1>ICIA</h1>
-        <p>Institut Collectif de l&apos;IA</p>
-      </div>
+      <div ref={containerRef} className="stagger-visualizer" />
 
       <style jsx>{`
-        .title {
+        .stagger-visualizer {
+          position: relative;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          width: 656px;
+          height: 656px;
+        }
+
+        .stagger-visualizer :global(.dot) {
+          position: relative;
+          width: 4px;
+          height: 4px;
+          margin: 6px;
+          background-color: #c5c5c5;
+          border-radius: 50%;
+        }
+
+        .stagger-visualizer :global(.cursor) {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          text-align: center;
-          z-index: 10;
-          pointer-events: none;
-        }
-
-        .title h1 {
-          font-size: 4rem;
-          font-weight: bold;
-          color: white;
-          margin-bottom: 0.5rem;
-          letter-spacing: -0.025em;
-        }
-
-        .title p {
-          font-size: 1rem;
-          color: rgba(255, 255, 255, 0.6);
-          font-weight: 300;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          width: 16px;
+          height: 16px;
+          background-color: #ff3f81;
+          border-radius: 50%;
         }
       `}</style>
-
-      <div 
-        ref={containerRef} 
-        style={{
-          position: 'relative',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '400px',
-          height: '400px',
-        }} 
-      />
     </div>
   )
 }
