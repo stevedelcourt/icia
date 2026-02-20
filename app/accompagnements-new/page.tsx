@@ -69,15 +69,14 @@ function FlowHero() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <style jsx>{`
-        .wave-bg {
-          position: fixed;
-          top: 0;
-          left: 0;
+        .hero-container {
+          position: relative;
+          height: 100vh;
           width: 100%;
-          height: 100%;
           background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
           background-size: 400% 400%;
           animation: gradient 15s ease infinite;
+          overflow: hidden;
         }
         @keyframes gradient {
           0% { background-position: 0% 0%; }
@@ -87,7 +86,7 @@ function FlowHero() {
         .wave {
           background: rgba(255, 255, 255, 0.25);
           border-radius: 1000% 1000% 0 0;
-          position: fixed;
+          position: absolute;
           width: 200%;
           height: 12em;
           animation: wave 10s -3s linear infinite;
@@ -95,7 +94,6 @@ function FlowHero() {
           opacity: 0.8;
           bottom: 0;
           left: 0;
-          z-index: 0;
         }
         .wave:nth-of-type(2) {
           bottom: -1.25em;
@@ -116,13 +114,12 @@ function FlowHero() {
         }
       `}</style>
       
-      <div className="wave-bg" />
-      
-      <div className="wave" />
-      <div className="wave" />
-      <div className="wave" />
+      <div className="hero-container">
+        <div className="wave" />
+        <div className="wave" />
+        <div className="wave" />
 
-      <div className="absolute inset-0 flex items-center z-10">
+        <div className="absolute inset-0 flex items-center z-10">
         <FadeIn>
           <div className="max-w-4xl mx-auto px-4 md:px-8" style={{ marginLeft: '10%' }}>
             <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-4">Accompagnements</p>
@@ -134,6 +131,7 @@ function FlowHero() {
             </p>
           </div>
         </FadeIn>
+      </div>
       </div>
     </section>
   )
