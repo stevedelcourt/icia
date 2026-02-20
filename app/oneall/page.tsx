@@ -37,7 +37,6 @@ export default function OneAllPage() {
     const container = containerRef.current
     const rows = 25
     const numberOfElements = rows * rows
-    const grid: [number, number] = [rows, rows]
 
     container.innerHTML = ''
 
@@ -46,6 +45,12 @@ export default function OneAllPage() {
     for (let i = 0; i < numberOfElements; i++) {
       const dotEl = document.createElement('div')
       dotEl.classList.add('dot')
+      dotEl.style.width = '4px'
+      dotEl.style.height = '4px'
+      dotEl.style.margin = '6px'
+      dotEl.style.backgroundColor = '#c5c5c5'
+      dotEl.style.borderRadius = '50%'
+      dotEl.style.position = 'relative'
       fragment.appendChild(dotEl)
     }
 
@@ -53,91 +58,96 @@ export default function OneAllPage() {
 
     const cursorEl = document.createElement('div')
     cursorEl.classList.add('cursor')
+    cursorEl.style.position = 'absolute'
+    cursorEl.style.zIndex = '1'
+    cursorEl.style.top = '0'
+    cursorEl.style.left = '0'
+    cursorEl.style.width = '16px'
+    cursorEl.style.height = '16px'
+    cursorEl.style.backgroundColor = '#ff3f81'
+    cursorEl.style.borderRadius = '50%'
     container.appendChild(cursorEl)
 
-    const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
-    const randomFloat = (min: number, max: number) => Math.random() * (max - min) + min
-
-    const stagger = (value: string | number, options: any) => {
-      return window.anime.stagger(value, options)
+    const getGridPosition = (index: number) => {
+      return {
+        x: (index % rows) * 16,
+        y: Math.floor(index / rows) * 16
+      }
     }
 
-    let index = random(0, numberOfElements)
+    let currentIndex = Math.floor(Math.random() * numberOfElements)
     let nextIndex = 0
 
-    const set = (el: string | Element, props: any) => {
-      window.anime.set(el, props)
+    const setCursorPosition = (index: number) => {
+      const pos = getGridPosition(index)
+      cursorEl.style.left = pos.x + 'px'
+      cursorEl.style.top = pos.y + 'px'
     }
 
-    set(cursorEl, {
-      x: stagger('-1.5rem', { grid, from: index, axis: 'x' }),
-      y: stagger('-1.5rem', { grid, from: index, axis: 'y' }),
-    })
+    setCursorPosition(currentIndex)
 
     function animateGrid() {
-      nextIndex = random(0, numberOfElements)
+      nextIndex = Math.floor(Math.random() * numberOfElements)
 
-      const timeline = window.anime.timeline({
-        defaults: {
-          ease: 'inOutQuad',
-        },
-        complete: animateGrid,
+      const dots = container.querySelectorAll('.dot')
+      dots.forEach((dot, i) => {
+        const row = Math.floor(i / rows)
+        const col = i % rows
+        const curRow = Math.floor(currentIndex / rows)
+        const curCol = currentIndex % rows
+        const distFromCursor = Math.abs(col - curCol) + Math.abs(row - curRow)
+        const delay = distFromCursor * 30
+
+        window.anime({
+          targets: dot,
+          translateX: [
+            { value: -3, duration: 200, easing: 'easeOutQuad' },
+            { value: 2, duration: 500, easing: 'easeInOutQuad' },
+            { value: 0, duration: 600, easing: 'easeOutQuad' }
+          ],
+          translateY: [
+            { value: -3, duration: 200, easing: 'easeOutQuad' },
+            { value: 2, duration: 500, easing: 'easeInOutQuad' },
+            { value: 0, duration: 600, easing: 'easeOutQuad' }
+          ],
+          scale: [
+            { value: 1, duration: 200 },
+            { value: 2, duration: 500 },
+            { value: 1, duration: 600 }
+          ],
+          delay: delay,
+          complete: () => {
+            if (i === dots.length - 1) {
+              currentIndex = nextIndex
+              setTimeout(animateCursor, 500)
+            }
+          }
+        })
       })
 
-      timeline
-        .add(cursorEl, {
-          keyframes: [
-            { scale: 0.625 },
-            { scale: 1.125 },
-            { scale: 1 },
-          ],
-          duration: 600,
-        })
-        .add(
-          '.dot',
-          {
-            keyframes: [
-              {
-                x: stagger('-0.2rem', { grid, from: index, axis: 'x' }),
-                y: stagger('-0.2rem', { grid, from: index, axis: 'y' }),
-                duration: 200,
-              },
-              {
-                x: stagger('0.15rem', { grid, from: index, axis: 'x' }),
-                y: stagger('0.15rem', { grid, from: index, axis: 'y' }),
-                scale: 2,
-                duration: 500,
-              },
-              {
-                x: 0,
-                y: 0,
-                scale: 1,
-                duration: 600,
-              },
-            ],
-            delay: stagger(30, { grid, from: index }),
-          },
-          0
-        )
-        .add(
-          cursorEl,
-          {
-            x: {
-              from: stagger('-1.5rem', { grid, from: index, axis: 'x' }),
-              to: stagger('-1.5rem', { grid, from: nextIndex, axis: 'x' }),
-              duration: randomFloat(800, 1200),
-            },
-            y: {
-              from: stagger('-1.5rem', { grid, from: index, axis: 'y' }),
-              to: stagger('-1.5rem', { grid, from: nextIndex, axis: 'y' }),
-              duration: randomFloat(800, 1200),
-            },
-            easing: 'outCirc',
-          },
-          '-=1500'
-        )
+      window.anime({
+        targets: cursorEl,
+        scale: [0.625, 1.125, 1],
+        duration: 600,
+        easing: 'inOutQuad'
+      })
+    }
 
-      index = nextIndex
+    function animateCursor() {
+      const toPos = getGridPosition(nextIndex)
+      const duration = 800 + Math.random() * 400
+
+      window.anime({
+        targets: cursorEl,
+        left: toPos.x,
+        top: toPos.y,
+        duration: duration,
+        easing: 'outCirc',
+        complete: () => {
+          currentIndex = nextIndex
+          animateGrid()
+        }
+      })
     }
 
     animateGrid()
@@ -149,37 +159,12 @@ export default function OneAllPage() {
 
   return (
     <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[#0a0a0a]">
+      <div className="title">
+        <h1>ICIA</h1>
+        <p>Institut Collectif de l&apos;IA</p>
+      </div>
+
       <style jsx>{`
-        .stagger-visualizer {
-          position: relative;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-          width: 500px;
-          height: 500px;
-        }
-
-        .stagger-visualizer .dot {
-          position: relative;
-          width: 0.25rem;
-          height: 0.25rem;
-          margin: 0.375rem;
-          background-color: #c5c5c5;
-          border-radius: 50%;
-        }
-
-        .stagger-visualizer .cursor {
-          position: absolute;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          width: 1rem;
-          height: 1rem;
-          background-color: #ff3f81;
-          border-radius: 50%;
-        }
-
         .title {
           position: absolute;
           top: 50%;
@@ -207,12 +192,18 @@ export default function OneAllPage() {
         }
       `}</style>
 
-      <div className="title">
-        <h1>ICIA</h1>
-        <p>Institut Collectif de l&apos;IA</p>
-      </div>
-
-      <div ref={containerRef} className="stagger-visualizer" />
+      <div 
+        ref={containerRef} 
+        style={{
+          position: 'relative',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '400px',
+          height: '400px',
+        }} 
+      />
     </div>
   )
 }
