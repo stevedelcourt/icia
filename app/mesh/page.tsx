@@ -132,7 +132,6 @@ class VantaNET {
   private windowMouseMoveWrapper: (e: MouseEvent) => void
   private windowTouchWrapper: (e: TouchEvent) => void
   private resizeBound: () => void
-  private animationLoopBound: () => void
 
   constructor(userOptions: VantaEffectOptions & { el: HTMLElement }) {
     const defaultOptions: VantaEffectOptions = {
@@ -157,9 +156,6 @@ class VantaNET {
     this.windowMouseMoveWrapper = this.handleMouseMove.bind(this)
     this.windowTouchWrapper = this.handleTouch.bind(this)
     this.resizeBound = this.resize.bind(this)
-    this.animationLoopBound = this.loop.bind(this)
-    this.triggerMouseMove = this.triggerMouseMove.bind(this)
-    this.onMouseMove = this.onMouseMove.bind(this)
 
     this.prepareEl()
     this.initThree()
@@ -290,7 +286,7 @@ class VantaNET {
     return minScrollTop <= scrollTop && scrollTop <= maxScrollTop
   }
 
-  loop() {
+  loop = () => {
     this.t = this.t || 0
     this.t2 = this.t2 || 0
 
