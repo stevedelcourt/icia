@@ -245,7 +245,7 @@ class VantaNET {
     }
   }
 
-  triggerMouseMove(x: number, y: number) {
+  triggerMouseMove = (x: number, y: number) => {
     const xNorm = x / this.width
     const yNorm = y / this.height
     this.onMouseMove(xNorm, yNorm)
@@ -408,21 +408,22 @@ class VantaNET {
     this.points.push(sphere)
   }
 
-  onMouseMove(x: number, y: number) {
+  onMouseMove = (x: number, y: number) => {
     const c = this.camera
     if (!c) return
-    const pos: any = c.position
-    if (!(c as any).oy) {
-      (c as any).oy = pos.y
-      (c as any).ox = pos.x
-      (c as any).oz = pos.z
+    const pos = c.position
+    const cAny = c as any
+    if (!cAny.oy) {
+      cAny.oy = pos.y
+      cAny.ox = pos.x
+      cAny.oz = pos.z
     }
-    const ang = Math.atan2((c as any).oz, (c as any).ox)
-    const dist = Math.sqrt((c as any).oz * (c as any).oz + (c as any).ox * (c as any).ox)
+    const ang = Math.atan2(cAny.oz, cAny.ox)
+    const dist = Math.sqrt(cAny.oz * cAny.oz + cAny.ox * cAny.ox)
     const tAng = ang + (x - 0.5) * 2
-    ;(c as any).tz = dist * Math.sin(tAng)
-    ;(c as any).tx = dist * Math.cos(tAng)
-    ;(c as any).ty = (c as any).oy + (y - 0.5) * 50
+    cAny.tz = dist * Math.sin(tAng)
+    cAny.tx = dist * Math.cos(tAng)
+    cAny.ty = cAny.oy + (y - 0.5) * 50
 
     this.rcMouseX = x * 2 - 1
     this.rcMouseY = -y * 2 + 1
