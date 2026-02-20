@@ -136,22 +136,6 @@ export default function EducationPage() {
                   </div>
                 </FadeIn>
               </div>
-              <div className="border-l border-border py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
-                <FadeIn delay={0.1}>
-                  <div className="text-5xl md:text-7xl font-bold mb-2 text-slate-dark">
-                    <span style={{ color: accentColor }}>3</span> niveaux
-                  </div>
-                  <p className="text-slate-dark/40 mb-8 max-w-xs">primaire, secondaire et enseignement supérieur</p>
-                  <div className="h-px bg-slate-dark/5 mb-8"></div>
-                  <div className="flex flex-wrap gap-2">
-                    {['Bibliothèque pédagogique', 'Formation formateurs', 'Certifications', 'Accréditations', 'Ressources ouvertes'].map((tag) => (
-                      <span key={tag} className="px-3 py-1 border border-slate-dark/8 text-slate-dark/40 text-xs hover:border-slate-dark/20 hover:text-slate-dark/60 transition-colors cursor-default">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </FadeIn>
-              </div>
             </div>
           </div>
         </section>

@@ -131,22 +131,6 @@ export default function PouvoirsPublicsPage() {
                   </div>
                 </FadeIn>
               </div>
-              <div className="border-l border-border py-16 md:py-24 pl-8 flex flex-col justify-center relative overflow-hidden">
-                <FadeIn delay={0.1}>
-                  <div className="text-5xl md:text-7xl font-bold mb-2 text-slate-dark">
-                    <span style={{ color: accentColor }}>13</span>
-                  </div>
-                  <p className="text-slate-dark/40 mb-8 max-w-xs">régions couvertes par l'observatoire territorial ICIA</p>
-                  <div className="h-px bg-slate-dark/5 mb-8"></div>
-                  <div className="flex flex-wrap gap-2">
-                    {['IA inclusive', 'Services publics', 'Observatoire territorial', 'Formation agents', 'Collectivités'].map((tag) => (
-                      <span key={tag} className="px-3 py-1 border border-slate-dark/8 text-slate-dark/40 text-xs hover:border-slate-dark/20 hover:text-slate-dark/60 transition-colors cursor-default">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </FadeIn>
-              </div>
             </div>
           </div>
         </section>
