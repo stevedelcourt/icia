@@ -10,6 +10,34 @@ export default function FlowPage() {
   const startMouseX = useRef(0)
   const startMouseY = useRef(0)
   const [weatherValue, setWeatherValue] = useState(0)
+  const autoAnimating = useRef(true)
+
+  useEffect(() => {
+    const cloud = cloudRef.current
+    if (!cloud) return
+
+    let animFrame: number
+    let time = 0
+
+    const animateCloud = () => {
+      if (!isDragging.current) {
+        time += 0.008
+        const autoX = Math.sin(time * 0.5) * 150
+        const autoY = Math.cos(time * 0.3) * 80
+        
+        cloud.style.transform = `translate(calc(-50% + ${
+          offsetX.current + autoX
+        }px), calc(-50% + ${offsetY.current + autoY}px))`
+      }
+      animFrame = requestAnimationFrame(animateCloud)
+    }
+
+    animateCloud()
+
+    return () => {
+      cancelAnimationFrame(animFrame)
+    }
+  }, [])
 
   useEffect(() => {
     const cloud = cloudRef.current
@@ -93,8 +121,22 @@ export default function FlowPage() {
     slider.addEventListener('input', handleInput)
     updateWeather(0)
 
+    let weatherTime = 0
+    const animateWeather = () => {
+      weatherTime += 0.003
+      const weatherVal = (Math.sin(weatherTime) + 1) * 25
+      slider.value = String(weatherVal)
+      setWeatherValue(weatherVal)
+      updateWeather(weatherVal)
+      weatherAnimationFrame = requestAnimationFrame(animateWeather)
+    }
+
+    let weatherAnimationFrame: number
+    animateWeather()
+
     return () => {
       slider.removeEventListener('input', handleInput)
+      cancelAnimationFrame(weatherAnimationFrame)
     }
   }, [])
 
