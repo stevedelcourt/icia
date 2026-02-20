@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/sc1bovu7233/public_html
+    - /bin/cp -R public/* $DEPLOYPATH/
+    - /bin/cp -R .next $DEPLOYPATH/
+    - /bin/cp package.json package-lock.json $DEPLOYPATH/
+    - cd $DEPLOYPATH && /usr/local/bin/npm install
+    - cd $DEPLOYPATH && /usr/local/bin/npm run build
