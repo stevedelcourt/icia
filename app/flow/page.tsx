@@ -9,8 +9,6 @@ export default function FlowPage() {
   const offsetY = useRef(0)
   const startMouseX = useRef(0)
   const startMouseY = useRef(0)
-  const [weatherValue, setWeatherValue] = useState(0)
-  const autoAnimating = useRef(true)
 
   useEffect(() => {
     const cloud = cloudRef.current
@@ -89,55 +87,27 @@ export default function FlowPage() {
   }, [])
 
   useEffect(() => {
-    const slider = document.getElementById('weatherSlider') as HTMLInputElement
     const skyBackground = document.querySelector('.sky-background') as HTMLElement
     const shadow2 = document.getElementById('shadow2') as any
     const shadow3 = document.getElementById('shadow3') as any
     const shadow4 = document.getElementById('shadow4') as any
     const shadow5 = document.getElementById('shadow5') as any
 
-    if (!slider || !skyBackground) return
-
-    const lerp = (start: number, end: number, t: number) => start + (end - start) * t
+    if (!skyBackground) return
 
     const updateWeather = (value: number) => {
       const t = value / 100
-      const saturation = lerp(100, 30, t)
-      const brightness = lerp(100, 50, t)
+      const saturation = 100 - t * 70
+      const brightness = 100 - t * 50
       skyBackground.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`
 
-      if (shadow2) shadow2.setAttribute('flood-opacity', String(lerp(0, 0.4, t)))
-      if (shadow3) shadow3.setAttribute('flood-opacity', String(lerp(0.1, 0.4, t)))
-      if (shadow4) shadow4.setAttribute('flood-opacity', String(lerp(0.2, 0.6, t)))
-      if (shadow5) shadow5.setAttribute('flood-opacity', String(lerp(0.2, 0.7, t)))
+      if (shadow2) shadow2.setAttribute('flood-opacity', String(0 + t * 0.4))
+      if (shadow3) shadow3.setAttribute('flood-opacity', String(0.1 + t * 0.3))
+      if (shadow4) shadow4.setAttribute('flood-opacity', String(0.2 + t * 0.4))
+      if (shadow5) shadow5.setAttribute('flood-opacity', String(0.2 + t * 0.5))
     }
 
-    const handleInput = (e: Event) => {
-      const value = parseInt((e.target as HTMLInputElement).value)
-      setWeatherValue(value)
-      updateWeather(value)
-    }
-
-    slider.addEventListener('input', handleInput)
-    updateWeather(0)
-
-    let weatherTime = 0
-    const animateWeather = () => {
-      weatherTime += 0.003
-      const weatherVal = (Math.sin(weatherTime) + 1) * 25
-      slider.value = String(weatherVal)
-      setWeatherValue(weatherVal)
-      updateWeather(weatherVal)
-      weatherAnimationFrame = requestAnimationFrame(animateWeather)
-    }
-
-    let weatherAnimationFrame: number
-    animateWeather()
-
-    return () => {
-      slider.removeEventListener('input', handleInput)
-      cancelAnimationFrame(weatherAnimationFrame)
-    }
+    updateWeather(100)
   }, [])
 
   return (
@@ -205,68 +175,6 @@ export default function FlowPage() {
         @keyframes lightning-glow {
           0% { opacity: 0.8; }
           15%, 100% { opacity: 0; }
-        }
-
-        .weather-slider-container {
-          position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 1000;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .sun {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 9px;
-          width: 14px;
-          height: 14px;
-          color: white;
-          pointer-events: none;
-          mix-blend-mode: difference;
-        }
-
-        .storm {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          right: 9px;
-          width: 14px;
-          height: 14px;
-          color: white;
-          pointer-events: none;
-          mix-blend-mode: difference;
-        }
-
-        .weather-slider {
-          width: 300px;
-          padding: 2px;
-          -webkit-appearance: none;
-          appearance: none;
-          background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
-          border-radius: 20px;
-          outline: 1px solid rgba(255, 255, 255, 0.1);
-          cursor: pointer;
-        }
-
-        .weather-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: transparent;
-          border: 1px solid white;
-          cursor: pointer;
-        }
-
-        .weather-slider::-webkit-slider-thumb:hover {
-          background: white;
         }
 
         .title {
@@ -349,32 +257,6 @@ export default function FlowPage() {
       <div className="title">
         <h1>ICIA</h1>
         <p>Institut Collectif de l&apos;IA</p>
-      </div>
-
-      <div className="weather-slider-container">
-        <svg className="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
-          <circle cx="10" cy="10" r="4" strokeWidth="0" fill="currentColor" />
-          <line x1="10" y1="2" x2="10" y2="3.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="15.657" y1="4.343" x2="14.596" y2="5.404" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="18" y1="10" x2="16.5" y2="10" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="15.657" y1="15.657" x2="14.596" y2="14.596" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="10" y1="18" x2="10" y2="16.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="4.343" y1="15.657" x2="5.404" y2="14.596" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="2" y1="10" x2="3.5" y2="10" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-          <line x1="4.343" y1="4.343" x2="5.404" y2="5.404" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </svg>
-        <svg className="storm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
-          <path d="M96 416a16 16 0 01-14.3-23.16l24-48a16 16 0 0128.62 14.32l-24 48A16 16 0 0196 416zM120 480a16 16 0 01-14.3-23.16l16-32a16 16 0 0128.62 14.32l-16 32A16 16 0 01120 480zM376 416a16 16 0 01-14.3-23.16l24-48a16 16 0 0128.62 14.32l-24 48A16 16 0 01376 416zM400 480a16 16 0 01-14.3-23.16l16-32a16 16 0 0128.62 14.32l-16 32A16 16 0 01400 480z" />
-          <path d="M405.84 136.9a151.25 151.25 0 00-47.6-81.9 153 153 0 00-241.81 51.86C60.5 110.16 16 156.65 16 213.33 16 272.15 63.91 320 122.8 320h66.31l-12.89 77.37A16 16 0 00192 416h32v64a16 16 0 0029 9.3l80-112a16 16 0 00-13-25.3h-27.51l8-32h103.84a91.56 91.56 0 001.51-183.1z" />
-        </svg>
-        <input 
-          type="range" 
-          min="0" 
-          max="100" 
-          defaultValue="0" 
-          className="weather-slider" 
-          id="weatherSlider" 
-        />
       </div>
     </div>
   )
