@@ -3,7 +3,7 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Sky as SkyImpl, Cloud, Clouds } from '@react-three/drei'
 import * as THREE from 'three'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, Suspense } from 'react'
 
 function CameraAnimation() {
   const { camera } = useThree()
@@ -69,12 +69,36 @@ function CloudScene() {
   )
 }
 
+function FallbackBackground() {
+  return (
+    <div 
+      className="absolute inset-0"
+      style={{ 
+        background: 'linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 50%, #F5F5F5 100%)' 
+      }} 
+    />
+  )
+}
+
 export function HeroBackground() {
   const [isMobile, setIsMobile] = useState(false)
+  const [webglSupported, setWebglSupported] = useState(true)
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
+    
+    try {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+      if (!gl) setWebglSupported(false)
+    } catch {
+      setWebglSupported(false)
+    }
   }, [])
+
+  if (!webglSupported) {
+    return <FallbackBackground />
+  }
 
   return (
     <div 
@@ -85,33 +109,43 @@ export function HeroBackground() {
       <Canvas
         camera={{ position: [0, -15, 15], fov: 75 }}
         dpr={isMobile ? 1 : 1.5}
-        gl={{ antialias: false, alpha: true }}
+        gl={{ 
+          antialias: false, 
+          alpha: true,
+          powerPreference: 'high-performance',
+          failIfMajorPerformanceCaveat: false
+        }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#87CEEB')
+        }}
       >
-        <CloudScene />
-        <ambientLight intensity={Math.PI / 1.5} />
-        <spotLight
-          position={[0, 40, 0]}
-          decay={0}
-          distance={45}
-          penumbra={1}
-          intensity={100}
-        />
-        <spotLight
-          position={[-20, 0, 10]}
-          color="red"
-          angle={0.15}
-          decay={0}
-          penumbra={-1}
-          intensity={30}
-        />
-        <spotLight
-          position={[20, -10, 10]}
-          color="red"
-          angle={0.2}
-          decay={0}
-          penumbra={-1}
-          intensity={20}
-        />
+        <Suspense fallback={null}>
+          <CloudScene />
+          <ambientLight intensity={Math.PI / 1.5} />
+          <spotLight
+            position={[0, 40, 0]}
+            decay={0}
+            distance={45}
+            penumbra={1}
+            intensity={100}
+          />
+          <spotLight
+            position={[-20, 0, 10]}
+            color="red"
+            angle={0.15}
+            decay={0}
+            penumbra={-1}
+            intensity={30}
+          />
+          <spotLight
+            position={[20, -10, 10]}
+            color="red"
+            angle={0.2}
+            decay={0}
+            penumbra={-1}
+            intensity={20}
+          />
+        </Suspense>
       </Canvas>
     </div>
   )
