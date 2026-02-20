@@ -23,10 +23,17 @@ const aProposItems = [
   { label: 'Partenaires', href: '/partenaires' },
 ]
 
-const navItems = [
-  { label: 'À propos de l\'institut IA', href: '/a-propos', hasDropdown: true },
-  { label: 'Accompagnements', href: '/accompagnements', hasDropdown: true },
-  { label: 'Actualités', href: '/actualites' },
+type NavItem = {
+  label: string
+  key: string
+  hasDropdown?: boolean
+  href?: string
+}
+
+const navItems: NavItem[] = [
+  { label: 'À propos de l\'institut IA', key: 'apropos', hasDropdown: true },
+  { label: 'Accompagnements', key: 'accompagnements', hasDropdown: true },
+  { label: 'Actualités', key: 'actualites', href: '/actualites' },
 ]
 
 function Logo({ isScrolled }: { isScrolled: boolean }) {
@@ -123,35 +130,55 @@ export function Header() {
         <nav className={`${useMobileMenu ? 'hidden' : 'flex'} items-center gap-10 ml-16`}>
           {navItems.map((item) => (
             <div 
-              key={item.href} 
+              key={item.key} 
               className="relative"
-              onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.href)}
+              onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.key)}
               onMouseLeave={() => item.hasDropdown && setOpenDropdown(null)}
             >
-              <Link 
-                href={item.href}
-                className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
-                  isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
-                }`}
-              >
-                {item.label}
-                {item.hasDropdown && (
-                  <motion.svg 
-                    className="w-3 h-3" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                    animate={{ rotate: openDropdown === item.href ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </motion.svg>
-                )}
-              </Link>
+              {item.href ? (
+                <Link 
+                  href={item.href}
+                  className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
+                    isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
+                  }`}
+                >
+                  {item.label}
+                  {item.hasDropdown && (
+                    <motion.svg 
+                      className="w-3 h-3" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: openDropdown === item.key ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  )}
+                </Link>
+              ) : (
+                <button 
+                  className="text-base font-medium transition-colors hover:text-accent flex items-center gap-1 cursor-default"
+                >
+                  {item.label}
+                  {item.hasDropdown && (
+                    <motion.svg 
+                      className="w-3 h-3" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: openDropdown === item.key ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  )}
+                </button>
+              )}
               
               {item.hasDropdown && (
                 <AnimatePresence>
-                  {openDropdown === item.href && (
+                  {openDropdown === item.key && (
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -159,7 +186,7 @@ export function Header() {
                       transition={{ duration: 0.15 }}
                       className="absolute top-full left-0 mt-2 w-56 bg-white border border-border shadow-lg"
                     >
-                      {item.href === '/a-propos' ? aProposItems.map((subItem) => (
+                      {item.key === 'apropos' ? aProposItems.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}

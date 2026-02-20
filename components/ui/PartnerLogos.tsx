@@ -11,7 +11,7 @@ interface Partner {
 
 export function PartnerLogos() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [partners, setPartners] = useState<Partner[]>([])
+  const [partners, setPartners] = useState<Partner[] | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
@@ -31,13 +31,27 @@ export function PartnerLogos() {
         const fallbackData = await fallbackRes.json()
         setPartners(fallbackData)
       } catch (e) {
-      const fallbackRes = await fetch('/partners.json')
-        const fallbackData = await fallbackRes.json()
-        setPartners(fallbackData)
+        try {
+          const fallbackRes = await fetch('/partners.json')
+          const fallbackData = await fallbackRes.json()
+          setPartners(fallbackData)
+        } catch {}
       }
     }
     fetchPartners()
   }, [])
+
+  useEffect(() => {
+    if (partners === null) {
+      const timer = setTimeout(() => {
+        fetch('/partners.json')
+          .then(r => r.json())
+          .then(setPartners)
+          .catch(() => setPartners([]))
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [partners])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true)
@@ -57,7 +71,7 @@ export function PartnerLogos() {
     }
   }
 
-  if (partners.length === 0) return null
+  if (!partners || partners.length === 0) return null
 
   const duplicatedPartners = [...partners, ...partners]
 
