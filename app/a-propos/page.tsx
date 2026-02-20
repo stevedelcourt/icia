@@ -7,6 +7,8 @@ import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
+import { useState, useEffect } from 'react'
+
 const examples = [
   { persona: 'Citoyen', description: 'Un demandeur d\'emploi ne sait pas comment tirer profit de l\'IA pour renforcer sa désirabilité sur le marché du travail.', href: '/accompagnements/citoyens' },
   { persona: 'PME / TPE', description: 'Une petite entreprise n\'ose pas adopter l\'IA par peur des enjeux RGPD ou de ne pas voir le retour sur investissement.', href: '/accompagnements/entreprises' },
@@ -43,26 +45,60 @@ const ambitionItems = [
 ]
 
 export default function AProposPage() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e
+      const { innerWidth, innerHeight } = window
+      setMousePos({
+        x: clientX - innerWidth / 2,
+        y: clientY - innerHeight / 2
+      })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
     <>
       <Header />
       <main id="main-content">
         {/* Hero */}
-        <Section className="pt-32 pb-12 bg-gradient-to-b from-[#E5E4DF] to-white">
+        <section 
+          className="relative h-screen w-full overflow-hidden flex items-center"
+          style={{
+            '--posX': `${mousePos.x}px`,
+            '--posY': `${mousePos.y}px`,
+          } as React.CSSProperties}
+        >
+          <style jsx>{`
+            section {
+              background-image: 
+                linear-gradient(115deg, rgb(211, 255, 215), rgb(0, 0, 0)), 
+                radial-gradient(90% 100% at calc(50% + var(--posX)) calc(0% + var(--posY)), rgb(200, 200, 200), rgb(22, 0, 45)), 
+                radial-gradient(100% 100% at calc(80% - var(--posX)) calc(0% - var(--posY)), rgb(250, 255, 0), rgb(36, 0, 0)), 
+                radial-gradient(150% 210% at calc(100% + var(--posX)) calc(0% + var(--posY)), rgb(20, 175, 125), rgb(0, 10, 255)), 
+                radial-gradient(100% 100% at calc(100% - var(--posX)) calc(30% - var(--posY)), rgb(255, 77, 0), rgb(0, 200, 255)), 
+                linear-gradient(60deg, rgb(255, 0, 0), rgb(120, 86, 255));
+              background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+            }
+          `}</style>
+          
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">À propos de l'Institut</p>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
+            <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+              <p className="text-sm font-medium text-white/70 uppercase tracking-widest mb-4">À propos de l'Institut</p>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-white">
                 L'IA ne doit pas être<br />
                 <em className="not-italic font-light text-[#BF4D43]">confisquée</em> par quelques-uns.
               </h1>
-              <p className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
                 L'Institut Collectif de l'IA est un projet français, humaniste et ouvert sur le monde. 
                 Sa vocation : permettre à toutes et tous de bénéficier concrètement des avancées de l'intelligence artificielle.
               </p>
             </div>
           </FadeIn>
-        </Section>
+        </section>
 
         <div className="w-full h-px bg-border max-w-content mx-auto" />
 
