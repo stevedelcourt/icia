@@ -7,3 +7,5 @@ deployment:
     - /bin/cp package.json $DEPLOYPATH/
     - /bin/cp package-lock.json $DEPLOYPATH/
     - /bin/cp next.config.js $DEPLOYPATH/
+    - cd $DEPLOYPATH && /usr/local/bin/npm install
+    - cd $DEPLOYPATH && /usr/local/bin/npm run build
