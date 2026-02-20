@@ -189,12 +189,12 @@ export default function AProposPage() {
         </Section>
 
         {/* Ambition */}
-        <Section className="py-20 bg-slate-dark">
+        <Section className="py-20 bg-ivory-light">
           <FadeIn>
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto text-center">
               <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre ambition</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-6 text-white">Un projet français à rayonnement international</h2>
-              <p className="text-white/60 mb-12">Le site pilote est Marseille. Vocation : essaimer en France et à l'international, avec une charte commune, une plateforme partagée et des standards identiques dans tous les centres.</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6 text-slate-dark">Un projet français à rayonnement international</h2>
+              <p className="text-slate-dark/60 mb-12 max-w-2xl mx-auto">Le site pilote est Marseille. Vocation : essaimer en France et à l'international, avec une charte commune, une plateforme partagée et des standards identiques dans tous les centres.</p>
             </div>
           </FadeIn>
           <div className="max-w-5xl mx-auto">
@@ -202,13 +202,13 @@ export default function AProposPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 {ambitionItems.map((item, index) => (
                   <StaggerItem key={item.title}>
-                    <div className="p-6 bg-white/5 border border-white/10 rounded-xl h-full hover:bg-white/10 transition-colors">
+                    <div className="p-6 border border-border bg-white rounded-xl h-full hover:shadow-lg transition-all">
                       <span className="inline-block px-3 py-1 text-xs font-bold rounded-full mb-4" style={{ 
-                        backgroundColor: index === 0 ? '#BF4D43' : index === 1 ? '#2a9e62' : '#61AAF2',
+                        backgroundColor: index === 0 ? '#BF4D43' : index === 1 ? '#7A9E7E' : '#61AAF2',
                         color: 'white'
                       }}>{item.tag}</span>
-                      <h3 className="font-serif text-xl text-white mb-3">{item.title}</h3>
-                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                      <h3 className="font-serif text-xl font-bold mb-3 text-slate-dark">{item.title}</h3>
+                      <p className="text-slate-dark/60 text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </StaggerItem>
                 ))}
