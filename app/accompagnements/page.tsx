@@ -204,7 +204,7 @@ export default function AccompanimentsNewPage() {
                         <p className="text-sm text-slate-dark/60 flex-grow leading-relaxed">{item.description}</p>
                         <div className="mt-4 gap-2 text-xs flex items-center uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
                           Decouvrir
-                          <span>�</span>
+                          <span>→</span>
                         </div>
                       </div>
                     </Link>
