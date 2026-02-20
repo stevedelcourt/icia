@@ -192,21 +192,28 @@ export default function AProposPage() {
         <Section className="py-20 bg-slate-dark">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm font-medium text-[#F4A261] uppercase tracking-widest mb-4">Notre ambition</p>
+              <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre ambition</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6 text-white">Un projet français à rayonnement international</h2>
-              <p className="text-white/80 mb-12">Le site pilote est Marseille. Vocation : essaimer en France et à l'international, avec une charte commune, une plateforme partagée et des standards identiques dans tous les centres.</p>
+              <p className="text-white/60 mb-12">Le site pilote est Marseille. Vocation : essaimer en France et à l'international, avec une charte commune, une plateforme partagée et des standards identiques dans tous les centres.</p>
             </div>
           </FadeIn>
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
-              {ambitionItems.map((item) => (
-                <div key={item.title} className="p-8 bg-[#1a333d] rounded-xl">
-                  <span className="inline-block px-3 py-1 bg-[#F4A261] text-[#1a333d] text-xs font-bold rounded-full mb-4">{item.tag}</span>
-                  <h3 className="font-serif text-xl text-white mb-3">{item.title}</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
+            <Stagger>
+              <div className="grid md:grid-cols-3 gap-6">
+                {ambitionItems.map((item, index) => (
+                  <StaggerItem key={item.title}>
+                    <div className="p-6 bg-white/5 border border-white/10 rounded-xl h-full hover:bg-white/10 transition-colors">
+                      <span className="inline-block px-3 py-1 text-xs font-bold rounded-full mb-4" style={{ 
+                        backgroundColor: index === 0 ? '#BF4D43' : index === 1 ? '#2a9e62' : '#61AAF2',
+                        color: 'white'
+                      }}>{item.tag}</span>
+                      <h3 className="font-serif text-xl text-white mb-3">{item.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </Stagger>
           </div>
         </Section>
 
