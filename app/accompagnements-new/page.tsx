@@ -6,7 +6,6 @@ import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
 
 const publics = [
   { 
@@ -67,173 +66,61 @@ const cardGradients: Record<string, string> = {
 }
 
 function FlowHero() {
-  const cloudRef = useRef<HTMLTextAreaElement>(null)
-  const offsetX = useRef(0)
-  const offsetY = useRef(0)
-  const startMouseX = useRef(0)
-  const startMouseY = useRef(0)
-  const isDragging = useRef(false)
-
-  useEffect(() => {
-    const cloud = cloudRef.current
-    if (!cloud) return
-
-    let animFrame: number
-    let time = 0
-    let autoX = 0
-    let autoY = 0
-
-    const animateCloud = () => {
-      if (!isDragging.current) {
-        time += 0.008
-        autoX = Math.sin(time * 0.5) * 150
-        autoY = Math.cos(time * 0.3) * 80
-        
-        cloud.style.transform = `translate(calc(-50% + ${
-          offsetX.current + autoX
-        }px), calc(-50% + ${offsetY.current + autoY}px))`
-      }
-      animFrame = requestAnimationFrame(animateCloud)
-    }
-
-    animateCloud()
-
-    const handleMouseDown = (e: MouseEvent) => {
-      isDragging.current = true
-      startMouseX.current = e.clientX
-      startMouseY.current = e.clientY
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging.current) return
-      const deltaX = e.clientX - startMouseX.current
-      const deltaY = e.clientY - startMouseY.current
-      cloud.style.transform = `translate(calc(-50% + ${
-        offsetX.current + deltaX
-      }px), calc(-50% + ${offsetY.current + deltaY}px))`
-    }
-
-    const handleMouseUp = (e: MouseEvent) => {
-      if (isDragging.current) {
-        const deltaX = e.clientX - startMouseX.current
-        const deltaY = e.clientY - startMouseY.current
-        offsetX.current += deltaX
-        offsetY.current += deltaY
-      }
-      isDragging.current = false
-    }
-
-    cloud.addEventListener('mousedown', handleMouseDown)
-    document.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('mouseup', handleMouseUp)
-
-    // Touch events
-    cloud.addEventListener('touchstart', (e: TouchEvent) => {
-      isDragging.current = true
-      startMouseX.current = e.touches[0].clientX
-      startMouseY.current = e.touches[0].clientY
-    })
-    document.addEventListener('touchmove', (e: TouchEvent) => {
-      if (!isDragging.current) return
-      const deltaX = e.touches[0].clientX - startMouseX.current
-      const deltaY = e.touches[0].clientY - startMouseY.current
-      cloud.style.transform = `translate(calc(-50% + ${
-        offsetX.current + deltaX
-      }px), calc(-50% + ${offsetY.current + deltaY}px))`
-    })
-    document.addEventListener('touchend', (e: TouchEvent) => {
-      if (isDragging.current && e.changedTouches.length > 0) {
-        const deltaX = e.changedTouches[0].clientX - startMouseX.current
-        const deltaY = e.changedTouches[0].clientY - startMouseY.current
-        offsetX.current += deltaX
-        offsetY.current += deltaY
-      }
-      isDragging.current = false
-    })
-
-    const skyBackground = document.querySelector('.hero-sky-background') as HTMLElement
-
-    if (skyBackground) {
-      skyBackground.style.filter = 'saturate(100%) brightness(100%)'
-    }
-
-    return () => {
-      cancelAnimationFrame(animFrame)
-      cloud.removeEventListener('mousedown', handleMouseDown)
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mouseup', handleMouseUp)
-    }
-  }, [])
-
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      <div className="hero-sky-background absolute inset-0" 
-        style={{ 
-          background: 'linear-gradient(0deg, #62a0d8 0%, #2178d1 50%, #085cb3 100%)',
-          zIndex: 0
-        }} 
-      />
-
-      <svg xmlns="http://www.w3.org/2000/svg" style={{ width: 0, height: 0, position: 'absolute' }}>
-        <defs>
-          <filter id="hero-filter" x="-50%" y="-50%" width="200%" height="200%">
-            <feTurbulence type="fractalNoise" seed="462" baseFrequency="0.011" numOctaves="5" result="noise1" />
-            <feTurbulence type="fractalNoise" seed="462" baseFrequency="0.011" numOctaves="2" result="noise2" />
-            <feGaussianBlur in="SourceGraphic" stdDeviation="20" />
-            <feDisplacementMap in="blur1" scale="100" in2="noise1" result="cloud1" />
-            <feFlood id="hero-shadow2" floodColor="rgb(215,215,215)" floodOpacity="0.4" />
-            <feComposite operator="in" in2="SourceGraphic" />
-            <feOffset dx="-10" dy="-3" />
-            <feMorphology radius="20" />
-            <feGaussianBlur stdDeviation="20" />
-            <feDisplacementMap scale="100" in2="noise1" result="cloud2" />
-            <feFlood id="hero-shadow3" floodColor="rgb(66,105,146)" floodOpacity="0.4" />
-            <feComposite operator="in" in2="SourceGraphic" />
-            <feOffset dx="-10" dy="40" />
-            <feMorphology radius="0 40" />
-            <feGaussianBlur stdDeviation="20" />
-            <feDisplacementMap scale="80" in2="noise2" result="cloud3" />
-            <feFlood id="hero-shadow4" floodColor="rgb(0,0,0)" floodOpacity="0.6" />
-            <feComposite operator="in" in2="SourceGraphic" />
-            <feOffset dx="20" dy="60" />
-            <feMorphology radius="0 65" />
-            <feGaussianBlur stdDeviation="30" />
-            <feDisplacementMap scale="100" in2="noise2" result="cloud4" />
-            <feFlood id="hero-shadow5" floodColor="rgb(0,0,0)" floodOpacity="0.7" />
-            <feComposite operator="in" in2="SourceGraphic" />
-            <feOffset dx="20" dy="70" />
-            <feMorphology radius="0 200" />
-            <feGaussianBlur stdDeviation="30" />
-            <feDisplacementMap scale="100" in2="noise2" result="cloud5" />
-            <feMerge>
-              <feMergeNode in="cloud1" />
-              <feMergeNode in="cloud2" />
-              <feMergeNode in="cloud3" />
-              <feMergeNode in="cloud4" />
-              <feMergeNode in="cloud5" />
-            </feMerge>
-          </filter>
-        </defs>
-      </svg>
-
-      <div className="hero-cloud-container absolute inset-0" style={{ filter: 'url(#hero-filter)', zIndex: 1 }}>
-        <textarea ref={cloudRef} className="hero-cloud" readOnly style={{
-          width: '800px',
-          height: '320px',
-          background: '#e0e0e0',
-          borderRadius: '50%',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          cursor: 'grab',
-          willChange: 'transform',
-          touchAction: 'none',
-          border: 'none',
-          outline: 'none',
-          resize: 'none',
-        }} />
-      </div>
+      <style jsx>{`
+        .wave-bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+          0% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
+        }
+        .wave {
+          background: rgba(255, 255, 255, 0.25);
+          border-radius: 1000% 1000% 0 0;
+          position: fixed;
+          width: 200%;
+          height: 12em;
+          animation: wave 10s -3s linear infinite;
+          transform: translate3d(0, 0, 0);
+          opacity: 0.8;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+        }
+        .wave:nth-of-type(2) {
+          bottom: -1.25em;
+          animation: wave 18s linear reverse infinite;
+          opacity: 0.8;
+        }
+        .wave:nth-of-type(3) {
+          bottom: -2.5em;
+          animation: wave 20s -1s reverse infinite;
+          opacity: 0.9;
+        }
+        @keyframes wave {
+          2% { transform: translateX(1); }
+          25% { transform: translateX(-25%); }
+          50% { transform: translateX(-50%); }
+          75% { transform: translateX(-25%); }
+          100% { transform: translateX(1); }
+        }
+      `}</style>
+      
+      <div className="wave-bg" />
+      
+      <div className="wave" />
+      <div className="wave" />
+      <div className="wave" />
 
       <div className="absolute inset-0 flex items-center z-10">
         <FadeIn>
