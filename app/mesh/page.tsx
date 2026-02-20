@@ -368,7 +368,7 @@ class VantaNET {
     }
 
     this.camera = new THREE.PerspectiveCamera(25, this.width / this.height, 0.01, 10000)
-    this.camera.position.set(50, 100, 150)
+    this.camera.position.set(50, 100, 250)
     this.scene!.add(this.camera)
 
     const ambience = new THREE.AmbientLight(0xffffff, 0.75)
@@ -428,6 +428,14 @@ class VantaNET {
   onUpdate() {
     const c = this.camera
     if (!c) return
+
+    if (!(c as any).tx) {
+      const time = this.t * 0.0005
+      const dist = 250
+      ;(c as any).tx = dist * Math.cos(time)
+      ;(c as any).tz = dist * Math.sin(time)
+      ;(c as any).ty = 100 + Math.sin(time * 0.5) * 30
+    }
 
     if (Math.abs((c as any).tx - c.position.x) > 0.01) {
       const diff = (c as any).tx - c.position.x
