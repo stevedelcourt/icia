@@ -72,6 +72,7 @@ function FlowHero() {
   const offsetY = useRef(0)
   const startMouseX = useRef(0)
   const startMouseY = useRef(0)
+  const isDragging = useRef(false)
 
   useEffect(() => {
     const cloud = cloudRef.current
@@ -79,42 +80,88 @@ function FlowHero() {
 
     let animFrame: number
     let time = 0
+    let autoX = 0
+    let autoY = 0
 
     const animateCloud = () => {
-      time += 0.008
-      const autoX = Math.sin(time * 0.5) * 150
-      const autoY = Math.cos(time * 0.3) * 80
-      
-      cloud.style.transform = `translate(calc(-50% + ${
-        offsetX.current + autoX
-      }px), calc(-50% + ${offsetY.current + autoY}px))`
+      if (!isDragging.current) {
+        time += 0.008
+        autoX = Math.sin(time * 0.5) * 150
+        autoY = Math.cos(time * 0.3) * 80
+        
+        cloud.style.transform = `translate(calc(-50% + ${
+          offsetX.current + autoX
+        }px), calc(-50% + ${offsetY.current + autoY}px))`
+      }
       animFrame = requestAnimationFrame(animateCloud)
     }
 
     animateCloud()
 
+    const handleMouseDown = (e: MouseEvent) => {
+      isDragging.current = true
+      startMouseX.current = e.clientX
+      startMouseY.current = e.clientY
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return
+      const deltaX = e.clientX - startMouseX.current
+      const deltaY = e.clientY - startMouseY.current
+      cloud.style.transform = `translate(calc(-50% + ${
+        offsetX.current + deltaX
+      }px), calc(-50% + ${offsetY.current + deltaY}px))`
+    }
+
+    const handleMouseUp = (e: MouseEvent) => {
+      if (isDragging.current) {
+        const deltaX = e.clientX - startMouseX.current
+        const deltaY = e.clientY - startMouseY.current
+        offsetX.current += deltaX
+        offsetY.current += deltaY
+      }
+      isDragging.current = false
+    }
+
+    cloud.addEventListener('mousedown', handleMouseDown)
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+
+    // Touch events
+    cloud.addEventListener('touchstart', (e: TouchEvent) => {
+      isDragging.current = true
+      startMouseX.current = e.touches[0].clientX
+      startMouseY.current = e.touches[0].clientY
+    })
+    document.addEventListener('touchmove', (e: TouchEvent) => {
+      if (!isDragging.current) return
+      const deltaX = e.touches[0].clientX - startMouseX.current
+      const deltaY = e.touches[0].clientY - startMouseY.current
+      cloud.style.transform = `translate(calc(-50% + ${
+        offsetX.current + deltaX
+      }px), calc(-50% + ${offsetY.current + deltaY}px))`
+    })
+    document.addEventListener('touchend', (e: TouchEvent) => {
+      if (isDragging.current && e.changedTouches.length > 0) {
+        const deltaX = e.changedTouches[0].clientX - startMouseX.current
+        const deltaY = e.changedTouches[0].clientY - startMouseY.current
+        offsetX.current += deltaX
+        offsetY.current += deltaY
+      }
+      isDragging.current = false
+    })
+
     const skyBackground = document.querySelector('.hero-sky-background') as HTMLElement
-    const shadow2 = document.getElementById('hero-shadow2') as any
-    const shadow3 = document.getElementById('hero-shadow3') as any
-    const shadow4 = document.getElementById('hero-shadow4') as any
-    const shadow5 = document.getElementById('hero-shadow5') as any
 
     if (skyBackground) {
-      const updateWeather = (value: number) => {
-        const t = value / 100
-        const saturation = 100 - t * 70
-        const brightness = 100 - t * 50
-        skyBackground.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`
-        if (shadow2) shadow2.setAttribute('flood-opacity', String(0 + t * 0.4))
-        if (shadow3) shadow3.setAttribute('flood-opacity', String(0.1 + t * 0.3))
-        if (shadow4) shadow4.setAttribute('flood-opacity', String(0.2 + t * 0.4))
-        if (shadow5) shadow5.setAttribute('flood-opacity', String(0.2 + t * 0.5))
-      }
-      updateWeather(100)
+      skyBackground.style.filter = 'saturate(100%) brightness(100%)'
     }
 
     return () => {
       cancelAnimationFrame(animFrame)
+      cloud.removeEventListener('mousedown', handleMouseDown)
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
     }
   }, [])
 
@@ -122,7 +169,7 @@ function FlowHero() {
     <section className="relative h-screen w-full overflow-hidden">
       <div className="hero-sky-background absolute inset-0" 
         style={{ 
-          background: 'linear-gradient(0deg, #3a4a5c 0%, #2a3a4c 50%, #1a2a3c 100%)',
+          background: 'linear-gradient(0deg, #62a0d8 0%, #2178d1 50%, #085cb3 100%)',
           zIndex: 0
         }} 
       />
@@ -188,14 +235,14 @@ function FlowHero() {
         }} />
       </div>
 
-      <div className="absolute inset-0 flex items-center justify-center z-10" style={{ background: 'rgba(0,0,0,0.3)' }}>
+      <div className="absolute inset-0 flex items-center z-10">
         <FadeIn>
-          <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto px-4 md:px-8" style={{ marginLeft: '10%' }}>
             <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-4">Accompagnements</p>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6">
               L'IA, enfin<br />pour tous.
             </h1>
-            <p className="text-white/70 text-lg max-w-xl leading-relaxed mx-auto">
+            <p className="text-white/70 text-lg max-w-xl leading-relaxed">
               L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
             </p>
           </div>
