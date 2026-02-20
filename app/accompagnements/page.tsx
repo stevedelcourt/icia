@@ -12,7 +12,7 @@ const publics = [
     title: 'Citoyen', 
     subtitle: 'Grand public',
     description: 'Acculturation a l\'IA, securite numerique, parcours vers l\'emploi et la reconversion professionnelle.',
-    href: '/accompagnements/citoyens',
+    href: '/accompagnements/citoyen',
     color: 'citoyen',
     accent: '#BF4D43',
   },
@@ -20,7 +20,7 @@ const publics = [
     title: 'Entreprise', 
     subtitle: 'Secteur prive',
     description: 'Diagnostics, formations et prototypes IA pour transformer votre organisation et rester competitif.',
-    href: '/accompagnements/entreprises',
+    href: '/accompagnements/entreprise',
     color: 'entreprise',
     accent: '#D4A27F',
   },
@@ -65,27 +65,84 @@ const cardGradients: Record<string, string> = {
   public: 'linear-gradient(135deg, rgba(107,122,139,0.08) 0%, rgba(107,122,139,0.02) 100%)',
 }
 
-export default function AccompanimentsPage() {
+function FlowHero() {
+  return (
+    <section className="relative h-screen w-full overflow-hidden">
+      <style jsx>{`
+        .hero-container {
+          position: relative;
+          height: 100vh;
+          width: 100%;
+          background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+          overflow: hidden;
+        }
+        @keyframes gradient {
+          0% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
+        }
+        .wave {
+          background: rgba(255, 255, 255, 0.25);
+          border-radius: 1000% 1000% 0 0;
+          position: absolute;
+          width: 200%;
+          height: 12em;
+          animation: wave 10s -3s linear infinite;
+          transform: translate3d(0, 0, 0);
+          opacity: 0.8;
+          bottom: 0;
+          left: 0;
+        }
+        .wave:nth-of-type(2) {
+          bottom: -1.25em;
+          animation: wave 18s linear reverse infinite;
+          opacity: 0.8;
+        }
+        .wave:nth-of-type(3) {
+          bottom: -2.5em;
+          animation: wave 20s -1s reverse infinite;
+          opacity: 0.9;
+        }
+        @keyframes wave {
+          2% { transform: translateX(1); }
+          25% { transform: translateX(-25%); }
+          50% { transform: translateX(-50%); }
+          75% { transform: translateX(-25%); }
+          100% { transform: translateX(1); }
+        }
+      `}</style>
+      
+      <div className="hero-container">
+        <div className="wave" />
+        <div className="wave" />
+        <div className="wave" />
+
+        <div className="absolute inset-0 flex items-center z-10">
+        <FadeIn>
+          <div className="max-w-4xl mx-auto px-4 md:px-8" style={{ marginLeft: '10%' }}>
+            <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-4">Accompagnements</p>
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6">
+              L'IA, enfin<br />pour tous.
+            </h1>
+            <p className="text-white/70 text-lg max-w-xl leading-relaxed">
+              L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+      </div>
+    </section>
+  )
+}
+
+export default function AccompanimentsNewPage() {
   return (
     <>
       <Header />
       <main id="main-content">
-        {/* Hero */}
-        <section className="relative pt-32 pb-20 bg-ivory-light overflow-hidden">
-          <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(ellipse at 30% 0%, rgba(191,77,67,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, rgba(107,122,139,0.1) 0%, transparent 50%)' }} />
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-          <FadeIn>
-            <div className="max-w-6xl mx-auto px-4 md:px-8 relative">
-              <p className="text-sm font-medium text-slate-dark/40 uppercase tracking-widest mb-4">Accompagnements</p>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-slate-dark mb-6">
-                L'IA, enfin<br />pour tous.
-              </h1>
-              <p className="text-slate-dark/60 text-lg max-w-xl leading-relaxed">
-                L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
-              </p>
-            </div>
-          </FadeIn>
-        </section>
+        <FlowHero />
 
         {/* Stats */}
         <div className="border-y border-border">
@@ -120,7 +177,7 @@ export default function AccompanimentsPage() {
               <p className="text-sm font-medium text-book-cloth uppercase tracking-widest mb-4">Nos programmes</p>
               <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Cinq programmes,<br />autant de publics</h2>
               <p className="text-slate-dark/60 leading-relaxed">
-                Chaque accompagnement est conçu en profondeur pour repondre aux enjeux specifiques d'un public — de l'acculturation citoyenne a la transformation organisationnelle.
+                Chaque accompagnement est con�u en profondeur pour repondre aux enjeux specifiques d'un public � de l'acculturation citoyenne a la transformation organisationnelle.
               </p>
             </div>
           </FadeIn>
@@ -146,8 +203,8 @@ export default function AccompanimentsPage() {
                         <h3 className="font-serif text-lg font-bold mb-3 text-slate-dark">{item.title}</h3>
                         <p className="text-sm text-slate-dark/60 flex-grow leading-relaxed">{item.description}</p>
                         <div className="mt-4 gap-2 text-xs flex items-center uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
-                          Découvrir
-                          <span>→</span>
+                          Decouvrir
+                          <span>�</span>
                         </div>
                       </div>
                     </Link>
@@ -194,7 +251,7 @@ export default function AccompanimentsPage() {
               </p>
               <Button href="/contact" variant="primary" size="lg">
                   Nous contacter
-                  <span className="ml-2">→</span>
+                  <span className="ml-2">�</span>
                 </Button>
             </div>
           </FadeIn>
