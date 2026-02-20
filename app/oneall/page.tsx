@@ -66,17 +66,17 @@ export default function OneAllPage() {
     cursorEl.style.height = '16px'
     cursorEl.style.backgroundColor = '#ff3f81'
     cursorEl.style.borderRadius = '50%'
+    cursorEl.style.transform = 'translate(-50%, -50%)'
     container.appendChild(cursorEl)
 
     const getGridPosition = (index: number) => {
       return {
-        x: (index % rows) * 16,
-        y: Math.floor(index / rows) * 16
+        x: (index % rows) * 16 + 8,
+        y: Math.floor(index / rows) * 16 + 8
       }
     }
 
     let currentIndex = Math.floor(Math.random() * numberOfElements)
-    let nextIndex = 0
 
     const setCursorPosition = (index: number) => {
       const pos = getGridPosition(index)
@@ -86,10 +86,10 @@ export default function OneAllPage() {
 
     setCursorPosition(currentIndex)
 
-    function animateGrid() {
-      nextIndex = Math.floor(Math.random() * numberOfElements)
-
+    function animate() {
+      const nextIndex = Math.floor(Math.random() * numberOfElements)
       const dots = container.querySelectorAll('.dot')
+
       dots.forEach((dot, i) => {
         const row = Math.floor(i / rows)
         const col = i % rows
@@ -98,30 +98,14 @@ export default function OneAllPage() {
         const distFromCursor = Math.abs(col - curCol) + Math.abs(row - curRow)
         const delay = distFromCursor * 30
 
-        window.anime({
+        const anim = window.anime({
           targets: dot,
-          translateX: [
-            { value: -3, duration: 200, easing: 'easeOutQuad' },
-            { value: 2, duration: 500, easing: 'easeInOutQuad' },
-            { value: 0, duration: 600, easing: 'easeOutQuad' }
-          ],
-          translateY: [
-            { value: -3, duration: 200, easing: 'easeOutQuad' },
-            { value: 2, duration: 500, easing: 'easeInOutQuad' },
-            { value: 0, duration: 600, easing: 'easeOutQuad' }
-          ],
-          scale: [
-            { value: 1, duration: 200 },
-            { value: 2, duration: 500 },
-            { value: 1, duration: 600 }
-          ],
+          translateX: [-3, 2, 0],
+          translateY: [-3, 2, 0],
+          scale: [1, 2, 1],
+          duration: 1300,
           delay: delay,
-          complete: () => {
-            if (i === dots.length - 1) {
-              currentIndex = nextIndex
-              setTimeout(animateCursor, 500)
-            }
-          }
+          easing: 'easeInOutQuad',
         })
       })
 
@@ -131,26 +115,26 @@ export default function OneAllPage() {
         duration: 600,
         easing: 'inOutQuad'
       })
-    }
 
-    function animateCursor() {
       const toPos = getGridPosition(nextIndex)
       const duration = 800 + Math.random() * 400
 
-      window.anime({
-        targets: cursorEl,
-        left: toPos.x,
-        top: toPos.y,
-        duration: duration,
-        easing: 'outCirc',
-        complete: () => {
-          currentIndex = nextIndex
-          animateGrid()
-        }
-      })
+      setTimeout(() => {
+        window.anime({
+          targets: cursorEl,
+          left: toPos.x,
+          top: toPos.y,
+          duration: duration,
+          easing: 'outCirc',
+          complete: () => {
+            currentIndex = nextIndex
+            animate()
+          }
+        })
+      }, 600)
     }
 
-    animateGrid()
+    setTimeout(animate, 500)
 
     return () => {
       container.innerHTML = ''
