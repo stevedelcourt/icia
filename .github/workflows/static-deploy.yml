@@ -1,0 +1,45 @@
+name: Build and Deploy Static
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build:export
+
+      - name: Checkout static branch
+        uses: actions/checkout@v4
+        with:
+          ref: static
+          fetch-depth: 0
+
+      - name: Copy static files
+        run: |
+          mkdir -p static
+          cp -r out/* static/
+          cp package.json static/
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -m "Build static $(date +'%Y-%m-%d %H:%M')" || echo "No changes"
+          git push origin static --force

@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 
+export const dynamic = 'force-dynamic'
+
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
 
@@ -114,13 +116,6 @@ async function getArticles() {
   } catch {
     return []
   }
-}
-
-export async function generateStaticParams() {
-  const articles = await getArticles()
-  return articles.map((article: any) => ({
-    slug: article.slug,
-  }))
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {

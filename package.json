@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "npm run build:export && npm run build:normal",
+    "build:export": "NEXT_EXPORT=true next build",
+    "build:normal": "next build",
     "start": "next start",
     "lint": "next lint"
   },
