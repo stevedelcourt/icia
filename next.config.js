@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: process.env.NEXT_EXPORT === 'true' ? 'export' : undefined,
   reactStrictMode: true,
   images: {
     unoptimized: true,
-  },
-  // For static export: ignore API routes
-  experimental: {
-    skipSsgForExport: true,
   },
 }
 
