@@ -1,0 +1,1 @@
+{"status":307,"headers":{"location":"https://github.com/login/oauth/authorize?client_id=Ov23liK4C9e883PqAjXi&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Foauth%2Fcallback&scope=repo&state=wcvyo","x-next-cache-tags":"_N_T_/layout,_N_T_/api/layout,_N_T_/api/oauth/layout,_N_T_/api/oauth/route,_N_T_/api/oauth"}}
