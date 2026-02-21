@@ -5,6 +5,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // For static export: ignore API routes
+  experimental: {
+    skipSsgForExport: true,
+  },
 }
 
 module.exports = nextConfig

@@ -1,0 +1,47 @@
+name: Build and Deploy Static
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: |
+          echo "output=export" >> $GITHUB_ENV
+          npm run build:export
+
+      - name: Checkout static branch
+        uses: actions/checkout@v4
+        with:
+          ref: static
+          fetch-depth: 0
+
+      - name: Copy static files
+        run: |
+          rm -rf out _next
+          cp -r ../out/* ./
+          cp package.json ./
+
+      - name: Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Build static $(date +'%Y-%m-%d %H:%M')"
+          file_pattern: "*.html *.js *.css out/** public/**"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
