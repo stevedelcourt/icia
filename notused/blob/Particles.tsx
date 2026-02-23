@@ -72,8 +72,11 @@ export function Particles({ speed, fov, aperture, focus, curl, radius, wobble, s
         <mesh>
           {/* @ts-ignore */}
           <simulationMaterial ref={simRef} />
+          {/* @ts-ignore */}
           <bufferGeometry>
+            {/* @ts-ignore */}
             <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
+            {/* @ts-ignore */}
             <bufferAttribute attach="attributes-uv" count={uvs.length / 2} array={uvs} itemSize={2} />
           </bufferGeometry>
         </mesh>,
@@ -82,7 +85,9 @@ export function Particles({ speed, fov, aperture, focus, curl, radius, wobble, s
       <points>
         {/* @ts-ignore */}
         <dofPointsMaterial ref={renderRef} />
+        {/* @ts-ignore */}
         <bufferGeometry>
+          {/* @ts-ignore */}
           <bufferAttribute attach="attributes-position" count={particles.length / 3} array={particles} itemSize={3} />
         </bufferGeometry>
       </points>

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-static'
+
 const clientId = process.env.OAUTH_GITHUB_CLIENT_ID
 const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET
 

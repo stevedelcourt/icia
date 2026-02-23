@@ -95,8 +95,8 @@ export default function BlobCanvas() {
         linear
         dpr={isMobile ? 1.5 : 2}
         camera={{ fov: 25, position: [0, 0, 5] }}
-        gl={(canvas) => new THREE.WebGL1Renderer({ 
-          canvas, 
+        gl={(canvas) => new THREE.WebGLRenderer({ 
+          canvas: canvas as unknown as HTMLCanvasElement, 
           antialias: true, 
           alpha: true,
           powerPreference: 'high-performance'

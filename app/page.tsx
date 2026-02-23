@@ -5,7 +5,9 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 import { PartnerLogos } from '@/components/ui/PartnerLogos'
-import { HeroBackground } from './home-3d/HeroBackground'
+import dynamic from 'next/dynamic'
+
+const HeroBackground = dynamic(() => import('./home-3d/HeroBackground').then(mod => ({ default: mod.HeroBackground })), { ssr: false })
 
 const cards = [
   { 

@@ -3,9 +3,39 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
+import fs from 'fs'
+import path from 'path'
 
 const NOTION_KEY = process.env.NOTION_KEY
-const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB
+const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB || '307d314b3ef0803aabeac0c66c1275fd'
+
+export const dynamic = 'force-static'
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  return []
+}
+
+async function downloadImage(url: string, filename: string): Promise<string> {
+  if (!url || !url.startsWith('http')) return ''
+  
+  const publicDir = path.join(process.cwd(), 'public', 'images', 'partners')
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true })
+  }
+  
+  const filepath = path.join(publicDir, filename)
+  
+  try {
+    const response = await fetch(url)
+    if (!response.ok) return ''
+    const buffer = await response.arrayBuffer()
+    fs.writeFileSync(filepath, Buffer.from(buffer))
+    return `/images/partners/${filename}`
+  } catch {
+    return ''
+  }
+}
 
 async function getPartners() {
   if (!NOTION_PARTNERS_DB) {
@@ -35,15 +65,27 @@ async function getPartners() {
       return []
     }
 
-    return data.results.map((page: any) => {
+    const partners = await Promise.all(data.results.map(async (page: any) => {
       const props = page.properties
+      const name = props.Company_name?.rich_text?.[0]?.plain_text || ''
+      const logoUrl = props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || ''
+      
+      let localLogo = ''
+      if (logoUrl && name) {
+        const ext = logoUrl.includes('.svg') ? 'svg' : 'png'
+        const filename = `${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.${ext}`
+        localLogo = await downloadImage(logoUrl, filename)
+      }
+
       return {
-        name: props.Company_name?.rich_text?.[0]?.plain_text || '',
+        name,
         description: props.Company_text?.rich_text?.[0]?.plain_text || '',
-        logo: props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || '',
+        logo: localLogo || logoUrl,
         website: props.Company_URL?.url || ''
       }
-    }).filter((p: any) => p.name).sort((a: any, b: any) => a.name.localeCompare(b.name, 'fr'))
+    }))
+
+    return partners.filter((p: any) => p.name).sort((a: any, b: any) => a.name.localeCompare(b.name, 'fr'))
   } catch (e) {
     return []
   }

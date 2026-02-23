@@ -26,3 +26,5 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ error: 'Authentication failed' }, { status: 400 })
 }
+
+export const dynamic = 'force-static'

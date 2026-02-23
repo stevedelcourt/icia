@@ -21,8 +21,22 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#262625] text-white py-16">
-      <div className="max-w-content mx-auto px-4 md:px-8">
+    <footer className="relative overflow-hidden">
+      <style jsx>{`
+        .gradient-bg {
+          background: linear-gradient(135deg, #00255D, #023D87);
+          background-size: 400% 400%;
+          animation: gradientMove 15s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+      <div className="gradient-bg absolute inset-0" />
+      <div className="relative bg-black/20">
+        <div className="max-w-content mx-auto px-4 md:px-8 py-16">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-4">

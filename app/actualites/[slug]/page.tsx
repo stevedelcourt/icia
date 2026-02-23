@@ -4,7 +4,52 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 
-export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  const NOTION_KEY = process.env.NOTION_KEY
+  const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
+  
+  if (!NOTION_KEY) return []
+
+  const notion = {
+    baseUrl: 'https://api.notion.com/v1',
+    headers: {
+      'Authorization': `Bearer ${NOTION_KEY}`,
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28'
+    }
+  }
+
+  try {
+    const query: any = { page_size: 100 }
+    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_DB}/query`, {
+      method: 'POST',
+      headers: notion.headers,
+      body: JSON.stringify(query)
+    })
+    if (!response.ok) return []
+    const data = await response.json()
+    if (!data.results) return []
+
+    const getRichText = (prop: any) => {
+      if (!prop) return ''
+      if (prop.rich_text && prop.rich_text.length > 0) {
+        return prop.rich_text.map((t: any) => t.plain_text).join('')
+      }
+      if (prop.title && prop.title.length > 0) {
+        return prop.title.map((t: any) => t.plain_text).join('')
+      }
+      return ''
+    }
+
+    return data.results.map((page: any) => ({
+      slug: getRichText(page.properties.Slug)
+    })).filter((p: any) => p.slug)
+  } catch {
+    return []
+  }
+}
 
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
