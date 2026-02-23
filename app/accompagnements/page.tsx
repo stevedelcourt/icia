@@ -14,7 +14,7 @@ const publics = [
     description: 'Acculturation a l\'IA, securite numerique, parcours vers l\'emploi et la reconversion professionnelle.',
     href: '/accompagnements/citoyen',
     color: 'citoyen',
-    accent: '#BF4D43',
+    accent: '#023D87',
   },
   { 
     title: 'Entreprise', 
@@ -22,7 +22,7 @@ const publics = [
     description: 'Diagnostics, formations et prototypes IA pour transformer votre organisation et rester competitif.',
     href: '/accompagnements/entreprise',
     color: 'entreprise',
-    accent: '#D4A27F',
+    accent: '#2E5A8C',
   },
   { 
     title: 'Ecole', 
@@ -30,7 +30,7 @@ const publics = [
     description: 'Bibliotheque pedagogique, formation des formateurs, certifications et parcours accredites.',
     href: '/accompagnements/education',
     color: 'education',
-    accent: '#7A9E7E',
+    accent: '#4A7AB8',
   },
   { 
     title: 'Secteur creatif', 
@@ -38,7 +38,7 @@ const publics = [
     description: 'Ateliers creatifs, securite juridique, laboratoire d\'innovation pour les industries culturelles.',
     href: '/accompagnements/secteurs-creatifs',
     color: 'creatif',
-    accent: '#8B7A6B',
+    accent: '#6B9BD1',
   },
   { 
     title: 'Pouvoir public', 
@@ -46,7 +46,7 @@ const publics = [
     description: 'IA inclusive, transformation des services publics et observatoire territorial de l\'impact IA.',
     href: '/accompagnements/pouvoirs-publics',
     color: 'public',
-    accent: '#6B7A8B',
+    accent: '#8CB4E3',
   },
 ]
 
@@ -58,11 +58,11 @@ const processSteps = [
 ]
 
 const cardGradients: Record<string, string> = {
-  citoyen: 'linear-gradient(135deg, rgba(191,77,67,0.08) 0%, rgba(191,77,67,0.02) 100%)',
-  entreprise: 'linear-gradient(135deg, rgba(212,162,127,0.08) 0%, rgba(212,162,127,0.02) 100%)',
-  education: 'linear-gradient(135deg, rgba(122,158,126,0.08) 0%, rgba(122,158,126,0.02) 100%)',
-  creatif: 'linear-gradient(135deg, rgba(139,122,107,0.08) 0%, rgba(139,122,107,0.02) 100%)',
-  public: 'linear-gradient(135deg, rgba(107,122,139,0.08) 0%, rgba(107,122,139,0.02) 100%)',
+  citoyen: 'linear-gradient(135deg, rgba(2,61,135,0.08) 0%, rgba(2,61,135,0.02) 100%)',
+  entreprise: 'linear-gradient(135deg, rgba(46,90,140,0.08) 0%, rgba(46,90,140,0.02) 100%)',
+  education: 'linear-gradient(135deg, rgba(74,122,184,0.08) 0%, rgba(74,122,184,0.02) 100%)',
+  creatif: 'linear-gradient(135deg, rgba(107,155,209,0.08) 0%, rgba(107,155,209,0.02) 100%)',
+  public: 'linear-gradient(135deg, rgba(140,180,227,0.08) 0%, rgba(140,180,227,0.02) 100%)',
 }
 
 function FlowHero() {
