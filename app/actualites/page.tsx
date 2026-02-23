@@ -95,7 +95,7 @@ export default async function ActualitesPage() {
           <Section className="pb-12">
             <FadeIn>
               <Link href={`/actualites/${latestArticle.slug}`} className="block group">
-                <article className="border border-gray-200 bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
+                <article className="border border-border bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
                   {latestArticle.image && (
                     <img src={latestArticle.image} alt="" className="w-full aspect-[16/9] object-cover" />
                   )}
@@ -123,7 +123,7 @@ export default async function ActualitesPage() {
               {otherArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
-                    <article className="h-full border border-gray-200 bg-white rounded-xl p-6 hover:bg-ivory-dark hover:shadow-sm transition-all">
+                    <article className="h-full border border-border bg-white rounded-xl p-6 hover:bg-ivory-dark hover:shadow-sm transition-all">
                       {article.image && (
                         <img src={article.image} alt="" className="w-full h-48 object-cover rounded-lg mb-4" />
                       )}

@@ -148,7 +148,7 @@ export default function AccompanimentsNewPage() {
         <Section className="py-24 bg-ivory-light">
           <FadeIn>
             <div className="max-w-4xl mx-auto mb-16">
-              <p className="text-sm font-medium text-book-cloth uppercase tracking-widest mb-4">Nos programmes</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Nos programmes</p>
               <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Cinq programmes,<br />autant de publics</h2>
               <p className="text-slate-dark/60 leading-relaxed">
                 Chaque accompagnement est conçu en profondeur pour répondre aux enjeux spécifiques d'un public, de l'acculturation citoyenne à la transformation organisationnelle.
@@ -195,7 +195,7 @@ export default function AccompanimentsNewPage() {
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-5 gap-12">
                 <div className="lg:col-span-2">
-                  <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre processus</p>
+                  <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre processus</p>
                   <h2 className="font-serif text-3xl md:text-4xl text-slate-dark mb-4">Un accompagnement structure en 4 temps</h2>
                   <p className="text-slate-dark/60 leading-relaxed">
                     Chaque programme demarre par une phase de diagnostic pour calibrer l'accompagnement au plus pres de vos besoins reels.

@@ -97,7 +97,7 @@ export default function AProposPage() {
                 <p>Face à cette mutation, l'Institut défend une conviction forte : l'IA doit devenir un <strong>bien commun</strong>, compréhensible et maîtrisable, permettant à chacun de grandir, de progresser et de tirer parti de cette révolution — au service de l'intérêt général et de l'émancipation individuelle.</p>
               </div>
               <blockquote className="mt-12 relative">
-                <span className="absolute -top-4 left-0 text-6xl text-book-cloth/30 leading-none">"</span>
+                <span className="absolute -top-4 left-0 text-6xl text-accent/30 leading-none">"</span>
                 <h2 className="font-serif text-2xl md:text-3xl italic text-slate-dark pl-8 pr-4 leading-relaxed">
                   L'intelligence artificielle doit être pensée, partagée et transmise collectivement.
                 </h2>
@@ -212,7 +212,7 @@ export default function AProposPage() {
         <Section className="py-20 bg-ivory-light">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-sm font-medium text-kraft uppercase tracking-widest mb-4">Notre ambition</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Notre ambition</p>
               <h2 className="font-serif text-3xl md:text-4xl mb-6 text-slate-dark">Un projet français à rayonnement international</h2>
               <p className="text-slate-dark/60 mb-12 max-w-2xl mx-auto">Le site pilote est Marseille. Vocation : essaimer en France et à l'international, avec une charte commune, une plateforme partagée et des standards identiques dans tous les centres.</p>
             </div>
