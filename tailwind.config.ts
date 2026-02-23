@@ -28,7 +28,7 @@ const config: Config = {
         'text-muted': '#666663',
         'border': '#E5E4DF',
         'accent': '#D92A1C',
-        'accent-hover': '#a33d32',
+        'accent-hover': '#023D87',
         'ink': '#191919',
         'off-white': '#F0F0EB',
         'warm-mid': '#E5E4DF',
