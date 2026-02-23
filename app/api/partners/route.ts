@@ -38,10 +38,11 @@ export async function GET() {
       const props = page.properties
       return {
         name: props.Company_name?.rich_text?.[0]?.plain_text || '',
+        description: props.Company_text?.rich_text?.[0]?.plain_text || props.Description?.rich_text?.[0]?.plain_text || '',
         logo: props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || '',
         website: props.Company_URL?.url || ''
       }
-    }).filter((p: any) => p.logo).sort((a: any, b: any) => a.name.localeCompare(b.name))
+    }).filter((p: any) => p.name).sort((a: any, b: any) => a.name.localeCompare(b.name, 'fr'))
 
     return NextResponse.json(partners)
   } catch (e) {
