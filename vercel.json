@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/accompagnements/citoyen",
+      "destination": "/accompagnements/citoyens",
+      "permanent": true
+    }
+  ]
+}
