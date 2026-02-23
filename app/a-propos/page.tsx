@@ -52,12 +52,12 @@ export default function AProposPage() {
           <style jsx>{`
             section {
               background-image: 
-                linear-gradient(115deg, #BF4D43, #61AAF2),
-                radial-gradient(90% 100% at 50% 0%, #BF4D43, #191919),
-                radial-gradient(100% 100% at 80% 0%, #BF4D43, #191919),
-                radial-gradient(150% 210% at 100% 0%, #61AAF2, #191919),
-                radial-gradient(100% 100% at 100% 30%, #61AAF2, #BF4D43),
-                linear-gradient(60deg, #BF4D43, #61AAF2);
+                linear-gradient(115deg, #D92A1C, #7B3FA0),
+                radial-gradient(90% 100% at 50% 0%, #D92A1C, #191919),
+                radial-gradient(100% 100% at 80% 0%, #D92A1C, #191919),
+                radial-gradient(150% 210% at 100% 0%, #002456, #191919),
+                radial-gradient(100% 100% at 100% 30%, #002456, #D92A1C),
+                linear-gradient(60deg, #D92A1C, #002456);
               background-size: 400% 400%;
               animation: gradient 8s ease infinite;
             }

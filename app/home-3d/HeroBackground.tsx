@@ -49,14 +49,14 @@ function CloudScene() {
       <group ref={ref}>
         <Clouds material={THREE.MeshLambertMaterial} limit={400}>
           <Cloud ref={cloud0} {...config} bounds={[6, 1, 1]} color="white" />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#eed0d0" seed={2} position={[15, 0, 0]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#d0e0d0" seed={3} position={[-15, 0, 0]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#a0b0d0" seed={4} position={[0, 0, -12]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#c0c0dd" seed={5} position={[0, 0, 12]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#D92A1C" seed={2} position={[15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#7B3FA0" seed={3} position={[-15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#002456" seed={4} position={[0, 0, -12]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#5C2E7B" seed={5} position={[0, 0, 12]} />
           <Cloud
             concentrate="outside"
             growth={100}
-            color="#ffccdd"
+            color="#D92A1C"
             opacity={1.25}
             seed={0.3}
             bounds={200}
@@ -74,7 +74,7 @@ function FallbackBackground() {
     <div 
       className="absolute inset-0"
       style={{ 
-        background: 'linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 50%, #F5F5F5 100%)' 
+        background: 'linear-gradient(to bottom, #0a1628 0%, #1a0a28 50%, #0a1628 100%)' 
       }} 
     />
   )
@@ -104,7 +104,7 @@ export function HeroBackground() {
     <div 
       id="hero-section"
       className="absolute inset-0 w-full h-screen overflow-hidden"
-      style={{ zIndex: 0, background: '#87CEEB' }}
+      style={{ zIndex: 0, background: '#0a1628' }}
     >
       <Canvas
         camera={{ position: [0, -15, 15], fov: 75 }}
@@ -116,7 +116,7 @@ export function HeroBackground() {
           failIfMajorPerformanceCaveat: false
         }}
         onCreated={({ gl }) => {
-          gl.setClearColor('#87CEEB')
+          gl.setClearColor('#0a1628')
         }}
       >
         <Suspense fallback={null}>

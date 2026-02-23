@@ -73,7 +73,7 @@ function FlowHero() {
           position: relative;
           height: 100vh;
           width: 100%;
-          background: linear-gradient(315deg, #BF4D43 0%, #61AAF2 50%, #BF4D43 100%);
+          background: linear-gradient(315deg, #D92A1C 0%, #7B3FA0 50%, #002456 100%);
           background-size: 400% 400%;
           animation: gradient 8s ease infinite;
           overflow: hidden;
