@@ -70,10 +70,10 @@ export default function PlateformeNumeriquePage() {
                     La plateforme ICIA est votre compagnon pour maitriser l'intelligence artificielle. Tout ce qu'il vous faut pour developper vos competences, a votre rythme.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Parcours varies</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Certifications</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Communaute</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Acces bêta</span>
+                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Parcours varies</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Certifications</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Communaute</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Acces bêta</span>
                   </div>
                 </div>
               </div>

@@ -116,18 +116,18 @@ export default function ReseauLieuPage() {
                     L'ICIA repose sur un modèle hybride : un lieu physique flagship à Marseille, un réseau de hubs régionaux et d'espaces satellites, complété par une plateforme numérique.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Marseille</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Hubs régionaux</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Espaces satellites</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Plateforme numérique</span>
+                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Marseille</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Hubs régionaux</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Espaces satellites</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Plateforme numérique</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="p-6 bg-slate-dark text-white rounded-xl">
+                  <div className="p-6 bg-navy text-white rounded-xl">
                     <p className="text-4xl font-light mb-2">400m²</p>
                     <p className="text-sm text-white/80">Flagship Marseille</p>
                   </div>
-                  <div className="p-6 bg-slate-dark text-white rounded-xl">
+                  <div className="p-6 bg-navy text-white rounded-xl">
                     <p className="text-4xl font-light mb-2">3–5 ans</p>
                     <p className="text-sm text-white/80">Déploiement national</p>
                   </div>

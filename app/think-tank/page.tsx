@@ -71,10 +71,10 @@ export default function ThinkTankPage() {
                     Le Think Tank de l'ICIA est un lieu de reflexion independante sur les enjeux de l'intelligence artificielle. Nous produisons des analyses rigoureuses, accompagnons les decideurs et participons au debat public.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-slate-dark text-white text-sm font-medium rounded-full">Regulation</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Impacts socio-eco</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">Usages sectoriels</span>
-                    <span className="px-4 py-2 border border-slate-dark text-slate-dark text-sm font-medium rounded-full">IA & Societe</span>
+                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Regulation</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Impacts socio-eco</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Usages sectoriels</span>
+                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">IA & Societe</span>
                   </div>
                 </div>
               </div>
