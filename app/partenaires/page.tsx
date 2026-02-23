@@ -98,7 +98,7 @@ export default async function PartenairesPage() {
     <>
       <Header />
       <main id="main-content">
-        <Section className="pt-32 pb-12 bg-gray-100">
+        <Section className="pt-32 pb-12" style={{ backgroundColor: '#E3EAF7' }}>
           <FadeIn>
             <div className="max-w-3xl">
               <h1 className="font-serif text-h1 mb-6">
@@ -115,13 +115,26 @@ export default async function PartenairesPage() {
           </FadeIn>
         </Section>
         
-        <Section className="pb-24 bg-[#40403E]" spacing="normal">
-          {partners.length > 0 ? (
+        <Section className="pb-24" spacing="normal">
+          <style jsx>{`
+            .gradient-bg {
+              background: linear-gradient(270deg, #00255D, #023D87, #00255D);
+              background-size: 200% 200%;
+              animation: gradientMove 8s ease infinite;
+            }
+            @keyframes gradientMove {
+              0% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+          `}</style>
+          <div className="gradient-bg">
+            {partners.length > 0 ? (
             <Stagger>
               <div className="flex flex-col gap-6">
                 {partners.map((partner: any, index: number) => (
                   <StaggerItem key={index}>
-                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 p-6 md:p-10 bg-[#2a2a2a] hover:bg-[#333333] transition-all">
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 p-6 md:p-10 bg-black/30 hover:bg-black/40 transition-all backdrop-blur-sm">
                       {partner.logo && (
                         <div className="w-full md:w-[350px] flex-shrink-0 flex items-center justify-center md:justify-start">
                           <img 
@@ -159,6 +172,7 @@ export default async function PartenairesPage() {
               </p>
             </div>
           )}
+          </div>
         </Section>
       </main>
       <Footer />
