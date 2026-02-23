@@ -12,7 +12,7 @@ const publics = [
     title: 'Citoyen', 
     subtitle: 'Grand public',
     description: 'Acculturation a l\'IA, securite numerique, parcours vers l\'emploi et la reconversion professionnelle.',
-    href: '/accompagnements/citoyen',
+    href: '/accompagnements/citoyens',
     color: 'citoyen',
     accent: '#023D87',
   },
