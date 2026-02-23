@@ -70,7 +70,7 @@ const cinqPublics = [
   },
   {
     num: '04',
-    tag: 'Industries créatives',
+    tag: 'Création',
     subtitle: 'Créateurs et acteurs culturels',
     items: [
       'Ateliers IA appliquée (écriture, image, son)',
