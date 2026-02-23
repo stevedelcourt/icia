@@ -104,7 +104,7 @@ export default async function ActualitesPage() {
                       <span className="text-xs text-accent font-medium">{latestArticle.category}</span>
                       <span className="text-xs text-text-muted">{latestArticle.date}</span>
                     </div>
-                    <h2 className="font-serif text-h1 mb-4 group-hover:text-accent transition-colors">
+                    <h2 className="font-serif text-h1 mb-4 text-text group-hover:text-accent transition-colors">
                       {latestArticle.title}
                     </h2>
                     <p className="text-body text-text-muted max-w-2xl">
@@ -131,7 +131,7 @@ export default async function ActualitesPage() {
                         <span className="text-xs text-accent font-medium">{article.category}</span>
                         <span className="text-xs text-text-muted">{article.date}</span>
                       </div>
-                      <h2 className="font-serif text-h3 mb-3 group-hover:text-accent transition-colors">
+                      <h2 className="font-serif text-h3 mb-3 text-text group-hover:text-accent transition-colors">
                         {article.title}
                       </h2>
                       <p className="text-sm text-text-muted">
