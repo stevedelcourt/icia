@@ -123,7 +123,7 @@ export default function AProposPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {examples.map((item) => (
                   <StaggerItem key={item.persona}>
-                    <Link href={item.href} className="block p-6 bg-[#E5E4DF] rounded-xl h-full hover:bg-[#ddd9d0] transition-colors">
+                    <Link href={item.href} className="block p-6 bg-ivory-dark rounded-xl h-full hover:bg-ivory-medium transition-colors">
                       <p className="font-bold text-accent mb-3">{item.persona}</p>
                       <p className="text-sm text-text-muted">{item.description}</p>
                     </Link>
@@ -238,7 +238,7 @@ export default function AProposPage() {
         </Section>
 
         {/* CTA */}
-        <Section className="py-20 bg-gradient-to-b from-[#E5E4DF] to-white">
+        <Section className="py-20 bg-gradient-to-b from-ivory-dark to-white">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-3xl md:text-4xl mb-8">

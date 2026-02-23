@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <main id="main-content" className="relative z-30 bg-gradient-to-b from-[#F5F4F0] to-white">
+      <main id="main-content" className="relative z-30 bg-gradient-to-b from-ivory-light to-white">
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">
