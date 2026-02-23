@@ -25,9 +25,9 @@ export function Footer() {
     <footer className="relative overflow-hidden">
       <style jsx>{`
         .gradient-bg {
-          background: linear-gradient(135deg, #00255D, #023D87);
-          background-size: 400% 400%;
-          animation: gradientMove 15s ease infinite;
+          background: linear-gradient(270deg, #00255D, #023D87, #00255D);
+          background-size: 200% 200%;
+          animation: gradientMove 8s ease infinite;
         }
         @keyframes gradientMove {
           0% { background-position: 0% 50%; }

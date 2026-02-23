@@ -212,7 +212,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <img src={article.image} alt={article.title} className="w-full aspect-square md:aspect-video lg:aspect-[16/9] object-cover rounded-lg mb-8" />
               )}
               
-              <h1 className="font-serif text-h1 mb-6">{article.title}</h1>
+              <h1 className="font-serif text-h1 mb-6 text-accent">{article.title}</h1>
               
               <div className="prose max-w-none mb-12">
                 <p className="text-text-muted text-lg leading-relaxed mb-6">{article.excerpt}</p>
