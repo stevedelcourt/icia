@@ -9,6 +9,15 @@ const nextConfig = {
   experimental: {
     ppr: false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/accompagnements/citoyen',
+        destination: '/accompagnements/citoyens',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
