@@ -144,32 +144,6 @@ export default function AccompanimentsNewPage() {
       <main id="main-content">
         <FlowHero />
 
-        {/* Stats */}
-        <div className="border-y border-border">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3">
-              <div className="p-8 border-r border-border">
-                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
-                  <span className="text-book-cloth">5</span>
-                </p>
-                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Publics</p>
-              </div>
-              <div className="p-8 border-r border-border">
-                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
-                  <span className="text-kraft">100%</span>
-                </p>
-                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Sur mesure</p>
-              </div>
-              <div className="p-8">
-                <p className="text-3xl md:text-5xl font-bold text-slate-dark mb-1">
-                  <span className="text-manilla">Gratuit</span>
-                </p>
-                <p className="text-xs font-medium text-slate-dark/40 uppercase tracking-wide">Grand public</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Nos programmes */}
         <Section className="py-24 bg-ivory-light">
           <FadeIn>
