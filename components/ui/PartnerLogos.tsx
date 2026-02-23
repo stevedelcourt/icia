@@ -76,8 +76,18 @@ export function PartnerLogos() {
   const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section className="bg-[#40403E] border-t border-border overflow-hidden py-8">
+    <section className="relative overflow-hidden py-8">
       <style jsx>{`
+        .gradient-bg {
+          background: linear-gradient(270deg, #00255D, #023D87, #00255D);
+          background-size: 200% 200%;
+          animation: gradientMove 8s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -94,9 +104,10 @@ export function PartnerLogos() {
           }
         }
       `}</style>
+      <div className="gradient-bg absolute inset-0" />
       <div 
         ref={containerRef}
-        className="scroll-container flex gap-16 overflow-x-hidden cursor-grab active:cursor-grabbing px-8"
+        className="relative scroll-container flex gap-16 overflow-x-hidden cursor-grab active:cursor-grabbing px-8"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
