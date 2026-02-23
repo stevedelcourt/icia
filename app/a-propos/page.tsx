@@ -52,17 +52,16 @@ export default function AProposPage() {
           <style jsx>{`
             section {
               background-image: 
-                linear-gradient(115deg, rgb(211, 255, 215), rgb(0, 0, 0)), 
-                radial-gradient(90% 100% at 50% 0%, rgb(200, 200, 200), rgb(22, 0, 45)), 
-                radial-gradient(100% 100% at 80% 0%, rgb(250, 255, 0), rgb(36, 0, 0)), 
-                radial-gradient(150% 210% at 100% 0%, rgb(20, 175, 125), rgb(0, 10, 255)), 
-                radial-gradient(100% 100% at 100% 30%, rgb(255, 77, 0), rgb(0, 200, 255)), 
-                linear-gradient(60deg, rgb(255, 0, 0), rgb(120, 86, 255));
-              background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+                linear-gradient(115deg, #BF4D43, #61AAF2),
+                radial-gradient(90% 100% at 50% 0%, #BF4D43, #191919),
+                radial-gradient(100% 100% at 80% 0%, #BF4D43, #191919),
+                radial-gradient(150% 210% at 100% 0%, #61AAF2, #191919),
+                radial-gradient(100% 100% at 100% 30%, #61AAF2, #BF4D43),
+                linear-gradient(60deg, #BF4D43, #61AAF2);
               background-size: 400% 400%;
-              animation: gradientBG 15s ease infinite;
+              animation: gradient 8s ease infinite;
             }
-            @keyframes gradientBG {
+            @keyframes gradient {
               0% { background-position: 0% 50%; }
               50% { background-position: 100% 50%; }
               100% { background-position: 0% 50%; }
