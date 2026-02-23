@@ -370,8 +370,7 @@ export function Header() {
                 <motion.div variants={itemVariants} className="pt-8">
                   <Link href="/contact" className="block">
                     <button 
-                      className="w-full py-4 text-xl font-bold text-white rounded-lg"
-                      style={{ backgroundColor: '#BF4D43' }}
+                      className="w-full py-4 text-xl font-bold text-white rounded-lg bg-accent hover:bg-accent-hover"
                     >
                       Nous contacter
                     </button>

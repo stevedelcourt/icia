@@ -224,7 +224,7 @@ export default function AProposPage() {
                   <StaggerItem key={item.title}>
                     <div className="p-6 border border-border bg-white rounded-xl h-full hover:shadow-lg transition-all">
                       <span className="inline-block px-3 py-1 text-xs font-bold rounded-full mb-4" style={{ 
-                        backgroundColor: index === 0 ? '#BF4D43' : index === 1 ? '#7A9E7E' : '#61AAF2',
+                        backgroundColor: index === 0 ? '#D92A1C' : index === 1 ? '#023D87' : '#00255D',
                         color: 'white'
                       }}>{item.tag}</span>
                       <h3 className="font-serif text-xl font-bold mb-3 text-slate-dark">{item.title}</h3>

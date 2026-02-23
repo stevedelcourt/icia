@@ -67,7 +67,7 @@ const otherPublics = [
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics', active: false },
 ]
 
-const accentColor = '#7A9E7E'
+const accentColor = '#023D87'
 
 export default function EducationPage() {
   return (
