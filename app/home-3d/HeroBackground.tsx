@@ -45,18 +45,17 @@ function CloudScene() {
 
   return (
     <>
-      <SkyImpl />
       <group ref={ref}>
         <Clouds material={THREE.MeshLambertMaterial} limit={400}>
-          <Cloud ref={cloud0} {...config} bounds={[6, 1, 1]} color="white" />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#D92A1C" seed={2} position={[15, 0, 0]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#D92A1C" seed={3} position={[-15, 0, 0]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#0055AA" seed={4} position={[0, 0, -12]} />
-          <Cloud {...config} bounds={[6, 1, 1]} color="#FFFFFF" seed={5} position={[0, 0, 12]} />
+          <Cloud ref={cloud0} {...config} bounds={[6, 1, 1]} color="#FFFAFA" />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#FF2020" seed={2} position={[15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#FF3030" seed={3} position={[-15, 0, 0]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#FFFFFF" seed={4} position={[0, 0, -12]} />
+          <Cloud {...config} bounds={[6, 1, 1]} color="#E8E8FF" seed={5} position={[0, 0, 12]} />
           <Cloud
             concentrate="outside"
             growth={100}
-            color="#D92A1C"
+            color="#FF1515"
             opacity={1.25}
             seed={0.3}
             bounds={200}
@@ -121,17 +120,18 @@ export function HeroBackground() {
       >
         <Suspense fallback={null}>
           <CloudScene />
-          <ambientLight intensity={Math.PI / 1.5} />
+          <ambientLight intensity={Math.PI / 2} color="#E0E8FF" />
           <spotLight
             position={[0, 40, 0]}
             decay={0}
             distance={45}
             penumbra={1}
-            intensity={100}
+            intensity={80}
+            color="#FFF8E8"
           />
           <spotLight
             position={[-20, 0, 10]}
-            color="red"
+            color="#FF2020"
             angle={0.15}
             decay={0}
             penumbra={-1}
@@ -139,7 +139,7 @@ export function HeroBackground() {
           />
           <spotLight
             position={[20, -10, 10]}
-            color="red"
+            color="#FF2020"
             angle={0.2}
             decay={0}
             penumbra={-1}
