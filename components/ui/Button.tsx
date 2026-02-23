@@ -19,10 +19,10 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-hover rounded-lg',
-  secondary: 'bg-slate-dark text-white hover:bg-accent rounded-lg',
-  outline: 'border-2 border-slate-dark text-slate-dark hover:bg-slate-dark hover:text-white rounded-lg',
-  ghost: 'text-slate-dark hover:bg-slate-dark/10 rounded-lg',
+  primary: 'bg-accent text-white hover:bg-accent-hover rounded-md',
+  secondary: 'bg-navy text-white hover:bg-navy-dark rounded-md',
+  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white rounded-md',
+  ghost: 'text-navy hover:bg-navy/10 rounded-md',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

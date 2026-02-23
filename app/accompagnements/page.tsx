@@ -73,7 +73,7 @@ function FlowHero() {
           position: relative;
           height: 100vh;
           width: 100%;
-          background: linear-gradient(315deg, #D92A1C 0%, #7B3FA0 50%, #002456 100%);
+          background: linear-gradient(315deg, #D92A1C 0%, #023D87 50%, #00255D 100%);
           background-size: 400% 400%;
           animation: gradient 8s ease infinite;
           overflow: hidden;
@@ -204,7 +204,7 @@ export default function AccompanimentsNewPage() {
                 <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
                   {processSteps.map((step) => (
                     <div key={step.num} className="p-6 bg-white/50 border border-border/50 hover:border-border transition-colors">
-                      <span className="text-xs font-bold mb-2 block" style={{ color: '#D4A27F' }}>{step.num}</span>
+                      <span className="text-xs font-bold mb-2 block" style={{ color: '#D92A1C' }}>{step.num}</span>
                       <h4 className="font-bold mb-2 text-slate-dark">{step.title}</h4>
                       <p className="text-sm text-slate-dark/60">{step.description}</p>
                     </div>

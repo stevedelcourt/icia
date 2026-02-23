@@ -8,6 +8,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Primary - French institutional navy
+        'navy': {
+          DEFAULT: '#00255D',
+          light: '#023D87',
+          dark: '#001A3A',
+        },
+        // Secondary - warm French white
+        'cream': {
+          DEFAULT: '#FAFAF7',
+          dark: '#E5E4DF',
+          light: '#F5F5F0',
+        },
+        // Accent - French red
+        'rouge': {
+          DEFAULT: '#D92A1C',
+          hover: '#B02015',
+          light: '#E84A3D',
+        },
+        // Legacy support (map to new system)
         'slate-dark': '#191919',
         'slate-medium': '#262625',
         'slate-light': '#40403E',
@@ -17,23 +36,23 @@ const config: Config = {
         'ivory-dark': '#E5E4DF',
         'ivory-medium': '#F0F0EB',
         'ivory-light': '#FAFAF7',
-        'book-cloth': '#BF4D43',
-        'kraft': '#D4A27F',
-        'manilla': '#EBDBBC',
-        'focus': '#61AAF2',
-        'error': '#BF4D43',
+        // Old accent colors - map to new
+        'book-cloth': '#D92A1C',
+        'kraft': '#D92A1C',
+        'manilla': '#D92A1C',
+        'focus': '#023D87',
+        'error': '#D92A1C',
+        // System colors
         'bg': '#FAFAF7',
         'bg-card': '#FFFFFF',
         'text': '#191919',
         'text-muted': '#666663',
         'border': '#E5E4DF',
+        // Semantic aliases
         'accent': '#D92A1C',
-        'accent-hover': '#023D87',
-        'ink': '#191919',
-        'off-white': '#F0F0EB',
-        'warm-mid': '#E5E4DF',
-        'muted': '#91918D',
-        'accent-blue': '#61AAF2',
+        'accent-hover': '#B02015',
+        'accent-blue': '#023D87',
+        // Utility colors (keep for specific uses)
         'accent-purple': '#7c4dff',
         'accent-teal': '#008b8b',
         'accent-green': '#2a9e62',

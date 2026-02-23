@@ -21,8 +21,8 @@ const modelCards = [
 ]
 
 const colorMap: Record<string, string> = {
-  'accent': '#BF4D43',
-  'accent-blue': '#61AAF2',
+  'accent': '#D92A1C',
+  'accent-blue': '#023D87',
   'accent-green': '#2a9e62',
   'accent-purple': '#7c4dff',
   'accent-teal': '#008b8b',
@@ -52,12 +52,12 @@ export default function AProposPage() {
           <style jsx>{`
             section {
               background-image: 
-                linear-gradient(115deg, #D92A1C, #002456),
-                radial-gradient(90% 100% at 50% 0%, #002456, #191919),
+                linear-gradient(115deg, #D92A1C, #00255D),
+                radial-gradient(90% 100% at 50% 0%, #00255D, #191919),
                 radial-gradient(100% 100% at 80% 0%, #D92A1C, #191919),
-                radial-gradient(150% 210% at 100% 0%, #002456, #191919),
-                radial-gradient(100% 100% at 100% 30%, #D92A1C, #002456),
-                linear-gradient(60deg, #D92A1C, #002456);
+                radial-gradient(150% 210% at 100% 0%, #00255D, #191919),
+                radial-gradient(100% 100% at 100% 30%, #D92A1C, #00255D),
+                linear-gradient(60deg, #D92A1C, #00255D);
               background-size: 400% 400%;
               animation: gradient 12s ease infinite;
             }
