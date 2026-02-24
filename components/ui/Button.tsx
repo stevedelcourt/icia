@@ -19,35 +19,35 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
-  secondary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
-  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md',
-  ghost: 'text-slate-dark hover:bg-slate-dark hover:text-white transition-colors duration-200 rounded-md',
+  primary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md cursor-pointer',
+  secondary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md cursor-pointer',
+  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
+  ghost: 'text-slate-dark hover:bg-slate-dark/10 transition-colors duration-200 rounded-md cursor-pointer',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap overflow-visible ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
-      <span className="flex items-center gap-2">
+      <>
         <span>{children}</span>
         {arrow && (
-          <span className="transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1"> -&gt;</span>
         )}
-      </span>
+      </>
     )
     
     if (href) {
       return (
-        <Link href={href} className={`group relative ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }}>
+        <Link href={href} className={`group ${baseClasses} ${className}`}>
           {content}
         </Link>
       )
     }
     
     return (
-      <button ref={ref} className={`group relative ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }} {...props}>
+      <button ref={ref} className={`group ${baseClasses} ${className}`} {...props}>
         {content}
       </button>
     )
