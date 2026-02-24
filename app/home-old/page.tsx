@@ -104,7 +104,7 @@ export default function HomeOld() {
                 </p>
               </ScaleIn>
               <FadeIn delay={0.4}>
-                <Link href="/a-propos" className="text-accent hover:text-accent-hover inline-flex items-center group">
+                <Link href="/a-propos" className="text-navy hover:text-navy-dark inline-flex items-center group">
                   En savoir plus sur notre vision
                   <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
                 </Link>
@@ -166,12 +166,12 @@ export default function HomeOld() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/reseau-lieu" className="text-accent hover:text-accent-hover inline-flex items-center group">
+              <Link href="/reseau-lieu" className="text-navy hover:text-navy-dark inline-flex items-center group">
                 Découvrir le lieu et le réseau
                 <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
               </Link>
               <span className="text-text-muted hidden sm:inline">·</span>
-              <Link href="/plateforme-numerique" className="text-accent hover:text-accent-hover inline-flex items-center group">
+              <Link href="/plateforme-numerique" className="text-navy hover:text-navy-dark inline-flex items-center group">
                 Accéder à la plateforme
                 <span className="ml-2 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">➔</span>
               </Link>

@@ -7,7 +7,6 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 
 const accompagnements = [
-  { label: 'Les programmes', href: '/accompagnements' },
   { label: 'Citoyens', href: '/accompagnements/citoyens' },
   { label: 'Entreprises', href: '/accompagnements/entreprises' },
   { label: 'Écoles et Universités', href: '/accompagnements/education' },
@@ -16,7 +15,6 @@ const accompagnements = [
 ]
 
 const aProposItems = [
-  { label: 'Notre conviction', href: '/a-propos' },
   { label: 'Réseau et Lieu', href: '/reseau-lieu' },
   { label: 'Plateforme', href: '/plateforme-numerique' },
   { label: 'Think Tank IA', href: '/think-tank' },
@@ -138,8 +136,8 @@ export function Header() {
               {item.href ? (
                 <Link 
                   href={item.href}
-                  className={`text-base font-medium transition-colors hover:text-accent flex items-center gap-1 ${
-                    isActive(item.href) ? 'text-accent underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
+                  className={`text-base font-medium transition-colors hover:text-navy flex items-center gap-1 ${
+                    isActive(item.href) ? 'text-navy underline underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
                   }`}
                 >
                   {item.label}
@@ -158,7 +156,7 @@ export function Header() {
                 </Link>
               ) : (
                 <button 
-                  className="text-base font-medium transition-colors hover:text-accent flex items-center gap-1 cursor-default"
+                  className="text-base font-medium transition-colors hover:text-navy flex items-center gap-1 cursor-default"
                 >
                   {item.label}
                   {item.hasDropdown && (

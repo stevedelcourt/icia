@@ -161,7 +161,7 @@ export default function ReseauLieuPage() {
                       <p className="text-4xl font-light text-slate-dark mb-4">{dim.num}</p>
                       <h3 className="font-serif text-xl font-bold mb-4">{dim.title}</h3>
                       <p className="text-sm text-text-muted mb-6 flex-grow">{dim.description}</p>
-                      <Link href={dim.link} className="inline-flex items-center text-accent font-medium hover:underline">
+                      <Link href={dim.link} className="inline-flex items-center text-navy font-medium hover:text-navy-dark">
                         {dim.linkText} <span className="ml-1">➔</span>
                       </Link>
                     </div>
@@ -198,7 +198,7 @@ export default function ReseauLieuPage() {
                           <li key={idx} className="text-xs text-text-muted">{item}</li>
                         ))}
                       </ul>
-                      <Link href={publicData.link} className="inline-flex items-center text-sm text-accent font-medium hover:underline">
+                      <Link href={publicData.link} className="inline-flex items-center text-sm text-navy font-medium hover:text-navy-dark">
                         En savoir plus <span className="ml-1">➔</span>
                       </Link>
                     </div>

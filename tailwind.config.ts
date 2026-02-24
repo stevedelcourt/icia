@@ -49,7 +49,7 @@ const config: Config = {
         'text-muted': '#666663',
         'border': '#E5E4DF',
         // Semantic aliases
-        'accent': '#D92A1C',
+        'accent': '#00255D',
         'accent-hover': '#001A3A',
         'accent-blue': '#023D87',
         // Utility colors (keep for specific uses)
