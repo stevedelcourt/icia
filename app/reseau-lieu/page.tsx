@@ -191,14 +191,14 @@ export default function ReseauLieuPage() {
                   <StaggerItem key={publicData.num}>
                     <div className="p-6 border border-border bg-white rounded-xl h-full flex flex-col">
                       <p className="text-3xl font-light text-slate-dark mb-2">{publicData.num}</p>
-                      <span className="inline-block px-3 py-1 bg-[#D92A1C] text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
-                      <p className="text-sm text-[#D92A1C] font-medium mb-4">{publicData.subtitle}</p>
+                      <span className="inline-block px-3 py-1 bg-navy text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
+                      <p className="text-sm text-navy font-medium mb-4">{publicData.subtitle}</p>
                       <ul className="space-y-2 mb-4 flex-grow">
                         {publicData.items.map((item, idx) => (
                           <li key={idx} className="text-xs text-text-muted">{item}</li>
                         ))}
                       </ul>
-                      <Link href={publicData.link} className="inline-flex items-center text-sm text-navy font-medium hover:text-navy-dark">
+                      <Link href={publicData.link} className="inline-flex items-center text-sm text-navy font-medium hover:text-navy-dark mt-auto">
                         En savoir plus <span className="ml-1">➔</span>
                       </Link>
                     </div>
