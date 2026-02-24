@@ -1,11 +1,11 @@
-'use client'
-
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
-import { useEffect, useState } from 'react'
+
+const NOTION_KEY = process.env.NOTION_KEY
+const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB || '307d314b3ef0803aabeac0c66c1275fd'
 
 interface Partner {
   name: string
@@ -14,15 +14,52 @@ interface Partner {
   website: string
 }
 
-export default function PartenairesPage() {
-  const [partners, setPartners] = useState<Partner[]>([])
+async function getPartners(): Promise<Partner[]> {
+  if (!NOTION_KEY || !NOTION_PARTNERS_DB) {
+    return []
+  }
 
-  useEffect(() => {
-    fetch('/api/partners')
-      .then(res => res.json())
-      .then(data => setPartners(data))
-      .catch(() => setPartners([]))
-  }, [])
+  const notion = {
+    baseUrl: 'https://api.notion.com/v1',
+    headers: {
+      'Authorization': `Bearer ${NOTION_KEY}`,
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28'
+    }
+  }
+
+  try {
+    const response = await fetch(`${notion.baseUrl}/databases/${NOTION_PARTNERS_DB}/query`, {
+      method: 'POST',
+      headers: notion.headers,
+      body: JSON.stringify({ page_size: 100 }),
+      cache: 'force-cache'
+    })
+
+    const data = await response.json()
+    
+    if (!data.results || data.results.length === 0) {
+      return []
+    }
+
+    const partners = data.results.map((page: any) => {
+      const props = page.properties
+      return {
+        name: props.Company_name?.rich_text?.[0]?.plain_text || '',
+        description: props.Company_text?.rich_text?.[0]?.plain_text || props.Description?.rich_text?.[0]?.plain_text || '',
+        logo: props.Logo?.files?.[0]?.file?.url || props.Logo?.files?.[0]?.external?.url || '',
+        website: props.Company_URL?.url || ''
+      }
+    }).filter((p: Partner) => p.name).sort((a: Partner, b: Partner) => a.name.localeCompare(b.name, 'fr'))
+
+    return partners
+  } catch (e) {
+    return []
+  }
+}
+
+export default async function PartenairesPage() {
+  const partners = await getPartners()
 
   return (
     <>
