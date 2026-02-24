@@ -47,6 +47,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const combinedStyle: CSSProperties = {
       cursor: 'pointer',
       textDecoration: 'none',
+      position: 'relative',
+      zIndex: 10,
       ...style,
     }
 
