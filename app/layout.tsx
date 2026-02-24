@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Lato, Open_Sans } from 'next/font/google'
+import { Lato, Open_Sans, Merriweather } from 'next/font/google'
 import './globals.css'
 
 const lato = Lato({
@@ -11,6 +11,12 @@ const lato = Lato({
 const openSans = Open_Sans({
   subsets: ['latin'],
   variable: '--font-open-sans',
+})
+
+const merriweather = Merriweather({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-merriweather',
 })
 
 export const metadata: Metadata = {
@@ -51,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className={`${lato.variable} ${openSans.variable}`}>
+    <html lang="fr" className={`${lato.variable} ${openSans.variable} ${merriweather.variable}`}>
       <body className="antialiased bg-bg text-text font-sans">
         {children}
       </body>
