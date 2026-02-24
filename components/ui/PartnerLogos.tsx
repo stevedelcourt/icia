@@ -17,7 +17,7 @@ export function PartnerLogos() {
   const [scrollLeft, setScrollLeft] = useState(0)
 
   useEffect(() => {
-    fetch('/partners.json')
+    fetch('/api/partners')
       .then(r => r.json())
       .then(setPartners)
       .catch(() => setPartners([]))
