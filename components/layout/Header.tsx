@@ -137,7 +137,9 @@ export function Header() {
                 <Link 
                   href={item.href}
                   className={`text-base font-medium transition-colors hover:text-navy flex items-center gap-1 ${
-                    isActive(item.href) ? 'text-navy' : 'text-text hover:decoration-rouge hover:decoration-2 hover:underline-offset-4'
+                    isActive(item.href) 
+                      ? 'text-navy underline decoration-navy decoration-2 underline-offset-4' 
+                      : 'text-text hover:decoration-rouge hover:decoration-2 hover:underline-offset-4'
                   }`}
                 >
                   {item.label}
