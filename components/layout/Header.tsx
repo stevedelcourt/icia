@@ -29,8 +29,8 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { label: 'À propos de l\'institut IA', key: 'apropos', hasDropdown: true },
-  { label: 'Accompagnements', key: 'accompagnements', hasDropdown: true },
+  { label: 'À propos de l\'institut IA', key: 'apropos', href: '/a-propos', hasDropdown: true },
+  { label: 'Accompagnements', key: 'accompagnements', href: '/accompagnements', hasDropdown: true },
   { label: 'Actualités', key: 'actualites', href: '/actualites' },
 ]
 
