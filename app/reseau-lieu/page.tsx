@@ -189,16 +189,16 @@ export default function ReseauLieuPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 {cinqPublics.map((publicData) => (
                   <StaggerItem key={publicData.num}>
-                    <div className="p-6 border border-border bg-white rounded-xl h-full flex flex-col">
-                      <p className="text-3xl font-light text-slate-dark mb-2">{publicData.num}</p>
-                      <span className="inline-block px-3 py-1 bg-slate-dark text-white text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
-                      <p className="text-sm text-accent font-medium mb-4">{publicData.subtitle}</p>
+                    <div className="p-6 border border-white/30 bg-[#D92A1C] rounded-xl h-full flex flex-col">
+                      <p className="text-3xl font-light text-white mb-2">{publicData.num}</p>
+                      <span className="inline-block px-3 py-1 bg-white text-[#D92A1C] text-xs font-bold rounded-full mb-3">{publicData.tag}</span>
+                      <p className="text-sm text-white font-medium mb-4">{publicData.subtitle}</p>
                       <ul className="space-y-2 mb-4 flex-grow">
                         {publicData.items.map((item, idx) => (
-                          <li key={idx} className="text-xs text-text-muted">{item}</li>
+                          <li key={idx} className="text-xs text-white/70">{item}</li>
                         ))}
                       </ul>
-                      <Link href={publicData.link} className="inline-flex items-center text-sm text-navy font-medium hover:text-navy-dark">
+                      <Link href={publicData.link} className="inline-flex items-center text-sm text-white font-medium hover:text-white/80">
                         En savoir plus <span className="ml-1">➔</span>
                       </Link>
                     </div>
