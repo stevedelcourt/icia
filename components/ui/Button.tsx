@@ -34,11 +34,8 @@ const hoverStyles: Record<ButtonVariant, { bg: string; text: string }> = {
   ghost: { bg: '#191919', text: '#ffffff' },
 }
 
-const Arrow = ({ show }: { show: boolean }) => (
-  <span 
-    className={`ml-2 transition-all duration-300 ${show ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}
-    style={{ color: 'inherit' }}
-  >
+const Arrow = () => (
+  <span className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
     ➔
   </span>
 )
@@ -58,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const linkContent = (
       <>
         <span>{children}</span>
-        {arrow && <Arrow show={false} />}
+        {arrow && <Arrow />}
       </>
     )
 
