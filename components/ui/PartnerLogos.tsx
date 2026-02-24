@@ -43,7 +43,7 @@ export function PartnerLogos() {
 
   if (!partners || partners.length === 0) return null
 
-  const duplicatedPartners = [...partners, ...partners]
+  const duplicatedPartners = [...partners, ...partners, ...partners]
 
   return (
     <section className="relative overflow-hidden py-8">
@@ -60,7 +60,7 @@ export function PartnerLogos() {
         }
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-33.333%); }
         }
         .scroll-container {
           animation: scroll 30s linear infinite;
