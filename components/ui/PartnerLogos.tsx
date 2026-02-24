@@ -43,7 +43,7 @@ export function PartnerLogos() {
 
   if (!partners || partners.length === 0) return null
 
-  const duplicatedPartners = [...partners, ...partners, ...partners]
+  const duplicatedPartners = [...partners, ...partners]
 
   return (
     <section className="relative overflow-hidden py-8">
@@ -60,17 +60,17 @@ export function PartnerLogos() {
         }
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
+          100% { transform: translateX(-50%); }
         }
         .scroll-container {
-          animation: scroll 30s linear infinite;
+          animation: scroll 25s linear infinite;
         }
         .scroll-container:hover {
           animation-play-state: paused;
         }
         @media (max-width: 768px) {
           .scroll-container {
-            animation: scroll 15s linear infinite;
+            animation: scroll 12s linear infinite;
           }
         }
       `}</style>
