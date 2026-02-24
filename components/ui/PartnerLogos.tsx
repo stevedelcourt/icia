@@ -17,41 +17,11 @@ export function PartnerLogos() {
   const [scrollLeft, setScrollLeft] = useState(0)
 
   useEffect(() => {
-    const fetchPartners = async () => {
-      try {
-        const res = await fetch('/api/partners')
-        if (res.ok) {
-          const data = await res.json()
-          if (data.length > 0) {
-            setPartners(data)
-            return
-          }
-        }
-        const fallbackRes = await fetch('/partners.json')
-        const fallbackData = await fallbackRes.json()
-        setPartners(fallbackData)
-      } catch (e) {
-        try {
-          const fallbackRes = await fetch('/partners.json')
-          const fallbackData = await fallbackRes.json()
-          setPartners(fallbackData)
-        } catch {}
-      }
-    }
-    fetchPartners()
+    fetch('/partners.json')
+      .then(r => r.json())
+      .then(setPartners)
+      .catch(() => setPartners([]))
   }, [])
-
-  useEffect(() => {
-    if (partners === null) {
-      const timer = setTimeout(() => {
-        fetch('/partners.json')
-          .then(r => r.json())
-          .then(setPartners)
-          .catch(() => setPartners([]))
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [partners])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true)
