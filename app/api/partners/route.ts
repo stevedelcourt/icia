@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_PARTNERS_DB = process.env.NOTION_PARTNERS_DB || '307d314b3ef0803aabeac0c66c1275fd'
