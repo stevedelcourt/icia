@@ -70,7 +70,7 @@ export default function Home() {
                   <Button href="/accompagnements" variant="primary" size="lg">
                     Nos programmes
                   </Button>
-                  <Button href="/contact" variant="ghost" size="lg" className="!text-black hover:!bg-black/10">
+                  <Button href="/contact" variant="ghost" size="lg">
                     Nous contacter
                   </Button>
                 </div>
