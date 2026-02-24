@@ -50,7 +50,7 @@ const config: Config = {
         'border': '#E5E4DF',
         // Semantic aliases
         'accent': '#D92A1C',
-        'accent-hover': '#B02015',
+        'accent-hover': '#001A3A',
         'accent-blue': '#023D87',
         // Utility colors (keep for specific uses)
         'accent-purple': '#7c4dff',
