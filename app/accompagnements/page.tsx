@@ -124,7 +124,7 @@ function FlowHero() {
           <div className="max-w-4xl mx-auto px-4 md:px-8" style={{ marginLeft: '10%' }}>
             <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-4">Accompagnements</p>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6">
-              L'IA, enfin<br />pour tous.
+              L'IA, enfin<br />pour <span className="text-rouge">tous</span>.
             </h1>
             <p className="text-white/70 text-lg max-w-xl leading-relaxed">
               L'ICIA propose des accompagnements adaptes a chaque public, pour que chacun puisse comprendre, maitriser et beneficier de l'intelligence artificielle dans son contexte propre.
