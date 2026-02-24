@@ -27,27 +27,27 @@ const variantClasses: Record<ButtonVariant, string> = {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 group ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
-      <>
-        {children}
+      <span className="flex items-center gap-2">
+        <span>{children}</span>
         {arrow && (
-          <span className="transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ml-0 group-hover:ml-2">➔</span>
+          <span className="transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">➔</span>
         )}
-      </>
+      </span>
     )
     
     if (href) {
       return (
-        <Link href={href} className={`${baseClasses} ${className}`}>
+        <Link href={href} className={`group ${baseClasses} ${className}`}>
           {content}
         </Link>
       )
     }
     
     return (
-      <button ref={ref} className={`${baseClasses} ${className}`} {...props}>
+      <button ref={ref} className={`group ${baseClasses} ${className}`} {...props}>
         {content}
       </button>
     )
