@@ -22,12 +22,12 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
   secondary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
   outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md',
-  ghost: 'text-black hover:bg-gray-200 transition-colors duration-200 rounded-md',
+  ghost: 'text-slate-dark hover:bg-slate-dark hover:text-white transition-colors duration-200 rounded-md',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
       <span className="flex items-center gap-2">
@@ -40,14 +40,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     
     if (href) {
       return (
-        <Link href={href} className={`group ${baseClasses} ${className}`}>
+        <Link href={href} className={`group ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }}>
           {content}
         </Link>
       )
     }
     
     return (
-      <button ref={ref} className={`group ${baseClasses} ${className}`} {...props}>
+      <button ref={ref} className={`group ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }} {...props}>
         {content}
       </button>
     )
