@@ -1,3 +1,5 @@
+'use client'
+
 import { ButtonHTMLAttributes, forwardRef, ReactNode, CSSProperties } from 'react'
 import Link from 'next/link'
 
