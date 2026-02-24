@@ -19,10 +19,10 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-navy text-white hover:bg-[#001A3A] hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
-  secondary: 'bg-navy text-white hover:bg-[#001A3A] hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
-  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
-  ghost: 'text-slate-dark hover:bg-slate-dark hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
+  primary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
+  secondary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md',
+  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md',
+  ghost: 'text-slate-dark hover:bg-slate-dark hover:text-white transition-colors duration-200 rounded-md',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <>
         <span>{children}</span>
         {arrow && (
-          <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"> -&gt;</span>
+          <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">➔</span>
         )}
       </>
     )
