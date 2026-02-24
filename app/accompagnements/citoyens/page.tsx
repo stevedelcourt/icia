@@ -102,7 +102,7 @@ export default function CitoyensPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Grand public
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Comprendre<br />
                     l'IA, rester<br />
                     <span style={{ color: accentColor }}>en sécurité</span>
@@ -151,7 +151,7 @@ export default function CitoyensPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Nos programmes
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Quatre parcours<br />pour les citoyens</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Quatre parcours<br />pour les citoyens</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-2 border border-border">
@@ -185,7 +185,7 @@ export default function CitoyensPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Comment ça se passe
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Simple, rapide,<br />sans engagement</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Simple, rapide,<br />sans engagement</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-4 border border-border">
@@ -227,7 +227,7 @@ export default function CitoyensPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Prêt à vous lancer ?</h2>
+                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Prêt à vous lancer ?</h2>
                 <p className="text-slate-dark/60 max-w-xl">
                   Que vous soyez curieux, en reconversion ou souhaitant mieux comprendre l'IA au quotidien, l'ICIA a un programme pour vous.
                 </p>

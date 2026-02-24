@@ -123,7 +123,7 @@ export default function SecteursCreatifsPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Industries créatives
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Créer avec l'IA,<br />
                     sans perdre<br />
                     son <span style={{ color: accentColor }}>identite</span>
@@ -188,7 +188,7 @@ export default function SecteursCreatifsPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Secteurs couverts
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Les industries créatives<br />face à l'IA</h2>
+                  <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Les industries créatives<br />face à l'IA</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-2 border border-border">
@@ -244,7 +244,7 @@ export default function SecteursCreatifsPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Comment ça marche
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">De la découverte<br />à la maîtrise créative</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">De la découverte<br />à la maîtrise créative</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-4 border border-border">
@@ -286,7 +286,7 @@ export default function SecteursCreatifsPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Prêt à explorer l'IA créative ?</h2>
+                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Prêt à explorer l'IA créative ?</h2>
                 <p className="text-slate-dark/60 max-w-xl">
                   Rejoignez nos ateliers, accédez au laboratoire ou consultez notre équipe pour un accompagnement sur mesure dans votre secteur.
                 </p>

@@ -114,7 +114,7 @@ export default function EducationPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Éducation
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Former<br />
                     les formateurs<br />
                     de <span style={{ color: accentColor }}>demain</span>
@@ -165,7 +165,7 @@ export default function EducationPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Nos programmes
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Quatre axes pour<br />l'éducation</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Quatre axes pour<br />l'éducation</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-2 border border-border">
@@ -201,7 +201,7 @@ export default function EducationPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Ressources clés
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Ce que vous recevez<br />dès le premier contact</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Ce que vous recevez<br />dès le premier contact</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-3 gap-4">
@@ -224,7 +224,7 @@ export default function EducationPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Mise en œuvre
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Un accompagnement<br />sur mesure pour votre établissement</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Un accompagnement<br />sur mesure pour votre établissement</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-4 border border-border">
@@ -266,7 +266,7 @@ export default function EducationPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Votre établissement prend le virage IA ?</h2>
+                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Votre établissement prend le virage IA ?</h2>
                 <p className="text-slate-dark/60 max-w-xl">
                   Discutons de vos besoins pédagogiques et construisons ensemble un programme adapté à vos élèves et enseignants.
                 </p>

@@ -108,7 +108,7 @@ export default function EntreprisesPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Secteur privé
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Diagnostics,<br />
                     formations<br />
                     et <span style={{ color: accentColor }}>prototypes</span> IA
@@ -159,7 +159,7 @@ export default function EntreprisesPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Nos offres
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Trois niveaux<br />d'accompagnement</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Trois niveaux<br />d'accompagnement</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-3 border border-border">
@@ -198,7 +198,7 @@ export default function EntreprisesPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Notre approche
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">De l'idée au prototype<br />en 6 semaines</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">De l'idée au prototype<br />en 6 semaines</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-4 border border-border">
@@ -240,7 +240,7 @@ export default function EntreprisesPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Démarrez votre transformation</h2>
+                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Démarrez votre transformation</h2>
                 <p className="text-slate-dark/60 max-w-xl">
                   Planifiez un diagnostic gratuit de 30 minutes pour évaluer le potentiel de l'IA pour votre entreprise. Sans engagement.
                 </p>

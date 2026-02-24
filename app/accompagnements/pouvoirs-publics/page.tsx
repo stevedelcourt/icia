@@ -108,7 +108,7 @@ export default function PouvoirsPublicsPage() {
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
                     Secteur public
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-dark">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Inclusion,<br />
                     transformation<br />
                     et <span style={{ color: accentColor }}>pilotage</span><br />
@@ -166,7 +166,7 @@ export default function PouvoirsPublicsPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Nos programmes
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Quatre axes pour<br />les pouvoirs publics</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Quatre axes pour<br />les pouvoirs publics</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-2 border border-border">
@@ -240,7 +240,7 @@ export default function PouvoirsPublicsPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Notre approche
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-dark">Un accompagnement<br />respectueux de vos contraintes</h2>
+            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Un accompagnement<br />respectueux de vos contraintes</h2>
           </FadeIn>
           <Stagger>
             <div className="grid md:grid-cols-4 border border-border">
@@ -282,7 +282,7 @@ export default function PouvoirsPublicsPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-dark">Parlons de votre projet</h2>
+                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Parlons de votre projet</h2>
                 <p className="text-slate-dark/60 max-w-xl">
                   Vous êtes élu, directeur d'administration ou responsable de service public ? Discutons de votre projet d'IA et de la façon dont l'ICIA peut vous accompagner.
                 </p>

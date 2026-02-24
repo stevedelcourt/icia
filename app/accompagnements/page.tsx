@@ -174,7 +174,7 @@ export default function AccompanimentsNewPage() {
                         <span className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: item.accent }}>
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-lg font-bold mb-3 text-slate-dark">{item.title}</h3>
+                        <h3 className="font-serif text-lg mb-3 text-slate-dark">{item.title}</h3>
                         <p className="text-sm text-slate-dark/60 flex-grow leading-relaxed">{item.description}</p>
                         <div className="mt-4 gap-2 text-xs flex items-center uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: item.accent }}>
                           Decouvrir
