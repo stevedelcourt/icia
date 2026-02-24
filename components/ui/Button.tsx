@@ -19,10 +19,10 @@ const sizeClasses: Record<ButtonSize, string> = {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md cursor-pointer',
-  secondary: 'bg-navy text-white hover:bg-[#001A3A] transition-colors duration-200 rounded-md cursor-pointer',
+  primary: 'bg-navy text-white hover:bg-[#001A3A] hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
+  secondary: 'bg-navy text-white hover:bg-[#001A3A] hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
   outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
-  ghost: 'text-slate-dark hover:bg-slate-dark/10 transition-colors duration-200 rounded-md cursor-pointer',
+  ghost: 'text-slate-dark hover:bg-slate-dark hover:text-white transition-colors duration-200 rounded-md cursor-pointer',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <>
         <span>{children}</span>
         {arrow && (
-          <span className="transition-transform duration-300 group-hover:translate-x-1"> -&gt;</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"> -&gt;</span>
         )}
       </>
     )
