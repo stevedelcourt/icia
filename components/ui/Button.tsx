@@ -27,7 +27,7 @@ const variantClasses: Record<ButtonVariant, string> = {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap overflow-visible ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
       <span className="flex items-center gap-2">
@@ -40,14 +40,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     
     if (href) {
       return (
-        <Link href={href} className={`group ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }}>
+        <Link href={href} className={`group relative ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }}>
           {content}
         </Link>
       )
     }
     
     return (
-      <button ref={ref} className={`group ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }} {...props}>
+      <button ref={ref} className={`group relative ${baseClasses} ${className}`} style={{ pointerEvents: 'auto' }} {...props}>
         {content}
       </button>
     )
