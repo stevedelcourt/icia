@@ -210,11 +210,9 @@ export function Header() {
         </nav>
 
         <div className={`${useMobileMenu ? 'hidden' : 'block'}`}>
-          <Link href="/contact">
-            <Button variant="primary" size="sm">
-              Nous contacter
-            </Button>
-          </Link>
+          <Button href="/contact" variant="primary" size="sm">
+            Nous contacter
+          </Button>
         </div>
 
         <button
