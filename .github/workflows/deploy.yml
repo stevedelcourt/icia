@@ -28,13 +28,11 @@ jobs:
           NOTION_DB: ${{ secrets.NOTION_DB }}
           NOTION_PARTNERS_DB: ${{ secrets.NOTION_PARTNERS_DB }}
 
-      - name: Deploy to o2switch via FTP
-        uses: ebola部署/ftp-action@master
+      - name: Upload to FTP
+        uses: sebastianopriscan/GHA-FTP-Uploader@v1.0.0
         with:
           host: ${{ secrets.FTP_HOST }}
-          port: 21
-          username: ${{ secrets.FTP_USER }}
+          user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          localDir: ./out
-          remoteDir: ./public_html
-          forcePush: true
+          local_dir: './out'
+          target_dir: './public_html'
