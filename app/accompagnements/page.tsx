@@ -225,7 +225,6 @@ export default function AccompanimentsNewPage() {
               </p>
               <Button href="/contact" variant="primary" size="lg">
                   Nous contacter
-                  <span className="ml-2">�</span>
                 </Button>
             </div>
           </FadeIn>

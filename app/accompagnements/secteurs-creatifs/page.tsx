@@ -132,16 +132,12 @@ export default function SecteursCreatifsPage() {
                     L'ICIA accompagne les acteurs des industries créatives dans l'adoption de l'IA — ateliers pratiques, protection juridique et laboratoire d'innovation créative.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/contact?subject=creatifs">
-                      <Button variant="primary" size="lg">
-                        Nous contacter
-                      </Button>
-                    </Link>
-                    <Link href="#programmes">
-                      <Button variant="ghost">
-                        Découvrir
-                      </Button>
-                    </Link>
+                    <Button href="/contact?subject=creatifs" variant="primary" size="lg">
+                      Nous contacter
+                    </Button>
+                    <Button href="#programmes" variant="ghost">
+                      Découvrir
+                    </Button>
                   </div>
                 </FadeIn>
               </div>
@@ -295,11 +291,9 @@ export default function SecteursCreatifsPage() {
                   Rejoignez nos ateliers, accédez au laboratoire ou consultez notre équipe pour un accompagnement sur mesure dans votre secteur.
                 </p>
               </div>
-              <Link href="/contact?subject=creatifs">
-                <Button variant="primary" size="lg">
+              <Button href="/contact?subject=creatifs" variant="primary" size="lg">
                   Nous contacter
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>

@@ -283,9 +283,7 @@ export default function OnePage() {
               </p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <Link href="/contact">
-                <Button variant="primary" size="lg">Envoyer un message</Button>
-              </Link>
+              <Button href="/contact" variant="primary" size="lg">Envoyer un message</Button>
             </FadeIn>
           </div>
         </section>

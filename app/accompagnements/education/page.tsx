@@ -123,16 +123,12 @@ export default function EducationPage() {
                     L'ICIA accompagne les établissements d'enseignement dans l'intégration de l'IA : bibliothèque pédagogique, formation des enseignants, certifications et parcours accrédités.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/contact?subject=education">
-                      <Button variant="primary" size="lg">
-                        Nous contacter
-                      </Button>
-                    </Link>
-                    <Link href="#programmes">
-                      <Button variant="ghost">
-                        Découvrir
-                      </Button>
-                    </Link>
+                    <Button href="/contact?subject=education" variant="primary" size="lg">
+                      Nous contacter
+                    </Button>
+                    <Button href="#programmes" variant="ghost">
+                      Découvrir
+                    </Button>
                   </div>
                 </FadeIn>
               </div>
@@ -275,11 +271,9 @@ export default function EducationPage() {
                   Discutons de vos besoins pédagogiques et construisons ensemble un programme adapté à vos élèves et enseignants.
                 </p>
               </div>
-              <Link href="/contact?subject=education">
-                <Button variant="primary" size="lg">
+              <Button href="/contact?subject=education" variant="primary" size="lg">
                   Nous contacter
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>

@@ -111,16 +111,12 @@ export default function CitoyensPage() {
                     L'ICIA propose des parcours adaptés aux particuliers pour mieux comprendre l'intelligence artificielle, se protéger des risques et développer ses compétences vers l'emploi.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/contact">
-                      <Button variant="primary" size="lg">
-                        Être accompagné
-                      </Button>
-                    </Link>
-                    <Link href="#programmes">
-                      <Button variant="ghost">
-                        Découvrir
-                      </Button>
-                    </Link>
+                    <Button href="/contact" variant="primary" size="lg">
+                      Être accompagné
+                    </Button>
+                    <Button href="#programmes" variant="ghost">
+                      Découvrir
+                    </Button>
                   </div>
                 </FadeIn>
               </div>
@@ -236,11 +232,9 @@ export default function CitoyensPage() {
                   Que vous soyez curieux, en reconversion ou souhaitant mieux comprendre l'IA au quotidien, l'ICIA a un programme pour vous.
                 </p>
               </div>
-              <Link href="/contact">
-                <Button variant="primary" size="lg">
+              <Button href="/contact" variant="primary" size="lg">
                   Être accompagné
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>

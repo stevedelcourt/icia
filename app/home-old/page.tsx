@@ -69,16 +69,12 @@ export default function HomeOld() {
               </ScaleIn>
               <FadeIn delay={0.6}>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/accompagnements">
-                    <Button variant="primary" size="lg">
-                      Nos programmes
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button variant="ghost" size="lg">
-                      Nous contacter
-                    </Button>
-                  </Link>
+                  <Button href="/accompagnements" variant="primary" size="lg">
+                    Nos programmes
+                  </Button>
+                  <Button href="/contact" variant="ghost" size="lg">
+                    Nous contacter
+                  </Button>
                 </div>
               </FadeIn>
             </div>
@@ -188,11 +184,9 @@ export default function HomeOld() {
               <p className="text-text-muted mb-8">
                 L'équipe de l'Institut Collectif de l'IA est à votre écoute.
               </p>
-              <Link href="/contact">
-                <Button variant="primary" size="lg">
+              <Button href="/contact" variant="primary" size="lg">
                   Nous contacter
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>

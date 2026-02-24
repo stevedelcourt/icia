@@ -118,16 +118,12 @@ export default function PouvoirsPublicsPage() {
                     L'ICIA accompagne les collectivités, administrations et établissements publics dans la compréhension et le déploiement de l'IA au service des citoyens et des agents.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/contact?subject=partnership&target=publics">
-                      <Button variant="primary" size="lg">
-                        Discuter de votre projet
-                      </Button>
-                    </Link>
-                    <Link href="#programmes">
-                      <Button variant="ghost">
-                        Découvrir
-                      </Button>
-                    </Link>
+                    <Button href="/contact?subject=partnership&target=publics" variant="primary" size="lg">
+                      Discuter de votre projet
+                    </Button>
+                    <Button href="#programmes" variant="ghost">
+                      Découvrir
+                    </Button>
                   </div>
                 </FadeIn>
               </div>
@@ -291,11 +287,9 @@ export default function PouvoirsPublicsPage() {
                   Vous êtes élu, directeur d'administration ou responsable de service public ? Discutons de votre projet d'IA et de la façon dont l'ICIA peut vous accompagner.
                 </p>
               </div>
-              <Link href="/contact?subject=partnership&target=publics">
-                <Button variant="primary" size="lg">
+              <Button href="/contact?subject=partnership&target=publics" variant="primary" size="lg">
                   Nous contacter
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>

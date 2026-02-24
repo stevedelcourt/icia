@@ -117,16 +117,12 @@ export default function EntreprisesPage() {
                     L'ICIA accompagne les entreprises dans leur transformation par l'intelligence artificielle — diagnostics précis, formations ciblées et POC concrets orientés résultats.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/contact?subject=diagnostic">
-                      <Button variant="primary" size="lg">
-                        Demander un diagnostic
-                      </Button>
-                    </Link>
-                    <Link href="#offres">
-                      <Button variant="ghost">
-                        Voir les offres
-                      </Button>
-                    </Link>
+                    <Button href="/contact?subject=diagnostic" variant="primary" size="lg">
+                      Demander un diagnostic
+                    </Button>
+                    <Button href="#offres" variant="ghost">
+                      Voir les offres
+                    </Button>
                   </div>
                 </FadeIn>
               </div>
@@ -249,11 +245,9 @@ export default function EntreprisesPage() {
                   Planifiez un diagnostic gratuit de 30 minutes pour évaluer le potentiel de l'IA pour votre entreprise. Sans engagement.
                 </p>
               </div>
-              <Link href="/contact?subject=diagnostic">
-                <Button variant="primary" size="lg">
+              <Button href="/contact?subject=diagnostic" variant="primary" size="lg">
                   Demander un diagnostic
                 </Button>
-              </Link>
             </div>
           </FadeIn>
         </Section>
