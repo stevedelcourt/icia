@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Section } from '@/components/ui/Section'
 import { Header } from '@/components/layout/Header'
@@ -8,6 +11,18 @@ import { PartnerLogos } from '@/components/ui/PartnerLogos'
 import dynamic from 'next/dynamic'
 
 const HeroBackground = dynamic(() => import('./home-3d/HeroBackground').then(mod => ({ default: mod.HeroBackground })), { ssr: false })
+
+const slogans = [
+  "une IA comprise, maîtrisée et partagée",
+  "reprendre la main sur l'intelligence artificielle",
+  "comprendre l'IA. La maîtriser. L'utiliser.",
+]
+
+function getRandomSlogan() {
+  if (typeof window === 'undefined') return slogans[0]
+  const index = Math.floor(Math.random() * slogans.length)
+  return slogans[index]
+}
 
 const cards = [
   { 
@@ -38,6 +53,12 @@ const cards = [
 ]
 
 export default function Home() {
+  const [slogan, setSlogan] = useState(slogans[0])
+  
+  useEffect(() => {
+    setSlogan(getRandomSlogan())
+  }, [])
+  
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50">
@@ -57,7 +78,7 @@ export default function Home() {
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight text-black drop-shadow-lg">
                 <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
                 <span className="block">
-                  <TextReveal delay={0.3}>une IA comprise, maîtrisée et partagée</TextReveal>
+                  <TextReveal delay={0.3}>{slogan}</TextReveal>
                 </span>
               </h1>
               <ScaleIn delay={0.5}>
