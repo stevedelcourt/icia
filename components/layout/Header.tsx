@@ -247,15 +247,6 @@ export function Header() {
             className="fixed inset-0 z-[100] bg-bg overflow-y-auto"
           >
             <div className="p-6 pt-24">
-              <button 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="absolute top-6 right-6 p-2"
-                aria-label="Fermer le menu"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
 
               <motion.div 
                 className="space-y-1"
@@ -266,97 +257,47 @@ export function Header() {
                 <motion.p variants={itemVariants} className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Menu</motion.p>
                 
                 <motion.div variants={itemVariants}>
-                  <button 
-                    onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'a-propos' ? '' : 'a-propos')}
-                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                  <Link 
+                    href="/a-propos" 
+                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     À propos de l'institut IA
-                    <motion.svg 
-                      className="w-6 h-6" 
-                      animate={{ rotate: mobileOpenSubmenu === 'a-propos' ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </motion.svg>
-                  </button>
-                  <AnimatePresence>
-                    {mobileOpenSubmenu === 'a-propos' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="pl-4 space-y-2 overflow-hidden"
+                  </Link>
+                  <div className="pl-4 space-y-2 mt-2">
+                    {aProposItems.map((item, i) => (
+                      <Link
+                        key={item.href}
+                        href={item.href} 
+                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {aProposItems.map((item, i) => (
-                          <motion.div
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.05 }}
-                          >
-                            <Link 
-                              href={item.href} 
-                              className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {item.label}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
-                  <button 
-                    onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === 'accompagnements' ? '' : 'accompagnements')}
-                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4 w-full text-left flex items-center justify-between"
+                  <Link 
+                    href="/accompagnements" 
+                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Accompagnements
-                    <motion.svg 
-                      className="w-6 h-6" 
-                      animate={{ rotate: mobileOpenSubmenu === 'accompagnements' ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </motion.svg>
-                  </button>
-                  <AnimatePresence>
-                    {mobileOpenSubmenu === 'accompagnements' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="pl-4 space-y-2 overflow-hidden"
+                  </Link>
+                  <div className="pl-4 space-y-2 mt-2">
+                    {accompagnements.map((item, i) => (
+                      <Link
+                        key={item.href}
+                        href={item.href} 
+                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {accompagnements.map((item, i) => (
-                          <motion.div
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.05 }}
-                          >
-                            <Link 
-                              href={item.href} 
-                              className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-colors"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {item.label}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
