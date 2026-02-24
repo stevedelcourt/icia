@@ -137,7 +137,7 @@ export function Header() {
                 <Link 
                   href={item.href}
                   className={`text-base font-medium transition-colors hover:text-navy flex items-center gap-1 ${
-                    isActive(item.href) ? 'text-navy decoration-rouge decoration-2 underline-offset-4' : 'text-text hover:underline hover:underline-offset-4'
+                    isActive(item.href) ? 'text-navy' : 'text-text hover:decoration-rouge hover:decoration-2 hover:underline-offset-4'
                   }`}
                 >
                   {item.label}
@@ -188,7 +188,7 @@ export function Header() {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-3 text-base text-text hover:bg-bg transition-colors first:rounded-t-lg last:rounded-b-lg"
+                          className="block px-4 py-3 text-base text-text hover:bg-bg hover:underline hover:decoration-rouge hover:decoration-2 hover:underline-offset-4 transition-colors first:rounded-t-lg last:rounded-b-lg"
                         >
                           {subItem.label}
                         </Link>
@@ -196,7 +196,7 @@ export function Header() {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-3 text-base text-text hover:bg-bg transition-colors first:rounded-t-lg last:rounded-b-lg"
+                          className="block px-4 py-3 text-base text-text hover:bg-bg hover:underline hover:decoration-rouge hover:decoration-2 hover:underline-offset-4 transition-colors first:rounded-t-lg last:rounded-b-lg"
                         >
                           {subItem.label}
                         </Link>
