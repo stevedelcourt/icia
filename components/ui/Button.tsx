@@ -27,15 +27,15 @@ const variantClasses: Record<ButtonVariant, string> = {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, arrow = true, className = '', children, ...props }, ref) => {
-    const baseClasses = `inline-flex items-center justify-center font-semibold transition-all duration-300 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]}`
+    const baseClasses = `inline-flex items-center justify-center font-semibold whitespace-nowrap select-none ${sizeClasses[size]} ${variantClasses[variant]}`
     
     const content = (
-      <>
+      <span className="flex items-center gap-2">
         <span>{children}</span>
         {arrow && (
           <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">➔</span>
         )}
-      </>
+      </span>
     )
     
     if (href) {
