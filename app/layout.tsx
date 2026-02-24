@@ -14,7 +14,7 @@ const openSans = Open_Sans({
 })
 
 const merriweather = Merriweather({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-merriweather',
 })

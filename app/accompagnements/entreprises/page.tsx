@@ -133,19 +133,19 @@ export default function EntreprisesPage() {
         {/* Stats */}
         <div className="grid md:grid-cols-3 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               ~<span style={{ color: accentColor }}>20</span>
             </div>
             <p className="text-slate-dark/50 text-sm">diagnostics réalisés par an</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>50–80</span>
             </div>
             <p className="text-slate-dark/50 text-sm">personnes formées par an</p>
           </div>
           <div className="p-8 bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>10–15</span>
             </div>
             <p className="text-slate-dark/50 text-sm">prototypes développés par an</p>

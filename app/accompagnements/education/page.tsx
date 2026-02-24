@@ -139,19 +139,19 @@ export default function EducationPage() {
         {/* Stats */}
         <div className="grid md:grid-cols-3 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>3</span>
             </div>
             <p className="text-slate-dark/50 text-sm">niveaux couverts : primaire, secondaire, supérieur</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>50+</span>
             </div>
             <p className="text-slate-dark/50 text-sm">fiches activités dans la bibliothèque</p>
           </div>
           <div className="p-8 bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>2</span> certifs
             </div>
             <p className="text-slate-dark/50 text-sm">reconnues par les employeurs partenaires</p>

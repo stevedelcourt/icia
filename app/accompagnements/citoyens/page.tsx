@@ -127,17 +127,17 @@ export default function CitoyensPage() {
         {/* Stats */}
         <div className="grid md:grid-cols-3 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>1 500</span>–2 500
             </div>
             <p className="text-slate-dark/50 text-sm">personnes accompagnées par an</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">4</div>
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">4</div>
             <p className="text-slate-dark/50 text-sm">programmes complémentaires</p>
           </div>
           <div className="p-8 bg-white text-center">
-            <div className="text-4xl md:text-5xl mb-2 text-slate-dark">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>0€</span>
             </div>
             <p className="text-slate-dark/50 text-sm">pour tous les citoyens — accès entièrement gratuit</p>
