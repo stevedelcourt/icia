@@ -112,12 +112,12 @@ export default function CitoyensPage() {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact">
-                      <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                      <Button variant="primary" size="lg">
                         Être accompagné
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <Button variant="ghost" className="border border-slate-dark/10 text-slate-dark/60 hover:border-slate-dark/30 hover:text-slate-dark">
+                      <Button variant="ghost">
                         Découvrir
                       </Button>
                     </Link>
@@ -237,7 +237,7 @@ export default function CitoyensPage() {
                 </p>
               </div>
               <Link href="/contact">
-                <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                <Button variant="primary" size="lg">
                   Être accompagné
                 </Button>
               </Link>

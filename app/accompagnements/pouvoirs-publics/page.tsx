@@ -119,12 +119,12 @@ export default function PouvoirsPublicsPage() {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact?subject=partnership&target=publics">
-                      <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                      <Button variant="primary" size="lg">
                         Discuter de votre projet
                       </Button>
                     </Link>
                     <Link href="#programmes">
-                      <Button variant="ghost" className="border border-slate-dark/10 text-slate-dark/60 hover:border-slate-dark/30 hover:text-slate-dark">
+                      <Button variant="ghost">
                         Découvrir
                       </Button>
                     </Link>
@@ -292,7 +292,7 @@ export default function PouvoirsPublicsPage() {
                 </p>
               </div>
               <Link href="/contact?subject=partnership&target=publics">
-                <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                <Button variant="primary" size="lg">
                   Nous contacter
                 </Button>
               </Link>

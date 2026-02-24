@@ -16,6 +16,11 @@ const nextConfig = {
         destination: '/accompagnements/citoyens',
         permanent: true,
       },
+      {
+        source: '/accompagnements/entreprise',
+        destination: '/accompagnements/entreprises',
+        permanent: true,
+      },
     ]
   },
 }

@@ -10,24 +10,28 @@ import Link from 'next/link'
 const features = [
   { 
     num: '01', 
+    id: 'parcours',
     title: 'Parcours d\'apprentissage', 
     description: 'Des formations structurees et progressives, du niveau debutant a expert. Chaque parcours est adapte a vos objectifs et votre rythme.',
     tags: ['Debutant', 'Intermediaire', 'Avance']
   },
   { 
     num: '02', 
+    id: 'certifications',
     title: 'Certifications & Badges', 
     description: 'Validez vos competences avec des certifications reconnues et des badges numeriques que vous pouvez partager sur LinkedIn.',
     tags: ['RNCP', 'Micro-certifications', 'Badges LinkedIn']
   },
   { 
     num: '03', 
+    id: 'bibliotheque',
     title: 'Bibliotheque de ressources', 
     description: 'Accedez a des contenus curationnes : etudes de cas, templates, outils et guides pratiques pour aller plus vite.',
     tags: ['Etudes de cas', 'Templates', 'Outils']
   },
   { 
     num: '04', 
+    id: 'communaute',
     title: 'Communaute & Support', 
     description: 'Echangez avec d\'autres apprenants, posez vos questions aux experts et benefiez d\'un support personnalise.',
     tags: ['Forum', 'Sessions live', 'Mentorat']
@@ -42,9 +46,9 @@ const formats = [
 ]
 
 const roadmap = [
-  { phase: 'Phase 1', period: 'Q2 2025', content: 'Lancement MVP - Acces beta ferme', description: 'Premiers parcours et formations de base' },
-  { phase: 'Phase 2', period: 'Q4 2025', content: 'Lancement complet', description: 'Tous les parcours, certifications et communautes' },
-  { phase: 'Phase 3', period: '2026', content: 'Fonctionnalites avancees', description: 'IA personnalisee, analytique avancee et partenariat entreprises' },
+  { phase: 'Phase 1', period: 'Q3 2026', content: 'Lancement MVP - Acces beta ferme', description: 'Premiers parcours et formations de base' },
+  { phase: 'Phase 2', period: 'Q1 2027', content: 'Lancement complet', description: 'Tous les parcours, certifications et communautes' },
+  { phase: 'Phase 3', period: '2027', content: 'Fonctionnalites avancees', description: 'IA personnalisee, analytique avancee et partenariat entreprises' },
 ]
 
 export default function PlateformeNumeriquePage() {
@@ -70,10 +74,10 @@ export default function PlateformeNumeriquePage() {
                     La plateforme ICIA est votre compagnon pour maitriser l'intelligence artificielle. Tout ce qu'il vous faut pour developper vos competences, a votre rythme.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Parcours varies</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Certifications</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Communaute</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Acces bêta</span>
+                    <a href="#parcours" className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full hover:bg-navy-dark transition-colors cursor-pointer">Parcours varies</a>
+                    <a href="#certifications" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Certifications</a>
+                    <a href="#communaute" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Communaute</a>
+                    <a href="#parcours" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Acces bêta</a>
                   </div>
                 </div>
               </div>
@@ -98,7 +102,7 @@ export default function PlateformeNumeriquePage() {
               <div className="grid md:grid-cols-2 gap-6">
                 {features.map((feature) => (
                   <StaggerItem key={feature.num}>
-                    <div className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
+                    <div id={feature.id} className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
                       <h3 className="font-serif text-xl font-bold mb-3">{feature.title}</h3>
                       <p className="text-sm text-text-muted mb-6 flex-grow">{feature.description}</p>
                       <div className="flex flex-wrap gap-2 pt-4 border-t border-border">

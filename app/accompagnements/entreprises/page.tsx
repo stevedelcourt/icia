@@ -118,12 +118,12 @@ export default function EntreprisesPage() {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact?subject=diagnostic">
-                      <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                      <Button variant="primary" size="lg">
                         Demander un diagnostic
                       </Button>
                     </Link>
                     <Link href="#offres">
-                      <Button variant="ghost" className="border border-slate-dark/10 text-slate-dark/60 hover:border-slate-dark/30 hover:text-slate-dark">
+                      <Button variant="ghost">
                         Voir les offres
                       </Button>
                     </Link>
@@ -250,7 +250,7 @@ export default function EntreprisesPage() {
                 </p>
               </div>
               <Link href="/contact?subject=diagnostic">
-                <Button variant="primary" size="lg" style={{ backgroundColor: accentColor, borderColor: accentColor }}>
+                <Button variant="primary" size="lg">
                   Demander un diagnostic
                 </Button>
               </Link>

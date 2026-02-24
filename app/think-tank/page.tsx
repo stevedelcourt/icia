@@ -10,24 +10,28 @@ import Link from 'next/link'
 const axes = [
   { 
     num: '01', 
+    id: 'regulation',
     title: 'Régulation et gouvernance', 
     description: 'Analyser les cadres réglementaires, proposer une gouvernance éthique et démocratique de l\'IA en France et en Europe.',
     tags: ['Éthique et régulation', 'Étude d\'impact', 'Gouvernance des systèmes IA']
   },
   { 
     num: '02', 
+    id: 'impacts',
     title: 'Impacts socio-économiques', 
     description: 'Comprendre les transformations du marché du travail et les enjeux économiques liés à la généralisation de l\'IA.',
     tags: ['Emploi et compétences', 'Métiers proofs à l\'IA', 'Redistribution de la valeur']
   },
   { 
     num: '03', 
+    id: 'usages',
     title: 'Usages sectoriels', 
     description: 'Analyser les applications concrètes de l\'IA dans chaque secteur d\'activité et leurs implications spécifiques.',
     tags: ['Industries créatives', 'Services publics', 'Éducation', 'Santé']
   },
   { 
     num: '04', 
+    id: 'societe',
     title: 'IA et société', 
     description: 'Examiner les implications de l\'IA sur le tissu social, la démocratie et la culture à l\'ère de l\'information automatisée.',
     tags: ['Débat public', 'Désinformation', 'Implications démocratiques', 'Évolution culturelle']
@@ -71,10 +75,10 @@ export default function ThinkTankPage() {
                     Le Think Tank de l'ICIA est un lieu de reflexion independante sur les enjeux de l'intelligence artificielle. Nous produisons des analyses rigoureuses, accompagnons les decideurs et participons au debat public.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Regulation</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Impacts socio-eco</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Usages sectoriels</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">IA & Societe</span>
+                    <a href="#regulation" className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full hover:bg-navy-dark transition-colors cursor-pointer">Regulation</a>
+                    <a href="#impacts" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Impacts socio-eco</a>
+                    <a href="#usages" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Usages sectoriels</a>
+                    <a href="#societe" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">IA & Societe</a>
                   </div>
                 </div>
               </div>
@@ -99,7 +103,7 @@ export default function ThinkTankPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 {axes.map((axe) => (
                   <StaggerItem key={axe.num}>
-                    <div className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
+                    <div id={axe.id} className="p-8 bg-white border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
                       <h3 className="font-serif text-xl font-bold mb-3">{axe.title}</h3>
                       <p className="text-sm text-text-muted mb-6 flex-grow">{axe.description}</p>
                       <div className="flex flex-wrap gap-2 pt-4 border-t border-border">

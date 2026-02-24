@@ -10,6 +10,7 @@ import Link from 'next/link'
 const troisDimensions = [
   {
     num: '01',
+    id: 'lieu',
     title: 'Un lieu physique',
     description: 'Un espace identifié de 600 à 1 200 m² avec salle d\'accueil, salles de formation (20-30 personnes), laboratoire IA (GPU, serveurs), espace dédié aux industries créatives et zone de rencontres. Un repère concret dans le territoire.',
     link: '/reseau-lieu',
@@ -17,6 +18,7 @@ const troisDimensions = [
   },
   {
     num: '02',
+    id: 'plateforme',
     title: 'Une plateforme numérique',
     description: 'Un environnement en ligne ouvert proposant inscription et orientation, parcours de formation, bibliothèque de ressources, badges et micro-certifications. Accessible à tout moment, identique sur tous les sites du réseau.',
     link: '/plateforme-numerique',
@@ -24,6 +26,7 @@ const troisDimensions = [
   },
   {
     num: '03',
+    id: 'reseau',
     title: 'Un réseau humain',
     description: 'Une communauté structurée d\'entreprises membres, d\'écoles partenaires et d\'experts référencés. Les ressources et compétences sont partagées entre tous les sites, dans un esprit open source et de mutualisation.',
     link: '/reseau-lieu',
@@ -116,10 +119,10 @@ export default function ReseauLieuPage() {
                     L'ICIA repose sur un modèle hybride : un lieu physique flagship à Marseille, un réseau de hubs régionaux et d'espaces satellites, complété par une plateforme numérique.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full">Marseille</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Hubs régionaux</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Espaces satellites</span>
-                    <span className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full">Plateforme numérique</span>
+                    <a href="#lieu" className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full hover:bg-navy-dark transition-colors cursor-pointer">Marseille</a>
+                    <a href="#lieu" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Hubs régionaux</a>
+                    <a href="#lieu" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Espaces satellites</a>
+                    <a href="#plateforme" className="px-4 py-2 border border-navy text-navy text-sm font-medium rounded-full hover:bg-navy hover:text-white transition-colors cursor-pointer">Plateforme numérique</a>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
@@ -154,7 +157,7 @@ export default function ReseauLieuPage() {
               <div className="grid md:grid-cols-3 gap-8">
                 {troisDimensions.map((dim) => (
                   <StaggerItem key={dim.num}>
-                    <div className="p-8 border border-border bg-ivory-dark rounded-xl h-full flex flex-col">
+                    <div id={dim.id} className="p-8 border border-border bg-ivory-dark rounded-xl h-full flex flex-col">
                       <p className="text-4xl font-light text-slate-dark mb-4">{dim.num}</p>
                       <h3 className="font-serif text-xl font-bold mb-4">{dim.title}</h3>
                       <p className="text-sm text-text-muted mb-6 flex-grow">{dim.description}</p>
