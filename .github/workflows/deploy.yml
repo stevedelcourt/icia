@@ -1,0 +1,40 @@
+name: Deploy to o2switch
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: NEXT_EXPORT=true npm run build
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+          NOTION_DB: ${{ secrets.NOTION_DB }}
+          NOTION_PARTNERS_DB: ${{ secrets.NOTION_PARTNERS_DB }}
+
+      - name: Deploy to o2switch via FTP
+        uses: ebola部署/ftp-action@master
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          port: 21
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: ./out
+          remoteDir: ./public_html
+          forcePush: true
