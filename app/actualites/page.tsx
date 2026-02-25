@@ -101,7 +101,7 @@ export default async function ActualitesPage() {
                     <OptimizedImage 
                       src={latestArticle.image} 
                       alt="" 
-                      className="w-full aspect-[16/9] object-cover"
+                      className="w-full aspect-square md:aspect-[16/9] object-cover"
                       fill
                       sizes="(max-width: 768px) 100vw, 1200px"
                     />
