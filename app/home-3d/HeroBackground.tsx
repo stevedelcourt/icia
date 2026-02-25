@@ -110,13 +110,11 @@ export function HeroBackground() {
         camera={{ position: [0, -15, 15], fov: 75 }}
         dpr={isMobile ? 1 : Math.min(window.devicePixelRatio, 2)}
         gl={{ 
-          antialias: false, 
+          antialias: true, 
           alpha: true,
           powerPreference: 'high-performance',
           failIfMajorPerformanceCaveat: false
         }}
-        frameloop="demand"
-        performance={{ min: 0.5 }}
         onCreated={({ gl }) => {
           gl.setClearColor('#87CEEB')
         }}
