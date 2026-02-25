@@ -82,6 +82,7 @@ function FallbackBackground() {
 
 export function HeroBackground() {
   const [ready, setReady] = useState(false)
+  const [fadeIn, setFadeIn] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [webglSupported, setWebglSupported] = useState(true)
 
@@ -89,6 +90,13 @@ export function HeroBackground() {
     const t = setTimeout(() => setReady(true), 800)
     return () => clearTimeout(t)
   }, [])
+
+  useEffect(() => {
+    if (ready) {
+      const t = setTimeout(() => setFadeIn(true), 100)
+      return () => clearTimeout(t)
+    }
+  }, [ready])
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
@@ -109,8 +117,8 @@ export function HeroBackground() {
   return (
     <div 
       id="hero-section"
-      className="absolute inset-0 w-full h-screen overflow-hidden"
-      style={{ zIndex: 0, background: '#87CEEB' }}
+      className="absolute inset-0 w-full h-screen overflow-hidden transition-opacity duration-1000"
+      style={{ zIndex: 0, background: '#87CEEB', opacity: fadeIn ? 1 : 0 }}
     >
       <Canvas
         camera={{ position: [0, -15, 15], fov: 75 }}
