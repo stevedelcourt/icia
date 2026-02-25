@@ -81,22 +81,36 @@ function FallbackBackground() {
 }
 
 export function HeroBackground() {
-  const [ready, setReady] = useState(false)
+  const [show3D, setShow3D] = useState(false)
   const [fadeIn, setFadeIn] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [webglSupported, setWebglSupported] = useState(true)
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 800)
-    return () => clearTimeout(t)
-  }, [])
-
-  useEffect(() => {
-    if (ready) {
-      const t = setTimeout(() => setFadeIn(true), 100)
-      return () => clearTimeout(t)
+    const handleInteraction = () => {
+      if (!show3D) {
+        setShow3D(true)
+        setTimeout(() => setFadeIn(true), 100)
+      }
     }
-  }, [ready])
+
+    const scrollHandler = () => {
+      if (window.scrollY < window.innerHeight * 0.5) {
+        handleInteraction()
+      }
+    }
+
+    window.addEventListener('scroll', scrollHandler, { passive: true })
+    window.addEventListener('click', handleInteraction, { once: true })
+    window.addEventListener('keydown', handleInteraction, { once: true })
+
+    const timer = setTimeout(handleInteraction, 3000)
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+      clearTimeout(timer)
+    }
+  }, [show3D])
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
@@ -110,7 +124,7 @@ export function HeroBackground() {
     }
   }, [])
 
-  if (!ready || !webglSupported) {
+  if (!show3D || !webglSupported) {
     return <FallbackBackground />
   }
 
