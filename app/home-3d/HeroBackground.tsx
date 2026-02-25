@@ -81,36 +81,8 @@ function FallbackBackground() {
 }
 
 export function HeroBackground() {
-  const [show3D, setShow3D] = useState(false)
-  const [fadeIn, setFadeIn] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [webglSupported, setWebglSupported] = useState(true)
-
-  useEffect(() => {
-    const handleInteraction = () => {
-      if (!show3D) {
-        setShow3D(true)
-        setTimeout(() => setFadeIn(true), 100)
-      }
-    }
-
-    const scrollHandler = () => {
-      if (window.scrollY < window.innerHeight * 0.5) {
-        handleInteraction()
-      }
-    }
-
-    window.addEventListener('scroll', scrollHandler, { passive: true })
-    window.addEventListener('click', handleInteraction, { once: true })
-    window.addEventListener('keydown', handleInteraction, { once: true })
-
-    const timer = setTimeout(handleInteraction, 3000)
-
-    return () => {
-      window.removeEventListener('scroll', scrollHandler)
-      clearTimeout(timer)
-    }
-  }, [show3D])
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
@@ -124,15 +96,15 @@ export function HeroBackground() {
     }
   }, [])
 
-  if (!show3D || !webglSupported) {
+  if (!webglSupported) {
     return <FallbackBackground />
   }
 
   return (
     <div 
       id="hero-section"
-      className="absolute inset-0 w-full h-screen overflow-hidden transition-opacity duration-1000"
-      style={{ zIndex: 0, background: '#87CEEB', opacity: fadeIn ? 1 : 0 }}
+      className="absolute inset-0 w-full h-screen overflow-hidden"
+      style={{ zIndex: 0, background: '#87CEEB' }}
     >
       <Canvas
         camera={{ position: [0, -15, 15], fov: 75 }}
