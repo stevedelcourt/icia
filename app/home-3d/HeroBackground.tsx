@@ -81,8 +81,14 @@ function FallbackBackground() {
 }
 
 export function HeroBackground() {
+  const [ready, setReady] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [webglSupported, setWebglSupported] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 800)
+    return () => clearTimeout(t)
+  }, [])
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
@@ -96,7 +102,7 @@ export function HeroBackground() {
     }
   }, [])
 
-  if (!webglSupported) {
+  if (!ready || !webglSupported) {
     return <FallbackBackground />
   }
 
