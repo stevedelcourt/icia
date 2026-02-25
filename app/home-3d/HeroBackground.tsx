@@ -83,8 +83,6 @@ function FallbackBackground() {
 export function HeroBackground() {
   const [isMobile, setIsMobile] = useState(false)
   const [webglSupported, setWebglSupported] = useState(true)
-  const [isVisible, setIsVisible] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
@@ -96,37 +94,14 @@ export function HeroBackground() {
     } catch {
       setWebglSupported(false)
     }
-
-    // Lazy load Three.js when section is visible
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1, rootMargin: '100px' }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => observer.disconnect()
   }, [])
 
   if (!webglSupported) {
     return <FallbackBackground />
   }
 
-  // Show placeholder until visible
-  if (!isVisible) {
-    return <FallbackBackground />
-  }
-
   return (
     <div 
-      ref={containerRef}
       id="hero-section"
       className="absolute inset-0 w-full h-screen overflow-hidden"
       style={{ zIndex: 0, background: '#87CEEB' }}

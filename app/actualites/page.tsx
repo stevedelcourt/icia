@@ -3,6 +3,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
+import { OptimizedImage, getResponsiveUrl } from '@/components/ui/OptimizedImage'
 
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
@@ -97,7 +98,13 @@ export default async function ActualitesPage() {
               <Link href={`/actualites/${latestArticle.slug}`} className="block group">
                 <article className="border border-border bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
                   {latestArticle.image && (
-                    <img src={latestArticle.image} alt="" className="w-full aspect-[16/9] object-cover" />
+                    <OptimizedImage 
+                      src={latestArticle.image} 
+                      alt="" 
+                      className="w-full aspect-[16/9] object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 1200px"
+                    />
                   )}
                   <div className="p-8">
                     <div className="flex items-center gap-4 mb-4">
@@ -125,7 +132,13 @@ export default async function ActualitesPage() {
                   <Link href={`/actualites/${article.slug}`} className="block group">
                     <article className="h-full border border-border bg-white rounded-xl p-6 hover:bg-ivory-dark hover:shadow-sm transition-all">
                       {article.image && (
-                        <img src={article.image} alt="" className="w-full h-48 object-cover rounded-lg mb-4" />
+                        <OptimizedImage 
+                          src={article.image} 
+                          alt="" 
+                          className="w-full h-48 object-cover rounded-lg mb-4"
+                          width={400}
+                          height={192}
+                        />
                       )}
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs text-accent font-medium">{article.category}</span>
