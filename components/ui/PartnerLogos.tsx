@@ -12,16 +12,48 @@ interface Partner {
 export function PartnerLogos() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [partners, setPartners] = useState<Partner[] | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
 
   useEffect(() => {
-    fetch('/api/partners')
-      .then(r => r.json())
-      .then(setPartners)
-      .catch(() => setPartners([]))
-  }, [])
+    if (isVisible || partners) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          fetch('/api/partners', {
+            headers: { 'Cache-Control': 'max-age=3600' }
+          })
+            .then(r => r.json())
+            .then(setPartners)
+            .catch(() => setPartners([]))
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px', threshold: 0 }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [isVisible, partners])
+
+  if (!partners) {
+    return (
+      <section className="relative overflow-hidden py-8 bg-[#00255D]">
+        <div className="h-28 flex items-center justify-center">
+          <div className="animate-pulse text-white/30">Chargement...</div>
+        </div>
+      </section>
+    )
+  }
+
+  if (partners.length === 0) return null
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true)

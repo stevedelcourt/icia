@@ -14,6 +14,25 @@ const nextConfig = {
   trailingSlash: true,
   experimental: {
     ppr: false,
+    optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            three: {
+              test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
+              name: 'three-vendor',
+              priority: 10,
+            },
+          },
+        },
+      }
+    }
+    return config
   },
   async redirects() {
     return [
