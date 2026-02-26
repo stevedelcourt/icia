@@ -68,58 +68,72 @@ const cardGradients: Record<string, string> = {
 function FlowHero() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      <style jsx>{`
+      <style jsx global>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
         .hero-container {
           position: relative;
-          height: 100vh;
           width: 100%;
-          background: linear-gradient(315deg, #00255D 0%, #023D87 50%, #00255D 100%);
-          background-size: 400% 400%;
-          animation: gradient 8s ease infinite;
+          height: 100vh;
           overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #87CEEB;
         }
-        @keyframes gradient {
-          0% { background-position: 0% 0%; }
-          50% { background-position: 100% 100%; }
-          100% { background-position: 0% 0%; }
-        }
-        .wave {
-          background: rgba(255, 255, 255, 0.25);
-          border-radius: 1000% 1000% 0 0;
+        .hero-container .wave {
           position: absolute;
-          width: 200%;
-          height: 12em;
-          animation: wave 10s -3s linear infinite;
-          transform: translate3d(0, 0, 0);
-          opacity: 0.8;
-          bottom: 0;
           left: 0;
+          width: 100%;
+          height: 100%;
+          background: #87CEEB;
+          box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
         }
-        .wave:nth-of-type(2) {
-          bottom: -1.25em;
-          animation: wave 18s linear reverse infinite;
-          opacity: 0.8;
+        .hero-container .wave span {
+          content: "";
+          position: absolute;
+          width: 325vh;
+          height: 325vh;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -75%);
+          background: #00255D;
         }
-        .wave:nth-of-type(3) {
-          bottom: -2.5em;
-          animation: wave 20s -1s reverse infinite;
-          opacity: 0.9;
+        .hero-container .wave span:nth-child(1) {
+          border-radius: 45%;
+          background: rgba(0, 37, 93, 1);
+          animation: animate 5s linear infinite;
         }
-        @keyframes wave {
-          2% { transform: translateX(1); }
-          25% { transform: translateX(-25%); }
-          50% { transform: translateX(-50%); }
-          75% { transform: translateX(-25%); }
-          100% { transform: translateX(1); }
+        .hero-container .wave span:nth-child(2) {
+          border-radius: 40%;
+          background: rgba(0, 37, 93, 0.5);
+          animation: animate 10s linear infinite;
+        }
+        .hero-container .wave span:nth-child(3) {
+          border-radius: 42.5%;
+          background: rgba(0, 37, 93, 0.3);
+          animation: animate 15s linear infinite;
+        }
+        @keyframes animate {
+          0% {
+            transform: translate(-50%, -75%) rotate(0deg);
+          }
+          100% {
+            transform: translate(-50%, -75%) rotate(360deg);
+          }
         }
       `}</style>
       
-      <div className="hero-container">
-        <div className="wave" />
-        <div className="wave" />
-        <div className="wave" />
+      <div className="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-        <div className="absolute inset-0 flex items-center z-10">
+      <div className="absolute inset-0 flex items-center z-10">
         <FadeIn>
           <div className="max-w-4xl mx-auto px-4 md:px-8" style={{ marginLeft: '10%' }}>
             <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-4">Accompagnements</p>
@@ -131,7 +145,6 @@ function FlowHero() {
             </p>
           </div>
         </FadeIn>
-      </div>
       </div>
     </section>
   )
