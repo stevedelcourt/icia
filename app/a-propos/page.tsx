@@ -108,7 +108,7 @@ function ParticlesMesh() {
               left: line.x1,
               top: line.y1,
               width: length,
-              height: 1.5,
+              height: 3,
               background: 'rgba(255,255,255,0.5)',
               transform: `rotate(${angle}deg)`,
               transformOrigin: 'left center',
@@ -227,7 +227,7 @@ export default function AProposPage() {
               <p className="text-sm font-medium text-white/70 uppercase tracking-widest mb-4">À propos de l'Institut</p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-white">
                 L'IA ne doit pas être<br />
-                <em className="not-italic font-light text-white">confisquée</em> par quelques-uns.
+                <em className="font-light text-white">confisquée</em> par quelques-uns.
               </h1>
               <p className="text-xl text-white/70 max-w-2xl leading-relaxed">
                 L'Institut Collectif de l'IA est un projet français, humaniste et ouvert sur le monde. 
