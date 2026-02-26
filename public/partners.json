@@ -1,23 +1,8 @@
 [
   {
-    "name": "Air France",
-    "logo": "/images/partners/air-france.svg",
-    "website": "https://www.airfrance.fr/"
-  },
-  {
     "name": "Airwell",
     "logo": "/images/partners/airwell.svg",
     "website": "https://www.airwell.com/"
-  },
-  {
-    "name": "Clarins",
-    "logo": "/images/partners/clarins.svg",
-    "website": "https://www.clarins.fr/"
-  },
-  {
-    "name": "IONIS Education Group",
-    "logo": "/images/partners/ionis-education-group.svg",
-    "website": "https://www.ionis-group.com/"
   },
   {
     "name": "MK2+",
@@ -25,8 +10,18 @@
     "website": "https://mk2plus.com/"
   },
   {
+    "name": "IONIS Education Group",
+    "logo": "/images/partners/ionis-education-group.svg",
+    "website": "https://www.ionis-group.com/"
+  },
+  {
     "name": "Tertium Invest",
     "logo": "/images/partners/tertium-invest.svg",
     "website": "https://tertium-invest.com/"
+  },
+  {
+    "name": "Mentivis",
+    "logo": "/images/partners/mentivis.svg",
+    "website": "https://mentivis.com"
   }
 ]
