@@ -21,11 +21,11 @@ function ParticlesMesh() {
     const width = window.innerWidth
     const height = window.innerHeight
     
-    const initialParticles = Array.from({ length: 100 }, () => ({
+    const initialParticles = Array.from({ length: 80 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 2,
-      vy: (Math.random() - 0.5) * 2
+      vx: (Math.random() - 0.5) * 1.5,
+      vy: (Math.random() - 0.5) * 1.5
     }))
     setParticles(initialParticles)
 
@@ -40,7 +40,7 @@ function ParticlesMesh() {
         }))
 
         const newLines: Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}> = []
-        const maxDist = 150
+        const maxDist = 200
 
         for (let i = 0; i < updated.length; i++) {
           for (let j = i + 1; j < updated.length; j++) {
@@ -89,11 +89,11 @@ function ParticlesMesh() {
               left: line.x1,
               top: line.y1,
               width: length,
-              height: 1,
-              background: 'rgba(255,255,255,0.4)',
+              height: 2,
+              background: 'rgba(255,255,255,0.6)',
               transform: `rotate(${angle}deg)`,
               transformOrigin: 'left center',
-              opacity: line.opacity * 0.4
+              opacity: line.opacity * 0.6
             }}
           />
         )
@@ -109,7 +109,7 @@ function ParticlesMesh() {
             position: 'absolute',
             background: 'white',
             borderRadius: '50%',
-            opacity: 0.8
+            opacity: 0.9
           }}
         />
       ))}
