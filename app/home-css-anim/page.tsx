@@ -17,75 +17,67 @@ export default function HomeCSSAnim() {
         body {
           margin: 0;
           padding: 0;
-          background-color: #0e6cc4;
           overflow-x: hidden;
           overflow-y: hidden;
         }
 
-        .box {
-          position: fixed;
-          top: 0;
-          transform: rotate(80deg);
-          left: 0;
-        }
-
-        .wave {
+        .waves-container {
           position: fixed;
           top: 0;
           left: 0;
-          opacity: 0.4;
-          position: absolute;
-          top: 3%;
-          left: 10%;
-          background: #0af;
-          width: 1500px;
-          height: 1300px;
-          margin-left: -150px;
-          margin-top: -250px;
-          transform-origin: 50% 48%;
-          border-radius: 43%;
-          animation: drift 7000ms infinite linear;
-        }
-
-        .wave.-three {
-          animation: drift 7500ms infinite linear;
-          position: fixed;
-          background-color: #77daff;
-        }
-
-        .wave.-two {
-          animation: drift 3000ms infinite linear;
-          opacity: 0.1;
-          background: black;
-          position: fixed;
-        }
-
-        .box:after {
-          content: '';
-          display: block;
-          left: 0;
-          top: 0;
           width: 100%;
           height: 100%;
-          z-index: 11;
-          transform: translate3d(0, 0, 0);
-        }
-
-        @keyframes drift {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .hero-gradient {
           background: linear-gradient(270deg, #00255D, #023D87, #00255D);
           background-size: 200% 200%;
           animation: gradientMove 8s ease infinite;
+          overflow: hidden;
         }
 
         @keyframes gradientMove {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
+        }
+
+        .box {
+          position: absolute;
+          top: 0;
+          transform: rotate(0deg);
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .wave {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #0af;
+          width: 200vw;
+          height: 200vh;
+          margin-left: -100vw;
+          margin-top: -50vh;
+          border-radius: 40%;
+          animation: drift 7000ms infinite linear;
+          opacity: 0.3;
+        }
+
+        .wave.-three {
+          animation: drift 11000ms infinite linear;
+          background-color: #77daff;
+          opacity: 0.4;
+        }
+
+        .wave.-two {
+          animation: drift 5000ms infinite linear;
+          background-color: #001a3a;
+          opacity: 0.2;
+        }
+
+        @keyframes drift {
+          from { transform: translateX(-50%) rotate(0deg); }
+          to { transform: translateX(-50%) rotate(360deg); }
         }
 
         .content-overlay {
@@ -100,7 +92,7 @@ export default function HomeCSSAnim() {
           flex-flow: row nowrap;
           justify-content: center;
           align-items: center;
-          background: linear-gradient(#25a7d7, #25a7d7);
+          background: linear-gradient(270deg, #00255D, #023D87, #00255D);
           opacity: ${showContent ? 0 : 1};
           pointer-events: ${showContent ? 'none' : 'auto'};
           transition: opacity 1s ease;
@@ -112,10 +104,12 @@ export default function HomeCSSAnim() {
         }
       `}</style>
 
-      <div className="box">
-        <div className="wave" />
-        <div className="wave -two" />
-        <div className="wave -three" />
+      <div className="waves-container">
+        <div className="box">
+          <div className="wave" />
+          <div className="wave -two" />
+          <div className="wave -three" />
+        </div>
       </div>
 
       <div className={`content-overlay ${showContent ? 'hidden' : ''}`}>
@@ -135,7 +129,7 @@ export default function HomeCSSAnim() {
                   animationFillMode: 'forwards'
                 }}
               >
-                <circle cx="50" cy="50" r="40" fill="#00255D" />
+                <circle cx="50" cy="50" r="40" fill="white" />
               </svg>
             </div>
           ))}
@@ -153,7 +147,7 @@ export default function HomeCSSAnim() {
       `}</style>
 
       <main 
-        className="hero-gradient relative min-h-screen flex flex-col"
+        className="relative min-h-screen flex flex-col"
         style={{ opacity: showContent ? 1 : 0, transition: 'opacity 1s ease' }}
       >
         <header className="relative z-20">
