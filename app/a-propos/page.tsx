@@ -6,6 +6,116 @@ import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+
+function ParticlesMesh() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [particles, setParticles] = useState<Array<{x: number, y: number, vx: number, vy: number}>>([])
+  const [lines, setLines] = useState<Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}>>([])
+  const animationRef = useRef<number>()
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const width = window.innerWidth
+    const height = window.innerHeight
+    
+    const initialParticles = Array.from({ length: 100 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2
+    }))
+    setParticles(initialParticles)
+
+    const animate = () => {
+      setParticles(prev => {
+        const updated = prev.map(p => ({
+          ...p,
+          x: p.x + p.vx,
+          y: p.y + p.vy,
+          vx: p.x < 0 || p.x > width ? -p.vx : p.vx,
+          vy: p.y < 0 || p.y > height ? -p.vy : p.vy
+        }))
+
+        const newLines: Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}> = []
+        const maxDist = 150
+
+        for (let i = 0; i < updated.length; i++) {
+          for (let j = i + 1; j < updated.length; j++) {
+            const dx = updated[i].x - updated[j].x
+            const dy = updated[i].y - updated[j].y
+            const dist = Math.sqrt(dx * dx + dy * dy)
+            
+            if (dist < maxDist) {
+              newLines.push({
+                x1: updated[i].x,
+                y1: updated[i].y,
+                x2: updated[j].x,
+                y2: updated[j].y,
+                opacity: 1 - dist / maxDist
+              })
+            }
+          }
+        }
+        setLines(newLines)
+        return updated
+      })
+
+      animationRef.current = requestAnimationFrame(animate)
+    }
+
+    animationRef.current = requestAnimationFrame(animate)
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+    }
+  }, [])
+
+  return (
+    <div ref={containerRef} className="particles-container">
+      {lines.map((line, i) => {
+        const dx = line.x2 - line.x1
+        const dy = line.y2 - line.y1
+        const length = Math.sqrt(dx * dx + dy * dy)
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI
+        
+        return (
+          <div
+            key={`line-${i}`}
+            style={{
+              position: 'absolute',
+              left: line.x1,
+              top: line.y1,
+              width: length,
+              height: 1,
+              background: 'rgba(255,255,255,0.4)',
+              transform: `rotate(${angle}deg)`,
+              transformOrigin: 'left center',
+              opacity: line.opacity * 0.4
+            }}
+          />
+        )
+      })}
+      {particles.map((p, i) => (
+        <div
+          key={`particle-${i}`}
+          style={{
+            left: p.x,
+            top: p.y,
+            width: 5,
+            height: 5,
+            position: 'absolute',
+            background: 'white',
+            borderRadius: '50%',
+            opacity: 0.8
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 const examples = [
   { persona: 'Citoyen', description: 'Un demandeur d\'emploi ne sait pas comment tirer profit de l\'IA pour renforcer sa désirabilité sur le marché du travail.', href: '/accompagnements/citoyens' },
@@ -67,7 +177,7 @@ export default function AProposPage() {
               66% { background-position: 100% 50%; }
               100% { background-position: 0% 50%; }
             }
-            .particles {
+            .particles-container {
               position: absolute;
               top: 0;
               left: 0;
@@ -77,62 +187,21 @@ export default function AProposPage() {
             }
             .particle {
               position: absolute;
-              width: 3px;
-              height: 3px;
+              width: 5px;
+              height: 5px;
               background: white;
               border-radius: 50%;
-              opacity: 0.6;
-              animation: float 15s infinite;
-            }
-            .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
-            .particle:nth-child(2) { left: 20%; top: 60%; animation-delay: 2s; }
-            .particle:nth-child(3) { left: 30%; top: 40%; animation-delay: 4s; }
-            .particle:nth-child(4) { left: 40%; top: 80%; animation-delay: 1s; }
-            .particle:nth-child(5) { left: 50%; top: 30%; animation-delay: 3s; }
-            .particle:nth-child(6) { left: 60%; top: 70%; animation-delay: 5s; }
-            .particle:nth-child(7) { left: 70%; top: 50%; animation-delay: 2.5s; }
-            .particle:nth-child(8) { left: 80%; top: 20%; animation-delay: 4.5s; }
-            .particle:nth-child(9) { left: 90%; top: 60%; animation-delay: 1.5s; }
-            .particle:nth-child(10) { left: 15%; top: 85%; animation-delay: 3.5s; }
-            .particle:nth-child(11) { left: 25%; top: 15%; animation-delay: 5.5s; }
-            .particle:nth-child(12) { left: 35%; top: 55%; animation-delay: 0.5s; }
-            .particle:nth-child(13) { left: 45%; top: 25%; animation-delay: 2.5s; }
-            .particle:nth-child(14) { left: 55%; top: 75%; animation-delay: 4.5s; }
-            .particle:nth-child(15) { left: 65%; top: 35%; animation-delay: 1.5s; }
-            .particle:nth-child(16) { left: 75%; top: 65%; animation-delay: 3.5s; }
-            .particle:nth-child(17) { left: 85%; top: 45%; animation-delay: 5s; }
-            .particle:nth-child(18) { left: 95%; top: 80%; animation-delay: 0.5s; }
-            .particle:nth-child(19) { left: 5%; top: 50%; animation-delay: 2s; }
-            .particle:nth-child(20) { left: 12%; top: 35%; animation-delay: 4s; }
-            @keyframes float {
-              0%, 100% { transform: translateY(0) translateX(0); opacity: 0.6; }
-              25% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
-              50% { transform: translateY(-10px) translateX(-10px); opacity: 0.4; }
-              75% { transform: translateY(-25px) translateX(5px); opacity: 0.7; }
+              opacity: 0.8;
             }
             .mesh-line {
               position: absolute;
-              background: rgba(255,255,255,0.15);
+              height: 1px;
+              background: rgba(255,255,255,0.4);
               transform-origin: left center;
             }
-            .mesh-line:nth-child(21) { left: 10%; top: 20%; width: 150px; height: 1px; transform: rotate(25deg); }
-            .mesh-line:nth-child(22) { left: 30%; top: 40%; width: 120px; height: 1px; transform: rotate(-15deg); }
-            .mesh-line:nth-child(23) { left: 50%; top: 30%; width: 180px; height: 1px; transform: rotate(10deg); }
-            .mesh-line:nth-child(24) { left: 70%; top: 50%; width: 100px; height: 1px; transform: rotate(-30deg); }
-            .mesh-line:nth-child(25) { left: 20%; top: 60%; width: 140px; height: 1px; transform: rotate(45deg); }
-            .mesh-line:nth-child(26) { left: 40%; top: 80%; width: 160px; height: 1px; transform: rotate(-20deg); }
-            .mesh-line:nth-child(27) { left: 60%; top: 70%; width: 130px; height: 1px; transform: rotate(35deg); }
-            .mesh-line:nth-child(28) { left: 80%; top: 20%; width: 170px; height: 1px; transform: rotate(-10deg); }
           `}</style>
           
-          <div className="particles">
-            {[...Array(20)].map((_, i) => (
-              <div key={i} className="particle" />
-            ))}
-            {[...Array(8)].map((_, i) => (
-              <div key={`mesh-${i}`} className="mesh-line" />
-            ))}
-          </div>
+          <ParticlesMesh />
           
           <FadeIn>
             <div className="max-w-4xl mx-auto px-4 md:px-8 text-left relative z-10" style={{ marginLeft: '10%' }}>
