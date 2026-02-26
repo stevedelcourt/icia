@@ -86,7 +86,7 @@ export default function Home() {
               </ScaleIn>
               <FadeIn delay={0.6}>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button href="/accompagnements" variant="primary" size="lg" className="!bg-white !text-[#00255D] hover:!bg-white/90">
+                  <Button href="/accompagnements" variant="primary" size="lg" className="!bg-[#D92A1C] !text-white hover:!bg-[#D92A1C]/90">
                     Nos programmes
                   </Button>
                   <Button href="/contact" variant="ghost" size="lg" className="!text-white !border-white hover:!bg-white/10">
