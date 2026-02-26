@@ -20,9 +20,12 @@ function ParticlesMesh() {
 
     const width = window.innerWidth
     const height = window.innerHeight
-    const padding = 100
+    const isMobile = width < 768
+    const padding = 80
+    const numParticles = isMobile ? 40 : 150
+    const maxDist = isMobile ? 120 : 180
     
-    const initialParticles = Array.from({ length: 150 }, () => ({
+    const initialParticles = Array.from({ length: numParticles }, () => ({
       x: padding + Math.random() * (width - padding * 2),
       y: padding + Math.random() * (height - padding * 2),
       angle: Math.random() * Math.PI * 2,
@@ -59,7 +62,6 @@ function ParticlesMesh() {
         })
 
         const newLines: Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}> = []
-        const maxDist = 180
 
         for (let i = 0; i < updated.length; i++) {
           for (let j = i + 1; j < updated.length; j++) {
