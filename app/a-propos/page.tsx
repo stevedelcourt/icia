@@ -21,7 +21,7 @@ function ParticlesMesh() {
     const width = window.innerWidth
     const height = window.innerHeight
     const isMobile = width < 768
-    const padding = 80
+    const padding = isMobile ? 40 : 80
     const numParticles = isMobile ? 40 : 150
     const maxDist = isMobile ? 120 : 180
     
