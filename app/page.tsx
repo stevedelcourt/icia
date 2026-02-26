@@ -8,9 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn, Stagger, StaggerItem, TextReveal, ScaleIn } from '@/components/ui/FadeIn'
 import { PartnerLogos } from '@/components/ui/PartnerLogos'
-import dynamic from 'next/dynamic'
-
-const HeroBackground = dynamic(() => import('./home-3d/HeroBackground').then(mod => ({ default: mod.HeroBackground })), { ssr: false })
+import { HeroBackgroundCSS } from './home-3d/HeroBackgroundCSS'
 
 const slogans = [
   "une IA comprise, maîtrisée et partagée",
@@ -67,7 +65,7 @@ export default function Home() {
       
       <section className="relative h-screen w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <HeroBackground />
+          <HeroBackgroundCSS />
         </div>
         
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 z-10" />
