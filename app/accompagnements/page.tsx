@@ -82,55 +82,57 @@ function FlowHero() {
           display: flex;
           justify-content: center;
           align-items: center;
-          background: #87CEEB;
+          background: linear-gradient(270deg, #00255D, #023D87, #00255D);
+          background-size: 200% 200%;
+          animation: gradientMove 8s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
         .hero-container .wave {
           position: absolute;
+          top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background: #87CEEB;
-          box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
         }
         .hero-container .wave span {
-          content: "";
           position: absolute;
           width: 325vh;
           height: 325vh;
           top: 0;
           left: 50%;
           transform: translate(-50%, -75%);
-          background: #00255D;
+          background: #0af;
+          border-radius: 45%;
+          opacity: 0.3;
         }
         .hero-container .wave span:nth-child(1) {
-          border-radius: 45%;
-          background: rgba(0, 37, 93, 1);
-          animation: animate 5s linear infinite;
+          background: rgba(10, 170, 255, 0.3);
+          animation: animate 7s linear infinite;
         }
         .hero-container .wave span:nth-child(2) {
-          border-radius: 40%;
-          background: rgba(0, 37, 93, 0.5);
-          animation: animate 10s linear infinite;
+          background: rgba(0, 26, 58, 0.3);
+          animation: animate 11s linear infinite;
         }
         .hero-container .wave span:nth-child(3) {
-          border-radius: 42.5%;
-          background: rgba(0, 37, 93, 0.3);
-          animation: animate 15s linear infinite;
+          background: rgba(119, 218, 255, 0.4);
+          animation: animate 5s linear infinite;
         }
         @keyframes animate {
-          0% {
-            transform: translate(-50%, -75%) rotate(0deg);
-          }
-          100% {
-            transform: translate(-50%, -75%) rotate(360deg);
-          }
+          0% { transform: translate(-50%, -75%) rotate(0deg); }
+          100% { transform: translate(-50%, -75%) rotate(360deg); }
         }
       `}</style>
       
-      <div className="wave">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className="hero-container">
+        <div className="wave">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
 
       <div className="absolute inset-0 flex items-center z-10">
