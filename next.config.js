@@ -22,6 +22,9 @@ const nextConfig = {
     ],
   },
   trailingSlash: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   experimental: {
     ppr: false,
     optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei'],
@@ -43,6 +46,19 @@ const nextConfig = {
       }
     }
     return config
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
   },
   async redirects() {
     return [
