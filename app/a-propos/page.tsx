@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 
 function ParticlesMesh() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [particles, setParticles] = useState<Array<{x: number, y: number, vx: number, vy: number}>>([])
+  const [particles, setParticles] = useState<Array<{x: number, y: number, angle: number, speed: number}>>([])
   const [lines, setLines] = useState<Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}>>([])
   const animationRef = useRef<number>()
 
@@ -20,27 +20,46 @@ function ParticlesMesh() {
 
     const width = window.innerWidth
     const height = window.innerHeight
+    const padding = 100
     
-    const initialParticles = Array.from({ length: 80 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 1.5,
-      vy: (Math.random() - 0.5) * 1.5
+    const initialParticles = Array.from({ length: 150 }, () => ({
+      x: padding + Math.random() * (width - padding * 2),
+      y: padding + Math.random() * (height - padding * 2),
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.3 + Math.random() * 0.5
     }))
     setParticles(initialParticles)
 
     const animate = () => {
       setParticles(prev => {
-        const updated = prev.map(p => ({
-          ...p,
-          x: p.x + p.vx,
-          y: p.y + p.vy,
-          vx: p.x < 0 || p.x > width ? -p.vx : p.vx,
-          vy: p.y < 0 || p.y > height ? -p.vy : p.vy
-        }))
+        const updated = prev.map(p => {
+          let newX = p.x + Math.cos(p.angle) * p.speed
+          let newY = p.y + Math.sin(p.angle) * p.speed
+          let newAngle = p.angle
+
+          if (newX < padding || newX > width - padding) {
+            newAngle = Math.PI - newAngle
+            newX = Math.max(padding, Math.min(width - padding, newX))
+          }
+          if (newY < padding || newY > height - padding) {
+            newAngle = -newAngle
+            newY = Math.max(padding, Math.min(height - padding, newY))
+          }
+
+          if (Math.random() < 0.02) {
+            newAngle += (Math.random() - 0.5) * 0.5
+          }
+
+          return {
+            x: newX,
+            y: newY,
+            angle: newAngle,
+            speed: p.speed
+          }
+        })
 
         const newLines: Array<{x1: number, y1: number, x2: number, y2: number, opacity: number}> = []
-        const maxDist = 200
+        const maxDist = 180
 
         for (let i = 0; i < updated.length; i++) {
           for (let j = i + 1; j < updated.length; j++) {
@@ -89,11 +108,11 @@ function ParticlesMesh() {
               left: line.x1,
               top: line.y1,
               width: length,
-              height: 2,
-              background: 'rgba(255,255,255,0.6)',
+              height: 1.5,
+              background: 'rgba(255,255,255,0.5)',
               transform: `rotate(${angle}deg)`,
               transformOrigin: 'left center',
-              opacity: line.opacity * 0.6
+              opacity: line.opacity * 0.5
             }}
           />
         )
@@ -104,8 +123,8 @@ function ParticlesMesh() {
           style={{
             left: p.x,
             top: p.y,
-            width: 5,
-            height: 5,
+            width: 4,
+            height: 4,
             position: 'absolute',
             background: 'white',
             borderRadius: '50%',
