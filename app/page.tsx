@@ -73,23 +73,23 @@ export default function Home() {
         <div className="relative z-20 h-full flex flex-col justify-center">
           <div className="max-w-4xl mx-auto px-4 md:px-8 pt-20">
             <FadeIn>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight text-black drop-shadow-lg">
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight text-white drop-shadow-lg">
                 <TextReveal delay={0.1}>L'Institut Collectif de l'IA :</TextReveal>
                 <span className="block">
                   <TextReveal delay={0.3}>{slogan}</TextReveal>
                 </span>
               </h1>
               <ScaleIn delay={0.5}>
-                <p className="text-xl md:text-2xl text-black/80 mb-12 max-w-2xl leading-relaxed drop-shadow-md">
+                <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-2xl leading-relaxed drop-shadow-md">
                   Un projet français, ancré en France et ouvert sur le monde, pour que chacun et chaque organisation puisse bénéficier concrètement de l'intelligence artificielle.
                 </p>
               </ScaleIn>
               <FadeIn delay={0.6}>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button href="/accompagnements" variant="primary" size="lg">
+                  <Button href="/accompagnements" variant="primary" size="lg" className="!bg-white !text-[#00255D] hover:!bg-white/90">
                     Nos programmes
                   </Button>
-                  <Button href="/contact" variant="ghost" size="lg">
+                  <Button href="/contact" variant="ghost" size="lg" className="!text-white !border-white hover:!bg-white/10">
                     Nous contacter
                   </Button>
                 </div>
