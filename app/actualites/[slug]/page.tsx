@@ -231,14 +231,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </Link>
               
               {article.image && (
-                <OptimizedImage 
-                  src={article.image} 
-                  alt={article.title} 
-                  className="w-full aspect-square md:aspect-video lg:aspect-[16/9] object-cover rounded-lg mb-8"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  priority
-                />
+                <div className="relative w-full aspect-square md:aspect-video lg:aspect-[16/9] mb-8">
+                  <OptimizedImage 
+                    src={article.image} 
+                    alt={article.title} 
+                    className="object-cover rounded-lg"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority
+                  />
+                </div>
               )}
               
               <h1 className="font-serif text-2xl md:text-h1 mb-6 text-accent">{article.title}</h1>

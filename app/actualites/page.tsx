@@ -119,13 +119,15 @@ export default async function ActualitesPage() {
               <Link href={`/actualites/${latestArticle.slug}`} className="block group">
                 <article className="border border-border bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
                   {latestArticle.image && (
-                    <OptimizedImage 
-                      src={latestArticle.image} 
-                      alt="" 
-                      className="w-full aspect-square md:aspect-[16/9] object-cover"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 1200px"
-                    />
+                    <div className="relative w-full aspect-square md:aspect-[16/9]">
+                      <OptimizedImage 
+                        src={latestArticle.image} 
+                        alt="" 
+                        className="object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 1200px"
+                      />
+                    </div>
                   )}
                   <div className="p-8">
                     <div className="flex items-center gap-4 mb-4">
