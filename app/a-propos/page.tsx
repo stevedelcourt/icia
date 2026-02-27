@@ -110,11 +110,11 @@ function ParticlesMesh() {
               left: line.x1,
               top: line.y1,
               width: length,
-              height: 3,
-              background: 'rgba(255,255,255,0.5)',
+              height: 2.5,
+              background: 'rgba(255,255,255,0.75)',
               transform: `rotate(${angle}deg)`,
               transformOrigin: 'left center',
-              opacity: line.opacity * 0.5
+              opacity: line.opacity * 0.75
             }}
           />
         )
@@ -125,12 +125,12 @@ function ParticlesMesh() {
           style={{
             left: p.x,
             top: p.y,
-            width: 4,
-            height: 4,
+            width: 6,
+            height: 6,
             position: 'absolute',
             background: 'white',
             borderRadius: '50%',
-            opacity: 0.9
+            opacity: 0.95
           }}
         />
       ))}
