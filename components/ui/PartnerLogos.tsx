@@ -11,17 +11,27 @@ interface Partner {
 
 export function PartnerLogos() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [partners, setPartners] = useState<Partner[] | null>(null)
+  const [partners, setPartners] = useState<Partner[]>([])
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
 
   useEffect(() => {
-    // Load immediately - no lazy loading for above-the-fold content
-    fetch('/api/partners')
+    // Try to load from static JSON first (for static export)
+    fetch('/partners.json')
       .then(r => r.json())
-      .then(setPartners)
-      .catch(() => setPartners([]))
+      .then(data => {
+        if (data && data.length > 0) {
+          setPartners(data)
+        }
+      })
+      .catch(() => {
+        // Fallback to API (for Vercel)
+        fetch('/api/partners')
+          .then(r => r.json())
+          .then(setPartners)
+          .catch(() => setPartners([]))
+      })
   }, [])
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -42,7 +52,7 @@ export function PartnerLogos() {
     }
   }
 
-  if (!partners || partners.length === 0) {
+  if (partners.length === 0) {
     return (
       <section className="relative overflow-hidden py-8 bg-[#00255D]">
         <div className="h-28 flex items-center justify-center">
@@ -104,6 +114,7 @@ export function PartnerLogos() {
                   height={140}
                   className="h-28 w-auto object-contain"
                   priority={index < partners.length}
+                  unoptimized={partner.logo.startsWith('http')}
                 />
               </a>
             ) : (
@@ -114,6 +125,7 @@ export function PartnerLogos() {
                 height={140}
                 className="h-28 w-auto object-contain"
                 priority={index < partners.length}
+                unoptimized={partner.logo.startsWith('http')}
               />
             )}
           </div>
