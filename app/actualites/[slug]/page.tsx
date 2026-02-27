@@ -13,16 +13,13 @@ function getLocalImageUrl(slug: string, imageUrl: string): string {
   if (!imageUrl || !slug) return imageUrl
   
   try {
+    const cleanSlug = slug.toLowerCase().replace(/[^a-z0-9]/g, '-')
     const ext = path.extname(new URL(imageUrl).pathname) || '.jpg'
-    const localPath = `/articles/${slug}${ext}`
-    const fullPath = path.join(process.cwd(), 'public', localPath)
-    
-    if (fs.existsSync(fullPath)) {
-      return localPath
-    }
-  } catch {}
-  
-  return imageUrl
+    const localPath = `/articles/${cleanSlug}${ext}`
+    return localPath
+  } catch {
+    return imageUrl
+  }
 }
 
 export async function generateStaticParams() {
@@ -164,7 +161,8 @@ async function getArticles() {
     const articles = await Promise.all(data.results.map(async (page: any) => {
       const props = page.properties
       const content = await getPageContent(page.id)
-      const slug = getRichText(props.Slug)
+      const rawSlug = getRichText(props.Slug)
+      const slug = rawSlug.toLowerCase().replace(/[^a-z0-9]/g, '-')
       const imageUrl = getImageUrl(props.Image) || getImageUrl(props.Media) || ''
       return {
         slug,
@@ -185,15 +183,16 @@ async function getArticles() {
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+  const rawSlug = await params
+  const urlSlug = rawSlug.slug.toLowerCase().replace(/[^a-z0-9]/g, '-')
   const allArticles = await getArticles()
   
   const sortedArticles = allArticles
     .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
   
-  const article = sortedArticles.find((a: any) => a.slug === slug)
+  const article = sortedArticles.find((a: any) => a.slug === urlSlug)
   
-  const currentIndex = sortedArticles.findIndex((a: any) => a.slug === slug)
+  const currentIndex = sortedArticles.findIndex((a: any) => a.slug === urlSlug)
   
   const prevArticle = currentIndex < sortedArticles.length - 1 ? sortedArticles[currentIndex + 1] : null
   const nextArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null
