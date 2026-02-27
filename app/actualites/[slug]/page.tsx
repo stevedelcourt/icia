@@ -4,8 +4,26 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
+import fs from 'fs'
+import path from 'path'
 
 export const dynamicParams = true
+
+function getLocalImageUrl(slug: string, imageUrl: string): string {
+  if (!imageUrl || !slug) return imageUrl
+  
+  try {
+    const ext = path.extname(new URL(imageUrl).pathname) || '.jpg'
+    const localPath = `/articles/${slug}${ext}`
+    const fullPath = path.join(process.cwd(), 'public', localPath)
+    
+    if (fs.existsSync(fullPath)) {
+      return localPath
+    }
+  } catch {}
+  
+  return imageUrl
+}
 
 export async function generateStaticParams() {
   const NOTION_KEY = process.env.NOTION_KEY
@@ -146,13 +164,15 @@ async function getArticles() {
     const articles = await Promise.all(data.results.map(async (page: any) => {
       const props = page.properties
       const content = await getPageContent(page.id)
+      const slug = getRichText(props.Slug)
+      const imageUrl = getImageUrl(props.Image) || getImageUrl(props.Media) || ''
       return {
-        slug: getRichText(props.Slug),
+        slug,
         title: getRichText(props.Titre),
         excerpt: getRichText(props.Excerpt),
         category: props.Category?.select?.name || '',
         date: props.Date?.date?.start || '',
-        image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
+        image: getLocalImageUrl(slug, imageUrl),
         articleField: getRichText(props.Article),
         content: content
       }

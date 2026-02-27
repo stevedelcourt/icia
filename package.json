@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/download-images.js",
     "dev": "next dev",
     "build": "next build",
     "build:export": "NEXT_EXPORT=true next build",

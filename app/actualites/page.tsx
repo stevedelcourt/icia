@@ -4,9 +4,27 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import { OptimizedImage, getResponsiveUrl } from '@/components/ui/OptimizedImage'
+import fs from 'fs'
+import path from 'path'
 
 const NOTION_KEY = process.env.NOTION_KEY
 const NOTION_DB = process.env.NOTION_DB || '306d314b3ef080d58c4ec5bd85683d73'
+
+function getLocalImageUrl(slug: string, imageUrl: string): string {
+  if (!imageUrl || !slug) return imageUrl
+  
+  try {
+    const ext = path.extname(new URL(imageUrl).pathname) || '.jpg'
+    const localPath = `/articles/${slug}${ext}`
+    const fullPath = path.join(process.cwd(), 'public', localPath)
+    
+    if (fs.existsSync(fullPath)) {
+      return localPath
+    }
+  } catch {}
+  
+  return imageUrl
+}
 
 async function getArticles() {
   if (!NOTION_KEY) return []
@@ -51,13 +69,15 @@ async function getArticles() {
 
     return data.results.map((page: any) => {
       const props = page.properties
+      const slug = props.Slug?.rich_text?.[0]?.plain_text || ''
+      const imageUrl = getImageUrl(props.Image) || getImageUrl(props.Media) || ''
       return {
-        slug: props.Slug?.rich_text?.[0]?.plain_text || '',
+        slug,
         title: props.Titre?.rich_text?.[0]?.plain_text || '',
         excerpt: props.Excerpt?.rich_text?.[0]?.plain_text || '',
         category: props.Category?.select?.name || '',
         date: props.Date?.date?.start || '',
-        image: getImageUrl(props.Image) || getImageUrl(props.Media) || '',
+        image: getLocalImageUrl(slug, imageUrl),
         content: props.Article?.title?.[0]?.plain_text || ''
       }
     }).filter((a: any) => a.slug)
