@@ -14,17 +14,17 @@ function getLocalImageUrl(slug: string, imageUrl: string): string {
   if (!imageUrl || !slug) return imageUrl
   
   try {
-    // Clean slug to match downloaded files
     const cleanSlug = slug.toLowerCase().replace(/[^a-z0-9]/g, '-')
     const ext = path.extname(new URL(imageUrl).pathname) || '.jpg'
     const localPath = `/articles/${cleanSlug}${ext}`
+    const fullPath = path.join(process.cwd(), 'public', localPath)
     
-    // During build, check if file exists
-    // Return local path - it will work if file exists
-    return localPath
-  } catch {
-    return imageUrl
-  }
+    if (fs.existsSync(fullPath)) {
+      return localPath
+    }
+  } catch {}
+  
+  return imageUrl
 }
 
 async function getArticles() {
@@ -70,7 +70,7 @@ async function getArticles() {
 
     return data.results.map((page: any) => {
       const props = page.properties
-      const slug = (props.Slug?.rich_text?.[0]?.plain_text || '').toLowerCase().replace(/[^a-z0-9]/g, '-')
+      const slug = props.Slug?.rich_text?.[0]?.plain_text || ''
       const imageUrl = getImageUrl(props.Image) || getImageUrl(props.Media) || ''
       return {
         slug,
