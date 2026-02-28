@@ -40,7 +40,7 @@ export default function PartenairesPage() {
               <ScaleIn delay={0.3}>
                 <p className="text-body text-text-muted">
                   L'ICIA remercie ses partenaires qui soutiennent notre mission : rendre l'intelligence 
-                  artificielle accessible a tous. Ensemble, nous construisons un ecosysteime innovant 
+                  artificielle accessible a tous. Ensemble, nous construisons un ecosysteime innovante 
                   et responsable.
                 </p>
               </ScaleIn>
