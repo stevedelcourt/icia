@@ -1,304 +1,49 @@
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
-import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
-
-const accompagnementNav = [
-  { label: 'Citoyen', href: '/accompagnements/citoyens' },
-  { label: 'Entreprises', href: '/accompagnements/entreprises' },
-  { label: 'Écoles & Universités', href: '/accompagnements/education' },
-  { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
-  { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics' },
-]
-
-const programme = [
-  {
-    num: '01',
-    title: 'Programmes d\'IA inclusive',
-    description: 'Lutter contre la fracture numérique et garantir que chacun puisse bénéficier des avancées de l\'IA. Programmes de sensibilisation et accompagnements pour les publics éloignés du numérique.',
-    items: ['Ateliers dans les territoires (QPV, zones rurales)', 'Formations pour agents publics', 'Accompagnement des associations locales', 'Accessibilité des services IA', 'Inclusion des personnes âgées'],
-    cta: 'En savoir plus',
-    subject: 'inclusion',
-  },
-  {
-    num: '02',
-    title: 'Remobilisation professionnelle',
-    description: 'Accompagner les agents publics et demandeurs d\'emploi vers les métiers de l\'IA. Diagnostics de compétences, formations certifiantes et mise en relation avec les employeurs du territoire.',
-    items: ['Bilan de compétences IA', 'Parcours de formation certifiante', 'Certification professionnelle reconnue', 'Partenariats employeurs locaux', 'Suivi post-formation individualisé'],
-  },
-  {
-    num: '03',
-    title: 'Transformation des services publics',
-    description: 'Aider les administrations à identifier les cas d\'usage de l\'IA pour améliorer les services aux citoyens. Efficacité administrative, simplification des démarches et qualité du service.',
-    items: ['Diagnostic des processus administratifs', 'Identification et priorisation des cas d\'usage', 'Accompagnement au changement', 'Formation des agents à l\'IA', 'Éthique, transparence et évaluation d\'impact'],
-    cta: 'Planifier un diagnostic',
-    subject: 'services-publics',
-  },
-  {
-    num: '04',
-    title: 'Observatoire territorial',
-    description: 'Un observatoire pour suivre l\'adoption de l\'IA dans les territoires français. Données, analyses et recommandations pour aider les décideurs à piloter la transformation numérique.',
-    items: ['50+ indicateurs suivis en continu', '13 régions couvertes', '4 rapports annuels publiés', 'Tableaux de bord personnalisés par territoire'],
-    cta: 'Accéder à l\'observatoire',
-    subject: 'observatoire',
-  },
-]
-
-const processSteps = [
-  { num: '01', title: 'Cadrage territorial', description: 'Comprendre vos spécificités, vos publics et les enjeux propres à votre territoire.' },
-  { num: '02', title: 'Plan d\'action', description: 'Co-construction d\'une feuille de route adaptée à vos contraintes budgétaires et calendaires.' },
-  { num: '03', title: 'Déploiement', description: 'Mise en œuvre des programmes sur le terrain avec nos équipes dédiées aux territoires.' },
-  { num: '04', title: 'Reporting & pilotage', description: 'Tableaux de bord et rapports réguliers pour suivre l\'impact et ajuster les actions.' },
-]
-
-const otherPublics = [
-  { label: 'Citoyen', href: '/accompagnements/citoyens', active: false },
-  { label: 'Entreprises', href: '/accompagnements/entreprises', active: false },
-  { label: 'Écoles & Universités', href: '/accompagnements/education', active: false },
-  { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs', active: false },
-  { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics', active: true },
-]
-
-const accentColor = '#00255D'
 
 export default function PouvoirsPublicsPage() {
   return (
     <>
       <Header />
-      <main id="main-content">
-        {/* Breadcrumb & Nav */}
-        <div className="pt-20 border-b border-border bg-ivory-light">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 flex items-center gap-2 text-sm text-slate-dark/50">
-            <Link href="/" className="hover:text-slate-dark transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/accompagnements" className="hover:text-slate-dark transition-colors">Accompagnements</Link>
-            <span>/</span>
-            <span className="text-slate-dark font-medium">Pouvoirs publics</span>
-          </div>
-          <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <div className="flex gap-1 overflow-x-auto pb-0 -mb-px">
-              {accompagnementNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-                    item.href === '/accompagnements/pouvoirs-publics'
-                      ? 'border-slate-dark text-slate-dark'
-                      : 'border-transparent text-slate-dark/50 hover:text-slate-dark hover:border-border'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+      <main className="pt-32 pb-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+            <div>
+              <p className="text-xs tracking-widest text-[#666666] uppercase mb-6">Accompagnements</p>
+              <h1 className="text-4xl md:text-5xl font-serif text-black leading-tight mb-6">
+                Pouvoirs publics
+              </h1>
+              <p className="text-lg text-[#666666] mb-8">
+                Faire de l'IA un levier de service public, dans un cadre ethique et souverain. AMO IA, programme PRIAM, acculturation des agents.
+              </p>
+              <Link href="/contact" className="inline-block px-8 py-4 text-white bg-black hover:bg-black/80 transition-colors">
+                Nous contacter
+              </Link>
+            </div>
+            <div>
+              <img src="/images/podium.webp" alt="Pouvoirs publics" className="w-full" />
             </div>
           </div>
-        </div>
 
-        {/* Hero */}
-        <section className="relative bg-ivory-light overflow-hidden">
-          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(107,122,139,0.15) 0%, transparent 50%)' }} />
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-          <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <div className="grid md:grid-cols-2 gap-0">
-              <div className="py-16 md:py-24 pr-8">
-                <FadeIn>
-                  <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
-                    <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
-                    Pouvoirs publics & Collectivités
-                  </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
-                    Inclusion,<br />
-                    transformation<br />
-                    et <span style={{ color: accentColor }}>pilotage</span><br />
-                    territorial
-                  </h1>
-                  <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    Faire de l'IA un levier de service public, dans un cadre éthique et souverain. AMO IA, programme PRIAM, acculturation des agents — avec des enjeux d'éthique et de transparence.
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <Button href="/contact?subject=partnership&target=publics" variant="primary" size="lg">
-                      Discuter de votre projet
-                    </Button>
-                    <Button href="#programmes" variant="ghost">
-                      Découvrir
-                    </Button>
-                  </div>
-                </FadeIn>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <div className="grid md:grid-cols-5 border-b border-border">
-          <div className="p-6 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>4</span>
-            </div>
-            <p className="text-slate-dark/50 text-sm">programmes</p>
-          </div>
-          <div className="p-6 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>13</span>
-            </div>
-            <p className="text-slate-dark/50 text-sm">régions</p>
-          </div>
-          <div className="p-6 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>50+</span>
-            </div>
-            <p className="text-slate-dark/50 text-sm">indicateurs</p>
-          </div>
-          <div className="p-6 border-r border-border bg-white text-center">
-            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>PRIAM</span>
-            </div>
-            <p className="text-slate-dark/50 text-sm">marché public</p>
-          </div>
-          <div className="p-6 bg-white text-center">
-            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              20–100k<span style={{ color: accentColor }}>€</span>
-            </div>
-            <p className="text-slate-dark/50 text-sm">par mission</p>
-          </div>
-        </div>
-
-        {/* Programmes */}
-        <Section id="programmes" className="bg-ivory-light border-t border-border">
-          <FadeIn>
-            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-slate-dark/50">
-              <span className="w-6 h-px bg-slate-dark/20"></span>
-              Nos programmes
-            </div>
-            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Quatre axes pour<br />les pouvoirs publics</h2>
-          </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-2 border border-border">
-              {programme.map((prog) => (
-                <StaggerItem key={prog.num} className="p-8 border-r border-b border-border hover:bg-white transition-colors relative">
-                  <span className="absolute top-6 right-8 text-5xl font-bold text-slate-dark/5 pointer-events-none">{prog.num}</span>
-                  <h3 className="text-xl font-bold mb-3 text-slate-dark">{prog.title}</h3>
-                  <p className="text-slate-dark/60 text-sm mb-4 leading-relaxed">{prog.description}</p>
-                  <ul className="space-y-1 mb-6">
-                    {prog.items.map((item) => (
-                      <li key={item} className="text-sm flex items-start gap-2 text-slate-dark/60">
-                        <span className="font-bold" style={{ color: accentColor }}>—</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {prog.cta && (
-                    <Link href={`/contact?subject=${prog.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-slate-dark/10 pb-0.5 hover:border-slate-dark/30 transition-colors group" style={{ color: accentColor }}>
-                      {prog.cta}
-                      <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
-                    </Link>
-                  )}
-                </StaggerItem>
-              ))}
-            </div>
-          </Stagger>
-        </Section>
-
-        {/* Observatoire */}
-        <div className="bg-ivory-medium border-t-2" style={{ borderColor: accentColor }}>
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="border-t border-[#E5E5E5] pt-16">
+            <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-12">Notre approche</h2>
+            <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-slate-dark/50">
-                  <span className="w-6 h-px bg-slate-dark/30"></span>
-                  Observatoire territorial
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-dark">Le pouls de l'IA<br />dans les territoires</h2>
-                <p className="text-slate-dark/50 leading-relaxed max-w-md">
-                  Un outil de pilotage unique pour les décideurs publics : suivi de l'adoption de l'IA, identification des inégalités territoriales et recommandations personnalisées.
-                </p>
+                <h3 className="text-lg font-serif text-black mb-2">Inclusion</h3>
+                <p className="text-sm text-[#666666]">Lutter contre la fracture numerique et garantir que chacun puisse beneficier des avancees de l'IA.</p>
               </div>
-              <div className="grid grid-cols-3 gap-px bg-border">
-                <div className="p-6 bg-white hover:bg-slate-50 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-slate-dark">
-                    <span style={{ color: accentColor }}>50</span>+
-                  </div>
-                  <p className="text-slate-dark/50 text-sm">indicateurs suivis en continu</p>
-                </div>
-                <div className="p-6 bg-white hover:bg-slate-50 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-slate-dark">
-                    <span style={{ color: accentColor }}>13</span>
-                  </div>
-                  <p className="text-slate-dark/50 text-sm">régions françaises couvertes</p>
-                </div>
-                <div className="p-6 bg-white hover:bg-slate-50 transition-colors">
-                  <div className="text-3xl md:text-4xl font-bold mb-1 text-slate-dark">
-                    <span style={{ color: accentColor }}>4</span>
-                  </div>
-                  <p className="text-slate-dark/50 text-sm">rapports annuels publiés</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Process */}
-        <Section className="bg-ivory-medium">
-          <FadeIn>
-            <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-4 text-slate-dark/50">
-              <span className="w-6 h-px bg-slate-dark/20"></span>
-              Notre approche
-            </div>
-            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Un accompagnement<br />respectueux de vos contraintes</h2>
-          </FadeIn>
-          <Stagger>
-            <div className="grid md:grid-cols-4 border border-border">
-              {processSteps.map((step) => (
-                <StaggerItem key={step.num} className="p-6 border-r border-b border-border hover:bg-white transition-colors">
-                  <span className="text-xs font-bold tracking-widest uppercase block mb-3" style={{ color: accentColor }}>{step.num}</span>
-                  <h4 className="font-bold mb-2 text-slate-dark">{step.title}</h4>
-                  <p className="text-slate-dark/50 text-sm leading-relaxed">{step.description}</p>
-                </StaggerItem>
-              ))}
-            </div>
-          </Stagger>
-        </Section>
-
-        {/* Pages Nav */}
-        <div className="bg-ivory-light border-y border-border">
-          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3">
-            <div className="flex gap-1 overflow-x-auto">
-              <span className="px-4 py-3 text-sm font-medium text-slate-dark/50 whitespace-nowrap">Autres publics</span>
-              {otherPublics.map((pub) => (
-                <Link
-                  key={pub.href}
-                  href={pub.href}
-                  className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-                    pub.active
-                      ? 'border-slate-dark text-slate-dark'
-                      : 'border-transparent text-slate-dark/50 hover:text-slate-dark hover:border-border'
-                  }`}
-                >
-                  {pub.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <Section className="bg-ivory-light">
-          <FadeIn>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div>
-                <h2 className="text-3xl md:text-4xl mb-3 text-slate-dark">Parlons de votre projet</h2>
-                <p className="text-slate-dark/60 max-w-xl">
-                  Vous êtes élu, directeur d'administration ou responsable de service public ? Discutons de votre projet d'IA et de la façon dont l'ICIA peut vous accompagner.
-                </p>
+                <h3 className="text-lg font-serif text-black mb-2">Transformation</h3>
+                <p className="text-sm text-[#666666]">Aider les administrations a identifier les cas d'usage de l'IA pour ameliorer les services aux citoyens.</p>
               </div>
-              <Button href="/contact?subject=partnership&target=publics" variant="primary" size="lg">
-                  Nous contacter
-                </Button>
+              <div>
+                <h3 className="text-lg font-serif text-black mb-2">Pilotage</h3>
+                <p className="text-sm text-[#666666]">Un observatoire pour suivre l'adoption de l'IA dans les territoires francais.</p>
+              </div>
             </div>
-          </FadeIn>
-        </Section>
+          </div>
+        </div>
       </main>
       <Footer />
     </>
