@@ -43,11 +43,11 @@ const config: Config = {
         'focus': '#023D87',
         'error': '#D92A1C',
         // System colors
-        'bg': '#FAFAF7',
+        'bg': '#FFFFFF',
         'bg-card': '#FFFFFF',
         'text': '#191919',
-        'text-muted': '#666663',
-        'border': '#E5E4DF',
+        'text-muted': '#666666',
+        'border': '#E5E5E5',
         // Semantic aliases
         'accent': '#00255D',
         'accent-hover': '#001A3A',
