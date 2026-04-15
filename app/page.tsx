@@ -8,32 +8,43 @@ export default function Home() {
       <Header />
       <main className="pt-24">
         <section className="min-h-[80vh] flex items-center">
-          <div className="max-w-4xl mx-auto px-6 py-24">
-            <p className="text-sm tracking-widest text-[#666666] uppercase mb-8">Institut de l'IA</p>
-            
-            <h1 className="text-5xl md:text-7xl font-serif text-[#00255D] leading-[1.1] mb-12">
-              Nous ne vendons<br />
-              pas de l'IA.
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-[#666666] mb-16 max-w-2xl leading-relaxed">
-              Nous aidons à en faire un avantage pour tous.
-            </p>
-            
-            <p className="text-base text-[#666666] max-w-xl leading-relaxed mb-6">
-              L'IA transforme toutes les organisations. Il manque un partenaire de confiance, capable de dire : quoi faire, dans quel ordre, avec quel risque.
-            </p>
-            
-            <p className="text-sm text-[#00255D] italic mb-16 max-w-lg">
-              "Quand vous faites construire une maison, vous ne choisissez pas votre architecte parce qu'il sait poser des parpaings. Vous le choisissez parce qu'il comprend ce que vous voulez construire, et qu'il ne vous lâche pas avant que ce soit parfait."
-            </p>
-            
-            <Link 
-              href="/contact"
-              className="inline-block px-8 py-4 text-white bg-[#00255D] hover:bg-[#001A3A] transition-colors"
-            >
-              Nous contacter
-            </Link>
+          <div className="max-w-6xl mx-auto px-6 py-24 w-full">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-sm tracking-widest text-[#666666] uppercase mb-8">Institut de l'IA · Campus Cyber.AI, Marseille</p>
+                
+                <h1 className="text-5xl md:text-7xl font-serif text-black leading-[1.1] mb-12">
+                  Nous ne vendons<br />
+                  pas de l'IA.
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-[#666666] mb-12 max-w-xl leading-relaxed">
+                  Nous aidons à en faire un avantage pour tous.
+                </p>
+                
+                <p className="text-base text-[#666666] max-w-xl leading-relaxed mb-6">
+                  L'IA transforme toutes les organisations. Il manque un partenaire de confiance, capable de dire : quoi faire, dans quel ordre, avec quel risque.
+                </p>
+                
+                <p className="text-sm text-black italic mb-12 max-w-lg">
+                  "Quand vous faites construire une maison, vous ne choisissez pas votre architecte parce qu'il sait poser des parpaings. Vous le choisissez parce qu'il comprend ce que vous voulez construire, et qu'il ne vous lâche pas avant que ce soit parfait."
+                </p>
+                
+                <Link 
+                  href="/contact"
+                  className="inline-block px-8 py-4 text-white bg-black hover:bg-black/80 transition-colors"
+                >
+                  Nous contacter
+                </Link>
+              </div>
+              <div className="relative">
+                <img 
+                  src="/images/podium.webp" 
+                  alt="Institut de l'IA" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
