@@ -3,14 +3,11 @@ import Link from 'next/link'
 
 const footerLinks = {
   navigation: [
-    { label: 'Accompagnements', href: '/accompagnements' },
-    { label: 'Think Tank IA', href: '/think-tank' },
-    { label: 'Réseau & Lieu', href: '/reseau-lieu' },
-    { label: 'Plateforme numérique', href: '/plateforme-numerique' },
     { label: 'À propos', href: '/a-propos' },
+    { label: 'Offres', href: '/offres' },
+    { label: 'Accompagnements', href: '/accompagnements' },
     { label: 'Actualités', href: '/actualites' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Partenaires', href: '/partenaires' },
   ],
   legal: [
     { label: 'Mentions légales', href: '/mentions-legales' },

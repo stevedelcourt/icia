@@ -8,17 +8,10 @@ import { Button } from '@/components/ui/Button'
 
 const accompagnements = [
   { label: 'Citoyens', href: '/accompagnements/citoyens' },
-  { label: 'Entreprises', href: '/accompagnements/entreprises' },
+  { label: 'PME / ETI', href: '/accompagnements/pme-eti' },
   { label: 'Écoles et Universités', href: '/accompagnements/education' },
   { label: 'Secteurs créatifs', href: '/accompagnements/secteurs-creatifs' },
   { label: 'Pouvoirs publics', href: '/accompagnements/pouvoirs-publics' },
-]
-
-const aProposItems = [
-  { label: 'Réseau et Lieu', href: '/reseau-lieu' },
-  { label: 'Plateforme', href: '/plateforme-numerique' },
-  { label: 'Think Tank IA', href: '/think-tank' },
-  { label: 'Partenaires', href: '/partenaires' },
 ]
 
 type NavItem = {
@@ -187,15 +180,7 @@ export function Header() {
                       transition={{ duration: 0.15 }}
                       className="absolute top-full left-0 mt-2 w-56 bg-white border border-border shadow-lg"
                     >
-                      {item.key === 'apropos' ? aProposItems.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          className="block px-4 py-3 text-base text-text hover:bg-bg hover:underline hover:decoration-[#D92A1C] hover:decoration-2 hover:underline-offset-4 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                        >
-                          {subItem.label}
-                        </Link>
-                      )) : accompagnements.map((subItem) => (
+                      {accompagnements.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
@@ -263,20 +248,18 @@ export function Header() {
                     className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    À propos de l'institut IA
+                    À propos
                   </Link>
-                  <div className="pl-4 space-y-2 mt-2">
-                    {aProposItems.map((item, i) => (
-                      <Link
-                        key={item.href}
-                        href={item.href} 
-                        className="block py-2 text-lg text-text-muted hover:text-text hover:underline underline-offset-4 transition-all"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+                </motion.div>
+
+                <motion.div variants={itemVariants}>
+                  <Link 
+                    href="/offres" 
+                    className="block py-3 text-2xl font-bold text-text hover:underline underline-offset-4"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Offres
+                  </Link>
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
