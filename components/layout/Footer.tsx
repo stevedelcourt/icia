@@ -10,7 +10,7 @@ export function Footer() {
           </div>
           
           <nav className="flex flex-wrap justify-center gap-8">
-            {['offres', 'accompagnements', 'actualites', 'contact'].map((item) => (
+            {['offres', 'acteurs', 'actualites', 'contact'].map((item) => (
               <Link 
                 key={item}
                 href={`/${item}`}

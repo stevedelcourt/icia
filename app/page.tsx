@@ -116,13 +116,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-[#F97316]">
+        <section className="h-[30px] bg-[#F97316] flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <p className="text-white">
-              <span className="font-medium">AI Act en vigueur en août 2026</span>
-              <span className="mx-4">·</span>
-              <span className="opacity-80">Obligations réglementaires, classification des systèmes IA</span>
-            </p>
+            <p className="text-white text-sm"><span className="font-medium">AI Act en vigueur en août 2026</span> · <span className="opacity-80">Obligations réglementaires, classification des systèmes IA</span></p>
           </div>
         </section>
       </main>
