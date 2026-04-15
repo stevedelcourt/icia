@@ -25,36 +25,31 @@ function Logo() {
 
   return (
     <Link href="/" className="flex items-center">
-      <div className="relative h-16 w-auto">
-        <AnimatePresence mode="wait">
-          {isScrolled ? (
-            <motion.div
-              key="triangle"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <svg viewBox="0 0 60 70" className="h-full w-auto">
-                <path d="M30 0L60 70H0L30 0Z" fill="#00255D"/>
-                <text x="30" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">A</text>
-              </svg>
-            </motion.div>
-          ) : (
-            <motion.img
-              key="full"
-              src="/logo-black-arch.svg"
-              alt="ICIA"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="h-full w-auto"
-            />
-          )}
-        </AnimatePresence>
-      </div>
+      <AnimatePresence mode="wait">
+        {isScrolled ? (
+          <motion.img
+            key="short"
+            src="/logo-black-short.svg"
+            alt="ICIA"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="h-8 w-auto"
+          />
+        ) : (
+          <motion.img
+            key="full"
+            src="/logo-black-arch.svg"
+            alt="ICIA"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="h-14 w-auto"
+          />
+        )}
+      </AnimatePresence>
     </Link>
   )
 }
