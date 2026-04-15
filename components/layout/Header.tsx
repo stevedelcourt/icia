@@ -39,7 +39,7 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <img src="/logo-black-arch.svg" alt="ICIA" className="h-7 w-auto" />
+          <img src="/logo-black-arch.svg" alt="ICIA" className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-10">
