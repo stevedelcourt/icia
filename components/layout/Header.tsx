@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { label: 'À propos', href: '/a-propos' },
   { label: 'Offres', href: '/offres' },
   { label: 'Accompagnements', href: '/accompagnements' },
   { label: 'Actualités', href: '/actualites' },
