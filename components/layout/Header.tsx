@@ -25,31 +25,24 @@ function Logo() {
 
   return (
     <Link href="/" className="flex items-center">
-      <AnimatePresence mode="wait">
-        {isScrolled ? (
-          <motion.img
-            key="short"
-            src="/logo-black-short.svg"
-            alt="ICIA"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="h-8 w-auto"
-          />
-        ) : (
-          <motion.img
-            key="full"
-            src="/logo-black-arch.svg"
-            alt="ICIA"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="h-14 w-auto"
-          />
-        )}
-      </AnimatePresence>
+      <div className="relative h-10 w-[160px]">
+        <motion.img
+          src="/logo-black-arch.svg"
+          alt="ICIA"
+          className="absolute inset-0 h-full w-auto object-contain"
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: isScrolled ? 0 : 1, scale: isScrolled ? 0.95 : 1 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        />
+        <motion.img
+          src="/logo-black-short.svg"
+          alt="ICIA"
+          className="absolute inset-0 h-full w-auto object-contain"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: isScrolled ? 1 : 0, scale: isScrolled ? 1 : 0.95 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        />
+      </div>
     </Link>
   )
 }
