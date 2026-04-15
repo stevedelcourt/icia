@@ -12,6 +12,47 @@ const navItems = [
   { label: 'Actualités', href: '/actualites' },
 ]
 
+function Logo() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <Link href="/" className="flex items-center">
+      <div className="relative overflow-hidden" style={{ width: isScrolled ? '36px' : '160px', height: '32px', transition: 'width 0.3s ease' }}>
+        <img 
+          src="/logo-black.svg" 
+          alt="ICIA" 
+          className="absolute left-0 top-0 h-full w-auto"
+          style={{ width: '160px', maxWidth: 'none' }}
+        />
+        <AnimatePresence>
+          {isScrolled && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 top-0 h-full flex items-center"
+            >
+              <svg viewBox="0 0 40 45" className="h-full w-auto">
+                <path d="M20 0L40 45H0L20 0Z" fill="#00255D"/>
+              </svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </Link>
+  )
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -49,9 +90,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <img src="/logo-black.svg" alt="ICIA" className="h-8 w-auto" />
-        </Link>
+        <Logo />
 
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
