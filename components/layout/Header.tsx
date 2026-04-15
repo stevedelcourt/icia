@@ -12,6 +12,54 @@ const navItems = [
   { label: 'Actualités', href: '/actualites' },
 ]
 
+function Logo() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <Link href="/" className="flex items-center">
+      <div className="relative h-16 w-auto">
+        <AnimatePresence mode="wait">
+          {isScrolled ? (
+            <motion.div
+              key="triangle"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <svg viewBox="0 0 60 70" className="h-full w-auto">
+                <path d="M30 0L60 70H0L30 0Z" fill="#00255D"/>
+                <text x="30" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">A</text>
+              </svg>
+            </motion.div>
+          ) : (
+            <motion.img
+              key="full"
+              src="/logo-black-arch.svg"
+              alt="ICIA"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="h-full w-auto"
+            />
+          )}
+        </AnimatePresence>
+      </div>
+    </Link>
+  )
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -34,13 +82,11 @@ export function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
-        isScrolled ? 'shadow-sm py-4' : 'py-6'
+        isScrolled ? 'shadow-sm py-3' : 'py-4'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <img src="/logo-black-arch.svg" alt="ICIA" className="h-14 w-auto" />
-        </Link>
+        <Logo />
 
         <nav className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (

@@ -116,7 +116,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-[#D92A1C]">
+        <section className="py-16 bg-[#F97316]">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <p className="text-white">
               <span className="font-medium">AI Act en vigueur en août 2026</span>
