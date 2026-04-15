@@ -100,7 +100,7 @@ export default function CitoyensPage() {
                 <FadeIn>
                   <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
-                    Grand public
+                    Grand public & Demandeurs d'emploi
                   </div>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Comprendre<br />
@@ -108,7 +108,7 @@ export default function CitoyensPage() {
                     <span style={{ color: accentColor }}>en sécurité</span>
                   </h1>
                   <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    L'ICIA propose des parcours adaptés aux particuliers pour mieux comprendre l'intelligence artificielle, se protéger des risques et développer ses compétences vers l'emploi.
+                    La fracture IA grandit sur le marché de l'emploi. L'ICIA vous aide à comprendre les outils IA du quotidien, vous protéger des risques, et valoriser vos compétences.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button href="/contact" variant="primary" size="lg">
@@ -125,22 +125,28 @@ export default function CitoyensPage() {
         </section>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 border-b border-border">
+        <div className="grid md:grid-cols-4 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>1 500</span>–2 500
             </div>
-            <p className="text-slate-dark/50 text-sm">personnes accompagnées par an</p>
+            <p className="text-slate-dark/50 text-sm">personnes/an</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">4</div>
-            <p className="text-slate-dark/50 text-sm">programmes complémentaires</p>
+            <p className="text-slate-dark/50 text-sm">parcours adaptés</p>
+          </div>
+          <div className="p-8 border-r border-border bg-white text-center">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
+              <span style={{ color: accentColor }}> CPF </span>
+            </div>
+            <p className="text-slate-dark/50 text-sm">France Travail</p>
           </div>
           <div className="p-8 bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>0€</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">pour tous les citoyens — accès entièrement gratuit</p>
+            <p className="text-slate-dark/50 text-sm">citoyens — accès gratuit</p>
           </div>
         </div>
 

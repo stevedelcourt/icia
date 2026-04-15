@@ -106,7 +106,7 @@ export default function PouvoirsPublicsPage() {
                 <FadeIn>
                   <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
-                    Secteur public
+                    Pouvoirs publics & Collectivités
                   </div>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Inclusion,<br />
@@ -115,7 +115,7 @@ export default function PouvoirsPublicsPage() {
                     territorial
                   </h1>
                   <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    L'ICIA accompagne les collectivités, administrations et établissements publics dans la compréhension et le déploiement de l'IA au service des citoyens et des agents.
+                    Faire de l'IA un levier de service public, dans un cadre éthique et souverain. AMO IA, programme PRIAM, acculturation des agents — avec des enjeux d'éthique et de transparence.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button href="/contact?subject=partnership&target=publics" variant="primary" size="lg">
@@ -132,30 +132,36 @@ export default function PouvoirsPublicsPage() {
         </section>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-4 border-b border-border">
-          <div className="p-8 border-r border-border bg-white text-center">
+        <div className="grid md:grid-cols-5 border-b border-border">
+          <div className="p-6 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>4</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">programmes complémentaires</p>
+            <p className="text-slate-dark/50 text-sm">programmes</p>
           </div>
-          <div className="p-8 border-r border-border bg-white text-center">
+          <div className="p-6 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>13</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">régions dans l'observatoire</p>
+            <p className="text-slate-dark/50 text-sm">régions</p>
           </div>
-          <div className="p-8 border-r border-border bg-white text-center">
+          <div className="p-6 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>50+</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">indicateurs territoriaux</p>
+            <p className="text-slate-dark/50 text-sm">indicateurs</p>
           </div>
-          <div className="p-8 bg-white text-center">
+          <div className="p-6 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>0€</span>
+              <span style={{ color: accentColor }}>PRIAM</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">pour les collectivités éligibles</p>
+            <p className="text-slate-dark/50 text-sm">marché public</p>
+          </div>
+          <div className="p-6 bg-white text-center">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
+              20–100k<span style={{ color: accentColor }}>€</span>
+            </div>
+            <p className="text-slate-dark/50 text-sm">par mission</p>
           </div>
         </div>
 

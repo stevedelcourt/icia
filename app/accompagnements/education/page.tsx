@@ -112,7 +112,7 @@ export default function EducationPage() {
                 <FadeIn>
                   <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: accentColor }}>
                     <span className="w-8 h-px" style={{ backgroundColor: accentColor }}></span>
-                    Éducation
+                    Écoles, CFA, Universités
                   </div>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
                     Former<br />
@@ -120,7 +120,7 @@ export default function EducationPage() {
                     de <span style={{ color: accentColor }}>demain</span>
                   </h1>
                   <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    L'ICIA accompagne les établissements d'enseignement dans l'intégration de l'IA : bibliothèque pédagogique, formation des enseignants, certifications et parcours accrédités.
+                    Vos étudiants utilisent déjà l'IA — souvent sans sécurité. Préparez-les au monde qui existe, pas à celui d'il y a 5 ans. Modules clés en main, financement OPCO possible.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button href="/contact?subject=education" variant="primary" size="lg">
@@ -137,24 +137,30 @@ export default function EducationPage() {
         </section>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 border-b border-border">
+        <div className="grid md:grid-cols-4 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>3</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">niveaux couverts : primaire, secondaire, supérieur</p>
+            <p className="text-slate-dark/50 text-sm">niveaux couverts</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>50+</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">fiches activités dans la bibliothèque</p>
+            <p className="text-slate-dark/50 text-sm">fiches activités</p>
+          </div>
+          <div className="p-8 border-r border-border bg-white text-center">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
+              3k–8k<span style={{ color: accentColor }}>€</span>
+            </div>
+            <p className="text-slate-dark/50 text-sm">par module</p>
           </div>
           <div className="p-8 bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>2</span> certifs
+              <span style={{ color: accentColor }}>OPCO</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">reconnues par les employeurs partenaires</p>
+            <p className="text-slate-dark/50 text-sm">financement possible</p>
           </div>
         </div>
 

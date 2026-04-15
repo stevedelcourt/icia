@@ -100,6 +100,22 @@ export default function Home() {
       </section>
 
       <main id="main-content" className="relative z-30 bg-gradient-to-b from-ivory-light to-white">
+        {/* AI Act Alert */}
+        <Section className="bg-navy py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-white text-lg mb-2">
+              <strong>L'AI Act entre en vigueur en août 2026.</strong>
+            </p>
+            <p className="text-white/70 mb-4">
+              Obligations réglementaires, classification des systèmes IA, sanctions... Êtes-vous prêt ?
+            </p>
+            <Link href="/accompagnements/entreprises#offres" className="inline-flex items-center gap-2 text-sm font-bold text-white border border-white/30 px-4 py-2 rounded-full hover:bg-white/10 transition-colors">
+              Diagnostiquer mon entreprise
+              <span>→</span>
+            </Link>
+          </div>
+        </Section>
+
         <Section spacing="normal">
           <FadeIn delay={0.1}>
             <div className="max-w-2xl">
@@ -108,7 +124,7 @@ export default function Home() {
               </h2>
               <ScaleIn delay={0.2}>
                 <p className="text-body text-text-muted mb-6 leading-relaxed">
-                  L'intelligence artificielle progresse tres vite, mais son appropriation reste inegale. Une grande partie de la population, des PME, des createurs, et des institutions n'a ni le temps, ni les reperes, ni les ressources pour l'utiliser de maniere eclairee et securisee.
+                  L'intelligence artificielle progresse très vite, mais son appropriation reste inégale. Une grande partie de la population, des PME, des créateurs, et des institutions n'a ni le temps, ni les repères, ni les ressources pour l'utiliser de manière éclairée et sécurisée.
                 </p>
               </ScaleIn>
               <ScaleIn delay={0.3}>

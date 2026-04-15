@@ -51,13 +51,13 @@ const programme = [
 const legalPanel = [
   {
     title: 'L\'IA et le droit d\'auteur',
-    description: 'Le cadre juridique de l\'IA créative évolue rapidement. L\'ICIA assure une veille constante et produit des ressources accessibles pour que les créateurs comprennent leurs droits et obligations.',
-    items: ['AI Act européen et ses implications pour les créateurs', 'Droits sur les œuvres générées par IA', 'Protection des œuvres humaines face aux IA', 'Contrats et licences dans l\'économie IA'],
+    description: 'Questions non résolues sur droits d\'auteur et propriété intellectuelle. L\'ICIA assure une veille constante et produit des ressources accessibles.',
+    items: ['AI Act européen et ses implications', 'Droits sur les œuvres générées par IA', 'Protection des œuvres humaines', 'Cadre légal et contrats'],
   },
   {
     title: 'Notre positionnement',
-    description: 'L\'ICIA défend une vision de l\'IA comme outil au service de la créativité humaine — non comme son remplacement. Nos programmes sont pensés pour augmenter les créateurs, pas les supplanter.',
-    items: ['L\'humain reste auteur et décisionnaire', 'Transparence sur l\'usage des outils IA', 'Respect de la diversité créative', 'Dialogue avec les organisations professionnelles'],
+    description: 'L\'IA n\'est pas là pour vous remplacer. Elle est là pour vous donner des super pouvoirs — si vous la maîtrisez.',
+    items: ['L\'humain reste auteur et décisionnaire', 'Transparence sur l\'usage des outils', 'Respect de la diversité créative', 'Espace neutre pour tester'],
   },
 ]
 
@@ -129,7 +129,7 @@ export default function SecteursCreatifsPage() {
                     son <span style={{ color: accentColor }}>identite</span>
                   </h1>
                   <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    L'ICIA accompagne les acteurs des industries créatives dans l'adoption de l'IA — ateliers pratiques, protection juridique et laboratoire d'innovation créative.
+                    L'IA génère disruption rapide sans cadre juridique clair. L'ICIA propose ateliers, sécurisation juridique et laboratoire pour expérimenter sereinement.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button href="/contact?subject=creatifs" variant="primary" size="lg">
@@ -160,24 +160,30 @@ export default function SecteursCreatifsPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 border-b border-border">
+        <div className="grid md:grid-cols-4 border-b border-border">
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>6</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">secteurs créatifs couverts</p>
+            <p className="text-slate-dark/50 text-sm">secteurs créatifs</p>
           </div>
           <div className="p-8 border-r border-border bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
               <span style={{ color: accentColor }}>4</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">types d'ateliers disponibles</p>
+            <p className="text-slate-dark/50 text-sm">programmes</p>
+          </div>
+          <div className="p-8 border-r border-border bg-white text-center">
+            <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
+              2–5k<span style={{ color: accentColor }}>€</span>
+            </div>
+            <p className="text-slate-dark/50 text-sm">par jour</p>
           </div>
           <div className="p-8 bg-white text-center">
             <div className="text-4xl md:text-5xl font-stats mb-2 text-slate-dark">
-              <span style={{ color: accentColor }}>1</span> labo
+              <span style={{ color: accentColor }}>AFDAS</span>
             </div>
-            <p className="text-slate-dark/50 text-sm">dédié à l'innovation créative IA (flagship Marseille)</p>
+            <p className="text-slate-dark/50 text-sm">OPCO culture</p>
           </div>
         </div>
 

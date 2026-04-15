@@ -146,9 +146,9 @@ const examples = [
 ]
 
 const modelCards = [
-  { num: '01', title: 'Un lieu physique', description: 'Un espace identifié de 600 à 1 200 m² avec salle d\'accueil, salles de formation (20-30 personnes), laboratoire IA (GPU, serveurs), espace dédié aux industries créatives et zone de rencontres. Un repère concret dans le territoire.' },
-  { num: '02', title: 'Une plateforme numérique', description: 'Un environnement en ligne ouvert proposant inscription et orientation, parcours de formation, bibliothèque de ressources, badges et micro-certifications. Accessible à tout moment, identique sur tous les sites du réseau.' },
-  { num: '03', title: 'Un réseau humain', description: 'Une communauté structurée d\'entreprises membres, d\'écoles partenaires et d\'experts référencés. Les ressources et compétences sont partagées entre tous les sites, dans un esprit open source et de mutualisation.' },
+  { num: '01', title: 'Indépendance technologique', description: 'Aucune affiliation à un fournisseur d\'IA. Recommandations neutres, fondées uniquement sur les besoins du client. Nousワーク avec les meilleurs artisans du marché.' },
+  { num: '02', title: 'Conseil stratégique pur', description: 'Stratégie IA, gouvernance, change management, conformité AI Act. Nous pilotons les partenaires techniques sans en dépendre.' },
+  { num: '03', title: 'Tiers de confiance', description: 'Interlocuteur unique du client. Tous les livrables, toutes les responsabilités portent la marque Mentivis / Institut de l\'IA.' },
 ]
 
 const colorMap: Record<string, string> = {
@@ -257,6 +257,14 @@ export default function AProposPage() {
                   L'intelligence artificielle doit être pensée, partagée et transmise collectivement.
                 </h2>
               </blockquote>
+              <blockquote className="mt-8 p-6 bg-ivory-dark rounded-xl border-l-4 border-accent">
+                <p className="text-text-muted italic mb-3">
+                  Quand vous faites construire une maison, vous ne choisissez pas votre architecte parce qu'il sait poser des parpaings. Vous le choisissez parce qu'il comprend ce que vous voulez construire, qu'il sait qui appeler pour le faire, et qu'il ne vous lâche pas avant que ce soit parfait.
+                </p>
+                <p className="text-sm font-medium text-accent">
+                  C'est exactement ce que nous faisons avec l'IA.
+                </p>
+              </blockquote>
             </div>
           </FadeIn>
         </Section>
@@ -293,9 +301,9 @@ export default function AProposPage() {
         <Section className="py-20">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Le modèle</p>
-              <h2 className="font-serif text-3xl md:text-4xl mb-6">Lieu · Plateforme · Réseau</h2>
-              <p className="text-text-muted mb-12">L'Institut est conçu comme une <strong>infrastructure collective</strong> articulée autour de trois dimensions complémentaires. Ensemble, elles forment un tiers de confiance accessible à tous.</p>
+              <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Les piliers</p>
+              <h2 className="font-serif text-3xl md:text-4xl mb-6">Indépendance · Conseil · Tiers de confiance</h2>
+              <p className="text-text-muted mb-12">L'Institut est porté par Mentivis, cabinet de conseil en transformation stratégique. Notre rôle : aider les organisations à comprendre, maîtriser et déployer l'intelligence artificielle avec méthode, indépendance et responsabilité.</p>
             </div>
           </FadeIn>
           <div className="max-w-5xl mx-auto">

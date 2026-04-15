@@ -16,33 +16,47 @@ const accompagnementNav = [
 const offres = [
   {
     num: '01',
-    title: 'Diagnostics et audits',
-    price: '~10 k€',
-    priceLabel: 'Pack diagnostic complet',
-    description: 'Analyse approfondie du potentiel IA de votre entreprise. Identification des cas d\'usage à forte valeur ajoutée, évaluation de la maturité numérique et recommandations personnalisées.',
-    items: ['Cartographie des processus', 'Benchmark sectoriel', 'Analyse coût / bénéfice', 'Feuille de route stratégique'],
+    title: 'Diagnostic IA & AI Act',
+    price: '8 000–12 000 €',
+    priceLabel: 'En 4 à 6 semaines',
+    badge: 'Porte d\'entrée universelle',
+    description: 'En 4 à 6 semaines, vous savez exactement où vous en êtes, où vous pouvez aller, et ce que l\'AI Act vous impose concrètement — avec une feuille de route prête à exécuter.',
+    items: ['Cartographie des usages IA', 'Mesure de maturité IA', 'Analyse risques AI Act', 'Feuille de route 12 mois'],
     cta: 'Demander un diagnostic',
     subject: 'diagnostic',
   },
   {
     num: '02',
-    title: 'Formations ciblées',
-    price: '5 k€',
-    priceLabel: 'par personne, intra-entreprise',
-    description: 'Formations adaptées à vos équipes, du dirigeant à l\'opérationnel. Comprendre l\'IA pour mieux la piloter, former vos équipes techniques ou sensibiliser l\'ensemble des collaborateurs.',
-    items: ['Formation dirigeants (décision IA)', 'Formation équipes opérationnelles', 'Formation développeurs', 'Sensibilisation pour tous'],
-    cta: 'Demander un devis',
+    title: 'Formations & Acculturation',
+    price: '2 000–5 000 €',
+    priceLabel: 'par jour, intra-entreprise',
+    badge: 'Volume & Financement OPCO',
+    description: 'Vos équipes utilisent déjà l\'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu\'elles le fassent bien, dans un cadre sécurisé.',
+    items: ['IA par métiers', 'IA & Sécurité (RGPD)', 'IA & Esprit critique', 'Formation de formateurs'],
+    cta: 'Discuter d\'une formation',
     subject: 'formation',
   },
   {
     num: '03',
-    title: 'Prototypes et POC',
-    price: '30–60 k€',
-    priceLabel: 'POC sur 4–6 semaines',
-    description: 'Développement de preuves de concept pour valider rapidement vos cas d\'usage. Accompagnement de la conception à la mise en production, avec une approche pragmatique.',
-    items: ['Identification du cas d\'usage', 'Conception technique', 'Développement itératif', 'Déploiement et suivi'],
-    cta: 'Discuter d\'un POC',
-    subject: 'poc',
+    title: 'Programme Transformation IA',
+    price: '30 000–80 000 €',
+    priceLabel: 'Sur 6 à 12 mois',
+    badge: 'Accompagnement complet',
+    description: 'On vous aide à faire passer l\'IA de l\'expérimentation à la pratique quotidienne — sans casser votre organisation, sans dépendre d\'un seul prestataire, avec des résultats mesurables.',
+    items: ['Gouvernance IA', 'Plan de compétences', 'Change management', 'Pilotage partenaires techniques'],
+    cta: 'Discuter d\'une transformation',
+    subject: 'transformation',
+  },
+  {
+    num: '04',
+    title: 'Partenaire IA Mensuel',
+    price: '1 000–3 000 €',
+    priceLabel: 'par mois',
+    badge: 'Abonnement',
+    description: 'Un partenaire indépendant pour vous aider à décider sur l\'IA, en continu — veille, conseil, arbitrage, alerte réglementaire.',
+    items: ['Veille réglementaire IA', 'Office hours', 'Relecture projets IA', 'Comité IA trimestriel'],
+    cta: 'Devenir partenaire',
+    subject: 'partenaire',
   },
 ]
 
@@ -109,12 +123,11 @@ export default function EntreprisesPage() {
                     Secteur privé
                   </div>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-slate-dark">
-                    Diagnostics,<br />
-                    formations<br />
-                    et <span style={{ color: accentColor }}>prototypes</span> IA
+                    Diagnostic IA<br />
+                    et <span style={{ color: accentColor }}>transformation</span>
                   </h1>
                   <p className="text-lg text-slate-dark/60 max-w-xl mb-8 leading-relaxed">
-                    L'ICIA accompagne les entreprises dans leur transformation par l'intelligence artificielle — diagnostics précis, formations ciblées et POC concrets orientés résultats.
+                    L'AI Act entre en vigueur en août 2026. L'ICIA vous aide à comprendre vos obligations, structurer vos usages et transformer votre organisation avec un partenaire de confiance.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button href="/contact?subject=diagnostic" variant="primary" size="lg">
@@ -159,32 +172,36 @@ export default function EntreprisesPage() {
               <span className="w-6 h-px bg-slate-dark/20"></span>
               Nos offres
             </div>
-            <h2 className="text-3xl md:text-4xl mb-12 text-slate-dark">Trois niveaux<br />d'accompagnement</h2>
+            <h2 className="text-3xl md:text-4xl mb-4 text-slate-dark">Quatre offres<br />d'accompagnement</h2>
+            <p className="text-slate-dark/60 mb-12 max-w-2xl">De la porte d'entrée universelle (diagnostic) à l'accompagnement long (transformation), en passant par la formation et le partenariat continu.</p>
           </FadeIn>
           <Stagger>
-            <div className="grid md:grid-cols-3 border border-border">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {offres.map((offre) => (
-                <StaggerItem key={offre.num} className="p-8 border-r border-b border-border hover:bg-white transition-colors relative group">
-                  <span className="absolute top-6 right-8 text-5xl font-bold text-slate-dark/5 pointer-events-none">{offre.num}</span>
-                  <div className="inline-block px-3 py-1 border text-xs font-bold tracking-widest mb-4" style={{ borderColor: accentColor, color: accentColor, backgroundColor: `${accentColor}10` }}>
-                    Étape {offre.num}
+                <StaggerItem key={offre.num}>
+                  <div className="h-full p-6 border border-border bg-white rounded-xl hover:shadow-lg transition-all relative group flex flex-col">
+                    <span className="absolute top-4 right-6 text-4xl font-bold text-slate-dark/5 pointer-events-none">{offre.num}</span>
+                    <div className="inline-block px-3 py-1 text-xs font-bold tracking-widest mb-3 rounded-full" style={{ backgroundColor: accentColor, color: 'white' }}>
+                      OFFRE {offre.num}
+                    </div>
+                    <h3 className="text-lg font-bold mb-1 text-slate-dark">{offre.title}</h3>
+                    <p className="text-xs text-slate-dark/50 mb-3">{offre.badge}</p>
+                    <div className="text-xl font-bold mb-1 text-slate-dark">{offre.price}</div>
+                    <p className="text-slate-dark/50 text-xs mb-4">{offre.priceLabel}</p>
+                    <p className="text-slate-dark/60 text-sm mb-4 leading-relaxed flex-grow">{offre.description}</p>
+                    <ul className="space-y-1 mb-4">
+                      {offre.items.map((item) => (
+                        <li key={item} className="text-xs flex items-start gap-2 text-slate-dark/60">
+                          <span className="font-bold flex-shrink-0" style={{ color: accentColor }}>—</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={`/contact?subject=${offre.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-slate-dark/10 pb-0.5 hover:border-slate-dark/30 transition-colors group mt-auto" style={{ color: accentColor }}>
+                      {offre.cta}
+                      <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                    </Link>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-dark">{offre.title}</h3>
-                  <div className="text-2xl font-bold mb-1 text-slate-dark">{offre.price}</div>
-                  <p className="text-slate-dark/50 text-sm mb-4">{offre.priceLabel}</p>
-                  <p className="text-slate-dark/60 text-sm mb-4 leading-relaxed">{offre.description}</p>
-                  <ul className="space-y-1 mb-6">
-                    {offre.items.map((item) => (
-                      <li key={item} className="text-sm flex items-start gap-2 text-slate-dark/60">
-                        <span className="font-bold" style={{ color: accentColor }}>—</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={`/contact?subject=${offre.subject}`} className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-slate-dark/10 pb-0.5 hover:border-slate-dark/30 transition-colors group" style={{ color: accentColor }}>
-                    {offre.cta}
-                    <span className="transform -translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
-                  </Link>
                 </StaggerItem>
               ))}
             </div>
