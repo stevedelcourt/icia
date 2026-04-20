@@ -80,7 +80,7 @@ export default function ContactPage() {
                 Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
               </p>
               <Link href="/" className="text-base text-black hover:underline transition-colors duration-200">
-                Retour a l'accueil
+                Retour à l'accueil
               </Link>
             </motion.div>
           ) : (

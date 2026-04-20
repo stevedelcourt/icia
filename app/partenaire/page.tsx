@@ -36,7 +36,7 @@ export default function PartenairePage() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">Un partenaire independant pour vous aider a decider sur l'IA, en continu - veille, conseil, arbitrage, alerte reglementaire. Votre numero a appeler quand l'IA touche vos sujets.</p>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">Un partenaire indépendant pour vous aider à décider sur l'IA, en continu - veille, conseil, arbitrage, alerte réglementaire. Votre numéro à appeler quand l'IA touche vos sujets.</p>
           </motion.div>
 
           <motion.div 

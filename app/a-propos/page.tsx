@@ -16,12 +16,12 @@ export default function AProposPage() {
         <div className="max-w-4xl mx-auto px-6">
           <h1 className="text-3xl md:text-4xl  text-[#00255D] mb-6">
             Nous ne vendons pas de l'IA.<br />
-            Nous aidons a en faire un avantage pour tous.
+            Nous aidons à en faire un avantage pour tous.
           </h1>
           
           <p className="text-[#666666] mb-12">
             L'Institut de l'IA est porte par Mentivis, cabinet de conseil en transformation strategique.
-            Notre role : aider les organisations a comprendre, maitriser et deployer l'intelligence artificielle
+            Notre rôle : aider les organisations à comprendre, maîtriser et déployer l'intelligence artificielle
             avec methode, independance et responsabilite.
           </p>
           

@@ -40,7 +40,7 @@ export default function EntreprisesPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Acteurs</p>
               <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">PME / ETI</h1>
-              <p className="text-xl font-medium text-gray-600 mb-10">L'AI Act entre en vigueur en aout 2026. L'ICIA vous aide a comprendre vos obligations, structurer vos usages et transformer votre organisation avec un partenaire de confiance.</p>
+              <p className="text-xl font-medium text-gray-600 mb-10">L'AI Act entre en vigueur en août 2026. L'ICIA vous aide à comprendre vos obligations, structurer vos usages et transformer votre organisation avec un partenaire de confiance.</p>
               <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">

@@ -17,7 +17,7 @@ const apports = [
 
 const exemple = {
   contexte: "ETI services 350 personnes",
-  description: "Une ETI de services aux entreprises a realise un diagnostic. 3 cas d'usage prioritaires identifies : automatisation du support client, IA dans la prospection commerciale, generation de rapports. La direction veut deployer sans risque sur 9 mois.",
+  description: "Une ETI de services aux entreprises a réalisé un diagnostic. 3 cas d'usage prioritaires identifiés : automatisation du support client, IA dans la prospection commerciale, génération de rapports. La direction veut déployer sans risque sur 9 mois.",
   jalons: [
     { phase: "M1-M2", action: "Mise en place gouvernance IA, charte, formation CODIR" },
     { phase: "M2-M4", action: "Deploiement support client IA avec Flowt sous pilotage Mentivis" },
@@ -51,7 +51,7 @@ export default function TransformationPage() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">On vous aide a faire passer l'IA de l'experimentation a la pratique quotidienne - sans casser votre organisation, sans dependre d'un seul prestataire, avec des resultats mesurables tous les 3 mois.</p>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">On vous aide à faire passer l'IA de l'expérimentation à la pratique quotidienne - sans casser votre organisation, sans dépendre d'un seul prestataire, avec des résultats mesurables tous les 3 mois.</p>
           </motion.div>
 
           <motion.div 

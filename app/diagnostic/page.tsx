@@ -51,7 +51,7 @@ export default function DiagnosticPage() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.</p>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">En 4 à 6 semaines, vous savez exactement où vous en êtes, où vous pouvez aller, et ce que l'AI Act vous impose concrètement - avec une feuille de route prête à exécuter.</p>
           </motion.div>
 
           <motion.div 

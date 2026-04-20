@@ -80,7 +80,7 @@ export default function Home() {
                   pas de l'IA.
                 </h1>
                 <p className="text-xl text-gray-500 mb-8 max-w-xl leading-relaxed">
-                  Nous aidons a en faire un avantage pour tous.
+                  Nous aidons à en faire un avantage pour tous.
                 </p>
                 <p className="text-base text-gray-500 mb-10 max-w-lg leading-relaxed">
                   L'IA transforme toutes les organisations. Il manque un partenaire de confiance, capable de dire : quoi faire, dans quel ordre, avec quel risque.
@@ -139,7 +139,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Nos services</p>
               <h2 className="text-4xl md:text-5xl  font-bold text-black">Offres pour entreprises</h2>
-              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">De la porte entree a l'accompagnement long.</p>
+              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">De la porte d'entrée à l'accompagnement long.</p>
             </div>
             <div className="space-y-0">
               {offres.map((offre, i) => (
@@ -199,7 +199,7 @@ export default function Home() {
         <section id="contact" className="py-20" style={{ backgroundColor: '#ffffff' }}>
           <div className="max-w-3xl mx-auto px-8 text-center">
             <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Pret a vous lancer ?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Prêt à vous lancer ?</h2>
             <p className="text-xl text-gray-500 mb-10 max-w-xl mx-auto">
               Planifions un premier échange pour comprendre vos enjeux et voir comment nous pouvons vous aider.
             </p>
