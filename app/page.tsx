@@ -13,10 +13,10 @@ const piliers = [
 ]
 
 const offres = [
-  { num: '01', title: 'Diagnostic IA & AI Act', tagline: 'Porte entree universelle', duration: '4-6 semaines', description: "En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.", href: '/diagnostic' },
-  { num: '02', title: 'Formations & Acculturation', tagline: 'Intra-entreprise', duration: 'Parcours sur mesure', description: "Vos equipes utilisent deja l'IA, souvent sans le savoir, parfois sans securite. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/formations' },
-  { num: '03', title: 'Transformation IA', tagline: 'Accompagnement 6-12 mois', duration: '6-12 mois', description: "On vous aide a faire passer l'IA de l'experimentation a la pratique quotidienne - sans casser votre organisation, avec des resultats mesurables.", href: '/transformation' },
-  { num: '04', title: 'Partenaire IA Mensuel', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu - veille, conseil, arbitrage, alerte reglementaire.", href: '/partenaire' },
+  { num: '01', title: 'Diagnostic IA & AI Act', tagline: 'Porte entree universelle', duration: '4-6 semaines', description: "En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.", href: '/diagnostic', image: '/images/IA.webp' },
+  { num: '02', title: 'Formations & Acculturation', tagline: 'Intra-entreprise', duration: 'Parcours sur mesure', description: "Vos equipes utilisent deja l'IA, souvent sans le savoir, parfois sans securite. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/formations', image: '/images/book.webp' },
+  { num: '03', title: 'Transformation IA', tagline: 'Accompagnement 6-12 mois', duration: '6-12 mois', description: "On vous aide a faire passer l'IA de l'experimentation a la pratique quotidienne - sans casser votre organisation, avec des resultats mesurables.", href: '/transformation', image: '/images/tree.webp' },
+  { num: '04', title: 'Partenaire IA Mensuel', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu - veille, conseil, arbitrage, alerte reglementaire.", href: '/partenaire', image: '/images/team-work.webp' },
 ]
 
 const acteurs = [
@@ -155,9 +155,9 @@ export default function Home() {
                 >
                   <Link href={offre.href} className="flex justify-between items-start py-10 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50 transition-all duration-200">
                     <div className="flex items-start gap-10 max-w-3xl">
-                      <span className="text-lg text-gray-300 font-medium w-10">{offre.num}</span>
+                      <img src={offre.image} alt={offre.title} className="w-16 h-16 object-cover" />
                       <div>
-                        <h3 className="text-2xl  font-bold text-black mb-2 group-hover:text-gray-600 transition-colors duration-200">{offre.title}</h3>
+                        <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
                         <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                         <p className="text-gray-500">{offre.description}</p>
                       </div>

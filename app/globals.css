@@ -60,13 +60,13 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-merriweather), Georgia, Times New Roman, serif;
-  font-weight: 400;
+  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .font-stats {
-  font-family: var(--font-merriweather), Georgia, Times New Roman, serif;
+  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
 }
 
