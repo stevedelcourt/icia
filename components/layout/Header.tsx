@@ -112,12 +112,13 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="block text-lg py-2"
                 >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/contact" className="block text-center py-4 mt-4 text-lg text-black border-2 border-black">
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-center py-4 mt-4 text-lg text-black border-2 border-black">
                 Planifier un échange
               </Link>
             </nav>
