@@ -7,11 +7,11 @@ import { Footer } from '@/components/layout/Footer'
 import ScrollGradient from '@/components/ScrollGradient'
 
 const navActeurs = [
-  { label: 'Entreprises', href: '/entreprises' },
-  { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
-  { label: 'Education', href: '/education' },
-  { label: 'Secteurs creatifs', href: '/secteurs-creatifs' },
-  { label: 'Grand public', href: '/citoyens' },
+  { label: 'Entreprises', href: '/entreprises#acteurs' },
+  { label: 'Pouvoirs publics', href: '/pouvoirs-publics#acteurs' },
+  { label: 'Education', href: '/education#acteurs' },
+  { label: 'Secteurs creatifs', href: '/secteurs-creatifs#acteurs' },
+  { label: 'Grand public', href: '/citoyens#acteurs' },
 ]
 
 const sectors = ['Musique', 'Arts visuels', 'Cinema', 'Jeux video', 'Edition', 'Architecture']
@@ -27,7 +27,7 @@ export default function SecteursCreatifsPage() {
   return (
     <>
       <Header />
-      <ScrollGradient />
+      <ScrollGradient startColor="green" />
       <main className="pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <nav className="flex gap-8 text-base text-gray-400 mb-16">

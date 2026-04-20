@@ -3,7 +3,11 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-export default function ScrollGradient() {
+interface ScrollGradientProps {
+  startColor?: 'blue' | 'green' | 'white'
+}
+
+export default function ScrollGradient({ startColor = 'blue' }: ScrollGradientProps) {
   const [scrollY, setScrollY] = useState(0)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
@@ -19,9 +23,21 @@ export default function ScrollGradient() {
   const maxScroll = 2000
   const progress = Math.min(scrollY / maxScroll, 1)
   
-  const startR = isHomePage ? 189 : 250
-  const startG = isHomePage ? 245 : 250
-  const startB = isHomePage ? 171 : 250
+  let startR: number, startG: number, startB: number
+  
+  if (startColor === 'green') {
+    startR = 189
+    startG = 245
+    startB = 171
+  } else if (startColor === 'white') {
+    startR = 250
+    startG = 250
+    startB = 250
+  } else {
+    startR = 174
+    startG = 189
+    startB = 219
+  }
   
   const r = Math.round(startR + (235 - startR) * progress)
   const g = Math.round(startG + (235 - startG) * progress)

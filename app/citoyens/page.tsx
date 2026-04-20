@@ -25,7 +25,7 @@ export default function CitoyensPage() {
   return (
 <>
       <Header />
-      <ScrollGradient />
+      <ScrollGradient startColor="green" />
       <main className="pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <nav className="flex gap-8 text-base text-gray-400 mb-16">
