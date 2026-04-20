@@ -157,7 +157,7 @@ export default function Home() {
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
                     </div>
-                    <img src={offre.image} alt={offre.title} className="w-full md:w-[300px] h-[200px] md:h-[300px] object-cover order-1 md:order-2" />
+                    <img src={offre.image} alt={offre.title} className="w-full md:w-[300px] aspect-square object-contain order-1 md:order-2" />
                   </Link>
                 </motion.div>
               ))}
