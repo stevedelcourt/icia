@@ -1,9 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollGradient() {
   const [scrollY, setScrollY] = useState(0)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,9 +19,13 @@ export default function ScrollGradient() {
   const maxScroll = 2000
   const progress = Math.min(scrollY / maxScroll, 1)
   
-  const r = Math.round(189 + (235 - 189) * progress)
-  const g = Math.round(245 + (235 - 245) * progress)
-  const b = Math.round(171 + (240 - 171) * progress)
+  const startR = isHomePage ? 189 : 250
+  const startG = isHomePage ? 245 : 250
+  const startB = isHomePage ? 171 : 250
+  
+  const r = Math.round(startR + (235 - startR) * progress)
+  const g = Math.round(startG + (235 - startG) * progress)
+  const b = Math.round(startB + (240 - startB) * progress)
   
   const bgColor = `rgb(${r}, ${g}, ${b})`
 

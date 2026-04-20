@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import ScrollGradient from '@/components/ScrollGradient'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -65,7 +64,6 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <ScrollGradient />
       <main className="pt-36 pb-24">
         <div className="max-w-2xl mx-auto px-8">
           {submitStatus === 'success' ? (
