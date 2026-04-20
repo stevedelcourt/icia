@@ -153,18 +153,13 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <Link href={offre.href} className="flex justify-between items-start py-10 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50 transition-all duration-200">
-                    <div className="flex items-start gap-10 max-w-3xl">
-                      <img src={offre.image} alt={offre.title} className="w-16 h-16 object-cover" />
-                      <div>
-                        <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
-                        <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
-                        <p className="text-gray-500">{offre.description}</p>
-                      </div>
+                  <Link href={offre.href} className="flex justify-between items-center py-10 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50 transition-all duration-200">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
+                      <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
+                      <p className="text-gray-500">{offre.description}</p>
                     </div>
-                    <span className="text-xl text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                      ➔
-                    </span>
+                    <img src={offre.image} alt={offre.title} className="w-16 h-16 object-cover" />
                   </Link>
                 </motion.div>
               ))}
@@ -203,7 +198,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#f0f0f0' }}>
+        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#d8d8d8' }}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Confiance</p>
@@ -224,11 +219,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="py-20" style={{ backgroundColor: '#1a1a1a' }}>
+        <section id="contact" className="py-20" style={{ backgroundColor: '#ffffff' }}>
           <div className="max-w-3xl mx-auto px-8 text-center">
             <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Pret a vous lancer ?</h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Pret a vous lancer ?</h2>
+            <p className="text-xl text-gray-500 mb-10 max-w-xl mx-auto">
               Planifions un premier echanges pour comprendre vos enjeux et voir comment nous pouvons vous aider.
             </p>
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
@@ -237,10 +232,6 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-        </section>
-
-        <section className="h-[30px] bg-orange-500 flex items-center justify-center">
-          <p className="text-white text-sm"><span className="font-medium">AI Act en vigueur en aout 2026</span> · <span className="opacity-80">Obligations reglementaires, classification des systemes IA</span></p>
         </section>
       </main>
       <Footer />
