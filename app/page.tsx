@@ -28,12 +28,11 @@ const acteurs = [
 ]
 
 const partners = [
-  '/partners/tertium-invest.svg',
-  '/partners/air-france.svg',
-  '/partners/ionis-education-group.svg',
-  '/partners/clarins.svg',
-  '/partners/airwell.svg',
-  '/partners/mk2-.svg',
+  '/partners/tertium-invest.webp',
+  '/partners/air-france.webp',
+  '/partners/ionis-education-group.webp',
+  '/partners/airwell.webp',
+  '/partners/mk2-.webp',
 ]
 
 const navLinks = [
@@ -198,27 +197,6 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#d8d8d8' }}>
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="text-center mb-16">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Confiance</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-black">Ils nous font confiance</h2>
-            </div>
-            <div className="relative">
-              <div className="flex gap-16 animate-scroll">
-                {[...partners, ...partners].map((src, i) => (
-                  <img 
-                    key={i} 
-                    src={src} 
-                    alt={`Partenaire ${(i % 6) + 1}`} 
-                    className="w-[150px] h-auto grayscale opacity-60 flex-shrink-0"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section id="contact" className="py-20" style={{ backgroundColor: '#ffffff' }}>
           <div className="max-w-3xl mx-auto px-8 text-center">
             <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
@@ -231,6 +209,27 @@ export default function Home() {
                 Planifier un echanges
               </Link>
             </motion.div>
+          </div>
+        </section>
+
+        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#d8d8d8' }}>
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="text-center mb-16">
+              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Confiance</p>
+              <h2 className="text-4xl md:text-5xl  font-bold text-black">Ils nous font confiance</h2>
+            </div>
+            <div className="relative">
+              <div className="flex gap-16 animate-scroll">
+                {[...partners, ...partners].map((src, i) => (
+                  <img 
+                    key={i} 
+                    src={src} 
+                    alt={`Partenaire ${(i % 5) + 1}`} 
+                    className="w-[150px] h-auto grayscale opacity-60 flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </main>
