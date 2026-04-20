@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Work_Sans } from 'next/font/google'
-import { ScrollGradient } from '@/components/ScrollGradient'
+import ScrollGradient from '@/components/ScrollGradient'
 import './globals.css'
 
 const workSans = Work_Sans({
