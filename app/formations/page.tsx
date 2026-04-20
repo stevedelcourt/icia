@@ -51,7 +51,7 @@ export default function FormationsPage() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">Vos equipes utilisent deja l'IA, souvent sans le savoir, parfois sans securite. On fait en sorte qu'elles le fassent bien, en lien avec leur metier, dans un cadre securise.</p>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">Vos équipes utilisent déjà l'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu'elles le fassent bien, en lien avec leur métier, dans un cadre sécurisé.</p>
           </motion.div>
 
           <motion.div 
