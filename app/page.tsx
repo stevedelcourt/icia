@@ -29,7 +29,6 @@ const acteurs = [
 
 const partners = [
   '/partners/tertium-invest.webp',
-  '/partners/air-france.webp',
   '/partners/ionis-education-group.webp',
   '/partners/airwell.webp',
   '/partners/mk2-.webp',
@@ -158,7 +157,7 @@ export default function Home() {
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
                     </div>
-                    <img src={offre.image} alt={offre.title} className="w-[500px] h-auto object-cover" />
+                    <img src={offre.image} alt={offre.title} className="w-[300px] h-[300px] object-cover" />
                   </Link>
                 </motion.div>
               ))}
@@ -202,11 +201,11 @@ export default function Home() {
             <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Pret a vous lancer ?</h2>
             <p className="text-xl text-gray-500 mb-10 max-w-xl mx-auto">
-              Planifions un premier echanges pour comprendre vos enjeux et voir comment nous pouvons vous aider.
+              Planifions un premier échange pour comprendre vos enjeux et voir comment nous pouvons vous aider.
             </p>
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
-              <Link href="/contact" className="inline-block px-12 py-5 text-lg text-black bg-white hover:bg-gray-100 transition-all duration-200">
-                Planifier un echanges
+              <Link href="/contact" className="inline-block px-12 py-5 text-lg text-white bg-black hover:bg-gray-800 transition-all duration-200">
+                Planifier un échange
               </Link>
             </motion.div>
           </div>

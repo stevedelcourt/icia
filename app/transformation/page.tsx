@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import ScrollGradient from '@/components/ScrollGradient'
 
 const apports = [
   "Gouvernance IA : creation du comite IA, charte d'usage, referent interne forme",
@@ -30,6 +31,7 @@ export default function TransformationPage() {
   return (
     <>
       <Header />
+      <ScrollGradient />
       <main className="pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>

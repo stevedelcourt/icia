@@ -13,36 +13,13 @@ const navLinks = [
 ]
 
 function Logo() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const shouldScroll = isHomePage ? window.scrollY > 500 : false
-      setIsScrolled(shouldScroll)
-    }
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [isHomePage])
-
   return (
     <Link href="/" className="flex items-center">
-      <div className="relative h-14 w-[250px] overflow-hidden">
-        <motion.img
+      <div className="h-14 w-[250px]">
+        <img
           src="/MariusIA-logo.svg"
           alt="MARIUS IA"
-          className="absolute left-0 top-1/2 -translate-y-1/2 h-20 w-auto object-contain"
-          animate={{ opacity: isScrolled ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-        />
-        <motion.img
-          src="/MariusIA-logo-retract.svg"
-          alt="MIA"
-          className="absolute left-0 top-1/2 -translate-y-1/2 h-20 w-auto object-contain"
-          animate={{ opacity: isScrolled ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
+          className="h-20 w-auto object-contain"
         />
       </div>
     </Link>
