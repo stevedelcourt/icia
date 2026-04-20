@@ -38,7 +38,7 @@ export default function FormationsPage() {
 
           <div className="mb-20">
             <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 02</span>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-black mt-3 mb-3">Formations & Acculturation IA</h1>
+            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Formations & Acculturation IA</h1>
             <p className="text-xl font-medium text-gray-600">Volume & Financement</p>
           </div>
 

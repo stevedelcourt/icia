@@ -38,7 +38,7 @@ export default function DiagnosticPage() {
 
           <div className="mb-20">
             <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 01</span>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-black mt-3 mb-3">Diagnostic IA & AI Act</h1>
+            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Diagnostic IA & AI Act</h1>
             <p className="text-xl font-medium text-gray-600">Porte entree universelle</p>
           </div>
 

@@ -7,7 +7,7 @@ export default function MentionsLegales() {
       <Header />
       <main className="pt-32 pb-24">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl font-serif text-black mb-12">Mentions légales</h1>
+          <h1 className="text-4xl  text-black mb-12">Mentions légales</h1>
           <div className="prose prose-lg max-w-none text-[#666666]">
             <h2 className="text-xl font-medium text-black mt-8 mb-4">Éditeur du site</h2>
             <p>Mentivis SAS<br />Campus Cyber.AI<br />Marseille, France</p>

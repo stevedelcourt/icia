@@ -75,7 +75,7 @@ export default function ContactPage() {
               <div className="w-16 h-16 mx-auto mb-6 border-2 border-gray-200 flex items-center justify-center text-2xl text-gray-400">
                 ✓
               </div>
-              <h2 className="text-3xl font-serif text-black mb-4">Merci !</h2>
+              <h2 className="text-3xl  text-black mb-4">Merci !</h2>
               <p className="text-gray-500 mb-8">
                 Nous avons bien reçu votre demande. Nous vous repondons sous 48h.
               </p>
@@ -89,7 +89,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
             >
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Contact</p>
-              <h1 className="text-3xl md:text-4xl font-serif text-black mb-8">
+              <h1 className="text-3xl md:text-4xl  text-black mb-8">
                 Commencons par un premier coup de sonde editorial, voyons ensuite.
               </h1>
 

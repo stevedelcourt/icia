@@ -4,18 +4,18 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const offreLinks = [
-  { label: 'Diagnostic', href: '/offres/diagnostic' },
-  { label: 'Formations', href: '/offres/formations' },
-  { label: 'Transformation', href: '/offres/transformation' },
-  { label: 'Partenaire', href: '/offres/partenaire' },
+  { label: 'Diagnostic', href: '/diagnostic' },
+  { label: 'Formations', href: '/formations' },
+  { label: 'Transformation', href: '/transformation' },
+  { label: 'Partenaire', href: '/partenaire' },
 ]
 
 const acteurLinks = [
-  { label: 'Entreprises', href: '/acteurs/entreprises' },
-  { label: 'Pouvoirs publics', href: '/acteurs/pouvoirs-publics' },
-  { label: 'Education', href: '/acteurs/education' },
-  { label: 'Secteurs créatifs', href: '/acteurs/secteurs-creatifs' },
-  { label: 'Grand public', href: '/acteurs/citoyens' },
+  { label: 'Entreprises', href: '/entreprises' },
+  { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
+  { label: 'Education', href: '/education' },
+  { label: 'Secteurs créatifs', href: '/secteurs-creatifs' },
+  { label: 'Grand public', href: '/citoyens' },
 ]
 
 const legalLinks = [

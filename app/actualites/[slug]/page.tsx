@@ -206,7 +206,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <main id="main-content">
           <Section className="pt-40 pb-24">
             <div className="max-w-2xl mx-auto text-center">
-              <h1 className="font-serif text-h1 mb-6">Article non trouve</h1>
+              <h1 className=" text-h1 mb-6">Article non trouve</h1>
               <p className="text-text-muted mb-8">Cet article n'existe pas.</p>
               <Link href="/actualites" className="text-accent hover:text-accent-hover underline">
                 Retour aux actualites
@@ -243,7 +243,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 </div>
               )}
               
-              <h1 className="font-serif text-2xl md:text-h1 mb-6 text-accent">{article.title}</h1>
+              <h1 className=" text-2xl md:text-h1 mb-6 text-accent">{article.title}</h1>
               
               <div className="prose max-w-none mb-12">
                 <p className="text-text-muted text-lg leading-relaxed mb-6">{article.excerpt}</p>

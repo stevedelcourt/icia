@@ -7,7 +7,7 @@ export default function ConditionsUtilisation() {
       <Header />
       <main className="pt-32 pb-24">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl font-serif text-black mb-12">Conditions d'utilisation</h1>
+          <h1 className="text-4xl  text-black mb-12">Conditions d'utilisation</h1>
           <div className="prose prose-lg max-w-none text-[#666666]">
             <h2 className="text-xl font-medium text-black mt-8 mb-4">Acceptation des conditions</h2>
             <p>En utilisant ce site, vous acceptez sans réserve les présentes conditions d'utilisation.</p>

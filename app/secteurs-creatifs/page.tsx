@@ -39,7 +39,7 @@ export default function SecteursCreatifsPage() {
           <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Acteurs</p>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold text-black leading-tight mb-6">Secteurs creatifs</h1>
+              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Secteurs creatifs</h1>
               <p className="text-xl font-medium text-gray-600 mb-10">Creer avec l'IA, sans perdre son identite.</p>
               <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
             </motion.div>
@@ -62,7 +62,7 @@ export default function SecteursCreatifsPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {axes.map((axe) => (
                 <div key={axe.title} className="p-10 border border-gray-200 hover:border-black transition-colors duration-300">
-                  <h3 className="text-xl font-serif text-black mb-3">{axe.title}</h3>
+                  <h3 className="text-xl  text-black mb-3">{axe.title}</h3>
                   <p className="text-gray-500">{axe.description}</p>
                 </div>
               ))}

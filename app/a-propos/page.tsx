@@ -14,7 +14,7 @@ export default function AProposPage() {
       <Header />
       <main className="pt-32 pb-24">
         <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-serif text-[#00255D] mb-6">
+          <h1 className="text-3xl md:text-4xl  text-[#00255D] mb-6">
             Nous ne vendons pas de l'IA.<br />
             Nous aidons a en faire un avantage pour tous.
           </h1>
