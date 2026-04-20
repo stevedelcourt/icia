@@ -151,13 +151,13 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <Link href={offre.href} className="flex items-stretch border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
-                    <div className="flex-1 py-10 pl-6 self-center">
+                  <Link href={offre.href} className="flex flex-col md:flex-row items-stretch border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
+                    <div className="flex-1 py-8 md:py-10 pl-6 self-center order-2 md:order-1">
                       <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
                     </div>
-                    <img src={offre.image} alt={offre.title} className="w-[300px] h-[300px] object-cover" />
+                    <img src={offre.image} alt={offre.title} className="w-full md:w-[300px] h-[200px] md:h-[300px] object-cover order-1 md:order-2" />
                   </Link>
                 </motion.div>
               ))}
@@ -170,7 +170,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">A qui s'adressons-nous</p>
               <h2 className="text-4xl md:text-5xl  font-bold text-black">Nos acteurs</h2>
-              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">L'IA ne transforme pas les organisations de la meme facon. Selon votre secteur, vos enjeux sont differents.</p>
+              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">L'IA ne transforme pas les organisations de la même façon. Selon votre secteur, vos enjeux sont différents.</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {acteurs.map((acteur, i) => (
