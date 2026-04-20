@@ -16,9 +16,9 @@ export default function ScrollGradient() {
   const maxScroll = 2000
   const progress = Math.min(scrollY / maxScroll, 1)
   
-  const r = Math.round(174 + (235 - 174) * progress)
-  const g = Math.round(189 + (235 - 189) * progress)
-  const b = Math.round(219 + (240 - 219) * progress)
+  const r = Math.round(189 + (235 - 189) * progress)
+  const g = Math.round(245 + (235 - 245) * progress)
+  const b = Math.round(171 + (240 - 171) * progress)
   
   const bgColor = `rgb(${r}, ${g}, ${b})`
 

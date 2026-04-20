@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import ScrollGradient from '@/components/ScrollGradient'
 
 const navActeurs = [
   { label: 'Entreprises', href: '/entreprises' },
@@ -22,8 +23,9 @@ const axes = [
 
 export default function CitoyensPage() {
   return (
-    <>
+<>
       <Header />
+      <ScrollGradient />
       <main className="pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <nav className="flex gap-8 text-base text-gray-400 mb-16">

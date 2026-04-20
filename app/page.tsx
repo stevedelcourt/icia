@@ -152,13 +152,13 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <Link href={offre.href} className="flex justify-between items-end py-8 pl-4 border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
-                    <div className="flex-1 self-end">
+                  <Link href={offre.href} className="flex items-stretch border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
+                    <div className="flex-1 py-10 pl-6 self-center">
                       <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
                     </div>
-                    <img src={offre.image} alt={offre.title} className="w-32 h-32 object-cover" />
+                    <img src={offre.image} alt={offre.title} className="w-[500px] h-auto object-cover" />
                   </Link>
                 </motion.div>
               ))}
