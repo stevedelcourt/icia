@@ -59,10 +59,11 @@ export function Header() {
           : 'white',
       }}
     >
-      <div className="max-w-6xl mx-auto px-8 flex items-center justify-between">
-        <Logo />
+      <div className="max-w-6xl mx-auto px-8">
+        <div className="flex items-center justify-between">
+          <Logo />
 
-        <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link 
               key={link.href}
@@ -94,6 +95,7 @@ export function Header() {
             )}
           </svg>
         </button>
+        </div>
       </div>
 
       <AnimatePresence>
