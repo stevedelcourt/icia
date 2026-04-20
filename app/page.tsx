@@ -7,24 +7,24 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
 const piliers = [
-  { title: 'Independence technologique', desc: 'Aucune affiliation a un fournisseur d\'IA. Recommandations neutres.', anchor: 'independance' },
-  { title: 'Conseil strategique pur', desc: 'Strategie IA, gouvernance, change management, conformite AI Act.', anchor: 'conseil' },
+  { title: 'Indépendance technologique', desc: 'Aucune affiliation à un fournisseur d\'IA. Recommandations neutres.', anchor: 'independance' },
+  { title: 'Conseil stratégique pur', desc: 'Stratégie IA, gouvernance, change management, conformité AI Act.', anchor: 'conseil' },
   { title: 'Tiers de confiance', desc: 'Interlocuteur unique. Tous les livrables portent notre marque.', anchor: 'confiance' },
 ]
 
 const offres = [
-  { num: '01', title: 'Diagnostic IA & AI Act', tagline: 'Porte entree universelle', duration: '4-6 semaines', description: "En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.", href: '/diagnostic', image: '/images/IA.webp' },
-  { num: '02', title: 'Formations & Acculturation', tagline: 'Intra-entreprise', duration: 'Parcours sur mesure', description: "Vos equipes utilisent deja l'IA, souvent sans le savoir, parfois sans securite. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/formations', image: '/images/book.webp' },
-  { num: '03', title: 'Transformation IA', tagline: 'Accompagnement 6-12 mois', duration: '6-12 mois', description: "On vous aide a faire passer l'IA de l'experimentation a la pratique quotidienne - sans casser votre organisation, avec des resultats mesurables.", href: '/transformation', image: '/images/tree.webp' },
-  { num: '04', title: 'Partenaire IA Mensuel', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu - veille, conseil, arbitrage, alerte reglementaire.", href: '/partenaire', image: '/images/team-work.webp' },
+  { num: '01', title: 'Diagnostic IA & AI Act', tagline: 'Porte d\'entrée universelle', duration: '4-6 semaines', description: "En 4 à 6 semaines, vous savez exactement où vous en êtes, où vous pouvez aller, et ce que l'AI Act vous impose concrètement - avec une feuille de route prête à exécuter.", href: '/diagnostic', image: '/images/IA.webp' },
+  { num: '02', title: 'Formations & Acculturation', tagline: 'Intra-entreprise', duration: 'Parcours sur mesure', description: "Vos équipes utilisent déjà l'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu'elles le fassent bien, dans un cadre sécurisé.", href: '/formations', image: '/images/book.webp' },
+  { num: '03', title: 'Transformation IA', tagline: 'Accompagnement 6-12 mois', duration: '6-12 mois', description: "On vous aide à faire passer l'IA de l'expérimentation à la pratique quotidienne - sans casser votre organisation, avec des résultats mesurables.", href: '/transformation', image: '/images/tree.webp' },
+  { num: '04', title: 'Partenaire IA Mensuel', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire indépendant pour vous aider à decidir sur l'IA, en continu - veille, conseil, arbitrage, alerte réglementaire.", href: '/partenaire', image: '/images/team-work.webp' },
 ]
 
 const acteurs = [
-  { title: 'Entreprises', desc: 'PME / ETI face a l\'IA. Diagnostic, transformation, formation.', href: '/entreprises', anchor: 'entreprises' },
+  { title: 'Entreprises', desc: 'PME / ETI face à l\'IA. Diagnostic, transformation, formation.', href: '/entreprises', anchor: 'entreprises' },
   { title: 'Pouvoirs publics', desc: 'Service public, inclusion, pilotage territorial.', href: '/pouvoirs-publics', anchor: 'pouvoirs-publics' },
-  { title: 'Education', desc: 'Ecoles, CFA, universites. Former les formateurs de demain.', href: '/education', anchor: 'education' },
-  { title: 'Secteurs creatifs', desc: 'Musique, cinema, design. Creer avec l\'IA sans perdre son identite.', href: '/secteurs-creatifs', anchor: 'secteurs-creatifs' },
-  { title: 'Grand public', desc: 'Acculturation, securite, emploi. Reduire la fracture IA.', href: '/citoyens', anchor: 'citoyens' },
+  { title: 'Education', desc: 'Ecoles, CFA, universités. Former les formateurs de demain.', href: '/education', anchor: 'education' },
+  { title: 'Secteurs créatifs', desc: 'Musique, cinéma, design. Créer avec l\'IA sans perdre son identité.', href: '/secteurs-creatifs', anchor: 'secteurs-creatifs' },
+  { title: 'Grand public', desc: 'Acculturation, sécurité, emploi. Réduire la fracture IA.', href: '/citoyens', anchor: 'citoyen' },
 ]
 
 const partners = [
@@ -87,7 +87,7 @@ export default function Home() {
                 </p>
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                   <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 hover:shadow-xl transition-all duration-200">
-                    Planifier un echanges
+                    Planifier un échange
                   </Link>
                 </motion.div>
               </motion.div>

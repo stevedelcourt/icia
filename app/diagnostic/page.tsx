@@ -7,23 +7,23 @@ import { Footer } from '@/components/layout/Footer'
 import ScrollGradient from '@/components/ScrollGradient'
 
 const livrables = [
-  "Cartographie des usages IA actuels (outils, donnees, processus)",
-  "Mesure de maturite IA : gouvernance, culture, competences, infrastructure",
+  "Cartographie des usages IA actuels (outils, données, processus)",
+  "Mesure de maturité IA : gouvernance, culture, compétences, infrastructure",
   "Analyse risques AI Act : classification, obligations haut risque, GPAI, RGPD",
-  "Identification de 3 a 5 cas d'usage prioritaires avec estimation du ROI",
-  "Feuille de route 12 mois : quick wins + chantiers structurants",
-  "Restitution en comite de direction avec rapport executif",
+  "Identification de 3 à 5 cas d'usage prioritaires avec estimation du ROI",
+  "Feuille de route 12 mois : quick wins + chantier structurants",
+  "Restitution en comité de direction avec rapport exécutif",
 ]
 
 const exemple = {
   contexte: "PME logistique 80 personnes (Marseille)",
-  description: "Un transporteur regional utilise ChatGPT en informel, sans politique IA, inquiet du RGPD et de la concurrence. Objectif : structurer une approche IA sans risque.",
+  description: "Un transporteur régional utilise ChatGPT de manière informelle, sans politique IA, inquiet du RGPD et de la concurrence. Objectif : structurer une approche IA sans risque.",
   jalons: [
     { phase: "J1-J3", action: "Interviews dirigeant, DAF, responsable operations, DSI" },
-    { phase: "J4-J10", action: "Analyse des donnees, outils en place, cartographie risques AI Act" },
-    { phase: "J11-J15", action: "Formalisation cas d'usage (tournees optimisees, service client IA, reporting auto)" },
-    { phase: "J15-J18", action: "Redaction feuille de route + rapport de conformite" },
-    { phase: "J20", action: "Restitution CODIR - decision de lancement offre 03" },
+    { phase: "J4-J10", action: "Analyse des données, outils en place, cartographie risques AI Act" },
+    { phase: "J11-J15", action: "Formalisation cas d'usage (tournées optimisées, service client IA, reporting auto)" },
+    { phase: "J15-J18", action: "Rédaction feuille de route + rapport de conformité" },
+    { phase: "J20", action: "Restitution CODIR - décision de lancement offre 03" },
   ],
 }
 

@@ -77,7 +77,7 @@ export default function ContactPage() {
               </div>
               <h2 className="text-3xl  text-black mb-4">Merci !</h2>
               <p className="text-gray-500 mb-8">
-                Nous avons bien reçu votre demande. Nous vous repondons sous 48h.
+                Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
               </p>
               <Link href="/" className="text-base text-black hover:underline transition-colors duration-200">
                 Retour a l'accueil
@@ -90,7 +90,7 @@ export default function ContactPage() {
             >
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Contact</p>
               <h1 className="text-3xl md:text-4xl  text-black mb-8">
-                Commencons par un premier coup de sonde editorial, voyons ensuite.
+                Commençons par un premier coup de sonde éditorial, voyons ensuite.
               </h1>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -217,7 +217,7 @@ export default function ContactPage() {
                       className="mt-1"
                     />
                     <span className="text-sm text-gray-500">
-                      J'accepte de recevoir des informations et des offres de Wearethewords, conformement a la politique de confidentialite.
+                      J'accepte de recevoir des informations et des offres de l'ICIA, conformément à la politique de confidentialité.
                     </span>
                   </label>
                 </div>

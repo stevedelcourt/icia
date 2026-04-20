@@ -15,10 +15,10 @@ const navActeurs = [
 ]
 
 const programmes = [
-  { title: 'Inclusion', description: "Lutter contre la fracture numerique et garantir que chacun puisse beneficier des avancees de l'IA." },
-  { title: 'Transformation des services publics', description: "Aider les administrations a identifier les cas d'usage de l'IA pour ameliorer les services aux citoyens." },
-  { title: 'Remobilisation professionnelle', description: "Accompagner les agents publics et demandeurs d'emploi vers les metiers de l'IA." },
-  { title: 'Observatoire territorial', description: "Un outil de pilotage unique pour les decideurs publics : suivi de l'adoption de l'IA." },
+  { title: 'Inclusion', description: "Lutter contre la fracture numérique et garantir que chacun puisse bénéficier des avancées de l'IA." },
+  { title: 'Transformation des services publics', description: "Aider les administrations à identifier les cas d'usage de l'IA pour améliorer les services aux citoyens." },
+  { title: 'Remobilisation professionnelle', description: "Accompagner les agents publics et demandeurs d'emploi vers les métiers de l'IA." },
+  { title: 'Observatoire territorial', description: "Un outil de pilotage unique pour les décideurs publics : suivi de l'adoption de l'IA." },
 ]
 
 export default function PouvoirsPublicsPage() {

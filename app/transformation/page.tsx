@@ -7,12 +7,12 @@ import { Footer } from '@/components/layout/Footer'
 import ScrollGradient from '@/components/ScrollGradient'
 
 const apports = [
-  "Gouvernance IA : creation du comite IA, charte d'usage, referent interne forme",
-  "Plan de competences : cartographie des besoins par role, parcours de montee en competences",
-  "Change management : communication interne, ateliers d'adhesion, coaching des managers",
-  "Conformite AI Act + RGPD : mise en coherence des usages avec les obligations legales",
-  "Pilotage des partenaires techniques (Flowt ou autres) : Mentivis arbitre, controle, valide",
-  "Jalons de mesure d'impact tous les trimestres - KPI definis en amont, restitution CODIR",
+  "Gouvernance IA : création du comité IA, charte d'usage, référent interne formé",
+  "Plan de compétences : cartographie des besoins par rôle, parcours de montée en compétences",
+  "Change management : communication interne, ateliers d'adhésion, coaching des managers",
+  "Conformité AI Act + RGPD : mise en cohérence des usages avec les obligations légales",
+  "Pilotage des partenaires techniques (Flowt ou autres) : Mentivis arbitre, contrôle, valide",
+  "Jalons de mesure d'impact tous les trimestres - KPI définis en amont, restitution CODIR",
 ]
 
 const exemple = {

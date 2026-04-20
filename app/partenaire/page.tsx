@@ -7,9 +7,9 @@ import { Footer } from '@/components/layout/Footer'
 import ScrollGradient from '@/components/ScrollGradient'
 
 const niveaux = [
-  { nom: "Essentiel", contenu: ["Veille reglementaire IA personnalisee", "2h office hours", "Alertes AI Act"] },
-  { nom: "Strategique", contenu: ["Tout Essentiel", "Relecture projets IA", "Revue prestataires techniques", "4h office hours"] },
-  { nom: "Dirigeant", contenu: ["Tout Strategique", "1 comite IA/trimstre", "Acces evenements Institut", "Priorite diagnostics"] },
+  { nom: "Essentiel", contenu: ["Veille réglementaire IA personnalisée", "2h office hours", "Alertes AI Act"] },
+  { nom: "Stratégique", contenu: ["Tout Essentiel", "Relecture projets IA", "Revue prestataires techniques", "4h office hours"] },
+  { nom: "Dirigeant", contenu: ["Tout Stratégique", "1 comité IA/trimstre", "Accés événements Institut", "Priorité diagnostics"] },
 ]
 
 export default function PartenairePage() {

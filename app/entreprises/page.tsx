@@ -10,15 +10,15 @@ const navActeurs = [
   { label: 'Entreprises', href: '/entreprises#acteurs' },
   { label: 'Pouvoirs publics', href: '/pouvoirs-publics#acteurs' },
   { label: 'Education', href: '/education#acteurs' },
-  { label: 'Secteurs creatifs', href: '/secteurs-creatifs#acteurs' },
+  { label: 'Secteurs créatifs', href: '/secteurs-creatifs#acteurs' },
   { label: 'Grand public', href: '/citoyens#acteurs' },
 ]
 
 const axes = [
-  { num: '01', title: 'Diagnostic IA & AI Act', description: "Comprendre ou vous en etes. Cartographie des usages, analyse des risques reglementaires, feuille de route 12 mois.", href: '/diagnostic' },
-  { num: '02', title: 'Formations & Acculturation', description: "Vos equipes utilisent deja l'IA. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/formations' },
-  { num: '03', title: 'Transformation IA', description: "Passer de l'experimentation a la pratique quotidienne. Gouvernance, competences, change management.", href: '/transformation' },
-  { num: '04', title: 'Partenaire IA Mensuel', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu.", href: '/partenaire' },
+  { num: '01', title: 'Diagnostic IA & AI Act', description: "Comprendre où vous en êtes. Cartographie des usages, analyse des risques réglementaires, feuille de route 12 mois.", href: '/diagnostic' },
+  { num: '02', title: 'Formations & Acculturation', description: "Vos équipes utilisent déjà l'IA. On fait en sorte qu'elles le fassent bien, dans un cadre sécurisé.", href: '/formations' },
+  { num: '03', title: 'Transformation IA', description: "Passer de l'expérimentation à la pratique quotidienne. Gouvernance, compétences, change management.", href: '/transformation' },
+  { num: '04', title: 'Partenaire IA Mensuel', description: "Un partenaire indépendant pour vous aider à décider sur l'IA, en continu.", href: '/partenaire' },
 ]
 
 export default function EntreprisesPage() {

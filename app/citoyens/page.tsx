@@ -15,10 +15,10 @@ const navActeurs = [
 ]
 
 const axes = [
-  { title: 'Acculturation a lIA', description: "Des ateliers ludiques et accessibles pour demystifier l'intelligence artificielle." },
-  { title: 'Securite et ethique', description: "Apprendre a vous proteger dans un monde ou l'IA est omnipresente." },
-  { title: 'Emploi et reconversion', description: "Accompagnement personnalise pour comprendre les evolutions du marche du travail." },
-  { title: 'Passerelles vers la formation', description: "Faciliter l'acces aux formations en IA." },
+  { title: 'Acculturation à l\'IA', description: "Des ateliers ludiques et accessibles pour démystifier l'intelligence artificielle." },
+  { title: 'Sécurité et éthique', description: "Apprendre à vous protéger dans un monde où l'IA est omniprésente." },
+  { title: 'Emploi et reconversion', description: "Accompagnement personnalisé pour comprendre les évolutions du marché du travail." },
+  { title: 'Passerelles vers la formation', description: "Faciliter l'accès aux formations en IA." },
 ]
 
 export default function CitoyensPage() {

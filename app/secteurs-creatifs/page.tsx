@@ -17,10 +17,10 @@ const navActeurs = [
 const sectors = ['Musique', 'Arts visuels', 'Cinema', 'Jeux video', 'Edition', 'Architecture']
 
 const axes = [
-  { title: 'Ateliers creatifs IA', description: "Explorer les outils de generation IA dans votre discipline." },
-  { title: 'Securite juridique', description: "Comprendre et naviguer dans le cadre legal de l'IA creative." },
-  { title: 'Laboratoire dinnovation', description: "Un espace dedie pour tester et experimenter avec les outils d'IA creative." },
-  { title: 'Monetisation', description: "Explorer les nouveaux modeles economiques offres par l'IA aux createurs." },
+  { title: 'Ateliers créatifs IA', description: "Explorer les outils de génération IA dans votre discipline." },
+  { title: 'Sécurité juridique', description: "Comprendre et naviguer dans le cadre légal de l'IA créative." },
+  { title: 'Laboratoire d\'innovation', description: "Un espace dédié pour tester et expérimenter avec les outils d'IA créative." },
+  { title: 'Monétisation', description: "Explorer les nouveaux modèles économiques créés par l'IA pour les créateurs." },
 ]
 
 export default function SecteursCreatifsPage() {

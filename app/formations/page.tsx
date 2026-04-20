@@ -7,23 +7,23 @@ import { Footer } from '@/components/layout/Footer'
 import ScrollGradient from '@/components/ScrollGradient'
 
 const programmes = [
-  { nom: "IA par metiers", contenu: "Managers, commerciaux, RH, finance, support client, logistique", duree: "1 jour" },
-  { nom: "IA & securite", contenu: "Risques, donnees personnelles, arnaques, RGPD, bonnes pratiques", duree: "1/2 journee" },
-  { nom: "IA & esprit critique", contenu: "Comprendre les LLM, biais, hallucinations, limites des outils", duree: "1/2 journee" },
-  { nom: "Modules ecoles/CFA", contenu: "Cours structures, TD, cas pratiques pour etablissements", duree: "Sur mesure" },
-  { nom: "Parcours emploi IA", contenu: "Socle numerique + IA metier + badge de competences", duree: "3 a 5 jours" },
-  { nom: "Formation formateurs", contenu: "Former les equipes internes ou intervenants partenaires", duree: "2 jours" },
+  { nom: "IA par métiers", contenu: "Managers, commerciaux, RH, finance, support client, logistique", duree: "1 jour" },
+  { nom: "IA & sécurité", contenu: "Risques, données personnelles, arnaques, RGPD, bonnes pratiques", duree: "1/2 journée" },
+  { nom: "IA & esprit critique", contenu: "Comprendre les LLM, biais, hallucinations, limites des outils", duree: "1/2 journée" },
+  { nom: "Modules écoles/CFA", contenu: "Cours structurés, TD, cas pratiques pour établissements", duree: "Sur mesure" },
+  { nom: "Parcours emploi IA", contenu: "Socle numérique + IA métier + badge de compétences", duree: "3 à 5 jours" },
+  { nom: "Formation formateurs", contenu: "Former les équipes internes ou intervenants partenaires", duree: "2 jours" },
 ]
 
 const exemple = {
   contexte: "CFA BTP Marseille (120 apprentis)",
-  description: "Un CFA BTP veut integrer l'IA dans ses formations sans savoir comment. Les formateurs ne connaissent pas les outils. Les apprentis utilisent deja l'IA pour leurs devoirs.",
+  description: "Un CFA BTP veut intégrer l'IA dans ses formations sans savoir comment. Les formateurs ne connaissent pas les outils. Les apprentis utilisent déjà l'IA pour leurs devoirs.",
   jalons: [
-    { phase: "Audit", action: "Audit de la maquette pedagogique existante (2 jours)" },
-    { phase: "Co-construction", action: "Co-construction de 3 modules IA metier : metres augmentes, IA & securite chantier, reporting" },
+    { phase: "Audit", action: "Audit de la maquette pédagogique existante (2 jours)" },
+    { phase: "Co-construction", action: "Co-construction de 3 modules IA métier : mètres augmentés, IA & sécurité chantier, reporting" },
     { phase: "Formation", action: "Formation des formateurs (2 jours)" },
-    { phase: "Livraison", action: "Livraison des supports + badges de competences associes" },
-    { phase: "Accompagnement", action: "Accompagnement sur 3 mois a la mise en place" },
+    { phase: "Livraison", action: "Livraison des supports + badges de compétences associés" },
+    { phase: "Accompagnement", action: "Accompagnement sur 3 mois à la mise en place" },
   ],
 }
 

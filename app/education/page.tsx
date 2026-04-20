@@ -15,10 +15,10 @@ const navActeurs = [
 ]
 
 const axes = [
-  { title: 'Bibliotheque pedagogique', description: "Une ressource complete et libre d'acces pour integrer l'IA dans tous les niveaux." },
-  { title: 'Formation des formateurs', description: "Accompagner les enseignants et formateurs pour maitriser les concepts de l'IA." },
-  { title: 'Certifications', description: "Des certifications officielles pour les eleves et etudiants, reconnaissables par les employeurs." },
-  { title: 'Accreditation institutionnelle', description: "Accompagner les etablissements pour obtenir une accreditation ICIA." },
+  { title: 'Bibliothèque pédagogique', description: "Une ressource complète et libre d'accès pour intégrer l'IA dans tous les niveaux." },
+  { title: 'Formation des formateurs', description: "Accompagner les enseignants et formateurs pour maîtriser les concepts de l'IA." },
+  { title: 'Certifications', description: "Des certifications officielles pour les élèves et étudiants, reconnaissables par les employeurs." },
+  { title: 'Accréditation institutionnelle', description: "Accompagner les établissements pour obtenir une accréditation ICIA." },
 ]
 
 export default function EducationPage() {
@@ -40,7 +40,7 @@ export default function EducationPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Acteurs</p>
               <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Education</h1>
-              <p className="text-xl font-medium text-gray-600 mb-10">Former les formateurs de demain. Vos etudiants utilisent deja l'IA - souvent sans securite.</p>
+              <p className="text-xl font-medium text-gray-600 mb-10">Former les formateurs de demain. Vos étudiants utilisent déjà l'IA - souvent sans sécurité.</p>
               <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
