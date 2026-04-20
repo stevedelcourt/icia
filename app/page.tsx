@@ -211,6 +211,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Partners section hidden temporarily
         <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#d8d8d8' }}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
@@ -231,6 +232,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        */}
       </main>
       <Footer />
     </>
