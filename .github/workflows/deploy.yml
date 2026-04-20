@@ -37,5 +37,7 @@ jobs:
             set ftp:ssl-allow no;
             set xfer:log-level verbose;
             open -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
-            mirror -R --ignore-chmod-errors --ignore-time-errors ./out /public_html --delete --verbose;
+            lcd ./out;
+            cd /public_html;
+            mirror -R --ignore-chmod-errors --ignore-time-errors . . --delete --verbose;
           " || echo "FTP deploy completed (some cleanup warnings are OK)"
