@@ -6,11 +6,11 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
 const navActeurs = [
-  { label: 'Entreprises', href: '/acteurs/entreprises' },
-  { label: 'Pouvoirs publics', href: '/acteurs/pouvoirs-publics' },
-  { label: 'Education', href: '/acteurs/education' },
-  { label: 'Secteurs creatifs', href: '/acteurs/secteurs-creatifs' },
-  { label: 'Grand public', href: '/acteurs/citoyens' },
+  { label: 'Entreprises', href: '/entreprises' },
+  { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
+  { label: 'Education', href: '/education' },
+  { label: 'Secteurs creatifs', href: '/secteurs-creatifs' },
+  { label: 'Grand public', href: '/citoyens' },
 ]
 
 const sectors = ['Musique', 'Arts visuels', 'Cinema', 'Jeux video', 'Edition', 'Architecture']
@@ -30,7 +30,7 @@ export default function SecteursCreatifsPage() {
         <div className="max-w-6xl mx-auto px-8">
           <nav className="flex gap-8 text-base text-gray-400 mb-16">
             {navActeurs.map((item) => (
-              <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/acteurs/secteurs-creatifs' ? 'text-black font-medium' : ''}`}>
+              <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/secteurs-creatifs' ? 'text-black font-medium' : ''}`}>
                 {item.label}
               </Link>
             ))}

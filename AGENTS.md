@@ -39,8 +39,8 @@
 4. Generates `public/partners.json`
 
 ## Deployment
-- **Vercel**: Primary hosting
-- **o2switch**: FTP deploy via GitHub Actions (`NEXT_EXPORT=true npm run build`)
+- **Vercel**: Primary hosting (https://icia.vercel.app)
+- **o2switch**: sc1bovu7233.universe.wf (FTP upload from `out/` folder)
 - CI triggers on push to `main`
 
 ## Key Paths

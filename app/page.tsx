@@ -20,11 +20,11 @@ const offres = [
 ]
 
 const acteurs = [
-  { title: 'Entreprises', desc: 'PME / ETI face a l\'IA. Diagnostic, transformation, formation.', href: '/acteurs/entreprises', anchor: 'entreprises' },
-  { title: 'Pouvoirs publics', desc: 'Service public, inclusion, pilotage territorial.', href: '/acteurs/pouvoirs-publics', anchor: 'pouvoirs-publics' },
-  { title: 'Education', desc: 'Ecoles, CFA, universites. Former les formateurs de demain.', href: '/acteurs/education', anchor: 'education' },
-  { title: 'Secteurs creatifs', desc: 'Musique, cinema, design. Creer avec l\'IA sans perdre son identite.', href: '/acteurs/secteurs-creatifs', anchor: 'secteurs-creatifs' },
-  { title: 'Grand public', desc: 'Acculturation, securite, emploi. Reduire la fracture IA.', href: '/acteurs/citoyens', anchor: 'citoyens' },
+  { title: 'Entreprises', desc: 'PME / ETI face a l\'IA. Diagnostic, transformation, formation.', href: '/entreprises', anchor: 'entreprises' },
+  { title: 'Pouvoirs publics', desc: 'Service public, inclusion, pilotage territorial.', href: '/pouvoirs-publics', anchor: 'pouvoirs-publics' },
+  { title: 'Education', desc: 'Ecoles, CFA, universites. Former les formateurs de demain.', href: '/education', anchor: 'education' },
+  { title: 'Secteurs creatifs', desc: 'Musique, cinema, design. Creer avec l\'IA sans perdre son identite.', href: '/secteurs-creatifs', anchor: 'secteurs-creatifs' },
+  { title: 'Grand public', desc: 'Acculturation, securite, emploi. Reduire la fracture IA.', href: '/citoyens', anchor: 'citoyens' },
 ]
 
 const partners = [
@@ -147,7 +147,7 @@ export default function Home() {
               {offres.map((offre, i) => (
                 <motion.div 
                   key={offre.num}
-                  id={offre.href.replace('/offres/', 'offre-')}
+                  id={'offre-' + offre.href.replace('/', '')}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -203,7 +203,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden">
+        <section id="partenaires" className="py-20 border-b border-gray-200 overflow-hidden" style={{ backgroundColor: '#f0f0f0' }}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Confiance</p>
@@ -225,24 +225,17 @@ export default function Home() {
         </section>
 
         <section id="contact" className="py-20" style={{ backgroundColor: '#1a1a1a' }}>
-          <div className="max-w-4xl mx-auto px-8 flex items-center gap-12">
-            <div className="flex-1 text-center">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-white mb-6">Pret a vous lancer ?</h2>
-              <p className="text-xl text-gray-400 mb-10 max-w-xl mx-auto">
-                Planifions un premier echanges pour comprendre vos enjeux et voir comment nous pouvons vous aider.
-              </p>
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-                <Link href="/contact" className="inline-block px-12 py-5 text-lg text-black bg-white hover:bg-gray-100 transition-all duration-200">
-                  Planifier un echanges
-                </Link>
-              </motion.div>
-            </div>
-            <img 
-              src="/images/paperplane.png" 
-              alt="Project" 
-              className="w-48 h-auto hidden lg:block"
-            />
+          <div className="max-w-3xl mx-auto px-8 text-center">
+            <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Parlons de votre projet</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Pret a vous lancer ?</h2>
+            <p className="text-xl text-gray-400 mb-10 max-w-xl mx-auto">
+              Planifions un premier echanges pour comprendre vos enjeux et voir comment nous pouvons vous aider.
+            </p>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
+              <Link href="/contact" className="inline-block px-12 py-5 text-lg text-black bg-white hover:bg-gray-100 transition-all duration-200">
+                Planifier un echanges
+              </Link>
+            </motion.div>
           </div>
         </section>
 

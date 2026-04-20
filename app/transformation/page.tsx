@@ -33,7 +33,7 @@ export default function TransformationPage() {
       <main className="pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-            <Link href="/" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">← Accueil</Link>
+            <Link href="/#offres" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">← Retour</Link>
           </motion.div>
 
           <div className="mb-20">

@@ -6,18 +6,18 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
 const navActeurs = [
-  { label: 'Entreprises', href: '/acteurs/entreprises' },
-  { label: 'Pouvoirs publics', href: '/acteurs/pouvoirs-publics' },
-  { label: 'Education', href: '/acteurs/education' },
-  { label: 'Secteurs creatifs', href: '/acteurs/secteurs-creatifs' },
-  { label: 'Grand public', href: '/acteurs/citoyens' },
+  { label: 'Entreprises', href: '/entreprises' },
+  { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
+  { label: 'Education', href: '/education' },
+  { label: 'Secteurs creatifs', href: '/secteurs-creatifs' },
+  { label: 'Grand public', href: '/citoyens' },
 ]
 
 const axes = [
   { num: '01', title: 'Diagnostic IA & AI Act', description: "Comprendre ou vous en etes. Cartographie des usages, analyse des risques reglementaires, feuille de route 12 mois.", href: '/diagnostic' },
-  { num: '02', title: 'Formations & Acculturation', description: "Vos equipes utilisent deja l'IA. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/offres/formations' },
-  { num: '03', title: 'Transformation IA', description: "Passer de l'experimentation a la pratique quotidienne. Gouvernance, competences, change management.", href: '/offres/transformation' },
-  { num: '04', title: 'Partenaire IA Mensuel', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu.", href: '/offres/partenaire' },
+  { num: '02', title: 'Formations & Acculturation', description: "Vos equipes utilisent deja l'IA. On fait en sorte qu'elles le fassent bien, dans un cadre securise.", href: '/formations' },
+  { num: '03', title: 'Transformation IA', description: "Passer de l'experimentation a la pratique quotidienne. Gouvernance, competences, change management.", href: '/transformation' },
+  { num: '04', title: 'Partenaire IA Mensuel', description: "Un partenaire independant pour vous aider a decider sur l'IA, en continu.", href: '/partenaire' },
 ]
 
 export default function EntreprisesPage() {
@@ -28,7 +28,7 @@ export default function EntreprisesPage() {
         <div className="max-w-6xl mx-auto px-8">
           <nav className="flex gap-8 text-base text-gray-400 mb-16">
             {navActeurs.map((item) => (
-              <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/acteurs/entreprises' ? 'text-black font-medium' : ''}`}>
+              <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/entreprises' ? 'text-black font-medium' : ''}`}>
                 {item.label}
               </Link>
             ))}
