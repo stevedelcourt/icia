@@ -21,6 +21,9 @@ export default function MentionsLegales() {
             <p>RCS Clermont Ferrand</p>
             <p>SAS au capital de 100 000€</p>
             
+            <h2 className="text-xl font-bold text-black mt-8 mb-4">Présentation corporate</h2>
+            <p><a href="/MariusIA-BAM.pdf" target="_blank" rel="noopener noreferrer" className="text-black underline hover:text-gray-600">Télécharger la présentation corporate (PDF)</a></p>
+            
             <h2 className="text-xl font-bold text-black mt-8 mb-4">Propriété intellectuelle</h2>
             <p>L'ensemble du contenu de ce site est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
           </div>
