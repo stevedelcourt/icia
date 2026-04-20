@@ -27,8 +27,8 @@ export default function EntreprisesPage() {
       <Header />
       <ScrollGradient startColor="green" />
       <main className="pt-36 pb-24">
-        <div className="max-w-6xl mx-auto px-8">
-          <nav className="flex gap-8 text-base text-gray-400 mb-16">
+        <div className="max-w-6xl mx-4 md:mx-auto md:px-8">
+          <nav className="flex gap-4 md:gap-8 text-sm md:text-base text-gray-400 mb-12 md:mb-16 overflow-x-auto pb-2 -mx-4 px-4 md:px-0 md:overflow-visible whitespace-nowrap">
             {navActeurs.map((item) => (
               <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/entreprises' ? 'text-black font-medium' : ''}`}>
                 {item.label}

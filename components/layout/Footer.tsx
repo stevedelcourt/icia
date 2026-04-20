@@ -27,9 +27,9 @@ const legalLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 border-t border-gray-800 py-16">
-      <div className="max-w-6xl mx-auto px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+    <footer className="bg-gray-900 border-t border-gray-800 py-12 md:py-16">
+      <div className="max-w-6xl mx-auto px-6 md:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
           <div>
             <Link href="/">
               <motion.img 
@@ -44,7 +44,7 @@ export function Footer() {
             <p className="text-base text-gray-400">Campus Cyber.AI, Marseille</p>
           </div>
           
-          <div className="flex gap-16">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16">
             <div>
               <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Offres</p>
               <nav className="space-y-3">
