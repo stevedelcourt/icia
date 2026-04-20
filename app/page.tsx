@@ -153,8 +153,8 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <Link href={offre.href} className="flex justify-between items-center py-12 px-6 border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
-                    <div className="flex-1">
+                  <Link href={offre.href} className="flex justify-between items-end py-8 pl-4 border-b border-gray-100 last:border-b-0 group hover:bg-gray-100 transition-all duration-200">
+                    <div className="flex-1 self-end">
                       <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
