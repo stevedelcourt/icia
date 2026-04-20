@@ -63,7 +63,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-open-sans)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        serif: ['var(--font-merriweather)', 'Georgia', 'Times New Roman', 'serif'],
+        serif: ['var(--font-work-sans)', 'Work Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       fontSize: {
         'h1': ['3rem', { lineHeight: '1.1' }],

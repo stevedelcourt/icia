@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
@@ -27,67 +30,80 @@ export default function DiagnosticPage() {
   return (
     <>
       <Header />
-      <main className="pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <Link href="/offres" className="text-sm text-[#666666] hover:text-[#00255D] mb-8 inline-block">← Nos offres</Link>
+      <main className="pt-36 pb-24">
+        <div className="max-w-6xl mx-auto px-8">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+            <Link href="/" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">← Accueil</Link>
+          </motion.div>
 
-          <div className="mb-16">
-            <span className="text-xs tracking-widest text-[#666666] uppercase">OFFRE 01</span>
-            <h1 className="text-4xl md:text-5xl font-serif text-black mt-2 mb-2">Diagnostic IA & AI Act</h1>
-            <p className="text-lg text-[#666666]">Porte entree universelle</p>
+          <div className="mb-20">
+            <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 01</span>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-black mt-3 mb-3">Diagnostic IA & AI Act</h1>
+            <p className="text-xl font-medium text-gray-600">Porte entree universelle</p>
           </div>
 
-          <div className="border-t border-[#E5E5E5] pt-12 mb-16">
-            <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-4">Promesse</h2>
-            <p className="text-xl text-black max-w-3xl leading-relaxed">En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.</p>
-          </div>
+          <motion.div 
+            className="border-t border-gray-200 pt-14 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">En 4 a 6 semaines, vous savez exactement ou vous en etes, ou vous pouvez aller, et ce que l'AI Act vous impose concretement - avec une feuille de route prete a executer.</p>
+          </motion.div>
 
-          <div className="border-t border-[#E5E5E5] pt-12 mb-16">
-            <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-8">Contenu livre</h2>
-            <ul className="space-y-4">
-              {livrables.map((item) => (
-                <li key={item} className="flex items-start gap-4 text-black">
-                  <span className="text-[#00255D] mt-1">-</span>
+          <motion.div 
+            className="border-t border-gray-200 pt-14 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-8">Contenu livre</h2>
+            <ul className="space-y-5">
+              {livrables.map((item, i) => (
+                <li key={item} className="flex items-start gap-5 text-black text-lg">
+                  <span className="text-gray-400 mt-1">-</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="border-t border-[#E5E5E5] pt-12 mb-16">
-            <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-6">Exemple</h2>
-            <div className="bg-[#FAFAF7] p-8">
-              <p className="font-medium text-black mb-2">{exemple.contexte}</p>
-              <p className="text-[#666666] mb-6">{exemple.description}</p>
-              <ul className="space-y-3">
+          <motion.div 
+            className="border-t border-gray-200 pt-14 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-6">Exemple</h2>
+            <div className="bg-gray-50 p-10">
+              <p className="font-medium text-black text-lg mb-3">{exemple.contexte}</p>
+              <p className="text-gray-500 mb-8">{exemple.description}</p>
+              <ul className="space-y-4">
                 {exemple.jalons.map((j) => (
-                  <li key={j.phase} className="flex gap-4 text-sm">
-                    <span className="text-[#00255D] font-medium min-w-[60px]">{j.phase}</span>
-                    <span className="text-[#666666]">{j.action}</span>
+                  <li key={j.phase} className="flex gap-6 text-base">
+                    <span className="text-gray-400 font-medium min-w-[60px]">{j.phase}</span>
+                    <span className="text-gray-500">{j.action}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="border-t border-[#E5E5E5] pt-12 mb-16">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-2">Prix</h2>
-                <p className="text-2xl font-medium text-black">9 500 EUR HT</p>
-                <p className="text-sm text-[#666666]">5 a 6 jours consultants</p>
-              </div>
-              <div>
-                <h2 className="text-xs tracking-widest text-[#666666] uppercase mb-2">Levier</h2>
-                <p className="text-[#666666] text-sm">AI Act en vigueur aout 2026 - Urgence reglementaire = achat immediat - Ticket decidable par CEO/DAF seul</p>
-              </div>
-            </div>
-          </div>
+          <motion.div 
+            className="border-t border-gray-200 pt-14 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-3">Levier</h2>
+            <p className="text-lg text-gray-500">AI Act en vigueur aout 2026 - Urgence reglementaire = achat immediat - Ticket decidable par CEO/DAF seul</p>
+          </motion.div>
 
-          <div className="flex gap-4">
-            <Link href="/contact" className="inline-block px-8 py-4 text-white bg-black hover:bg-black/80 transition-colors">Nous contacter</Link>
-            <Link href="/offres" className="inline-block px-8 py-4 border border-[#E5E5E5] text-[#666666] hover:border-[#00255D] hover:text-[#00255D] transition-colors">Retour aux offres</Link>
-          </div>
+          <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
+            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200">Retour à l'accueil</Link>
+          </motion.div>
         </div>
       </main>
       <Footer />

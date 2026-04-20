@@ -48,7 +48,7 @@ export default function AProposPage() {
           </p>
           
           <Link href="/contact" className="inline-block px-6 py-3 bg-[#00255D] text-white rounded-full hover:bg-[#001A3A] transition-colors">
-            Nous contacter
+            Planifier un échange
           </Link>
         </div>
       </main>
