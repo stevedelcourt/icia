@@ -1,29 +1,7 @@
 import type { Metadata } from 'next'
-import { Lato, Open_Sans, Merriweather, Source_Sans_3, Work_Sans } from 'next/font/google'
+import { Work_Sans } from 'next/font/google'
+import { ScrollGradient } from '@/components/ScrollGradient'
 import './globals.css'
-
-const lato = Lato({
-  weight: '900',
-  subsets: ['latin'],
-  variable: '--font-lato',
-})
-
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-open-sans',
-})
-
-const merriweather = Merriweather({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--font-merriweather',
-})
-
-const sourceSans = Source_Sans_3({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-source-sans',
-})
 
 const workSans = Work_Sans({
   weight: ['400', '500', '600', '700'],
@@ -69,8 +47,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className={`${lato.variable} ${openSans.variable} ${merriweather.variable} ${sourceSans.variable} ${workSans.variable}`}>
-      <body className="antialiased bg-bg text-text font-sans">
+    <html lang="fr" className={workSans.variable}>
+      <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+        <ScrollGradient />
         {children}
       </body>
     </html>
