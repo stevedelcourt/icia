@@ -125,20 +125,11 @@ input, textarea, select {
   color: var(--text);
 }
 
-/* Hide TarteAuCitron floating icon */
-#tarteaucitronAlert { display: none !important; }
-.tarteaucitronFloatingBody { display: none !important; }
-.tarteaucitronIcon { display: none !important; }
-#tarteaucitronPopUp { display: none !important; }
-
-/* Custom cookie button colors */
-.tarteaucitronOk, .tarteaucitronAccept, .tarteaucitronAllow {
-  background-color: #d1f1c9 !important;
-  color: #000 !important;
-}
-.tarteaucitronDeny, .tarteaucitronRefuse {
-  background-color: #eee !important;
-  color: #000 !important;
+/* Hide TarteAuCitron floating icon and all popups */
+#tarteaucitronAlert, .tarteaucitronFloatingBody, .tarteaucitronIcon, #tarteaucitronPopUp, #tarteaucitronServices, #tarteaucitronConsent, #tarteaucitronBottom, #tarteaucitronTop {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 @media (max-width: 768px) {

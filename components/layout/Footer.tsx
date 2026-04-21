@@ -21,7 +21,6 @@ const acteurLinks = [
 const legalLinks = [
   { label: 'Mentions légales', href: '/mentions-legales' },
   { label: 'Confidentialité', href: '/politique-confidentialite' },
-  { label: 'Cookies', href: '/cookies' },
   { label: 'CGV', href: '/conditions-utilisation' },
 ]
 
@@ -82,21 +81,12 @@ export function Footer() {
   <nav className="space-y-3">
     {legalLinks.map((link) => (
       <motion.div key={link.href} whileHover={{ x: 6 }}>
-        {link.label === 'Cookies' ? (
-          <a 
-            href="javascript:tarteaucitron.userInterface.openPanel();"
-            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            Gestion des cookies
-          </a>
-        ) : (
-          <Link 
-            href={link.href} 
-            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            {link.label}
-          </Link>
-        )}
+        <Link 
+          href={link.href} 
+          className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+        >
+          {link.label}
+        </Link>
       </motion.div>
     ))}
   </nav>
