@@ -77,21 +77,30 @@ export function Footer() {
               </nav>
             </div>
             
-            <div>
-              <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Légal</p>
-              <nav className="space-y-3">
-                {legalLinks.map((link) => (
-                  <motion.div key={link.href} whileHover={{ x: 6 }}>
-                    <Link 
-                      href={link.href} 
-                      className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-            </div>
+<div>
+  <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Légal</p>
+  <nav className="space-y-3">
+    {legalLinks.map((link) => (
+      <motion.div key={link.href} whileHover={{ x: 6 }}>
+        {link.label === 'Cookies' ? (
+          <a 
+            href="javascript:tarteaucitron.userInterface.openPanel();"
+            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            Gestion des cookies
+          </a>
+        ) : (
+          <Link 
+            href={link.href} 
+            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            {link.label}
+          </Link>
+        )}
+      </motion.div>
+    ))}
+  </nav>
+</div>
           </div>
         </div>
         

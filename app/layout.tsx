@@ -48,9 +48,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={workSans.variable}>
+      <head>
+        <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
+      </head>
       <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
         <ScrollGradient />
         {children}
+        <script src="/js/cookies.js"></script>
       </body>
     </html>
   )

@@ -28,6 +28,15 @@ export default function PolitiqueConfidentialite() {
             
             <h2 className="text-xl font-medium text-black mt-8 mb-4">Durée de conservation</h2>
             <p>Vos données sont conservées pendant la durée de notre relation contractuelle et jusqu'à 3 ans après votre dernier contact.</p>
+            
+            <h2 className="text-xl font-medium text-black mt-8 mb-4">Cookies et mesure d'audience</h2>
+            <p>Ce site utilise Google Analytics pour mesurer l'audience et comprendre comment les visiteurs interagissent avec notre site.</p>
+            <ul className="list-disc pl-6">
+              <li><strong>Finalité :</strong> mesure d'audience, analyse du trafic et amélioration du site</li>
+              <li><strong>Cookies utilisés :</strong> _ga, _gid, _gat (Google Analytics)</li>
+              <li><strong>Durée de conservation :</strong> jusqu'à 13 mois</li>
+              <li><strong>Consentement :</strong> les cookies analytiques ne sont activés qu'après votre consentement explicite via le bandeau de cookies. Vous pouvez modifier vos préférences à tout moment via le lien "Gestion des cookies" en bas de page.</li>
+            </ul>
           </div>
         </div>
       </main>
