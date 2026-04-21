@@ -150,7 +150,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="mb-10"
+                  className={i < offres.length - 1 ? "mb-[70px]" : ""}
                 >
                   <Link href={offre.href} className="flex flex-col md:flex-row items-stretch border-b border-gray-100 group hover:bg-gray-100 transition-all duration-200">
                     <div className="flex-1 py-8 md:py-10 pl-6 self-center order-2 md:order-1">

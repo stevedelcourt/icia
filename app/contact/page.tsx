@@ -64,7 +64,7 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="pt-36 pb-24">
+      <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="max-w-2xl mx-auto px-8">
           {submitStatus === 'success' ? (
             <motion.div 

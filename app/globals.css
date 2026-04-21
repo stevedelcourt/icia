@@ -125,8 +125,38 @@ input, textarea, select {
   color: var(--text);
 }
 
-/* Hide TarteAuCitron floating icon and all popups */
+/* Show TarteAuCitron UI */
 #tarteaucitronAlert, .tarteaucitronFloatingBody, .tarteaucitronIcon, #tarteaucitronPopUp, #tarteaucitronServices, #tarteaucitronConsent, #tarteaucitronBottom, #tarteaucitronTop {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Cache l'icône flottante jaune */
+#tarteaucitronManager, #tarteaucitronAlertSmall {
+    display: none !important;
+}
+
+/* Cookie button colors */
+.tarteaucitronOk, .tarteaucitronAccept, .tarteaucitronAllow, #tarteaucitronAccept {
+  background-color: #d1f1c9 !important;
+  color: #000 !important;
+}
+.tarteaucitronDeny, .tarteaucitronRefuse, #tarteaucitronDeny {
+  background-color: #aebddb !important;
+  color: #000 !important;
+}
+
+/* Hide TarteAuCitron floating icon/widget */
+#tarteaucitronAlert,
+.tarteaucitronFloatingBody,
+.tarteaucitronIcon,
+.tarteaucitronBullet,
+.tarteaucitron_popup,
+.tarteaucitron_services,
+.tarteaucitron-main,
+.tarteaucitron-bg,
+.tarteaucitron-banner {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
