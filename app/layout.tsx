@@ -52,6 +52,14 @@ export default function RootLayout({
         <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
         <ScrollGradient />
         {children}
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NJWMZE9B0P"></script>
+        <script dangerouslySetInnerHTML={{__html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NJWMZE9B0P');
+        `}} />
         <script src="/js/cookies.js"></script>
       </body>
     </html>
