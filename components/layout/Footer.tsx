@@ -21,7 +21,7 @@ const acteurLinks = [
 const legalLinks = [
   { label: 'Mentions légales', href: '/mentions-legales' },
   { label: 'Confidentialité', href: '/politique-confidentialite' },
-  { label: 'Gestion des cookies', href: 'javascript:tarteaucitron.userInterface.openPanel();' },
+  { label: 'Gestion des cookies', href: 'javascript:if(window.tarteaucitron){tarteaucitron.userInterface.openPanel();}else{alert("Chargement en cours...");}' },
   { label: 'CGV', href: '/conditions-utilisation' },
 ]
 
