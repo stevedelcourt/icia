@@ -10,10 +10,10 @@ const workSans = Work_Sans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://icia.fr'),
+  metadataBase: new URL('https://mariusia.com'),
   title: {
-    default: 'ICIA - Institut Collectif de l\'IA',
-    template: '%s | ICIA',
+    default: 'MariusIA - Institut Collectif de l\'IA',
+    template: '%s | MariusIA',
   },
   description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
   keywords: ['IA', 'intelligence artificielle', 'formation IA', 'accompagnement IA', 'think tank IA', 'France'],
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://icia.fr',
-    siteName: 'ICIA',
-    title: 'ICIA - Institut Collectif de l\'IA',
+    url: 'https://mariusia.com',
+    siteName: 'MariusIA',
+    title: 'MariusIA - Institut Collectif de l\'IA',
     description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/MariusIA-logo-monogram.png',
         width: 1200,
         height: 630,
         alt: 'Institut Collectif de l\'IA',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ICIA - Institut Collectif de l\'IA',
+    title: 'MariusIA - Institut Collectif de l\'IA',
     description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
   },
 }
@@ -48,10 +48,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={workSans.variable}>
-      <head>
-        <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
-      </head>
       <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+        <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
         <ScrollGradient />
         {children}
         <script src="/js/cookies.js"></script>

@@ -40,8 +40,8 @@ export function Footer() {
                 transition={{ duration: 0.2 }}
               />
             </Link>
-            <p className="text-base text-gray-400">Institut de l'IA · Mentivis SAS</p>
-            <p className="text-base text-gray-400">Campus Cyber.AI, Marseille</p>
+            <p className="text-base text-gray-400">Institut de l'IA · <a href="https://mentivis.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Mentivis</a></p>
+            <p className="text-base text-gray-400">Campus <a href="https://campuscyber.fr/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Cyber.AI</a>, Marseille</p>
           </div>
           
           <div className="flex flex-col md:flex-row gap-8 md:gap-16">

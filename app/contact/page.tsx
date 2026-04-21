@@ -217,7 +217,7 @@ export default function ContactPage() {
                       className="mt-1"
                     />
                     <span className="text-sm text-gray-500">
-                      J'accepte de recevoir des informations et des offres de l'ICIA, conformément à la politique de confidentialité.
+                      J'accepte de recevoir des informations et des offres de MariusIA, conformément à la politique de confidentialité.
                     </span>
                   </label>
                 </div>
