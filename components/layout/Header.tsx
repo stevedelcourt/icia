@@ -6,15 +6,14 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Piliers', href: '/#piliers' },
+  { label: 'Nos principes', href: '/#piliers' },
   { label: 'Offres', href: '/#offres' },
   { label: 'Acteurs', href: '/#acteurs' },
-  { label: 'Contact', href: '/#contact' },
 ]
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center">
+    <Link href="https://www.mariusia.com/#" className="flex items-center">
       <div className="h-14 w-[250px]">
         <img
           src="/MariusIA-logo.svg"
@@ -31,6 +30,8 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
+  const acteursPaths = ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/citoyen']
+  const isActeursPage = acteursPaths.some(p => pathname === p || pathname.startsWith(p))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,8 +56,8 @@ export function Header() {
       }`}
       style={{ 
         backgroundColor: isHomePage 
-          ? (isScrolled ? '#ebe9e6' : '#aebddb')
-          : 'white',
+          ? (isScrolled ? '#ffffff' : '#aebddb')
+          : (isActeursPage ? (isScrolled ? '#ffffff' : '#bdf5ab') : 'white'),
       }}
     >
       <div className="max-w-6xl mx-auto px-8">
@@ -68,7 +69,7 @@ export function Header() {
             <Link 
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-500 hover:text-black transition-colors duration-200"
+              className="text-base font-medium text-black hover:text-gray-600 transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -77,13 +78,13 @@ export function Header() {
 
         <Link 
           href="/contact"
-          className="hidden lg:inline-block px-6 py-2.5 text-sm font-medium text-black border-2 border-black hover:bg-black hover:text-white transition-all duration-200"
+          className="hidden lg:inline-block px-6 py-2.5 text-sm font-medium text-[#00255D] border-2 border-[#00255D] hover:bg-[#00255D] hover:text-white transition-all duration-200"
         >
-          Planifier un échange
+         Contactez-nous
         </Link>
 
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 text-black"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
@@ -119,7 +120,7 @@ export function Header() {
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-center py-4 mt-4 text-lg text-black border-2 border-black">
-                Planifier un échange
+                Contactez-nous
               </Link>
             </nav>
           </motion.div>

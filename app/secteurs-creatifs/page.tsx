@@ -1,10 +1,25 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import ScrollGradient from '@/components/ScrollGradient'
+
+const COLORS = {
+  green: { r: 189, g: 245, b: 171 },
+  white: { r: 255, g: 255, b: 255 },
+}
+
+function interpolateToWhite(progress: number): string {
+  const { r, g, b } = COLORS.green
+  const { r: r2, g: g2, b: b2 } = COLORS.white
+  const eased = 1 - Math.pow(1 - progress, 3)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
 
 const navActeurs = [
   { label: 'Entreprises', href: '/entreprises#acteurs' },
@@ -24,16 +39,38 @@ const axes = [
 ]
 
 export default function SecteursCreatifsPage() {
+  const heroRef = useRef<HTMLElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const hero = heroRef.current
+    if (!hero) return
+
+    const handleScroll = () => {
+      const rect = hero.getBoundingClientRect()
+      const heroHeight = hero.offsetHeight
+      const maxScroll = heroHeight * 1.5
+      const scrolled = Math.max(0, -rect.top)
+      const progress = Math.min(scrolled / maxScroll, 1)
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const heroBackground = interpolateToWhite(scrollProgress)
+
   return (
     <>
       <Header />
-      <ScrollGradient startColor="green" />
-      <main className="pt-36 pb-24">
+      <main className="pt-36 pb-24" style={{ backgroundColor: heroBackground }}>
         <div className="max-w-6xl mx-auto px-8">
-          <nav className="flex gap-4 md:gap-8 text-sm md:text-base text-gray-400 mb-12 md:mb-16 overflow-x-auto pb-2 -mx-4 px-4 md:px-0 md:overflow-visible whitespace-nowrap">
+          <nav ref={heroRef} className="flex gap-4 md:gap-8 text-sm md:text-base text-gray-400 mb-12 md:mb-16 overflow-x-auto pb-2 -mx-4 px-4 md:px-0 md:overflow-visible whitespace-nowrap">
             {navActeurs.map((item) => (
               <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 ${item.href === '/secteurs-creatifs' ? 'text-black font-medium' : ''}`}>
-                {item.label}
+                {item.label === 'Secteurs creatifs' ? 'Industries créatives' : item.label}
               </Link>
             ))}
           </nav>
@@ -41,12 +78,12 @@ export default function SecteursCreatifsPage() {
           <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Acteurs</p>
-              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Secteurs creatifs</h1>
+              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Industries créatives</h1>
               <p className="text-xl font-medium text-gray-600 mb-10">Creer avec l'IA, sans perdre son identite.</p>
-              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
+              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">Contactez-nous</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/crea.webp" alt="Secteurs creatifs" className="w-full" />
+              <img src="/images/music.png" alt="Secteurs creatifs" className="w-full" />
             </motion.div>
           </div>
 

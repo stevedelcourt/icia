@@ -25,7 +25,7 @@ export default function PartenairePage() {
 
           <div className="mb-20">
             <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 04</span>
-            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Partenaire IA Mensuel</h1>
+            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Partenaire support long terme</h1>
             <p className="text-xl font-medium text-gray-600">Abonnement</p>
           </div>
 
@@ -88,8 +88,8 @@ export default function PartenairePage() {
           </motion.div>
 
           <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Planifier un échange</Link>
-            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200">Retour à l'accueil</Link>
+            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">Échanger</span><span className="hidden md:inline">Contactez-nous</span></Link>
+            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">Retour</span><span className="hidden md:inline">Retour à l'accueil</span></Link>
           </motion.div>
         </div>
       </main>

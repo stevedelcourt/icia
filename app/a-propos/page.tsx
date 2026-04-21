@@ -47,8 +47,8 @@ export default function AProposPage() {
             Institut de l'IA - Campus Cyber.AI, Marseille
           </p>
           
-          <Link href="/contact" className="inline-block px-6 py-3 bg-[#00255D] text-white rounded-full hover:bg-[#001A3A] transition-colors">
-            Planifier un échange
+          <Link href="/contact" className="inline-block px-6 py-3 bg-[#00255D] text-white rounded-full hover:bg-white hover:text-[#00255D] transition-colors">
+            Contactez-nous
           </Link>
         </div>
       </main>

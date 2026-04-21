@@ -14,7 +14,7 @@ const acteurLinks = [
   { label: 'Entreprises', href: '/entreprises' },
   { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
   { label: 'Education', href: '/education' },
-  { label: 'Secteurs créatifs', href: '/secteurs-creatifs' },
+  { label: 'Industries créatives', href: '/secteurs-creatifs' },
   { label: 'Grand public', href: '/citoyens' },
 ]
 

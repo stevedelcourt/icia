@@ -1,30 +1,56 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
+const COLORS = {
+  blue: { r: 174, g: 189, b: 219 },
+  cream: { r: 249, g: 247, b: 243 },
+  white: { r: 255, g: 255, b: 255 },
+}
+
+function interpolateColor(progress: number): string {
+  const { r, g, b } = COLORS.blue
+  const { r: r2, g: g2, b: b2 } = COLORS.cream
+  const eased = 1 - Math.pow(1 - progress, 3)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
+
+function interpolateToWhite(progress: number): string {
+  const { r, g, b } = COLORS.blue
+  const { r: r2, g: g2, b: b2 } = COLORS.white
+  const eased = 1 - Math.pow(1 - progress, 3)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
+
 const piliers = [
-  { title: 'Indépendance technologique', desc: 'Aucune affiliation à un fournisseur d\'IA. Recommandations neutres.', anchor: 'independance' },
-  { title: 'Conseil stratégique pur', desc: 'Stratégie IA, gouvernance, change management, conformité AI Act.', anchor: 'conseil' },
-  { title: 'Tiers de confiance', desc: 'Interlocuteur unique. Tous les livrables portent notre marque.', anchor: 'confiance' },
+  { title: 'Indépendance technologique', desc: 'Aucune dépendance à un fournisseur. Des recommandations réellement neutres.', anchor: 'independance' },
+  { title: 'Conseil stratégique', desc: 'Stratégie IA, gouvernance, conduite du changement, conformité AI Act.', anchor: 'conseil' },
+  { title: 'Tiers de confiance', desc: 'Un interlocuteur unique, des livrables assumés et signés.', anchor: 'confiance' },
 ]
 
 const offres = [
   { num: '01', title: 'Diagnostic IA & AI Act', tagline: 'Porte d\'entrée universelle', duration: '4-6 semaines', description: "En 4 à 6 semaines, vous savez exactement où vous en êtes, où vous pouvez aller, et ce que l'AI Act vous impose concrètement - avec une feuille de route prête à exécuter.", href: '/diagnostic', image: '/images/IA.webp' },
   { num: '02', title: 'Formations & Acculturation', tagline: 'Intra-entreprise', duration: 'Parcours sur mesure', description: "Vos équipes utilisent déjà l'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu'elles le fassent bien, dans un cadre sécurisé.", href: '/formations', image: '/images/book.webp' },
   { num: '03', title: 'Transformation IA', tagline: 'Accompagnement 6-12 mois', duration: '6-12 mois', description: "On vous aide à faire passer l'IA de l'expérimentation à la pratique quotidienne - sans casser votre organisation, avec des résultats mesurables.", href: '/transformation', image: '/images/tree.webp' },
-  { num: '04', title: 'Partenaire IA Mensuel', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire indépendant pour vous aider à decidir sur l'IA, en continu - veille, conseil, arbitrage, alerte réglementaire.", href: '/partenaire', image: '/images/team-work.webp' },
+  { num: '04', title: 'Partenaire support long terme', tagline: 'Abonnement', duration: 'Engagement 12 mois', description: "Un partenaire indépendant pour vous aider à decidir sur l'IA, en continu - veille, conseil, arbitrage, alerte réglementaire.", href: '/partenaire', image: '/images/team-work.webp' },
 ]
 
 const acteurs = [
-  { title: 'Entreprises', desc: 'PME / ETI face à l\'IA. Diagnostic, transformation, formation.', href: '/entreprises', anchor: 'entreprises' },
-  { title: 'Pouvoirs publics', desc: 'Service public, inclusion, pilotage territorial.', href: '/pouvoirs-publics', anchor: 'pouvoirs-publics' },
-  { title: 'Education', desc: 'Ecoles, CFA, universités. Former les formateurs de demain.', href: '/education', anchor: 'education' },
-  { title: 'Secteurs créatifs', desc: 'Musique, cinéma, design. Créer avec l\'IA sans perdre son identité.', href: '/secteurs-creatifs', anchor: 'secteurs-creatifs' },
-  { title: 'Grand public', desc: 'Acculturation, sécurité, emploi. Réduire la fracture IA.', href: '/citoyens', anchor: 'citoyen' },
+  { title: 'Entreprises', desc: 'PME / ETI face à l\'IA. Diagnostic, transformation, formation.', href: '/entreprises', anchor: 'entreprises', image: '/images/overworked.webp' },
+  { title: 'Pouvoirs publics', desc: 'Service public, inclusion, pilotage territorial.', href: '/pouvoirs-publics', anchor: 'pouvoirs-publics', image: '/images/crea.webp' },
+  { title: 'Education', desc: 'Ecoles, CFA, universités. Former les formateurs de demain.', href: '/education', anchor: 'education', image: '/images/educa.webp' },
+  { title: 'Industries créatives', desc: 'Musique, cinéma, design. Créer avec l\'IA sans perdre son identité.', href: '/secteurs-creatifs', anchor: 'secteurs-creatifs', image: '/images/music.png' },
+  { title: 'Grand public', desc: 'Acculturation, sécurité, emploi. Réduire la fracture IA.', href: '/citoyens', anchor: 'citoyen', image: '/images/grandpu.webp' },
 ]
 
 const partners = [
@@ -43,30 +69,65 @@ const navLinks = [
 ]
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null)
+  const offreRef = useRef<HTMLElement>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [offreProgress, setOffreProgress] = useState(0)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-      const progress = Math.min(window.scrollY / maxScroll, 1)
-      setScrollProgress(progress)
+    const hero = heroRef.current
+    const offre = offreRef.current
+    if (!hero || !offre) return
+
+const handleScroll = () => {
+      const rect1 = hero.getBoundingClientRect()
+      const heroHeight = hero.offsetHeight
+      const maxScroll1 = heroHeight * 1.5
+      const scrolled1 = Math.max(0, -rect1.top)
+      setScrollProgress(Math.min(scrolled1 / maxScroll1, 1))
+ 
+      const rect2 = offre.getBoundingClientRect()
+      const offreHeight = offre.offsetHeight
+      const maxScroll2 = offreHeight * 1.5
+      const scrolled2 = Math.max(0, -rect2.top)
+      setOffreProgress(Math.min(scrolled2 / maxScroll2, 1))
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const gradient = `linear-gradient(180deg, #aebddb 0%, #d0d5de ${scrollProgress * 50}%, #ebe9e6 ${Math.min(scrollProgress * 100, 100)}%)`
+  const heroBackground = interpolateColor(scrollProgress)
+  const offreBackground = interpolateToWhite(offreProgress)
 
   return (
     <>
-      <div 
-        className="gradient-background"
-        style={{ background: gradient }}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Marius IA",
+            "url": "https://www.mariusia.com",
+            "description": "Conseil en stratégie IA et conformité AI Act pour PME et ETI. Accompagnement pragmatique vers la transformation IA.",
+            "areaServed": ["Europe", "France"],
+            "knowsAbout": ["Artificial Intelligence", "AI Act", "AI Governance", "Machine Learning", "Change Management"],
+            "serviceType": ["AI Strategy Consulting", "AI Compliance", "AI Training"],
+            "contactPoint": { "@type": "ContactPoint", "url": "https://www.mariusia.com/contact" }
+          })
+        }}
       />
       <Header />
       <main className="pt-14">
 
-        <section id="accueil" className="py-16 md:py-20 border-b border-gray-200" style={{ backgroundColor: '#aebddb' }}>
+        <section 
+          id="accueil" 
+          ref={heroRef}
+          className="py-16 md:py-20 border-b border-gray-200"
+          style={{ backgroundColor: heroBackground }}
+        >
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid lg:grid-cols-2 gap-20 items-start">
               <motion.div
@@ -74,7 +135,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <p className="text-sm tracking-widest text-gray-400 uppercase mb-8">Institut de l'IA · Campus Cyber.AI, Marseille</p>
+                <p className="text-sm tracking-widest uppercase mb-8" style={{ color: '#000000' }}>Institut de l'IA · Campus Cyber.AI, Marseille</p>
                 <h1 className="text-5xl md:text-6xl  font-bold text-black leading-[1.1] mb-8">
                   Nous ne vendons<br />
                   pas de l'IA.
@@ -86,8 +147,8 @@ export default function Home() {
                   L'IA transforme toutes les organisations. Il manque un partenaire de confiance, capable de dire : quoi faire, dans quel ordre, avec quel risque.
                 </p>
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-                  <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 hover:shadow-xl transition-all duration-200">
-                    Planifier un échange
+                  <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black hover:shadow-xl transition-all duration-200">
+                    Contactez-nous
                   </Link>
                 </motion.div>
               </motion.div>
@@ -112,8 +173,8 @@ export default function Home() {
         <section id="piliers" className="py-16 md:py-20 border-b border-gray-200" style={{ backgroundColor: '#f9f7f3' }}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Ce qui nous distingue</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-black">Nos 3 piliers</h2>
+              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Ce qui fait la différence</p>
+              <h2 className="text-4xl md:text-5xl  font-bold text-black">Trois principes structurants</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {piliers.map((p, i) => (
@@ -134,14 +195,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="offres" className="py-16 md:py-20 border-b border-gray-200" style={{ backgroundColor: '#aebddb' }}>
+        <section 
+          id="offres" 
+          ref={offreRef}
+          className="py-16 md:py-20 border-b border-gray-200"
+          style={{ backgroundColor: offreBackground }}
+        >
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Nos services</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-black">Offres pour entreprises</h2>
-              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">De la porte d'entrée à l'accompagnement long.</p>
+              <h2 className="text-4xl md:text-5xl  font-bold text-black">Offre entreprise</h2>
+              <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">Du premier pas à l'accompagnement sur le long terme.</p>
             </div>
-            <div className="space-y-0">
+            <div className="py-10">
               {offres.map((offre, i) => (
                 <motion.div 
                   key={offre.num}
@@ -150,10 +216,9 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className={i < offres.length - 1 ? "mb-[70px]" : ""}
                 >
-                  <Link href={offre.href} className="flex flex-col md:flex-row items-stretch border-b border-gray-100 group hover:bg-gray-100 transition-all duration-200">
-                    <div className="flex-1 py-8 md:py-10 pl-6 self-center order-2 md:order-1">
+                  <Link href={offre.href} className="flex flex-col md:flex-row items-stretch group hover:bg-gray-100 transition-all duration-200 py-10">
+                    <div className="flex-1 pl-6 self-center order-2 md:order-1">
                       <h3 className="text-2xl font-bold text-black mb-1 group-hover:text-gray-600 transition-colors duration-200">{offre.num} {offre.title}</h3>
                       <p className="text-sm text-gray-400 mb-3">{offre.tagline} - {offre.duration}</p>
                       <p className="text-gray-500">{offre.description}</p>
@@ -170,7 +235,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">A qui s'adressons-nous</p>
-              <h2 className="text-4xl md:text-5xl  font-bold text-black">Nos acteurs</h2>
+              <h2 className="text-4xl md:text-5xl  font-bold text-black">Acteurs cibles</h2>
               <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">L'IA ne transforme pas les organisations de la même façon. Selon votre secteur, vos enjeux sont différents.</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -185,6 +250,7 @@ export default function Home() {
                   whileHover={{ y: -4 }}
                 >
                   <Link href={acteur.href} className="group block p-8 bg-white border border-gray-200 hover:border-gray-400 hover:shadow-xl transition-all duration-200 h-full">
+                    {acteur.image && <div className="w-full aspect-square mb-4 overflow-hidden"><img src={acteur.image} alt={acteur.title} className="w-full h-full object-contain" /></div>}
                     <h3 className="text-xl  font-bold text-black mb-3 group-hover:text-gray-600 transition-colors duration-200">{acteur.title}</h3>
                     <p className="text-gray-500 text-sm">{acteur.desc}</p>
                     <span className="inline-block mt-4 text-sm text-gray-400 group-hover:text-black transition-colors duration-200">
@@ -205,8 +271,8 @@ export default function Home() {
               Planifions un premier échange pour comprendre vos enjeux et voir comment nous pouvons vous aider.
             </p>
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="inline-block">
-              <Link href="/contact" className="inline-block px-12 py-5 text-lg text-white bg-black hover:bg-gray-800 transition-all duration-200">
-                Planifier un échange
+              <Link href="/contact" className="inline-block px-12 py-5 text-lg text-white bg-black hover:bg-white hover:text-black transition-all duration-200">
+                Contactez-nous
               </Link>
             </motion.div>
           </div>
