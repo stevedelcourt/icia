@@ -8,7 +8,19 @@ tarteaucitron.init({
   "showDetailsOnClick": true,
   "serviceDefaultState": "wait",
   "showAlertSmall": false,
-  "cookieslist": true
+  "cookieslist": true,
+  "handleOutsideRTI": false,
+  "cookie": {
+    "secure": true,
+    "expires": 365
+  },
+  "callbacks": {
+    "ready": function() { 
+      // Hide the main banner after init - only show via footer link
+      var banner = document.getElementById('tarteaucitronAlert');
+      if (banner) banner.style.display = 'none';
+    }
+  }
 });
 
 // Google Analytics via consentement

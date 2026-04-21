@@ -125,6 +125,12 @@ input, textarea, select {
   color: var(--text);
 }
 
+/* Hide TarteAuCitron floating icon */
+#tarteaucitronAlert { display: none !important; }
+.tarteaucitronFloatingBody { display: none !important; }
+.tarteaucitronIcon { display: none !important; }
+#tarteaucitronPopUp { display: none !important; }
+
 @media (max-width: 768px) {
   html {
     overflow-y: scroll;
