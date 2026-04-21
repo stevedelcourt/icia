@@ -52,7 +52,6 @@ export default function RootLayout({
         <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
         <ScrollGradient />
         {children}
-        <script src="/js/cookies.js"></script>
       </body>
     </html>
   )

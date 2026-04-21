@@ -33,6 +33,14 @@ tarteaucitron.services.gtag = {
   }
 };
 
+// Hide TarteAuCitron UI elements
+document.addEventListener("tarteaucitron_loaded", function() {
+    const manager = document.querySelector("#tarteaucitronManager");
+    if (manager) manager.remove();
+    const alert = document.querySelector("#tarteaucitronAlert");
+    if (alert) alert.remove();
+});
+
 // 1. Declare UA ID
 tarteaucitron.user.gtagUa = 'G-NJWMZE9B0P';
 
