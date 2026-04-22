@@ -25,7 +25,7 @@ const navActeurs = [
   { label: 'Entreprises', href: '/entreprises' },
   { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
   { label: 'Education', href: '/education' },
-  { label: 'Secteurs creatifs', href: '/secteurs-creatifs' },
+  { label: 'Industries créatives', href: '/secteurs-creatifs' },
   { label: 'Grand public', href: '/citoyens' },
 ]
 
@@ -78,7 +78,7 @@ export default function CitoyensPage() {
               <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Acteurs</p>
               <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Grand public</h1>
               <p className="text-xl font-medium text-gray-600 mb-10">La fracture IA grandit. L'ICIA vous aide à comprendre les outils IA du quotidien.</p>
-              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Etre accompagne</Link>
+              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Être accompagné</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
               <img src="/images/grandpu.webp" alt="Grand public" className="w-full" />

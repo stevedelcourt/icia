@@ -25,7 +25,7 @@ const navActeurs = [
   { label: 'Entreprises', href: '/entreprises' },
   { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
   { label: 'Education', href: '/education' },
-  { label: 'Secteurs creatifs', href: '/secteurs-creatifs' },
+  { label: 'Industries créatives', href: '/secteurs-creatifs' },
   { label: 'Grand public', href: '/citoyens' },
 ]
 

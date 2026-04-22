@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Work_Sans } from 'next/font/google'
+import Script from 'next/script'
 import ScrollGradient from '@/components/ScrollGradient'
+import SpeedBanner from '@/components/SpeedBanner'
 import './globals.css'
 
 const workSans = Work_Sans({
@@ -11,33 +13,39 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mariusia.com'),
-  title: {
-    default: 'MariusIA - Institut Collectif de l\'IA',
-    template: '%s | MariusIA',
+  icons: {
+    icon: '/images/favicon_io/favicon.ico',
+    apple: '/images/favicon_io/apple-touch-icon.png',
   },
-  description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
-  keywords: ['IA', 'intelligence artificielle', 'formation IA', 'accompagnement IA', 'think tank IA', 'France'],
-  authors: [{ name: 'Institut Collectif de l\'IA' }],
+  title: {
+    default: 'Marius IA | Les architectes de l\'IA - formation et accompagnement',
+    template: '%s | Marius IA - Les architectes de l\'IA',
+  },
+  description: "Marius IA, les architectes de l'IA. Formation, conseil et accompagnement pour entreprises, écoles et organisations. Passage à l'usage concret de l'intelligence artificielle.",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://mariusia.com',
-    siteName: 'MariusIA',
-    title: 'MariusIA - Institut Collectif de l\'IA',
-    description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
+    siteName: 'Marius IA - Les architectes de l\'IA',
+    title: 'Marius IA | Les architectes de l\'IA',
+    description: "Formation et accompagnement sur mesure par les architectes de l'IA pour transformer vos organisations.",
     images: [
       {
-        url: '/MariusIA-logo-monogram.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Institut Collectif de l\'IA',
+        alt: 'Marius IA - Les architectes de l\'IA',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MariusIA - Institut Collectif de l\'IA',
-    description: 'Un projet français pour que chacun et chaque organisation puisse bénéficier concrètement de l\'intelligence artificielle.',
+    title: 'Marius IA | Les architectes de l\'IA',
+    description: "Formation et accompagnement en intelligence artificielle par les architectes de l'IA.",
   },
 }
 
@@ -49,11 +57,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={workSans.variable}>
 <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
-        <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
-        <ScrollGradient />
-        {children}
-        <script src="/js/cookies.js"></script>
-      </body>
+      <ScrollGradient />
+      {children}
+      <SpeedBanner />
+      <Script src="/js/tarteaucitron.min.js" strategy="beforeInteractive" />
+      <Script src="/js/cookies.js" strategy="beforeInteractive" />
+    </body>
     </html>
   )
 }

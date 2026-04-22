@@ -18,10 +18,24 @@ const acteurLinks = [
   { label: 'Grand public', href: '/citoyens' },
 ]
 
+const openCookiePanel = () => {
+  const checkAndOpen = (retries: number) => {
+    const win = window as unknown as { tarteaucitron?: { userInterface: { openPanel: () => void } } }
+    if (win.tarteaucitron) {
+      win.tarteaucitron.userInterface.openPanel()
+    } else if (retries > 0) {
+      setTimeout(() => checkAndOpen(retries - 1), 100)
+    } else {
+      alert('Chargement en cours...')
+    }
+  }
+  checkAndOpen(10)
+}
+
 const legalLinks = [
   { label: 'Mentions légales', href: '/mentions-legales' },
   { label: 'Confidentialité', href: '/politique-confidentialite' },
-  { label: 'Gestion des cookies', href: 'javascript:if(window.tarteaucitron){tarteaucitron.userInterface.openPanel();}else{alert("Chargement en cours...");}' },
+  { label: 'Gestion des cookies', onClick: openCookiePanel },
   { label: 'CGV', href: '/conditions-utilisation' },
 ]
 
@@ -40,7 +54,7 @@ export function Footer() {
                 transition={{ duration: 0.2 }}
               />
             </Link>
-            <p className="text-base text-gray-400">Institut de l'IA · <a href="https://mentivis.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Mentivis</a></p>
+            <p className="text-base text-gray-400">Les architectes de l'IA by <a href="https://mentivis.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Mentivis</a></p>
             <p className="text-base text-gray-400">Campus <a href="https://campuscyber.fr/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">Cyber.AI</a>, Marseille</p>
           </div>
           
@@ -82,13 +96,13 @@ export function Footer() {
   <nav className="space-y-3">
     {legalLinks.map((link) => (
       <motion.div key={link.label} whileHover={{ x: 6 }}>
-        {link.href.startsWith('javascript:') ? (
-          <a 
-            href={link.href}
-            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+        {link.onClick ? (
+          <button 
+            onClick={link.onClick}
+            className="block text-base text-gray-400 hover:text-white transition-colors duration-200 text-left"
           >
             {link.label}
-          </a>
+          </button>
         ) : (
           <Link 
             href={link.href} 
@@ -106,7 +120,7 @@ export function Footer() {
         
         <div className="mt-16 pt-8 border-t border-gray-800 text-center">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Institut de l'IA · Mentivis SAS. Tous droits réservés.
+            © {new Date().getFullYear()} Marius IA · Mentivis. Tous droits réservés.
           </p>
         </div>
       </div>

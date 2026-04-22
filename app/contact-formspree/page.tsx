@@ -167,7 +167,7 @@ export default function ContactPage() {
                     <option value="pmi-eti">PME / ETI</option>
                     <option value="collectivite">Collectivite / Service public</option>
                     <option value="education">Education / Formation</option>
-                    <option value="creatif">Secteurs creatifs</option>
+                    <option value="creatif">Industries créatives</option>
                     <option value="citoyen">Particulier / Demandeur d'emploi</option>
                     <option value="autre">Autre</option>
                   </select>
