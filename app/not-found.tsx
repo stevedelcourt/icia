@@ -18,14 +18,6 @@ export default function NotFound() {
           />
         </div>
 
-        <div className="mb-4">
-          <img
-            src="/images/404.webp"
-            alt="404"
-            className="w-full max-w-md mx-auto"
-          />
-        </div>
-
         <p className="text-3xl md:text-4xl font-bold text-black mb-4 relative z-10">
           Oups. Cette page s&apos;est envolée.
         </p>
