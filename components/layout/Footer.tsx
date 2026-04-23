@@ -12,8 +12,8 @@ const offreLinks = [
 
 const acteurLinks = [
   { label: 'Entreprises', href: '/entreprises' },
-  { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
-  { label: 'Education', href: '/education' },
+  { label: 'Collectivités et administrations', href: '/pouvoirs-publics' },
+  { label: 'Écoles, CFA, Universités', href: '/education' },
   { label: 'Industries créatives', href: '/secteurs-creatifs' },
   { label: 'Grand public', href: '/citoyens' },
 ]
@@ -76,7 +76,7 @@ export function Footer() {
             </div>
             
             <div>
-              <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Acteurs</p>
+              <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Pour qui ?</p>
               <nav className="space-y-3">
                 {acteurLinks.map((link) => (
                   <motion.div key={link.href} whileHover={{ x: 6 }}>
@@ -90,31 +90,53 @@ export function Footer() {
                 ))}
               </nav>
             </div>
+
+            <div>
+              <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">À propos</p>
+              <nav className="space-y-3">
+                <motion.div whileHover={{ x: 6 }}>
+                  <Link 
+                    href="/a-propos" 
+                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    Qui sommes-nous
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ x: 6 }}>
+                  <Link 
+                    href="/expertises" 
+                    className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    Expertises
+                  </Link>
+                </motion.div>
+              </nav>
+            </div>
             
-<div>
-  <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Légal</p>
-  <nav className="space-y-3">
-    {legalLinks.map((link) => (
-      <motion.div key={link.label} whileHover={{ x: 6 }}>
-        {link.onClick ? (
-          <button 
-            onClick={link.onClick}
-            className="block text-base text-gray-400 hover:text-white transition-colors duration-200 text-left"
-          >
-            {link.label}
-          </button>
-        ) : (
-          <Link 
-            href={link.href} 
-            className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            {link.label}
-          </Link>
-        )}
-      </motion.div>
-    ))}
-  </nav>
-</div>
+            <div>
+              <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Légal</p>
+              <nav className="space-y-3">
+                {legalLinks.map((link) => (
+                  <motion.div key={link.label} whileHover={{ x: 6 }}>
+                    {link.onClick ? (
+                      <button 
+                        onClick={link.onClick}
+                        className="block text-base text-gray-400 hover:text-white transition-colors duration-200 text-left"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link 
+                        href={link.href} 
+                        className="block text-base text-gray-400 hover:text-white transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
         

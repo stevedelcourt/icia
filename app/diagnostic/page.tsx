@@ -28,8 +28,31 @@ const exemple = {
 }
 
 export default function DiagnosticPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://www.mariusia.com/diagnostic',
+    name: 'Diagnostic IA & AI Act - Marius IA',
+    description: 'Cartographie des usages IA, analyse des risques réglementaires AI Act, feuille de route 12 mois. Duration 4-6 semaines.',
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+      name: 'Marius IA',
+      url: 'https://www.mariusia.com',
+    },
+    areaServed: ['FR', 'Europe'],
+    serviceType: ['AI Audit', 'AI Compliance', 'AI Strategy'],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Diagnostic IA',
+      description: 'Porte d\'entrée universelle pour comprendre votre positionnement IA',
+      url: 'https://www.mariusia.com/diagnostic',
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <ScrollGradient />
       <main className="pt-36 pb-24">

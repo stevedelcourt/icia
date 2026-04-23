@@ -324,3 +324,7 @@ input, textarea, select {
     font-size: 1.6rem;
   }
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
@@ -13,8 +14,75 @@ const niveaux = [
 ]
 
 export default function PartenairePage() {
+  const heroRef = useRef<HTMLElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  useEffect(() => {
+    const hero = heroRef.current
+    if (!hero) return
+
+    const handleScroll = () => {
+      const rect = hero.getBoundingClientRect()
+      const heroHeight = hero.offsetHeight
+      const maxScroll = heroHeight * 1.5
+      const scrolled = Math.max(0, -rect.top)
+      const progress = Math.min(scrolled / maxScroll, 1)
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const updateScrollButtons = () => {
+      setCanScrollLeft(container.scrollLeft > 10)
+      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth - 10)
+    }
+
+    updateScrollButtons()
+    container.addEventListener('scroll', updateScrollButtons, { passive: true })
+    window.addEventListener('resize', updateScrollButtons)
+    return () => {
+      container.removeEventListener('scroll', updateScrollButtons)
+      window.removeEventListener('resize', updateScrollButtons)
+    }
+  }, [])
+
+  const scrollMenu = (direction: 'left' | 'right') => {
+    const container = scrollRef.current
+    if (!container) return
+    const scrollAmount = container.clientWidth * 0.7
+    container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' })
+  }
+
+  const heroBackground = `linear-gradient(to bottom, #f8f9fa ${100 - scrollProgress * 100}%, white 100%)`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://www.mariusia.com/partenaire',
+    name: 'Partenaire Support Long Terme - Marius IA',
+    description: 'Abonnement conseil IA : veille réglementaire, relecture de projets, alertes AI Act. 3 niveaux : Essentiel, Stratégique, Dirigeant.',
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+      name: 'Marius IA',
+    },
+    areaServed: ['FR', 'Europe'],
+    serviceType: ['AI Consulting', 'Ongoing Support', 'Regulatory Monitoring'],
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <ScrollGradient />
       <main className="pt-36 pb-24">
@@ -75,16 +143,8 @@ export default function PartenairePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="grid md:grid-cols-2 gap-10">
-              <div>
-                <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-3">Modele economique</h2>
-                <p className="text-lg text-gray-500">20 clients abonne = revenus recurrents</p>
-              </div>
-              <div>
-                <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-3">Notre approche</h2>
-                <p className="text-lg text-gray-500">Zero dependance : 100% conseil pur, aucune sous-traitance technique requise</p>
-              </div>
-            </div>
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-3">Notre approche</h2>
+            <p className="text-lg text-gray-500">Zero dependance : 100% conseil pur, aucune sous-traitance technique requise</p>
           </motion.div>
 
           <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>

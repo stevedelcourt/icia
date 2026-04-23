@@ -6,20 +6,21 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Nos principes', href: '/#piliers', bold: true },
   { label: 'Offres', href: '/#offres', bold: true, children: [
     { label: 'Diagnostic', href: '/diagnostic' },
     { label: 'Formations', href: '/formations' },
     { label: 'Transformation', href: '/transformation' },
     { label: 'Partenaire', href: '/partenaire' },
   ]},
-  { label: 'Acteurs', href: '/#acteurs', bold: true, children: [
+  { label: 'Pour qui ?', href: '/#acteurs', bold: true, children: [
     { label: 'Entreprises', href: '/entreprises' },
-    { label: 'Pouvoirs publics', href: '/pouvoirs-publics' },
-    { label: 'Education', href: '/education' },
+    { label: 'Collectivités et administrations', href: '/pouvoirs-publics' },
+    { label: 'Écoles, CFA, Universités', href: '/education' },
     { label: 'Industries créatives', href: '/secteurs-creatifs' },
     { label: 'Grand public', href: '/citoyens' },
   ]},
+  { label: 'À propos', href: '/a-propos/', bold: true },
+  { label: 'Nos principes', href: '/#piliers', bold: true },
 ]
 
 function Logo() {
@@ -43,7 +44,7 @@ export function Header() {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
   const acteursPaths = ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/citoyen']
-  const isActeursPage = acteursPaths.some(p => pathname === p || pathname.startsWith(p))
+  const isActeursPage = acteursPaths.some(p => pathname === p || pathname.startsWith(p)) || pathname === '/a-propos'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,22 +63,10 @@ export function Header() {
     setExpandedMenu(null)
   }, [pathname])
 
-  const handleSubMenuClick = (href: string) => {
-    setExpandedMenu(href)
-  }
-
-  const handleBackClick = () => {
-    setExpandedMenu(null)
-  }
-
   const closeMenu = () => {
     setIsMobileMenuOpen(false)
     setExpandedMenu(null)
   }
-
-  const currentExpanded = expandedMenu
-    ? navLinks.find(l => l.href === expandedMenu)
-    : null
 
   return (
     <header 
@@ -110,7 +99,7 @@ export function Header() {
           href="/contact"
           className="hidden lg:inline-block px-5 py-1.5 xs:px-6 xs:py-2 text-sm font-medium text-[#00255D] border-2 border-[#00255D] hover:bg-[#00255D] hover:text-white transition-all duration-200"
         >
-         Contactez-nous
+         Contactez Marius IA !
         </Link>
 
         <button
@@ -138,75 +127,75 @@ export function Header() {
             transition={{ duration: 0.25 }}
             className="lg:hidden bg-[#111827] border-t w-full overflow-hidden"
           >
-            <div className="relative">
-              <motion.div
-                initial={{ x: 0 }}
-                animate={{ x: expandedMenu ? '-100%' : '0%' }}
-                transition={{ duration: 0.35, ease: [0.32, 0, 0.67, 0] }}
-                className="flex"
-              >
-                <div className="min-w-full px-4 xs:px-5 sm:px-6 py-4 space-y-3">
-                  {navLinks.map((link) => (
-                    <div key={link.href}>
-                      {link.children ? (
-                        <button
-                          onClick={() => handleSubMenuClick(link.href)}
-                          className={`flex items-center justify-between w-full text-left text-base xs:text-lg py-2 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+            <div className="px-4 xs:px-5 sm:px-6 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <div key={link.href}>
+                  {link.children ? (
+                    <div>
+                      <button
+                        onClick={() => setExpandedMenu(expandedMenu === link.href ? null : link.href)}
+                        className={`flex items-center justify-between w-full text-left text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+                      >
+                        <span>{link.label}</span>
+                        <svg 
+                          className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${expandedMenu === link.href ? 'rotate-180' : ''}`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
                         >
-                          <span>{link.label}</span>
-                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      ) : (
-                        <Link
-                          href={link.href}
-                          onClick={closeMenu}
-                          className={`block text-base xs:text-lg py-2 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
-                        >
-                          {link.label}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
-                  <Link href="/contact" onClick={closeMenu} className="block text-center py-2.5 mt-3 text-sm text-white border-2 border-white rounded-lg hover:bg-white hover:text-[#111827] transition-colors">
-                    Contactez-nous
-                  </Link>
-                </div>
-
-                {currentExpanded && (
-                  <div className="min-w-full px-4 xs:px-5 sm:px-6 py-4 space-y-3">
-                    <button
-                      onClick={handleBackClick}
-                      className="flex items-center gap-2 text-base xs:text-lg py-2 text-gray-400 hover:text-white transition-colors"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                      <span>{currentExpanded.label}</span>
-                    </button>
-                    <div className="border-t border-gray-700 pt-3 space-y-2">
-                      {currentExpanded.children?.map((child) => {
-                        const isActive = pathname === child.href
-                        return (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={closeMenu}
-                            className={`block text-base xs:text-lg py-2 ${
-                              isActive 
-                                ? 'text-white underline decoration-[#D92A1C] underline-offset-4' 
-                                : 'text-gray-300 hover:text-white'
-                            } transition-colors`}
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <AnimatePresence>
+                        {expandedMenu === link.href && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
                           >
-                            {child.label}
-                          </Link>
-                        )
-                      })}
+                            <div className="pl-4 pb-2 space-y-1 border-l-2 border-gray-700 ml-2">
+                              {link.children.map((child) => {
+                                const isActive = pathname === child.href
+                                return (
+                                  <Link
+                                    key={child.href}
+                                    href={child.href}
+                                    onClick={closeMenu}
+                                    className={`block text-base xs:text-lg py-2 ${
+                                      isActive 
+                                        ? 'text-white underline decoration-[#D92A1C] underline-offset-4' 
+                                        : 'text-gray-300 hover:text-white'
+                                    } transition-colors`}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                )
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                  </div>
-                )}
-              </motion.div>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={closeMenu}
+                      className={`block text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <Link 
+                href="/contact" 
+                onClick={closeMenu} 
+                className="block text-center py-2.5 mt-4 text-sm text-white border-2 border-white rounded-lg hover:bg-white hover:text-[#111827] transition-colors"
+              >
+                Contactez Marius IA !
+              </Link>
             </div>
           </motion.div>
         )}
