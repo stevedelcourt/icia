@@ -211,7 +211,7 @@ export default function ContactPage() {
                     height="100%"
                     frameBorder="0"
                     scrolling="yes"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=5.355486%2C43.303887%2C5.375486%2C43.323887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=5.360486%2C43.308887%2C5.370486%2C43.318887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
                     style={{ border: 0 }}
                     title="Campus Cyber.AI Euromed Marseille"
                   ></iframe>
