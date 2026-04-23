@@ -32,7 +32,7 @@ const navActeurs = [
 
 const axes = [
   { title: 'Veille réglementaire', description: 'L\'AI Act et les professions réglementées : comprendre ce qui change concrètement pour votre activité, vos clients et vos responsabilités.' },
-  { title: 'Sécurité des données', description: 'Confidentialité des dossiers clients, RGPD, IA et secret professionnel. Quelles sont les obligations et les bonnes pratiques quand l\'IA介入 dans votre cabinet.' },
+  { title: 'Sécurité des données', description: 'Confidentialité des dossiers clients, RGPD, IA et secret professionnel. Quelles sont les obligations et les bonnes pratiques quand l\'IA entre dans votre cabinet.' },
   { title: 'Outils IA adaptés', description: 'Sélectionner les outils IA qui correspondent vraiment à votre pratique sans dépendre d\'un éditeur ou d\'un intégrateur. Gain de temps réel, sans compromettre la qualité.' },
   { title: 'Délégation et responsabilité', description: 'Ce que vous pouvez déléguer à l\'IA sans risque, ce qui relève de votre expertise exclusive, et comment documenter vos processus pour rester maître de vos décisions.' },
   { title: 'Communication client', description: 'Expliquer l\'IA à vos clients, les rassurer, les informer. Un enjeu de confiance et de transparence qui devient un avantage compétitif.' },
