@@ -203,14 +203,14 @@ export default function Home() {
               >
                 <p className="text-sm tracking-widest uppercase mb-8" style={{ color: '#000000' }}>Institut de l'IA · Campus Cyber.AI, Marseille</p>
                 <h1 className="text-5xl md:text-6xl font-bold text-black leading-[1.1] mb-8">
-                  L'IA transforme le monde<br />
-                  et les règles établies.
+                  Tout le monde parle d&apos;IA.<br />
+                  Nous, on vous aide à décider quoi en faire.
                 </h1>
                 <p className="text-xl text-gray-500 mb-8 max-w-xl leading-relaxed">
-                  Elle n'est plus réservée qu'aux entreprises de la tech.
+                  Diagnostic, formation, transformation.
                 </p>
                 <p className="text-base text-gray-500 mb-10 max-w-lg leading-relaxed">
-                  Pour qu'elle soit bénéfique pour tous, nous rendons accessibles ces expertises, et nous accompagnons tous les acteurs dans leur transition.
+                  Des missions cadrées, des résultats mesurables, aucun conflit d&apos;intérêt avec un éditeur ou un intégrateur.
                 </p>
               </motion.div>
               <motion.div
