@@ -6,6 +6,21 @@ import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
+const COLORS = {
+  green: { r: 189, g: 245, b: 171 },
+  white: { r: 255, g: 255, b: 255 },
+}
+
+function interpolateToWhite(progress: number): string {
+  const { r, g, b } = COLORS.green
+  const { r: r2, g: g2, b: b2 } = COLORS.white
+  const eased = 1 - Math.pow(1 - progress, 3)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
+
 const navActeurs = [
   { label: 'Entreprises', href: '/entreprises' },
   { label: 'Collectivités et administrations', href: '/pouvoirs-publics' },
@@ -74,7 +89,7 @@ export default function EducationPage() {
     container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' })
   }
 
-  const heroBackground = `linear-gradient(to bottom, #f8f9fa ${100 - scrollProgress * 100}%, white 100%)`
+  const heroBackground = interpolateToWhite(scrollProgress)
 
   const jsonLd = {
     '@context': 'https://schema.org',
