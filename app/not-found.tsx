@@ -18,6 +18,8 @@ export default function NotFound() {
           />
         </div>
 
+        <h1 className="text-[120px] md:text-[180px] font-bold text-black leading-none mb-4">404</h1>
+
         <p className="text-3xl md:text-4xl font-bold text-black mb-4 relative z-10">
           Oups. Cette page s&apos;est envolée.
         </p>
