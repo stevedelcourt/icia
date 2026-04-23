@@ -90,6 +90,13 @@ const acteurs = [
     image: '/images/overworked.webp'
   },
   {
+    title: 'Professions libérales',
+    desc: "Votre expertise n'est pas remplaçable. Mais elle va changer de forme. L'IA entre dans le droit, la médecine, la comptabilité et l'architecture avec une vitesse que peu de cabinets ont anticipée. Comprendre ce qui relève de l'outil, ce qui relève de votre responsabilité, et ce que vous pouvez déléguer sans risque : c'est exactement ce dont vous avez besoin pour décider en confiance.",
+    href: '/professions-liberales',
+    anchor: 'professions-liberales',
+    image: '/images/avocat.webp'
+  },
+  {
     title: 'Écoles, CFA, Universités',
     desc: "Rendre vos cursus pertinents dans un monde qui a changé. L'arrivée de l'IA dans tous les secteurs nécessite de repenser les formations actuelles et les façons de faire. Nouvelles filières, formation des formateurs, intégration pédagogique : nous intervenons à chaque niveau, avec une approche constructive et pragmatique.",
     href: '/education',
@@ -109,13 +116,6 @@ const acteurs = [
     href: '/pouvoirs-publics',
     anchor: 'pouvoirs-publics',
     image: '/images/crea.webp'
-  },
-  {
-    title: 'Professions libérales',
-    desc: "Votre expertise n'est pas remplaçable. Mais elle va changer de forme. L'IA entre dans le droit, la médecine, la comptabilité et l'architecture avec une vitesse que peu de cabinets ont anticipée. Comprendre ce qui relève de l'outil, ce qui relève de votre responsabilité, et ce que vous pouvez déléguer sans risque : c'est exactement ce dont vous avez besoin pour décider en confiance.",
-    href: '/professions-liberales',
-    anchor: 'professions-liberales',
-    image: '/images/avocat.webp'
   },
   {
     title: 'Grand public',
