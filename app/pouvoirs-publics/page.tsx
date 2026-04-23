@@ -18,6 +18,7 @@ const navActeurs = [
   { label: 'Collectivités et administrations', href: '/pouvoirs-publics' },
   { label: 'Écoles, CFA, Universités', href: '/education' },
   { label: 'Industries créatives', href: '/secteurs-creatifs' },
+  { label: 'Professions libérales', href: '/professions-liberales' },
   { label: 'Grand public', href: '/citoyens' },
 ]
 
