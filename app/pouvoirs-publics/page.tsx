@@ -51,7 +51,7 @@ export default function PouvoirsPublicsPage() {
     const handleScroll = () => {
       const rect = hero.getBoundingClientRect()
       const heroHeight = hero.offsetHeight
-      const maxScroll = heroHeight * 1.5
+      const maxScroll = heroHeight * 3
       const scrolled = Math.max(0, -rect.top)
       const progress = Math.min(scrolled / maxScroll, 1)
       setScrollProgress(progress)
