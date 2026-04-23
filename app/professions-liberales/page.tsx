@@ -163,7 +163,7 @@ export default function ProfessionsLiberalesPage() {
               <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">Contactez-nous</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/avocat.webp" alt="Professions libérales" className="w-full" />
+              <img src="/images/lawyer.webp" alt="Professions libérales" className="w-full" />
             </motion.div>
           </div>
 
