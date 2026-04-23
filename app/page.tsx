@@ -221,7 +221,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/#acteurs"
-                  className="inline-block px-8 py-4 text-lg text-white bg-[#00255D] hover:bg-black transition-colors duration-200"
+                  className="inline-block px-8 py-4 text-lg text-[#00255D] bg-[#bdf5ab] hover:bg-[#a8e6a0] transition-colors duration-200 font-semibold"
                 >
                   C&apos;est pour qui ?
                 </Link>
