@@ -26,8 +26,6 @@ export default function NotFound() {
           />
         </div>
 
-        <h1 className="text-[150px] md:text-[200px] font-bold text-black opacity-20 leading-none absolute">404</h1>
-
         <p className="text-3xl md:text-4xl font-bold text-black mb-4 relative z-10">
           Oups. Cette page s&apos;est envolée.
         </p>
