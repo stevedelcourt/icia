@@ -43,7 +43,7 @@ export function Header() {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
-  const acteursPaths = ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/citoyen']
+  const acteursPaths = ['/entreprises', '/pouvoirs-publics', '/education', '/secteurs-creatifs', '/professions-liberales', '/citoyens']
   const isActeursPage = acteursPaths.some(p => pathname === p || pathname.startsWith(p)) || pathname === '/a-propos'
 
   useEffect(() => {

@@ -6,8 +6,33 @@ import { Footer } from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export default function AProposPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': 'https://www.mariusia.com/a-propos',
+    name: 'À propos - Marius IA',
+    description: 'Marius IA est l\'institut collectif de l\'IA. Conseil en stratégie IA, conformité AI Act, gouvernance IA pour PME, ETI et organisations françaises.',
+    mainEntity: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+      name: 'Marius IA',
+      url: 'https://www.mariusia.com',
+      logo: 'https://www.mariusia.com/MariusIA-logo.svg',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '4 Bd Euroméditerranée, Quai d\'Arenc',
+        addressLocality: 'Marseille',
+        postalCode: '13002',
+        addressCountry: 'FR'
+      },
+      areaServed: ['Europe', 'France'],
+      sameAs: ['https://www.mentivis.com']
+    }
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main className="pt-36 pb-24" style={{ backgroundColor: '#f9f7f3' }}>
         <div className="max-w-6xl mx-auto px-8">

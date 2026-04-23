@@ -25,8 +25,24 @@ const expertises = [
 ]
 
 export default function ExpertisesPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://www.mariusia.com/expertises',
+    name: 'Expertises IA - Marius IA',
+    description: 'Audit IA et conformité AI Act, formation et acculturation des équipes, pilotage de la transformation IA, veille et conseil en continu.',
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+      name: 'Marius IA',
+    },
+    areaServed: ['FR', 'Europe'],
+    serviceType: ['AI Consulting', 'AI Audit', 'AI Training', 'AI Compliance'],
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="max-w-6xl mx-auto px-8">

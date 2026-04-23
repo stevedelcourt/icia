@@ -219,9 +219,34 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     )
   }
 
-  return (
-    <>
-      <Header />
+  const articleJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      '@id': `https://www.mariusia.com/actualites/${article.slug}`,
+      headline: article.title,
+      description: article.excerpt,
+      image: article.image,
+      datePublished: article.date,
+      dateModified: article.date,
+      author: {
+        '@type': 'Organization',
+        name: 'Marius IA',
+        url: 'https://www.mariusia.com'
+      },
+      publisher: {
+        '@type': 'Organization',
+        '@id': 'https://www.mariusia.com/#organization'
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://www.mariusia.com/actualites/${article.slug}`
+      }
+    }
+
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <Header />
       <main id="main-content">
         <Section className="pt-32 pb-12">
           <FadeIn>

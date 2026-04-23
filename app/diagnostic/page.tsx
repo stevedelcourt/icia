@@ -50,9 +50,49 @@ export default function DiagnosticPage() {
     },
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Qu\'est-ce que l\'AI Act et quand entre-t-il en vigueur ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'L\'AI Act (Règlement européen sur l\'intelligence artificielle) entre pleinement en vigueur en août 2026. Il impose des obligations spécifiques aux organisations utilisant des systèmes IA, notamment pour les systèmes dits "à haut risque" couvrant la santé, la justice, l\'éducation, l\'emploi, les services financiers et les administrations publiques.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Combien de temps dure un diagnostic IA ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Un diagnostic IA complet dure généralement 4 à 6 semaines. Il inclut la cartographie des usages, l\'analyse des risques réglementaires, l\'identification des cas d\'usage prioritaires et une feuille de route sur 12 mois.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'À qui s\'adresse le diagnostic IA ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Le diagnostic IA s\'adresse à toutes les organisations françaises et européennes confrontées à l\'adoption de l\'IA : PME, ETI, écoles, administrations, collectivités, industries créatives et professions libérales. Il est particulièrement recommandé avant toute transformation majeure.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Pourquoi faire appel à un conseil indépendant ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Marius IA n\'est lié à aucun éditeur ou intégrateur. Cette indépendance garantit que nos recommandations servent uniquement vos intérêts, sans conflit d\'intérêt. Vous gardez la maîtrise de vos choix technologiques et de vos prestataires.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
       <ScrollGradient />
       <main className="pt-36 pb-24">

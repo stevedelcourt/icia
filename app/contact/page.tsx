@@ -67,8 +67,36 @@ export default function ContactPage() {
     }
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': 'https://www.mariusia.com/contact',
+    name: 'Contact - Marius IA',
+    description: 'Contactez Marius IA pour vos projets de conseil en stratégie IA, conformité AI Act et transformation.',
+    mainEntity: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+      name: 'Marius IA',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+33-4-91-00-00-00',
+        contactType: 'customer service',
+        availableLanguage: ['French', 'English'],
+        areaServed: ['FR', 'Europe']
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '4 Bd Euroméditerranée, Quai d\'Arenc',
+        addressLocality: 'Marseille',
+        postalCode: '13002',
+        addressCountry: 'FR'
+      }
+    }
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="max-w-2xl mx-auto px-8">

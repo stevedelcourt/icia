@@ -96,15 +96,28 @@ export default async function ActualitesPage() {
   const latestArticle = displayArticles[0]
   const otherArticles = displayArticles.slice(1)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': 'https://www.mariusia.com/actualites',
+    name: 'Actualités - Marius IA',
+    description: 'Suivez l\'actualité de Marius IA : événements, publications, partenariats et réflexions sur l\'IA.',
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.mariusia.com/#organization',
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main id="main-content">
         <Section spacing="large">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className=" text-h1 mb-6">
-                Actualites
+                Actualités
               </h1>
               <p className="text-body text-text-muted">
                 Suivez l'actualite de l'ICIA : evenements, publications, partenariats et reflexions sur l'IA.
