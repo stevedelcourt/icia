@@ -12,6 +12,14 @@ export default function NotFound() {
       <div className="min-h-screen bg-[#bdf5ab] flex flex-col items-center justify-center p-8 text-center">
         <div className="mb-8">
           <img
+            src="/images/808.webp"
+            alt="808"
+            className="w-full max-w-md mx-auto"
+          />
+        </div>
+
+        <div className="mb-4">
+          <img
             src="/images/404.webp"
             alt="404"
             className="w-full max-w-md mx-auto"
