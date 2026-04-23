@@ -8,7 +8,8 @@ import { Footer } from '@/components/layout/Footer'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
+    firstname: '',
+    lastname: '',
     email: '',
     organisation: '',
     message: '',
@@ -37,8 +38,8 @@ export default function ContactPage() {
         },
         body: JSON.stringify({
           fields: [
-            { name: 'firstname', value: formData.name.split(' ')[0] },
-            { name: 'lastname', value: formData.name.split(' ').slice(1).join(' ') || formData.name },
+            { name: 'firstname', value: formData.firstname },
+            { name: 'lastname', value: formData.lastname },
             { name: 'email', value: formData.email },
             { name: 'company', value: formData.organisation },
             { name: 'message', value: formData.message },
@@ -102,17 +103,31 @@ export default function ContactPage() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm text-gray-500 mb-2">Votre nom</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstname" className="block text-sm text-gray-500 mb-2">Prénom</label>
+                    <input
+                      type="text"
+                      id="firstname"
+                      name="firstname"
+                      required
+                      value={formData.firstname}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastname" className="block text-sm text-gray-500 mb-2">Nom</label>
+                    <input
+                      type="text"
+                      id="lastname"
+                      name="lastname"
+                      required
+                      value={formData.lastname}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    />
+                  </div>
                 </div>
 
                 <div>
