@@ -1,4 +1,4 @@
-// Load custom CSS first
+// Load custom CSS
 var tacStyle = document.createElement('link');
 tacStyle.rel = 'stylesheet';
 tacStyle.href = '/css/tarteaucitron.css';
@@ -8,7 +8,7 @@ document.head.appendChild(tacStyle);
 tarteaucitron.init({
   "privacyUrl": "/politique-confidentialite",
   "hashtag": "#tarteaucitron",
-  "cookieName": "tarteaucitran",
+  "cookieName": "tarteaucitron",
   "orientation": "bottom",
   "groupServices": false,
   "showDetailsOnClick": false,
@@ -28,16 +28,15 @@ tarteaucitron.init({
 
   // French
   "title": "Gestion des cookies",
-  "alertInfo": "En naviguant sur ce site, vous acceptez l'utilisation des cookies pour améliorer votre expérience.",
+  "alertInfo": "En naviguant sur ce site, vous acceptez l'utilisation des cookies.",
   "optional": "Optionnel",
   "required": "Nécessaire",
   "accept": "Tout accepter",
   "refuse": "Tout refuser",
   "close": "Fermer",
-  "manage": "Gérer les préférences",
-  "all": "Tout accepter",
-  "info": "Protéger votre vie privée",
-  "disclaimer": "En cliquant sur « Tout accepter », vous autorisez le dépôt de cookies.",
+  "manage": "Gérer",
+  "info": "保护您的隐私",
+  "disclaimer": "En cliquant, vous acceptez les cookies.",
   "allow": "Autoriser",
   "deny": "Refuser",
   "link": "En savoir plus",
@@ -65,18 +64,47 @@ tarteaucitron.services.gtag = {
 tarteaucitron.user.gtagUa = 'G-NJWMZE9B0P';
 (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
 
-// Add logo after TarteAuCitron loads
+// Add logo and styling after TarteAuCitron loads
 document.addEventListener("DOMContentLoaded", function() {
   setTimeout(function() {
     var main = document.getElementById("tarteaucitronMain");
     if (main) {
-      // Add logo div at the top
-      if (!main.querySelector('.tac-logo')) {
+      // Add logo to banner
+      if (!main.querySelector('#tarteaucitronLogo')) {
         var logoDiv = document.createElement('div');
-        logoDiv.className = 'tac-logo';
-        logoDiv.innerHTML = '<img src="/MariusIA-logo.svg" alt="Marius IA" />';
+        logoDiv.id = 'tarteaucitronLogo';
+        logoDiv.innerHTML = '<img src="/MariusIA-logo-monogram.png" alt="Marius IA" />';
         main.insertBefore(logoDiv, main.firstChild);
       }
     }
-  }, 300);
+
+    // Hide personalize button by forcing display none
+    var personalize = document.getElementById('tarteaucitronPersonalize');
+    if (personalize) {
+      personalize.style.cssText = 'display: none !important; visibility: hidden !important;';
+      personalize.removeAttribute('href');
+      personalize.removeAttribute('onclick');
+    }
+
+    // Also try to remove any onclick handlers
+    var allElements = document.querySelectorAll('#tarteaucitronPersonalize, [id*="Personalize"], a[href*="personalise"]');
+    allElements.forEach(function(el) {
+      el.style.cssText = 'display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; overflow: hidden !important;';
+    });
+  }, 500);
 });
+
+// Intercept clicks on personalize-related elements
+document.addEventListener('click', function(e) {
+  var target = e.target;
+  if (target.id && (target.id.includes('Personalize') || target.id.includes('personalise'))) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+  if (target.textContent && target.textContent.toLowerCase().includes('personnaliser')) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+}, true);
