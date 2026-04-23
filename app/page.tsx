@@ -111,6 +111,13 @@ const acteurs = [
     image: '/images/crea.webp'
   },
   {
+    title: 'Professions libérales',
+    desc: "Votre expertise n'est pas remplaçable. Mais elle va changer de forme. L'IA entre dans le droit, la médecine, la comptabilité et l'architecture avec une vitesse que peu de cabinets ont anticipée. Comprendre ce qui relève de l'outil, ce qui relève de votre responsabilité, et ce que vous pouvez déléguer sans risque : c'est exactement ce dont vous avez besoin pour décider en confiance.",
+    href: '/professions-liberales',
+    anchor: 'professions-liberales',
+    image: '/images/avocat.webp'
+  },
+  {
     title: 'Grand public',
     desc: "Comprendre l'IA. L'utiliser. Ne pas se faire avoir. Des ateliers accessibles, sans prérequis techniques, pour toutes celles et ceux qui veulent comprendre ce qui change dans leur quotidien. L'IA n'est pas réservée à ceux qui ont déjà tout. Ni à ceux qui savent déjà tout.",
     href: '/citoyens',
