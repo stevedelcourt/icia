@@ -142,12 +142,11 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm text-gray-500 mb-2">Votre message</label>
+                  <label htmlFor="message" className="block text-sm text-gray-500 mb-2">Votre message <span className="text-gray-400">(facultatif)</span></label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    required
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200 resize-none"
@@ -188,21 +187,33 @@ export default function ContactPage() {
 
               <div className="mt-16 pt-12 border-t border-gray-200">
                 <h2 className="text-xl font-bold text-black mb-4">Campus Cyber.AI Euromed Marseille</h2>
+                <p className="text-sm text-gray-500 mb-4">
+                  4 Bd Euroméditerranée, Quai d&apos;Arenc, 13002 Marseille
+                </p>
                 <div className="w-full h-[300px] border border-gray-200 overflow-hidden">
                   <iframe
                     width="100%"
                     height="100%"
                     frameBorder="0"
-                    scrolling="no"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=5.3650%2C43.2950%2C5.3850%2C43.3050&layer=mapnik&marker=43.3000%2C5.3750"
+                    scrolling="yes"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=5.355486%2C43.303887%2C5.375486%2C43.323887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
                     style={{ border: 0 }}
                     title="Campus Cyber.AI Euromed Marseille"
                   ></iframe>
                 </div>
                 <p className="text-sm text-gray-500 mt-4">
-                  <a 
-                    href="https://campuscyber.fr/" 
-                    target="_blank" 
+                  <a
+                    href="https://www.openstreetmap.org/directions?from=&to=43.3139%2C5.3655"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-black hover:underline"
+                  >
+                    Itinéraire sur OpenStreetMap
+                  </a>
+                  {' • '}
+                  <a
+                    href="https://campuscyber.fr/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-black hover:underline"
                   >

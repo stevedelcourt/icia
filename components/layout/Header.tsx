@@ -126,6 +126,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
             className="lg:hidden bg-[#111827] border-t w-full overflow-hidden"
+            style={{ touchAction: 'manipulation' }}
           >
             <div className="px-4 xs:px-5 sm:px-6 py-4 space-y-1">
               {navLinks.map((link) => (
@@ -133,8 +134,11 @@ export function Header() {
                   {link.children ? (
                     <div>
                       <button
-                        onClick={() => setExpandedMenu(expandedMenu === link.href ? null : link.href)}
-                        className={`flex items-center justify-between w-full text-left text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setExpandedMenu(expandedMenu === link.href ? null : link.href)
+                        }}
+                        className={`flex items-center justify-between w-full text-left text-base xs:text-lg py-3 text-white ${link.bold ? 'font-bold' : ''} hover:text-gray-200 transition-colors active:bg-gray-800 rounded`}
                       >
                         <span>{link.label}</span>
                         <svg 
@@ -162,10 +166,13 @@ export function Header() {
                                   <Link
                                     key={child.href}
                                     href={child.href}
-                                    onClick={closeMenu}
-                                    className={`block text-base xs:text-lg py-2 ${
-                                      isActive 
-                                        ? 'text-white underline decoration-[#D92A1C] underline-offset-4' 
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      closeMenu()
+                                    }}
+                                    className={`block text-base xs:text-lg py-3 ${
+                                      isActive
+                                        ? 'text-white underline decoration-[#D92A1C] underline-offset-4'
                                         : 'text-gray-300 hover:text-white'
                                     } transition-colors`}
                                   >
