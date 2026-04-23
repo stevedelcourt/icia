@@ -209,9 +209,15 @@ export default function Home() {
                 <p className="text-xl text-gray-500 mb-8 max-w-xl leading-relaxed">
                   Diagnostic, formation, transformation.
                 </p>
-                <p className="text-base text-gray-500 mb-10 max-w-lg leading-relaxed">
+                <p className="text-base text-gray-500 mb-6 max-w-lg leading-relaxed">
                   Des missions cadrées, des résultats mesurables, aucun conflit d&apos;intérêt avec un éditeur ou un intégrateur.
                 </p>
+                <Link
+                  href="/#acteurs"
+                  className="inline-block px-8 py-4 text-lg text-white bg-[#00255D] hover:bg-[#001a40] transition-colors duration-200"
+                >
+                  C&apos;est pour qui ?
+                </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
