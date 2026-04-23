@@ -4,11 +4,11 @@ tacStyle.rel = 'stylesheet';
 tacStyle.href = '/css/tarteaucitron.css';
 document.head.appendChild(tacStyle);
 
-// Init TarteAuCitron - French localization
+// Init TarteAuCitron
 tarteaucitron.init({
   "privacyUrl": "/politique-confidentialite",
   "hashtag": "#tarteaucitron",
-  "cookieName": "tarteaucitron",
+  "cookieName": "tarteaucitran",
   "orientation": "bottom",
   "groupServices": false,
   "showDetailsOnClick": false,
@@ -24,12 +24,9 @@ tarteaucitron.init({
   "adblocker": false,
   "showLegalNotice": true,
   "multiline": true,
-  "click3C": true,
+  "showPersonalize": false,
 
-  // Force French
-  "locale": "fr",
-
-  // French labels
+  // French
   "title": "Gestion des cookies",
   "alertInfo": "En naviguant sur ce site, vous acceptez l'utilisation des cookies pour améliorer votre expérience.",
   "optional": "Optionnel",
@@ -40,15 +37,11 @@ tarteaucitron.init({
   "manage": "Gérer les préférences",
   "all": "Tout accepter",
   "info": "Protéger votre vie privée",
-  "disclaimer": "En cliquant sur « Tout accepter », vous autorisez le dépôt de cookies pour la personnalisation et l'analyse de votre navigation.",
+  "disclaimer": "En cliquant sur « Tout accepter », vous autorisez le dépôt de cookies.",
   "allow": "Autoriser",
   "deny": "Refuser",
   "link": "En savoir plus",
-  "css": "/css/tarteaucitron.css",
   "privacy": "Politique de confidentialité",
-
-  // Hide personalize button
-  "showPersonalize": false,
   "readmoreLink": "/politique-confidentialite"
 });
 
@@ -69,49 +62,21 @@ tarteaucitron.services.gtag = {
   }
 };
 
-// 1. Declare UA ID
 tarteaucitron.user.gtagUa = 'G-NJWMZE9B0P';
-
-// 2. Launch service
 (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
 
-// Style the banner after load
+// Add logo after TarteAuCitron loads
 document.addEventListener("DOMContentLoaded", function() {
   setTimeout(function() {
     var main = document.getElementById("tarteaucitronMain");
     if (main) {
-      main.style.cssText = "text-align:center !important; max-width:800px !important; margin:0 auto !important; padding:30px !important; background:#ffffff !important; border-radius:12px 12px 0 0 !important; box-shadow:0 -4px 20px rgba(0,0,0,0.1) !important; font-family:'Work Sans',sans-serif !important;";
+      // Add logo div at the top
+      if (!main.querySelector('.tac-logo')) {
+        var logoDiv = document.createElement('div');
+        logoDiv.className = 'tac-logo';
+        logoDiv.innerHTML = '<img src="/MariusIA-logo.svg" alt="Marius IA" />';
+        main.insertBefore(logoDiv, main.firstChild);
+      }
     }
-
-    var title = document.getElementById("tarteaucitronTitle");
-    if (title) {
-      title.style.cssText = "display:none !important;";
-    }
-
-    var paragraph = document.getElementById("tarteaucitronParagraph");
-    if (paragraph) {
-      paragraph.style.cssText = "font-size:14px !important; color:#333 !important; line-height:1.6 !important; margin-bottom:20px !important;";
-    }
-
-    // Style buttons
-    var buttons = document.querySelectorAll(".tarteaucitronButton");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].style.cssText = "background:#bdf5ab !important; color:#00255D !important; border:none !important; padding:12px 30px !important; font-size:14px !important; font-weight:600 !important; border-radius:6px !important; cursor:pointer !important; transition:all 0.2s ease !important; margin:5px !important; display:inline-block !important;";
-    }
-
-    // Hide personalize
-    var personalize = document.getElementById("tarteaucitronPersonalize");
-    if (personalize) {
-      personalize.style.cssText = "display:none !important;";
-    }
-
-    // Add logo
-    var logo = document.querySelector("#tarteaucitronMain");
-    if (logo && !logo.querySelector('.tac-logo')) {
-      var logoDiv = document.createElement('div');
-      logoDiv.className = 'tac-logo';
-      logoDiv.innerHTML = '<img src="/MariusIA-logo.svg" alt="Marius IA" style="width:160px; height:auto; margin-bottom:20px; display:block; margin-left:auto; margin-right:auto;" />';
-      logo.insertBefore(logoDiv, logo.firstChild);
-    }
-  }, 200);
+  }, 300);
 });

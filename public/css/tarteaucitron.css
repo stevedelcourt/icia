@@ -1,50 +1,69 @@
-/* TarteAuCitron Custom Styles - Marius IA */
-/* Strong reset - must override TarteAuCitron defaults */
-
-#tarteaucitronMain,
-#tarteaucitronMain * {
-  text-align: center !important;
-  box-sizing: border-box !important;
-}
+/* TarteAuCitron - Marius IA Custom Styles */
 
 #tarteaucitronMain {
   position: fixed !important;
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 999999 !important;
-  max-width: 900px !important;
+  z-index: 2147483647 !important;
+  max-width: 800px !important;
+  width: 100% !important;
   margin: 0 auto !important;
   padding: 30px 40px !important;
   background: #ffffff !important;
   border-radius: 16px 16px 0 0 !important;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15) !important;
-  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  text-align: center !important;
 }
 
-#tarteaucitronTitle,
-#tarteaucitronTitle * {
+#tarteaucitronMain * {
+  box-sizing: border-box !important;
+}
+
+/* Title - hide */
+#tarteaucitronMain #tarteaucitronTitle,
+#tarteaucitronMain .tarteaucitronTitle {
   display: none !important;
 }
 
-#tarteaucitronParagraph {
+/* Paragraph */
+#tarteaucitronMain #tarteaucitronParagraph,
+#tarteaucitronMain .tarteaucitronParagraph {
   font-size: 15px !important;
-  color: #333333 !important;
+  color: #333 !important;
   line-height: 1.6 !important;
-  margin: 0 0 20px 0 !important;
-  padding: 0 !important;
+  margin-bottom: 20px !important;
   text-align: center !important;
 }
 
-#tarteaucitronServices {
-  margin-top: 25px !important;
+/* Logo */
+#tarteaucitronMain .tac-logo,
+#tarteaucitronMain > div:first-child {
+  display: block !important;
   text-align: center !important;
+  margin-bottom: 15px !important;
 }
 
-/* Buttons */
-.tarteaucitronButton,
-.tarteaucitronButton * {
-  display: inline-block !important;
+#tarteaucitronMain .tac-logo img {
+  width: 150px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto 15px auto !important;
+}
+
+/* Buttons - ALL possible selectors */
+#tarteaucitron .tarteaucitronAllow,
+#tarteaucitron #tarteaucitronAccept,
+#tarteaucitron .tarteaucitronCTA,
+#tarteaucitron button[id*="Accept"],
+#tarteaucitron button[id*="Allow"],
+#tarteaucitron a[id*="Accept"],
+#tarteaucitron a[id*="Allow"],
+.tarteaucitronAllow,
+.tarteaucitron-Aallow,
+#tarteaucitronAccept,
+#tarteaucitron .tarteaucitron-button-accept {
   background: #bdf5ab !important;
   color: #00255D !important;
   border: none !important;
@@ -54,78 +73,93 @@
   border-radius: 8px !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
-  margin: 5px 8px !important;
-  text-decoration: none !important;
+  margin: 5px !important;
+  display: inline-block !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  text-align: center !important;
+  text-decoration: none !important;
 }
 
-.tarteaucitronButton:hover,
-.tarteaucitronButton *:hover {
+#tarteaucitron .tarteaucitronDeny,
+#tarteaucitron #tarteaucitronDeny,
+#tarteaucitron button[id*="Deny"],
+#tarteaucitron button[id*="Refuse"],
+#tarteaucitron a[id*="Deny"],
+#tarteaucitron a[id*="Refuse"],
+.tarteaucitronDeny,
+#tarteaucitronDeny,
+#tarteaucitron .tarteaucitron-button-deny {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+  border: 1px solid #ddd !important;
+  padding: 14px 32px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  margin: 5px !important;
+  display: inline-block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+/* Hover states */
+#tarteaucitron .tarteaucitronAllow:hover,
+#tarteaucitron #tarteaucitronAccept:hover,
+.tarteaucitronAllow:hover,
+#tarteaucitronAccept:hover {
   background: #a8e6a0 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Hide personalize button */
+/* Hide personalize button - ALL possible selectors */
 #tarteaucitronPersonalize,
-#tarteaucitronPersonalize * {
+#tarteaucitron #tarteaucitronPersonalize,
+.tarteaucitronPersonalize,
+#tarteaucitron [id*="Personalize"],
+#tarteaucitron a[id*="Personalize"],
+#tarteaucitron button[id*="Personalize"],
+#tarteaucitron .tarteaucitron-personnalize {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Legal notice */
-#tarteaucitronLegalNote {
+#tarteaucitronLegalNote,
+#tarteaucitron .tarteaucitronLegalNote {
   font-size: 12px !important;
-  color: #666666 !important;
+  color: #666 !important;
   margin-top: 20px !important;
   text-align: center !important;
 }
 
-#tarteaucitronLegalNote a {
+#tarteaucitronLegalNote a,
+#tarteaucitron .tarteaucitronLegalNote a {
   color: #00255D !important;
-  text-decoration: underline !important;
 }
 
 /* Alert small - hidden */
-#tarteaucitronAlertSmall {
+#tarteaucitronAlertSmall,
+#tarteaucitron #tarteaucitronAlertSmall {
   display: none !important;
 }
 
-/* Services list */
-.tarteaucitronServicesList {
+/* Services */
+#tarteaucitronServices {
+  margin-top: 20px !important;
   text-align: center !important;
 }
 
-/* Logo container */
-.tac-logo img {
-  width: 160px;
-  height: auto;
-  margin-bottom: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   #tarteaucitronMain {
-    padding: 25px 20px !important;
+    padding: 20px !important;
     border-radius: 12px 12px 0 0 !important;
-  }
-
-  .tarteaucitronButton,
-  .tarteaucitronButton * {
-    padding: 12px 24px !important;
-    font-size: 13px !important;
-    display: block !important;
-    margin: 8px auto !important;
-    width: 100% !important;
-    max-width: 280px !important;
-  }
-
-  #tarteaucitronParagraph {
-    font-size: 14px !important;
+    max-width: 100% !important;
   }
 }
