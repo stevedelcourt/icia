@@ -172,6 +172,7 @@ export default function RootLayout({
         <ScrollGradient />
         {children}
         <SpeedBanner />
+        <link rel="stylesheet" href="/css/tarteaucitron.css" />
         <Script src="/js/tarteaucitron.min.js" strategy="beforeInteractive" />
         <Script src="/js/cookies.js" strategy="beforeInteractive" />
       </body>

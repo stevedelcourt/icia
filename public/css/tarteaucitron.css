@@ -1,0 +1,97 @@
+/* TarteAuCitron Custom Styles - Marius IA */
+
+#tarteaucitronMain {
+  text-align: center !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 20px 30px !important;
+  background: #ffffff !important;
+  border-radius: 12px 12px 0 0 !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1) !important;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+#tarteaucitronMain * {
+  text-align: center !important;
+}
+
+#tarteaucitronTitle {
+  display: none !important;
+}
+
+#tarteaucitronParagraph {
+  font-size: 14px !important;
+  color: #333 !important;
+  line-height: 1.6 !important;
+  margin-bottom: 15px !important;
+}
+
+#tarteaucitronServices {
+  margin-top: 20px !important;
+}
+
+/* Hide personalize button */
+#tarteaucitronPersonalize {
+  display: none !important;
+}
+
+/* Button styling */
+.tarteaucitronAllow,
+.tarteaucitronDeny {
+  background: #00255D !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 12px 30px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+  margin: 5px !important;
+}
+
+.tarteaucitronAllow:hover,
+.tarteaucitronDeny:hover {
+  background: #001a40 !important;
+}
+
+/* Legal notice */
+#tarteaucitronLegalNotice {
+  font-size: 11px !important;
+  color: #666 !important;
+  margin-top: 15px !important;
+}
+
+#tarteaucitronLegalNotice a {
+  color: #00255D !important;
+}
+
+/* Alert small - hidden */
+#tarteaucitronAlertSmall {
+  display: none !important;
+}
+
+/* Cookie list */
+#tarteaucitronCookiesList {
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+/* Logo in cookie banner */
+#tarteaucitronMain::before {
+  content: "" !important;
+  background: url('/MariusIA-logo.svg') no-repeat center !important;
+  background-size: contain !important;
+  width: 150px !important;
+  height: 40px !important;
+  display: block !important;
+  margin: 0 auto 15px auto !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #tarteaucitronMain {
+    padding: 15px !important;
+    border-radius: 0 !important;
+  }
+}
