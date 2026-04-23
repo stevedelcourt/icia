@@ -5,13 +5,11 @@ export default class MyDocument extends Document {
     return (
       <Html lang="fr">
         <Head>
-          <script src="/js/tarteaucitron.min.js"></script>
           <link rel="icon" href="/MariusIA-logo-monogram.png" />
         </Head>
         <body className="antialiased bg-transparent text-text" style={{ fontFamily: 'Work Sans, sans-serif' }}>
           <Main />
           <NextScript />
-          <script src="/js/cookies.js"></script>
         </body>
       </Html>
     );

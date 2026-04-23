@@ -12,8 +12,11 @@ tarteaucitron.init({
   "handleOutsideRTI": false,
   "cookie": {
     "secure": true,
-    "expires": 365
-  }
+    "expires": 365,
+    "samesite": "strict"
+  },
+  "adblocker": false,
+  "showLegalNotice": true
 });
 
 // Google Analytics via consentement
@@ -32,14 +35,6 @@ tarteaucitron.services.gtag = {
     gtag('config', 'G-NJWMZE9B0P');
   }
 };
-
-// Hide TarteAuCitron UI elements
-document.addEventListener("tarteaucitron_loaded", function() {
-    const manager = document.querySelector("#tarteaucitronManager");
-    if (manager) manager.remove();
-    const alert = document.querySelector("#tarteaucitronAlert");
-    if (alert) alert.remove();
-});
 
 // 1. Declare UA ID
 tarteaucitron.user.gtagUa = 'G-NJWMZE9B0P';
