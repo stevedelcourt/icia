@@ -161,7 +161,7 @@ export default function CitoyensPage() {
               <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200">Être accompagné</Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
-              <img src="/images/grandpu.webp" alt="Grand public" className="w-full" />
+              <img src="/images/grandpublic.webp" alt="Grand public" className="w-full" />
             </motion.div>
           </div>
 

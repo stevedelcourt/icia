@@ -122,7 +122,7 @@ const acteurs = [
     desc: "Comprendre l'IA. L'utiliser. Ne pas se faire avoir. Des ateliers accessibles, sans prérequis techniques, pour toutes celles et ceux qui veulent comprendre ce qui change dans leur quotidien. L'IA n'est pas réservée à ceux qui ont déjà tout. Ni à ceux qui savent déjà tout.",
     href: '/citoyens',
     anchor: 'citoyen',
-    image: '/images/grandpu.webp'
+    image: '/images/grandpublic.webp'
   },
 ]
 
