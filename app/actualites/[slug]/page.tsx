@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
+import { t } from '@/generated/content'
 import fs from 'fs'
 import path from 'path'
 
@@ -206,10 +207,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <main id="main-content">
           <Section className="pt-40 pb-24">
             <div className="max-w-2xl mx-auto text-center">
-              <h1 className=" text-h1 mb-6">Article non trouve</h1>
-              <p className="text-text-muted mb-8">Cet article n'existe pas.</p>
+              <h1 className=" text-h1 mb-6">{t('actualites.article.non_trouve')}</h1>
+              <p className="text-text-muted mb-8">{t('actualites.article.inexistant')}</p>
               <Link href="/actualites" className="text-accent hover:text-accent-hover underline">
-                Retour aux actualites
+                {t('actualites.article.retour')}
               </Link>
             </div>
           </Section>
@@ -252,7 +253,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <FadeIn>
             <article className="max-w-3xl mx-auto">
               <Link href="/actualites" className="text-sm text-text-muted hover:text-accent mb-6 inline-block">
-                ← Retour aux actualites
+                {t('actualites.article.retour_liste')}
               </Link>
               
               {article.image && (
@@ -283,14 +284,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <div className="flex justify-between border-t border-border pt-8">
                 {prevArticle ? (
                   <Link href={`/actualites/${prevArticle.slug}`} className="text-left">
-                    <span className="text-sm text-text-muted">Article precedent</span>
+                    <span className="text-sm text-text-muted">{t('actualites.article.precedent')}</span>
                     <p className="text-accent hover:underline">{prevArticle.title}</p>
                   </Link>
                 ) : <div />}
                 
                 {nextArticle ? (
                   <Link href={`/actualites/${nextArticle.slug}`} className="text-right">
-                    <span className="text-sm text-text-muted">Article suivant</span>
+                    <span className="text-sm text-text-muted">{t('actualites.article.suivant')}</span>
                     <p className="text-accent hover:underline">{nextArticle.title}</p>
                   </Link>
                 ) : <div />}

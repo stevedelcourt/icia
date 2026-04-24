@@ -3,38 +3,40 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { t } from '@/generated/content'
 
 const COLORS = {
-  green: { r: 189, g: 245, b: 171 },
+  blue: { r: 174, g: 189, b: 219 },
   white: { r: 255, g: 255, b: 255 },
 }
 
 function interpolateToWhite(progress: number): string {
-  const { r, g, b } = COLORS.green
+  const { r, g, b } = COLORS.blue
   const { r: r2, g: g2, b: b2 } = COLORS.white
-  const eased = 1 - Math.pow(1 - progress, 3)
+  const eased = 1 - Math.pow(1 - progress, 5)
   const R = Math.round(r + (r2 - r) * eased)
   const G = Math.round(g + (g2 - g) * eased)
   const B = Math.round(b + (b2 - b) * eased)
   return `rgb(${R}, ${G}, ${B})`
 }
 
-const programmes = [
-  { title: 'Inclusion numérique', description: 'Une partie de vos administrés sera laissée de côté si personne ne s\'en préoccupe activement. On vous aide à construire des dispositifs qui réduisent la fracture plutôt qu\'à l\'aggraver.' },
-  { title: 'Transformation des services publics', description: 'Identifier les cas d\'usage pertinents, évaluer les risques, prioriser ce qui améliore vraiment le service rendu. Ni résistance ni adoption aveugle : une démarche structurée.' },
-  { title: 'Remobilisation professionnelle', description: 'Les agents publics sont en première ligne des changements induits par l\'IA. Les accompagner, c\'est aussi éviter que la transformation se fasse contre eux.' },
-  { title: 'Observatoire territorial', description: 'Piloter une politique IA sur un territoire, ça suppose de voir ce qui se passe vraiment. On vous donne les outils pour suivre l\'adoption, mesurer les effets et ajuster.' },
+const navActeurs = [
+  { label: t('acteurs.nav.entreprises'), href: '/entreprises' },
+  { label: t('acteurs.nav.professions_liberales'), href: '/professions-liberales' },
+  { label: t('acteurs.nav.ecoles'), href: '/education' },
+  { label: t('acteurs.nav.creatifs'), href: '/secteurs-creatifs' },
+  { label: t('acteurs.nav.collectivites'), href: '/pouvoirs-publics' },
+  { label: t('acteurs.nav.grand_public'), href: '/citoyens' },
 ]
 
-const navActeurs = [
-  { label: 'Entreprises', href: '/entreprises' },
-  { label: 'Collectivités et administrations', href: '/pouvoirs-publics' },
-  { label: 'Écoles, CFA, Universités', href: '/education' },
-  { label: 'Industries créatives', href: '/secteurs-creatifs' },
-  { label: 'Professions libérales', href: '/professions-liberales' },
-  { label: 'Grand public', href: '/citoyens' },
+const programmes = [
+  { title: t('acteurs.collectivites.programmes.1.title'), description: t('acteurs.collectivites.programmes.1.desc') },
+  { title: t('acteurs.collectivites.programmes.2.title'), description: t('acteurs.collectivites.programmes.2.desc') },
+  { title: t('acteurs.collectivites.programmes.3.title'), description: t('acteurs.collectivites.programmes.3.desc') },
+  { title: t('acteurs.collectivites.programmes.4.title'), description: t('acteurs.collectivites.programmes.4.desc') },
 ]
 
 export default function PouvoirsPublicsPage() {
@@ -49,11 +51,11 @@ export default function PouvoirsPublicsPage() {
     if (!hero) return
 
     const handleScroll = () => {
+      if (!hero) return
       const rect = hero.getBoundingClientRect()
-      const heroHeight = hero.offsetHeight
-      const maxScroll = heroHeight * 3
-      const scrolled = Math.max(0, -rect.top)
-      const progress = Math.min(scrolled / maxScroll, 1)
+      const offset = -rect.top
+      const maxOffset = hero.offsetHeight - window.innerHeight * 0.3
+      const progress = Math.min(Math.max(offset / Math.max(maxOffset, 1), 0), 1)
       setScrollProgress(progress)
     }
 
@@ -110,12 +112,13 @@ export default function PouvoirsPublicsPage() {
       <Header />
       <main className="pt-36 pb-24" style={{ background: heroBackground }}>
         <div className="max-w-6xl mx-auto px-8">
-          <nav ref={heroRef} className="mb-12 md:mb-16">
+          <section ref={heroRef}>
+          <nav className="mb-12 md:mb-16">
             <div className="lg:hidden relative flex items-center">
               <button
                 onClick={() => scrollMenu('left')}
                 className={`absolute left-0 z-10 transition-opacity flex items-center justify-center ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                style={{ background: '#aebddb', width: '32px', height: '32px', padding: 0 }}
                 aria-label="Scroll left"
               >
                 <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +128,7 @@ export default function PouvoirsPublicsPage() {
               <div
                 ref={scrollRef}
                 className="flex gap-4 text-sm text-gray-400 pl-7 pr-7 overflow-x-auto scrollbar-hide whitespace-nowrap"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: '#bdf5ab' }}
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: '#aebddb' }}
               >
                 {navActeurs.map((item) => (
                   <Link key={item.href} href={item.href} className={`hover:text-black transition-colors duration-200 flex-shrink-0 ${item.href === '/pouvoirs-publics' ? 'text-black font-medium' : ''}`}>
@@ -136,7 +139,7 @@ export default function PouvoirsPublicsPage() {
               <button
                 onClick={() => scrollMenu('right')}
                 className={`absolute right-0 z-10 transition-opacity flex items-center justify-center ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                style={{ background: '#aebddb', width: '32px', height: '32px', padding: 0 }}
                 aria-label="Scroll right"
               >
                 <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,28 +157,30 @@ export default function PouvoirsPublicsPage() {
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Pour qui ?</p>
-              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">Collectivités et administrations</h1>
-              <p className="text-xl font-medium text-gray-600 mb-10">L'IA entre dans les services publics. Parfois par choix, parfois par obligation, souvent sans cadre suffisant. Ce qui est en jeu, c'est l'équité d'accès, la confiance des citoyens, et la capacité de vos agents à travailler autrement. Ça mérite une approche sérieuse, indépendante des vendeurs de solutions.</p>
-              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">Contactez-nous</Link>
-            </motion.div>
+            <StaggerBlock>
+              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('acteurs.shared.label')}</p>
+              <h1 className="text-4xl md:text-5xl  font-bold text-black leading-tight mb-6">{t('acteurs.collectivites.title')}</h1>
+              <p className="text-xl font-medium text-gray-600 mb-10">{t('acteurs.collectivites.hero')}</p>
+              <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200">{t('acteurs.shared.cta')}</Link>
+            </StaggerBlock>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:pt-20">
               <img src="/images/crea.webp" alt="Pouvoirs publics" className="w-full" />
             </motion.div>
           </div>
+          </section>
 
-          <motion.div className="border-t border-gray-200 pt-16" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-12">Axes d'accompagnement</h2>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.2} className="pt-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-12">{t('acteurs.shared.axes_title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {programmes.map((prog) => (
-                <div key={prog.title} className="p-10 border border-gray-200 hover:border-black transition-colors duration-300">
+                <div key={prog.title} className="p-10 transition-colors duration-300">
                   <h3 className="text-xl  text-black mb-3">{prog.title}</h3>
                   <p className="text-gray-500">{prog.description}</p>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </StaggerBlock>
         </div>
       </main>
       <Footer />

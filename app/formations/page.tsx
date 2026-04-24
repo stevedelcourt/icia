@@ -1,32 +1,56 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import ScrollGradient from '@/components/ScrollGradient'
+import { t } from '@/generated/content'
 
 const programmes = [
-  { nom: "IA par métiers", contenu: "Managers, commerciaux, RH, finance, support client, logistique", duree: "1 jour" },
-  { nom: "IA & sécurité", contenu: "Risques, données personnelles, arnaques, RGPD, bonnes pratiques", duree: "1/2 journée" },
-  { nom: "IA & esprit critique", contenu: "Comprendre les LLM, biais, hallucinations, limites des outils", duree: "1/2 journée" },
-  { nom: "Modules écoles/CFA", contenu: "Cours structurés, TD, cas pratiques pour établissements", duree: "Sur mesure" },
-  { nom: "Parcours emploi IA", contenu: "Socle numérique + IA métier + badge de compétences", duree: "3 à 5 jours" },
-  { nom: "Formation formateurs", contenu: "Former les équipes internes ou intervenants partenaires", duree: "2 jours" },
+  { nom: t('offres.formations.catalogue.1.nom'), contenu: t('offres.formations.catalogue.1.contenu'), duree: t('offres.formations.catalogue.1.duree') },
+  { nom: t('offres.formations.catalogue.2.nom'), contenu: t('offres.formations.catalogue.2.contenu'), duree: t('offres.formations.catalogue.2.duree') },
+  { nom: t('offres.formations.catalogue.3.nom'), contenu: t('offres.formations.catalogue.3.contenu'), duree: t('offres.formations.catalogue.3.duree') },
+  { nom: t('offres.formations.catalogue.4.nom'), contenu: t('offres.formations.catalogue.4.contenu'), duree: t('offres.formations.catalogue.4.duree') },
+  { nom: t('offres.formations.catalogue.5.nom'), contenu: t('offres.formations.catalogue.5.contenu'), duree: t('offres.formations.catalogue.5.duree') },
+  { nom: t('offres.formations.catalogue.6.nom'), contenu: t('offres.formations.catalogue.6.contenu'), duree: t('offres.formations.catalogue.6.duree') },
 ]
 
 const exemple = {
-  contexte: "CFA BTP Marseille (120 apprentis)",
-  description: "Un CFA BTP veut intégrer l'IA dans ses formations sans savoir comment. Les formateurs ne connaissent pas les outils. Les apprentis utilisent déjà l'IA pour leurs devoirs.",
+  contexte: t('offres.formations.exemple.contexte'),
+  description: t('offres.formations.exemple.desc'),
   jalons: [
-    { phase: "Audit", action: "Audit de la maquette pédagogique existante (2 jours)" },
-    { phase: "Co-construction", action: "Co-construction de 3 modules IA métier : mètres augmentés, IA & sécurité chantier, reporting" },
-    { phase: "Formation", action: "Formation des formateurs (2 jours)" },
-    { phase: "Livraison", action: "Livraison des supports + badges de compétences associés" },
-    { phase: "Accompagnement", action: "Accompagnement sur 3 mois à la mise en place" },
+    { phase: "Audit", action: t('offres.formations.exemple.phase.1') },
+    { phase: "Co-construction", action: t('offres.formations.exemple.phase.2') },
+    { phase: "Formation", action: t('offres.formations.exemple.phase.3') },
+    { phase: "Livraison", action: t('offres.formations.exemple.phase.4') },
+    { phase: "Accompagnement", action: t('offres.formations.exemple.phase.5') },
   ],
 }
+
+const COLORS = {
+  green: { r: 189, g: 245, b: 171 },
+  white: { r: 255, g: 255, b: 255 },
+}
+
+function interpolateToWhite(progress: number): string {
+  const { r, g, b } = COLORS.green
+  const { r: r2, g: g2, b: b2 } = COLORS.white
+  const eased = 1 - Math.pow(1 - progress, 5)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
+
+const navOffres = [
+  { label: t('offres.nav.diagnostic'), href: '/diagnostic' },
+  { label: t('offres.nav.formations'), href: '/formations' },
+  { label: t('offres.nav.transformation'), href: '/transformation' },
+  { label: t('offres.nav.partenaire'), href: '/partenaire' },
+]
 
 export default function FormationsPage() {
   const heroRef = useRef<HTMLElement>(null)
@@ -34,6 +58,7 @@ export default function FormationsPage() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const hero = heroRef.current
@@ -78,7 +103,7 @@ export default function FormationsPage() {
     container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' })
   }
 
-  const heroBackground = `linear-gradient(to bottom, #f8f9fa ${100 - scrollProgress * 100}%, white 100%)`
+  const heroBackground = interpolateToWhite(scrollProgress)
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -100,43 +125,92 @@ export default function FormationsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <ScrollGradient />
-      <main className="pt-36 pb-24">
+      <main className="pt-36 pb-24" style={{ backgroundColor: heroBackground }}>
         <div className="max-w-6xl mx-auto px-8">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-            <Link href="/#offres" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">← Retour</Link>
-          </motion.div>
+          <section ref={heroRef}>
+            <StaggerBlock delay={0}>
+              <Link href="/#offres" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">{t('offres.shared.retour')}</Link>
+            </StaggerBlock>
+
+          <nav className="mb-12 md:mb-16">
+            <div className="lg:hidden relative flex items-center">
+              <button
+                onClick={() => scrollMenu('left')}
+                className={`absolute left-0 z-10 transition-opacity flex items-center justify-center ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                aria-label="Scroll left"
+              >
+                <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <div
+                ref={scrollRef}
+                className="flex gap-6 overflow-x-auto"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: '#bdf5ab' }}
+              >
+                {navOffres.map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`whitespace-nowrap px-4 py-3 text-sm ${isActive ? 'text-black font-medium' : 'text-gray-600 hover:text-black'} transition-colors`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+              <button
+                onClick={() => scrollMenu('right')}
+                className={`absolute right-0 z-10 transition-opacity flex items-center justify-center ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                aria-label="Scroll right"
+              >
+                <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            <div className="hidden lg:flex gap-6" style={{ background: '#bdf5ab' }}>
+              {navOffres.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-5 py-3 text-sm ${isActive ? 'text-black font-medium' : 'text-gray-600 hover:text-black'} transition-colors`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </div>
+          </nav>
 
           <div className="mb-20">
-            <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 02</span>
-            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Formations & Acculturation IA</h1>
-            <p className="text-xl font-medium text-gray-600">Volume & Financement</p>
+            <span className="text-sm tracking-widest text-gray-400 uppercase">{t('offres.formations.num')}</span>
+            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">{t('offres.formations.title')}</h1>
+            <p className="text-xl font-medium text-gray-600">{t('offres.formations.subtitle')}</p>
           </div>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">Vos équipes utilisent déjà l'IA, souvent sans le savoir, parfois sans sécurité. On fait en sorte qu'elles le fassent bien, en lien avec leur métier, dans un cadre sécurisé.</p>
-          </motion.div>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.1} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">{t('offres.formations.promesse.title')}</h2>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">{t('offres.formations.promesse.body')}</p>
+          </StaggerBlock>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-8">Catalogue de programmes</h2>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.2} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-8">{t('offres.formations.catalogue.title')}</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="py-5 pr-6 text-sm tracking-widest text-gray-400 uppercase font-normal">Programme</th>
-                    <th className="py-5 pr-6 text-sm tracking-widest text-gray-400 uppercase font-normal">Contenu</th>
-                    <th className="py-5 text-sm tracking-widest text-gray-400 uppercase font-normal">Duree</th>
+                    <th className="py-5 pr-6 text-sm tracking-widest text-gray-400 uppercase font-normal">{t('offres.formations.catalogue.header.programme')}</th>
+                    <th className="py-5 pr-6 text-sm tracking-widest text-gray-400 uppercase font-normal">{t('offres.formations.catalogue.header.contenu')}</th>
+                    <th className="py-5 text-sm tracking-widest text-gray-400 uppercase font-normal">{t('offres.formations.catalogue.header.duree')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -150,15 +224,11 @@ export default function FormationsPage() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </StaggerBlock>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-6">Exemple</h2>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.3} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-6">{t('offres.formations.exemple.title')}</h2>
             <div className="bg-gray-50 p-10">
               <p className="font-medium text-black text-lg mb-3">{exemple.contexte}</p>
               <p className="text-gray-500 mb-8">{exemple.description}</p>
@@ -171,12 +241,13 @@ export default function FormationsPage() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </StaggerBlock>
 
           <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">Échanger</span><span className="hidden md:inline">Contactez-nous</span></Link>
-            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">Retour</span><span className="hidden md:inline">Retour à l'accueil</span></Link>
+            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.contact_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.contact')}</span></Link>
+            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.retour_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.retour')}</span></Link>
           </motion.div>
+          </section>
         </div>
       </main>
       <Footer />

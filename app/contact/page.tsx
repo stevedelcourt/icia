@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
+import { t } from '@/generated/content'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,7 +33,7 @@ export default function ContactPage() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.hsforms.com/submissions/v3/integration/submit/49558612/9181c8cf-5f81-4459-af6b-81c8c3e69f91', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,13 +56,13 @@ export default function ContactPage() {
       if (response.ok) {
         setSubmitStatus('success')
       } else {
-        const errorText = await response.text()
-        console.error('HubSpot error:', response.status, errorText)
-        setErrorMessage(`Erreur ${response.status}: ${errorText}`)
+        console.error('HubSpot error:', response.status)
+        setErrorMessage(t('contact.error.default'))
         setSubmitStatus('error')
       }
     } catch (err) {
       console.error('HubSpot exception:', err)
+      setErrorMessage(t('contact.error.default'))
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -101,39 +103,43 @@ export default function ContactPage() {
       <main className="pt-36 pb-24" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="max-w-2xl mx-auto px-8">
           {submitStatus === 'success' ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16"
-            >
-              <div className="w-16 h-16 mx-auto mb-6 border-2 border-gray-200 flex items-center justify-center text-2xl text-gray-400">
+            <div className="text-center py-16">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                className="w-16 h-16 mx-auto mb-6 border-2 border-[#00255D] flex items-center justify-center text-2xl text-[#00255D]"
+              >
                 ✓
-              </div>
-              <h2 className="text-3xl text-black mb-4">Message envoyé !</h2>
-              <p className="text-gray-500 mb-8">
-                Nous avons bien reçu votre demande. Nous vous répondrons dans les 48h.
-              </p>
-              <Link href="/" className="text-base text-black hover:underline transition-colors duration-200">
-                Retour à l&apos;accueil
-              </Link>
-            </motion.div>
+              </motion.div>
+              <StaggerBlock delay={0.15}>
+                <h2 className="text-3xl text-black mb-4">{t('contact.success.title')}</h2>
+              </StaggerBlock>
+              <StaggerBlock delay={0.3}>
+                <p className="text-gray-500 mb-8">
+                  {t('contact.success.body')}
+                </p>
+              </StaggerBlock>
+              <StaggerBlock delay={0.4}>
+                <Link href="/" className="text-base text-black hover:underline transition-colors duration-200">
+                  {t('contact.success.retour')}
+                </Link>
+              </StaggerBlock>
+            </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Contact</p>
+            <StaggerBlock delay={0}>
+              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('contact.label')}</p>
               <h1 className="text-3xl md:text-4xl text-black mb-4">
-                Un projet, une question, une urgence réglementaire.
+                {t('contact.title')}
               </h1>
               <p className="text-lg text-gray-500 mb-10">
-                Nous répondons dans les 48 heures.
+                {t('contact.subtitle')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstname" className="block text-sm text-gray-500 mb-2">Prénom</label>
+                  <div className="group">
+                    <label htmlFor="firstname" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.prenom')}</label>
                     <input
                       type="text"
                       id="firstname"
@@ -141,11 +147,11 @@ export default function ContactPage() {
                       required
                       value={formData.firstname}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="lastname" className="block text-sm text-gray-500 mb-2">Nom</label>
+                  <div className="group">
+                    <label htmlFor="lastname" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.nom')}</label>
                     <input
                       type="text"
                       id="lastname"
@@ -153,13 +159,13 @@ export default function ContactPage() {
                       required
                       value={formData.lastname}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2">Votre adresse email</label>
+                <div className="group">
+                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.email')}</label>
                   <input
                     type="email"
                     id="email"
@@ -167,12 +173,12 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="organisation" className="block text-sm text-gray-500 mb-2">Votre organisation</label>
+                <div className="group">
+                  <label htmlFor="organisation" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.organisation')}</label>
                   <input
                     type="text"
                     id="organisation"
@@ -180,19 +186,19 @@ export default function ContactPage() {
                     required
                     value={formData.organisation}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm text-gray-500 mb-2">Votre message <span className="text-gray-400">(facultatif)</span></label>
+                <div className="group">
+                  <label htmlFor="message" className="block text-sm text-gray-500 mb-2 transition-colors duration-200 group-focus-within:text-[#00255D]">{t('contact.form.message')} <span className="text-gray-400">{t('contact.form.message_optional')}</span></label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-[#00255D] outline-none ring-0 focus:ring-0 transition-all duration-200 resize-none"
                   />
                 </div>
 
@@ -207,7 +213,7 @@ export default function ContactPage() {
                     required
                   />
                   <label htmlFor="consent" className="text-sm text-gray-500">
-                    J&apos;accepte de recevoir des informations de Marius IA, conformément à la politique de confidentialité.
+                    {t('contact.form.consent')}
                   </label>
                 </div>
 
@@ -217,54 +223,59 @@ export default function ContactPage() {
                     disabled={isSubmitting}
                     className="w-full px-8 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+                    {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
                   </button>
                 </motion.div>
 
                 {submitStatus === 'error' && (
                   <p className="text-red-500 text-center">
-                    {errorMessage || 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.'}
+                    {errorMessage || t('contact.error.default')}
                   </p>
                 )}
               </form>
 
               <div className="mt-16 pt-12 border-t border-gray-200">
-                <h2 className="text-xl font-bold text-black mb-4">Campus Cyber.AI Euromed Marseille</h2>
-                <p className="text-sm text-gray-500 mb-4">
-                  4 Bd Euroméditerranée, Quai d&apos;Arenc, 13002 Marseille
-                </p>
-                <div className="w-full h-[300px] border border-gray-200 overflow-hidden">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    scrolling="yes"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=5.360486%2C43.308887%2C5.370486%2C43.318887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
-                    style={{ border: 0 }}
-                    title="Campus Cyber.AI Euromed Marseille"
-                  ></iframe>
-                </div>
-                <p className="text-sm text-gray-500 mt-4">
-                  <a
-                    href="https://www.openstreetmap.org/directions?from=&to=43.3139%2C5.3655"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-black hover:underline"
-                  >
-                    Itinéraire sur OpenStreetMap
-                  </a>
-                  {' • '}
-                  <a
-                    href="https://campuscyber.fr/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-black hover:underline"
-                  >
-                    campuscyber.fr
-                  </a>
-                </p>
+                <img src="/MariusIA-logo.svg" alt="Marius IA" className="h-16 w-auto mb-6" />
+                <p className="text-base text-gray-600 mb-2">{t('contact.phone')}</p>
+                <Link href="/contact" className="text-base text-gray-600 hover:text-black transition-colors duration-200 block mb-4">
+                  {t('contact.email.local')}&#x40;{t('contact.email.domain')}
+                </Link>
+                <p className="text-sm font-bold text-gray-800">{t('contact.adresse.title')}</p>
+                <p className="text-sm text-gray-500">{t('contact.adresse.ligne')}</p>
               </div>
-            </motion.div>
+
+              <AnimatedDivider className="mt-16 pt-12 border-t border-gray-200" />
+              <div className="w-full h-[300px] border border-gray-200 overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="yes"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=5.360486%2C43.308887%2C5.370486%2C43.318887&amp;layer=transportmap&amp;marker=43.313887%2C5.365486"
+                  style={{ border: 0 }}
+                  title={t('contact.adresse.title')}
+                ></iframe>
+              </div>
+              <p className="text-sm text-gray-500 mt-4">
+                <a
+                  href="https://www.openstreetmap.org/directions?from=&to=43.3139%2C5.3655"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:underline"
+                >
+                  {t('contact.adresse.itineraire')}
+                </a>
+                {' • '}
+                <a
+                  href="https://campuscyber.fr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:underline"
+                >
+                  {t('contact.adresse.site')}
+                </a>
+              </p>
+            </StaggerBlock>
           )}
         </div>
       </main>

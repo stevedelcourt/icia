@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Section } from '@/components/ui/Section'
 import { FadeIn, Stagger, StaggerItem } from '@/components/ui/FadeIn'
 import { OptimizedImage, getResponsiveUrl } from '@/components/ui/OptimizedImage'
+import { t } from '@/generated/content'
 import fs from 'fs'
 import path from 'path'
 
@@ -117,10 +118,10 @@ export default async function ActualitesPage() {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className=" text-h1 mb-6">
-                Actualités
+                {t('actualites.title')}
               </h1>
               <p className="text-body text-text-muted">
-                Suivez l'actualite de l'ICIA : evenements, publications, partenariats et reflexions sur l'IA.
+                {t('actualites.subtitle')}
               </p>
             </div>
           </FadeIn>
@@ -130,7 +131,7 @@ export default async function ActualitesPage() {
           <Section className="pb-12">
             <FadeIn>
               <Link href={`/actualites/${latestArticle.slug}`} className="block group">
-                <article className="border border-border bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
+                <article className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all">
                   {latestArticle.image && (
                     <div className="relative w-full aspect-square md:aspect-[16/9]">
                       <OptimizedImage 
@@ -166,7 +167,7 @@ export default async function ActualitesPage() {
               {otherArticles.map((article: any) => (
                 <StaggerItem key={article.slug}>
                   <Link href={`/actualites/${article.slug}`} className="block group">
-                    <article className="h-full border border-border bg-white rounded-xl p-6 hover:bg-ivory-dark hover:shadow-sm transition-all">
+                    <article className="h-full bg-white rounded-xl p-6 hover:bg-ivory-dark hover:shadow-sm transition-all">
                       {article.image && (
                         <OptimizedImage 
                           src={article.image} 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { t } from '@/generated/content'
 
 export default function SpeedBanner() {
   const [loadTime, setLoadTime] = useState<number | null>(null)
@@ -39,7 +40,7 @@ export default function SpeedBanner() {
 
   return (
     <div className="w-full py-1 text-[10px] text-center text-gray-400 bg-gray-50 border-t border-gray-100 uppercase tracking-widest">
-      Page chargée en <span className="font-bold text-gray-600">{seconds}s</span>
+      {t('speed_banner.text').replace('{seconds}', seconds)}
     </div>
   )
 }

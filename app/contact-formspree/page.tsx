@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { t } from '@/generated/content'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -81,12 +82,12 @@ export default function ContactPage() {
               <div className="w-16 h-16 mx-auto mb-6 border-2 border-gray-200 flex items-center justify-center text-2xl text-gray-400">
                 ✓
               </div>
-              <h2 className="text-3xl  text-black mb-4">Merci !</h2>
+              <h2 className="text-3xl  text-black mb-4">{t('contact_formspree.success.title')}</h2>
               <p className="text-gray-500 mb-8">
-                Nous avons bien reçu votre demande. Nous vous répondrons sous 48h.
+                {t('contact_formspree.success.body')}
               </p>
               <Link href="/" className="text-base text-black hover:underline transition-colors duration-200">
-                Retour à l'accueil
+                {t('contact_formspree.success.retour')}
               </Link>
             </motion.div>
           ) : (
@@ -94,15 +95,15 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">Contact</p>
+              <p className="text-sm tracking-widest text-gray-400 uppercase mb-4">{t('contact_formspree.label')}</p>
               <h1 className="text-3xl md:text-4xl  text-black mb-8">
-                Commençons par un premier coup de sonde éditorial, voyons ensuite.
+                {t('contact_formspree.title')}
               </h1>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm text-gray-500 mb-2">Prenom</label>
+                    <label htmlFor="firstName" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.prenom')}</label>
                     <input 
                       type="text" 
                       id="firstName" 
@@ -114,7 +115,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm text-gray-500 mb-2">Nom</label>
+                    <label htmlFor="lastName" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.nom')}</label>
                     <input 
                       type="text" 
                       id="lastName" 
@@ -128,7 +129,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2">E-mail</label>
+                  <label htmlFor="email" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.email')}</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -141,7 +142,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="entreprise" className="block text-sm text-gray-500 mb-2">Entreprise</label>
+                  <label htmlFor="entreprise" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.entreprise')}</label>
                   <input 
                     type="text" 
                     id="entreprise" 
@@ -154,7 +155,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="secteur" className="block text-sm text-gray-500 mb-2">Secteur d'activite</label>
+                  <label htmlFor="secteur" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.secteur')}</label>
                   <select 
                     id="secteur" 
                     name="secteur"
@@ -163,18 +164,18 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
                   >
-                    <option value="">Choisissez une valeur</option>
-                    <option value="pmi-eti">PME / ETI</option>
-                    <option value="collectivite">Collectivite / Service public</option>
-                    <option value="education">Education / Formation</option>
-                    <option value="creatif">Industries créatives</option>
-                    <option value="citoyen">Particulier / Demandeur d'emploi</option>
-                    <option value="autre">Autre</option>
+                    <option value="">{t('contact_formspree.form.select_default')}</option>
+                    <option value="pmi-eti">{t('contact_formspree.form.secteur.pme')}</option>
+                    <option value="collectivite">{t('contact_formspree.form.secteur.collectivite')}</option>
+                    <option value="education">{t('contact_formspree.form.secteur.education')}</option>
+                    <option value="creatif">{t('contact_formspree.form.secteur.creatif')}</option>
+                    <option value="citoyen">{t('contact_formspree.form.secteur.citoyen')}</option>
+                    <option value="autre">{t('contact_formspree.form.secteur.autre')}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="effectif" className="block text-sm text-gray-500 mb-2">Nombre d'effectifs</label>
+                  <label htmlFor="effectif" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.effectif')}</label>
                   <select 
                     id="effectif" 
                     name="effectif"
@@ -183,17 +184,17 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
                   >
-                    <option value="">Choisissez une valeur</option>
-                    <option value="1-10">1 a 10</option>
-                    <option value="11-50">11 a 50</option>
-                    <option value="51-250">51 a 250</option>
-                    <option value="251-1000">251 a 1000</option>
-                    <option value="1000+">Plus de 1000</option>
+                    <option value="">{t('contact_formspree.form.select_default')}</option>
+                    <option value="1-10">{t('contact_formspree.form.effectif.1_10')}</option>
+                    <option value="11-50">{t('contact_formspree.form.effectif.11_50')}</option>
+                    <option value="51-250">{t('contact_formspree.form.effectif.51_250')}</option>
+                    <option value="251-1000">{t('contact_formspree.form.effectif.251_1000')}</option>
+                    <option value="1000+">{t('contact_formspree.form.effectif.1000+')}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="priorite" className="block text-sm text-gray-500 mb-2">Quelle est votre priorite</label>
+                  <label htmlFor="priorite" className="block text-sm text-gray-500 mb-2">{t('contact_formspree.form.priorite')}</label>
                   <select 
                     id="priorite" 
                     name="priorite"
@@ -202,13 +203,13 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 bg-white focus:border-black outline-none transition-colors duration-200"
                   >
-                    <option value="">Choisissez une valeur</option>
-                    <option value="comprendre">Comprendre l'AI Act et mes obligations</option>
-                    <option value="diagnostic">Faire un diagnostic IA</option>
-                    <option value="formation">Former mes equipes</option>
-                    <option value="transformation">Transformer mon organisation</option>
-                    <option value="partenaire">Avoir un partenaire IA</option>
-                    <option value="autre">Autre</option>
+                    <option value="">{t('contact_formspree.form.select_default')}</option>
+                    <option value="comprendre">{t('contact_formspree.form.priorite.ai_act')}</option>
+                    <option value="diagnostic">{t('contact_formspree.form.priorite.diagnostic')}</option>
+                    <option value="formation">{t('contact_formspree.form.priorite.formation')}</option>
+                    <option value="transformation">{t('contact_formspree.form.priorite.transformation')}</option>
+                    <option value="partenaire">{t('contact_formspree.form.priorite.partenaire')}</option>
+                    <option value="autre">{t('contact_formspree.form.priorite.autre')}</option>
                   </select>
                 </div>
 
@@ -223,7 +224,7 @@ export default function ContactPage() {
                       className="mt-1"
                     />
                     <span className="text-sm text-gray-500">
-                      J'accepte de recevoir des informations et des offres de MariusIA, conformément à la politique de confidentialité.
+                      {t('contact_formspree.form.consent')}
                     </span>
                   </label>
                 </div>
@@ -235,7 +236,7 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   className="w-full px-8 py-4 text-lg text-white bg-black hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Envoi...' : 'Envoyer votre demande'}
+                  {isSubmitting ? t('contact_formspree.form.submitting') : t('contact_formspree.form.submit')}
                 </motion.button>
               </form>
             </motion.div>

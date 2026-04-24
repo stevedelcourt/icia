@@ -3,6 +3,8 @@ import { Work_Sans } from 'next/font/google'
 import Script from 'next/script'
 import ScrollGradient from '@/components/ScrollGradient'
 import SpeedBanner from '@/components/SpeedBanner'
+import CookieConsentBanner from '@/components/CookieConsent'
+import { t } from '@/generated/content'
 import './globals.css'
 
 const workSans = Work_Sans({
@@ -18,14 +20,14 @@ export const metadata: Metadata = {
     apple: '/images/favicon_io/apple-touch-icon.png',
   },
   title: {
-    default: 'Marius IA | Institut Conseil IA - Diagnostic, Formation, Transformation',
-    template: '%s | Marius IA',
+    default: t('layout.seo.title.default'),
+    template: t('layout.seo.title.template'),
   },
-  description: 'Marius IA, l\'institut collectif de l\'IA. Conseil en stratégie IA et conformité AI Act pour PME, ETI et organisations françaises. Diagnostic, formations, transformation. Marseille.',
-  keywords: ['conseil IA', 'intelligence artificielle', 'AI Act', 'conformité IA', 'transformation IA', 'PME', 'ETI', 'formation IA', 'audit IA', 'gouvernance IA', 'Marseille', 'France'],
-  authors: [{ name: 'Mentivis SAS', url: 'https://www.mentivis.com' }],
-  creator: 'Mentivis SAS',
-  publisher: 'Mentivis SAS',
+  description: t('layout.seo.description'),
+  keywords: t('layout.seo.keywords').split(',').map(k => k.trim()),
+  authors: [{ name: t('layout.seo.author'), url: 'https://www.mentivis.com' }],
+  creator: t('layout.seo.creator'),
+  publisher: t('layout.seo.publisher'),
   robots: {
     index: true,
     follow: true,
@@ -41,22 +43,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://www.mariusia.com',
-    siteName: 'Marius IA - Institut Collectif de l\'IA',
-    title: 'Marius IA | Institut Conseil IA - Diagnostic, Formation, Transformation',
-    description: 'Conseil en stratégie IA et conformité AI Act. Accompagnement des organisations françaises : diagnostic, formations, transformation. Marseille.',
+    siteName: t('layout.og.site_name'),
+    title: t('layout.og.title'),
+    description: t('layout.og.description'),
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Marius IA - Institut Collectif de l\'IA',
+        alt: t('layout.og.image.alt'),
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Marius IA | Institut Conseil IA',
-    description: 'Conseil en stratégie IA et conformité AI Act pour PME, ETI et organisations.',
+    title: t('layout.twitter.title'),
+    description: t('layout.twitter.description'),
   },
   alternates: {
     canonical: 'https://www.mariusia.com',
@@ -73,11 +75,11 @@ const jsonLdOrganization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': 'https://www.mariusia.com/#organization',
-  name: 'Marius IA',
-  alternateName: 'Institut Collectif de l\'IA',
+  name: t('layout.ld_json.org.name'),
+  alternateName: t('layout.ld_json.org.alternate_name'),
   url: 'https://www.mariusia.com',
   logo: 'https://www.mariusia.com/images/MariusIA-logo.svg',
-  description: 'Institut de conseil en intelligence artificielle. Accompagnement des organisations dans leur transformation IA avec indépendance et résultats mesurables.',
+  description: t('layout.ld_json.org.description'),
   areaServed: [
     { '@type': 'Country', name: 'France' },
     { '@type': 'Country', name: 'Europe' },
@@ -99,22 +101,22 @@ const jsonLdOrganization = {
   ],
   contactPoint: {
     '@type': 'ContactPoint',
-    contactType: 'customer service',
+    contactType: t('layout.ld_json.org.contact_type'),
     email: 'contact@mariusia.com',
     areaServed: 'FR',
-    availableLanguage: ['French', 'English'],
+    availableLanguage: [t('layout.ld_json.org.available_language.fr'), t('layout.ld_json.org.available_language.en')],
   },
   parentOrganization: {
     '@type': 'Organization',
-    name: 'Mentivis SAS',
+    name: t('layout.ld_json.org.parent_name'),
     url: 'https://www.mentivis.com',
   },
   location: {
     '@type': 'Place',
-    name: 'Campus Cyber.AI Euromed',
+    name: t('layout.ld_json.org.location.name'),
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Marseille',
+      addressLocality: t('layout.ld_json.org.location.city'),
       addressCountry: 'FR',
     },
   },
@@ -125,8 +127,8 @@ const jsonLdWebSite = {
   '@type': 'WebSite',
   '@id': 'https://www.mariusia.com/#website',
   url: 'https://www.mariusia.com',
-  name: 'Marius IA - Institut Collectif de l\'IA',
-  description: 'Conseil en stratégie IA et conformité AI Act pour PME et organisations françaises.',
+  name: t('layout.ld_json.website.name'),
+  description: t('layout.ld_json.website.description'),
   publisher: { '@id': 'https://www.mariusia.com/#organization' },
   potentialAction: {
     '@type': 'SearchAction',
@@ -145,7 +147,7 @@ const jsonLdBreadcrumb = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Accueil',
+      name: t('layout.ld_json.breadcrumb.home'),
       item: 'https://www.mariusia.com',
     },
   ],
@@ -172,9 +174,7 @@ export default function RootLayout({
         <ScrollGradient />
         {children}
         <SpeedBanner />
-        <link rel="stylesheet" href="/css/tarteaucitron.css" />
-        <Script src="/js/tarteaucitron.min.js" strategy="beforeInteractive" />
-        <Script src="/js/cookies.js" strategy="beforeInteractive" />
+        <CookieConsentBanner />
       </body>
     </html>
   )

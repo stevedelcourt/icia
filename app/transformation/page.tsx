@@ -3,30 +3,54 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { StaggerBlock, AnimatedDivider } from '@/components/Animations'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import ScrollGradient from '@/components/ScrollGradient'
+import { usePathname } from 'next/navigation'
+import { t } from '@/generated/content'
 
 const apports = [
-  "Gouvernance IA : création du comité IA, charte d'usage, référent interne formé",
-  "Plan de compétences : cartographie des besoins par rôle, parcours de montée en compétences",
-  "Change management : communication interne, ateliers d'adhésion, coaching des managers",
-  "Conformité AI Act + RGPD : mise en cohérence des usages avec les obligations légales",
-  "Pilotage des partenaires techniques (Flowt ou autres) : Mentivis arbitre, contrôle, valide",
-  "Jalons de mesure d'impact tous les trimestres - KPI définis en amont, restitution CODIR",
+  t('offres.transformation.apports.1'),
+  t('offres.transformation.apports.2'),
+  t('offres.transformation.apports.3'),
+  t('offres.transformation.apports.4'),
+  t('offres.transformation.apports.5'),
+  t('offres.transformation.apports.6'),
 ]
 
 const exemple = {
-  contexte: "ETI services 350 personnes",
-  description: "Une ETI de services aux entreprises a réalisé un diagnostic. 3 cas d'usage prioritaires identifiés : automatisation du support client, IA dans la prospection commerciale, génération de rapports. La direction veut déployer sans risque sur 9 mois.",
+  contexte: t('offres.transformation.exemple.contexte'),
+  description: t('offres.transformation.exemple.desc'),
   jalons: [
-    { phase: "M1-M2", action: "Mise en place gouvernance IA, charte, formation CODIR" },
-    { phase: "M2-M4", action: "Deploiement support client IA avec Flowt sous pilotage Mentivis" },
-    { phase: "M4-M6", action: "Formation equipes commerciales, deploiement IA prospection" },
-    { phase: "M6-M8", action: "Automatisation reporting, mesure d'impact, ajustement" },
-    { phase: "M9", action: "Bilan, ROI mesure, feuille de route phase 2" },
+    { phase: "M1-M2", action: t('offres.transformation.exemple.phase.1') },
+    { phase: "M2-M4", action: t('offres.transformation.exemple.phase.2') },
+    { phase: "M4-M6", action: t('offres.transformation.exemple.phase.3') },
+    { phase: "M6-M8", action: t('offres.transformation.exemple.phase.4') },
+    { phase: "M9", action: t('offres.transformation.exemple.phase.5') },
   ],
 }
+
+const COLORS = {
+  green: { r: 189, g: 245, b: 171 },
+  white: { r: 255, g: 255, b: 255 },
+}
+
+function interpolateToWhite(progress: number): string {
+  const { r, g, b } = COLORS.green
+  const { r: r2, g: g2, b: b2 } = COLORS.white
+  const eased = 1 - Math.pow(1 - progress, 5)
+  const R = Math.round(r + (r2 - r) * eased)
+  const G = Math.round(g + (g2 - g) * eased)
+  const B = Math.round(b + (b2 - b) * eased)
+  return `rgb(${R}, ${G}, ${B})`
+}
+
+const navOffres = [
+  { label: t('offres.nav.diagnostic'), href: '/diagnostic' },
+  { label: t('offres.nav.formations'), href: '/formations' },
+  { label: t('offres.nav.transformation'), href: '/transformation' },
+  { label: t('offres.nav.partenaire'), href: '/partenaire' },
+]
 
 export default function TransformationPage() {
   const heroRef = useRef<HTMLElement>(null)
@@ -34,6 +58,7 @@ export default function TransformationPage() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const hero = heroRef.current
@@ -80,7 +105,7 @@ export default function TransformationPage() {
     })
   }
 
-  const heroBackground = `linear-gradient(to bottom, #f8f9fa ${100 - scrollProgress * 100}%, white 100%)`
+  const heroBackground = interpolateToWhite(scrollProgress)
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -102,36 +127,85 @@ export default function TransformationPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <ScrollGradient />
-      <main className="pt-36 pb-24" ref={heroRef} style={{ background: heroBackground }}>
+      <main className="pt-36 pb-24" style={{ backgroundColor: heroBackground }}>
         <div className="max-w-6xl mx-auto px-8">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-            <Link href="/#offres" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">← Retour</Link>
-          </motion.div>
+          <section ref={heroRef}>
+          <StaggerBlock delay={0}>
+            <Link href="/#offres" className="text-base text-gray-400 hover:text-black transition-colors duration-200 mb-10 inline-block">{t('offres.shared.retour')}</Link>
+          </StaggerBlock>
+
+          <nav className="mb-12 md:mb-16">
+            <div className="lg:hidden relative flex items-center">
+              <button
+                onClick={() => scrollMenu('left')}
+                className={`absolute left-0 z-10 transition-opacity flex items-center justify-center ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                aria-label="Scroll left"
+              >
+                <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <div
+                ref={scrollRef}
+                className="flex gap-6 overflow-x-auto"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', background: '#bdf5ab' }}
+              >
+                {navOffres.map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`whitespace-nowrap px-4 py-3 text-sm ${isActive ? 'text-black font-medium' : 'text-gray-600 hover:text-black'} transition-colors`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+              <button
+                onClick={() => scrollMenu('right')}
+                className={`absolute right-0 z-10 transition-opacity flex items-center justify-center ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                style={{ background: '#bdf5ab', width: '32px', height: '32px', padding: 0 }}
+                aria-label="Scroll right"
+              >
+                <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            <div className="hidden lg:flex gap-6" style={{ background: '#bdf5ab' }}>
+              {navOffres.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-5 py-3 text-sm ${isActive ? 'text-black font-medium' : 'text-gray-600 hover:text-black'} transition-colors`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </div>
+          </nav>
 
           <div className="mb-20">
-            <span className="text-sm tracking-widest text-gray-400 uppercase">OFFRE 03</span>
-            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">Transformation IA</h1>
-            <p className="text-xl font-medium text-gray-600">Programme 6-12 mois</p>
+            <span className="text-sm tracking-widest text-gray-400 uppercase">{t('offres.transformation.num')}</span>
+            <h1 className="text-4xl md:text-5xl  font-bold text-black mt-3 mb-3">{t('offres.transformation.title')}</h1>
+            <p className="text-xl font-medium text-gray-600">{t('offres.transformation.subtitle')}</p>
           </div>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">Promesse</h2>
-            <p className="text-2xl text-black max-w-3xl leading-relaxed">On vous aide à faire passer l'IA de l'expérimentation à la pratique quotidienne - sans casser votre organisation, sans dépendre d'un seul prestataire, avec des résultats mesurables tous les 3 mois.</p>
-          </motion.div>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.1} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-5">{t('offres.transformation.promesse.title')}</h2>
+            <p className="text-2xl text-black max-w-3xl leading-relaxed">{t('offres.transformation.promesse.body')}</p>
+          </StaggerBlock>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-8">Ce que Mentivis apporte</h2>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.2} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-8">{t('offres.transformation.apports.title')}</h2>
             <ul className="space-y-5">
               {apports.map((item) => (
                 <li key={item} className="flex items-start gap-5 text-black text-lg">
@@ -140,15 +214,11 @@ export default function TransformationPage() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </StaggerBlock>
 
-          <motion.div 
-            className="border-t border-gray-200 pt-14 mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-6">Exemple</h2>
+          <AnimatedDivider />
+          <StaggerBlock delay={0.3} className="pt-14 mb-16">
+            <h2 className="text-sm tracking-widest text-gray-400 uppercase mb-6">{t('offres.transformation.exemple.title')}</h2>
             <div className="bg-gray-50 p-10">
               <p className="font-medium text-black text-lg mb-3">{exemple.contexte}</p>
               <p className="text-gray-500 mb-8">{exemple.description}</p>
@@ -161,12 +231,13 @@ export default function TransformationPage() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </StaggerBlock>
 
           <motion.div className="flex gap-5" whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">Échanger</span><span className="hidden md:inline">Contactez-nous</span></Link>
-            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">Retour</span><span className="hidden md:inline">Retour à l'accueil</span></Link>
+            <Link href="/contact" className="inline-block px-10 py-4 text-lg text-white bg-black hover:bg-white hover:text-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.contact_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.contact')}</span></Link>
+            <Link href="/" className="inline-block px-10 py-4 text-lg text-black border-2 border-gray-200 hover:border-black transition-colors duration-200"><span className="md:hidden">{t('offres.shared.cta.retour_mobile')}</span><span className="hidden md:inline">{t('offres.shared.cta.retour')}</span></Link>
           </motion.div>
+          </section>
         </div>
       </main>
       <Footer />
